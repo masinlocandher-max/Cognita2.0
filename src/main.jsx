@@ -7,6 +7,7 @@ import EntranceExam from './pages/EntranceExam'
 import Exam from './pages/Exam'
 import Learner from './pages/Learner'
 import './styles.css'
+import './learner.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
