@@ -24,3 +24,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Upload built frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: cognita2-dist
+          path: dist
+          if-no-files-found: error
