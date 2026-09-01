@@ -14,16 +14,20 @@ function formatDate(value) {
   }).format(new Date(value))
 }
 
-export default function Learner() {
-  useMemo(() => importLegacyExamIfAvailable(), [])
+function bootLearner() {
+  importLegacyExamIfAvailable()
+  return getLearner()
+}
 
+export default function Learner() {
   const navigate = useNavigate()
-  const [learner, setLearner] = useState(() => getLearner())
-  const [editing, setEditing] = useState(() => !getLearner())
-  const [form, setForm] = useState(() => ({
-    fullName: getLearner()?.fullName || '',
-    email: getLearner()?.email || '',
-  }))
+  const [initialLearner] = useState(() => bootLearner())
+  const [learner, setLearner] = useState(initialLearner)
+  const [editing, setEditing] = useState(!initialLearner)
+  const [form, setForm] = useState({
+    fullName: initialLearner?.fullName || '',
+    email: initialLearner?.email || '',
+  })
   const [refreshKey, setRefreshKey] = useState(0)
 
   const attempts = useMemo(() => learner ? getAttempts(learner.id) : [], [learner, refreshKey])
