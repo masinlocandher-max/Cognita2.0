@@ -5,6 +5,7 @@ import AppLayout from './components/AppLayout'
 import Home from './pages/Home'
 import EntranceExam from './pages/EntranceExam'
 import Exam from './pages/Exam'
+import Learner from './pages/Learner'
 import './styles.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/learner" element={<Learner />} />
           <Route path="/entrance-exam" element={<EntranceExam />} />
           <Route path="/entrance-exam/start" element={<Exam />} />
         </Route>
