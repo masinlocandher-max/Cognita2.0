@@ -1,4 +1,4 @@
-import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, SearchCheck, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, Laptop, SearchCheck, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export default function EntranceExam() {
@@ -71,9 +71,20 @@ export default function EntranceExam() {
             <li>No web browsing for the objective sections.</li>
             <li>Answer based on your own understanding and judgment.</li>
             <li>Applied responses should be written in your own words.</li>
-            <li>Your result is used to determine the most appropriate starting point.</li>
+            <li>Your result is used to identify the most appropriate starting point.</li>
           </ul>
           <Link className="button" to="/entrance-exam/start">Start CEE v1.0 <ArrowRight size={18} /></Link>
+        </div>
+      </section>
+
+      <section className="section section--soft section--local-storage">
+        <div className="page-width local-storage-band">
+          <Laptop size={26} />
+          <div>
+            <h2>Frontend-only for this milestone.</h2>
+            <p>Your learner profile, progress, answers, and submitted objective result are stored on this browser only. They are not sent to Cognita staff and do not sync across devices.</p>
+          </div>
+          <Link className="text-link text-link--dark" to="/learner">View learner profile</Link>
         </div>
       </section>
     </>
