@@ -1,17 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, Clock3, Flag, RotateCcw } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, Clock3, Flag, UserRound } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { appliedTasks, examMeta, examSections } from '../data/exam'
-
-const storageKey = 'cognita-cee-v1-progress'
-
-function getSavedProgress() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null')
-    return saved || {}
-  } catch {
-    return {}
-  }
-}
+import { createAttempt, getActiveAttempt, getLearner, importLegacyExamIfAvailable, saveAttempt, saveLearner } from '../lib/localLearner'
 
 function formatTime(seconds) {
   const safe = Math.max(0, seconds)
@@ -20,34 +11,46 @@ function formatTime(seconds) {
   return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
 }
 
+function bootExam() {
+  importLegacyExamIfAvailable()
+  const learner = getLearner()
+  return {
+    learner,
+    attempt: learner ? getActiveAttempt(learner.id) : null,
+  }
+}
+
 export default function Exam() {
-  const saved = useMemo(() => getSavedProgress(), [])
-  const [candidate, setCandidate] = useState(saved.candidate || { name: '', email: '' })
-  const [answers, setAnswers] = useState(saved.answers || {})
-  const [applied, setApplied] = useState(saved.applied || {})
-  const [startedAt, setStartedAt] = useState(saved.startedAt || null)
-  const [stageIndex, setStageIndex] = useState(saved.stageIndex || 0)
-  const [completed, setCompleted] = useState(saved.completed || false)
+  const initial = useMemo(() => bootExam(), [])
+  const [learner, setLearner] = useState(initial.learner)
+  const [attempt, setAttempt] = useState(initial.attempt)
+  const [profileForm, setProfileForm] = useState({
+    fullName: initial.learner?.fullName || '',
+    email: initial.learner?.email || '',
+  })
   const [elapsed, setElapsed] = useState(0)
 
-  const stages = [...examSections, { id: 'applied', title: 'Applied Response', subtitle: 'Independent written tasks' }]
+  const stages = useMemo(() => [...examSections, { id: 'applied', title: 'Applied Response', subtitle: 'Independent written tasks' }], [])
+  const answers = attempt?.answers || {}
+  const applied = attempt?.applied || {}
+  const stageIndex = attempt?.stageIndex || 0
   const currentStage = stages[stageIndex]
 
   useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify({ candidate, answers, applied, startedAt, stageIndex, completed }))
-  }, [candidate, answers, applied, startedAt, stageIndex, completed])
+    if (attempt) saveAttempt(attempt)
+  }, [attempt])
 
   useEffect(() => {
-    if (!startedAt || completed) return
-    const tick = () => setElapsed(Math.floor((Date.now() - startedAt) / 1000))
+    if (!attempt?.startedAt || attempt.completed) return undefined
+    const tick = () => setElapsed(Math.floor((Date.now() - attempt.startedAt) / 1000))
     tick()
     const timer = window.setInterval(tick, 1000)
     return () => window.clearInterval(timer)
-  }, [startedAt, completed])
+  }, [attempt?.startedAt, attempt?.completed])
 
-  const objectiveQuestions = examSections.flatMap((section) => section.questions)
+  const objectiveQuestions = useMemo(() => examSections.flatMap((section) => section.questions), [])
   const objectiveAnswered = objectiveQuestions.filter((question) => answers[question.id] !== undefined).length
-  const appliedAnswered = appliedTasks.filter((task) => (applied[task.id] || '').trim().length >= 40).length
+  const appliedAnswered = appliedTasks.filter((task) => (applied[task.id] || '').trim().length >= 80).length
   const completedItems = objectiveAnswered + appliedAnswered
   const totalItems = objectiveQuestions.length + appliedTasks.length
   const progress = Math.round((completedItems / totalItems) * 100)
@@ -74,93 +77,208 @@ export default function Exam() {
   const placement = useMemo(() => {
     const communicationScore = communication.percentage
     const aiScore = aiReadiness
-    if (communicationScore >= 80 && aiScore >= 80) return { title: 'AI-01 readiness indicated', detail: 'Your objective results indicate readiness to move beyond the foundation level. Applied responses still require review before final placement.' }
-    if (communicationScore < 70 && aiScore >= 80) return { title: 'AI-00 Communication Readiness indicated', detail: 'Your AI foundation appears stronger than your current communication-readiness score. Communication support is the likely starting point.' }
-    if (communicationScore >= 80 && aiScore < 70) return { title: 'AI-00 AI Foundations indicated', detail: 'Your communication readiness appears strong. AI foundations are the likely area to strengthen before progression.' }
-    if (communicationScore < 70 && aiScore < 70) return { title: 'Full AI-00 indicated', detail: 'Your objective profile indicates that both AI foundations and communication readiness should be strengthened first.' }
-    return { title: 'Targeted bridge + review indicated', detail: 'One or more readiness areas are near the progression threshold. Applied responses should be reviewed before final placement.' }
+
+    if (communicationScore >= 80 && aiScore >= 80) {
+      return {
+        title: 'AI-01 readiness indicated',
+        detail: 'Your objective results indicate readiness to move beyond the foundation level. Applied responses still require review before final placement.',
+      }
+    }
+
+    if (communicationScore < 70 && aiScore >= 80) {
+      return {
+        title: 'AI-00 Communication Readiness indicated',
+        detail: 'Your AI foundation appears stronger than your current communication-readiness score. Communication support is the likely starting point.',
+      }
+    }
+
+    if (communicationScore >= 80 && aiScore < 70) {
+      return {
+        title: 'AI-00 AI Foundations indicated',
+        detail: 'Your communication readiness appears strong. AI foundations are the likely area to strengthen before progression.',
+      }
+    }
+
+    if (communicationScore < 70 && aiScore < 70) {
+      return {
+        title: 'Full AI-00 indicated',
+        detail: 'Your objective profile indicates that both AI foundations and communication readiness should be strengthened first.',
+      }
+    }
+
+    return {
+      title: 'Targeted bridge + review indicated',
+      detail: 'One or more readiness areas are near the progression threshold. Applied responses should be reviewed before final placement.',
+    }
   }, [communication.percentage, aiReadiness])
 
-  const begin = (event) => {
+  const stageIsComplete = (stage) => {
+    if (stage.id === 'applied') return appliedAnswered === appliedTasks.length
+    return stage.questions.every((question) => answers[question.id] !== undefined)
+  }
+
+  const completedStages = stages.map(stageIsComplete)
+  const firstIncompleteStage = completedStages.findIndex((value) => !value)
+  const maxReachableStage = firstIncompleteStage === -1 ? stages.length - 1 : firstIncompleteStage
+
+  const updateAttempt = (changes) => {
+    setAttempt((current) => current ? { ...current, ...changes } : current)
+  }
+
+  const createProfileAndBegin = (event) => {
     event.preventDefault()
-    if (!candidate.name.trim() || !candidate.email.trim()) return
-    setStartedAt(Date.now())
+    if (!profileForm.fullName.trim() || !profileForm.email.trim()) return
+
+    const nextLearner = saveLearner(profileForm)
+    const nextAttempt = createAttempt(nextLearner)
+    const startedAttempt = { ...nextAttempt, startedAt: Date.now() }
+    saveAttempt(startedAttempt)
+    setLearner(nextLearner)
+    setAttempt(startedAttempt)
+  }
+
+  const beginExistingProfile = () => {
+    if (!learner) return
+    const nextAttempt = attempt || createAttempt(learner)
+    const startedAttempt = nextAttempt.startedAt ? nextAttempt : { ...nextAttempt, startedAt: Date.now() }
+    saveAttempt(startedAttempt)
+    setAttempt(startedAttempt)
   }
 
   const choose = (questionId, optionIndex) => {
-    setAnswers((previous) => ({ ...previous, [questionId]: optionIndex }))
+    setAttempt((current) => current ? {
+      ...current,
+      answers: { ...current.answers, [questionId]: optionIndex },
+    } : current)
+  }
+
+  const setAppliedResponse = (taskId, value) => {
+    setAttempt((current) => current ? {
+      ...current,
+      applied: { ...current.applied, [taskId]: value },
+    } : current)
+  }
+
+  const goToStage = (index) => {
+    if (!attempt || index > maxReachableStage) return
+    updateAttempt({ stageIndex: index })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const next = () => {
-    setStageIndex((index) => Math.min(index + 1, stages.length - 1))
+    if (!attempt || !stageIsComplete(currentStage)) return
+    updateAttempt({ stageIndex: Math.min(stageIndex + 1, stages.length - 1) })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const previous = () => {
-    setStageIndex((index) => Math.max(index - 1, 0))
+    if (!attempt) return
+    updateAttempt({ stageIndex: Math.max(stageIndex - 1, 0) })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const finish = () => {
-    if (objectiveAnswered !== objectiveQuestions.length || appliedAnswered !== appliedTasks.length) return
-    setCompleted(true)
+    if (!attempt || objectiveAnswered !== objectiveQuestions.length || appliedAnswered !== appliedTasks.length) return
+
+    const submitted = {
+      ...attempt,
+      completed: true,
+      submittedAt: new Date().toISOString(),
+      objectivePoints,
+      scores: {
+        communication: { ...communication, points: communicationPoints },
+        aiFoundations: { ...ai, points: aiPoints },
+        research: { ...research, points: researchPoints },
+        aiReadiness,
+      },
+      placement,
+    }
+
+    saveAttempt(submitted)
+    setAttempt(submitted)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const reset = () => {
-    if (!window.confirm('Clear this exam attempt and start again?')) return
-    localStorage.removeItem(storageKey)
-    setCandidate({ name: '', email: '' })
-    setAnswers({})
-    setApplied({})
-    setStartedAt(null)
-    setStageIndex(0)
-    setCompleted(false)
+  const newAttempt = () => {
+    if (!learner) return
+    const nextAttempt = createAttempt(learner)
+    setAttempt(nextAttempt)
     setElapsed(0)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  if (!startedAt) {
+  if (!learner) {
     return (
       <section className="exam-workspace exam-workspace--setup">
         <div className="exam-container exam-setup-card">
           <div>
-            <p className="section-label">CEE v1.0</p>
-            <h1>Cognita Entrance Exam</h1>
-            <p className="exam-intro">Complete the assessment independently. Your result is used to identify the most appropriate starting point in the Cognita learning journey.</p>
+            <p className="section-label">DEVICE-LOCAL LEARNER PROFILE</p>
+            <h1>Set up your Cognita learner record.</h1>
+            <p className="exam-intro">This frontend-only build stores your profile and CEE attempts on this browser. It is not an online account and no information is sent to a server.</p>
           </div>
-          <form className="candidate-form" onSubmit={begin}>
+          <form className="candidate-form" onSubmit={createProfileAndBegin}>
             <label>
               Full name
-              <input value={candidate.name} onChange={(event) => setCandidate({ ...candidate, name: event.target.value })} autoComplete="name" required />
+              <input value={profileForm.fullName} onChange={(event) => setProfileForm((current) => ({ ...current, fullName: event.target.value }))} autoComplete="name" required />
             </label>
             <label>
               Email address
-              <input type="email" value={candidate.email} onChange={(event) => setCandidate({ ...candidate, email: event.target.value })} autoComplete="email" required />
+              <input type="email" value={profileForm.email} onChange={(event) => setProfileForm((current) => ({ ...current, email: event.target.value }))} autoComplete="email" required />
             </label>
             <div className="integrity-note">
               <Flag size={20} />
               <p>By starting, you confirm that you will answer without generative AI assistance and that the written responses are your own.</p>
             </div>
-            <button className="button" type="submit">Start exam <ArrowRight size={18} /></button>
+            <button className="button" type="submit">Create profile and start <ArrowRight size={18} /></button>
           </form>
         </div>
       </section>
     )
   }
 
-  if (completed) {
+  if (!attempt?.startedAt) {
+    return (
+      <section className="exam-workspace exam-workspace--setup">
+        <div className="exam-container exam-setup-card">
+          <div>
+            <p className="section-label">CEE v1.0</p>
+            <h1>Ready when you are, {learner.fullName.split(' ')[0]}.</h1>
+            <p className="exam-intro">Your learner profile is ready. Once you begin, progress is automatically saved on this device so you can return and continue.</p>
+            <div className="exam-profile-confirmation">
+              <UserRound size={20} />
+              <div><strong>{learner.fullName}</strong><span>{learner.email}</span></div>
+              <Link to="/learner">Edit profile</Link>
+            </div>
+          </div>
+          <div className="exam-start-actions">
+            <div className="integrity-note">
+              <Flag size={20} />
+              <p>Complete the assessment independently. Do not use generative AI or browse the web for the objective sections.</p>
+            </div>
+            <button className="button" type="button" onClick={beginExistingProfile}>Start exam <ArrowRight size={18} /></button>
+            <Link className="text-link text-link--dark" to="/learner">Return to learner profile</Link>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (attempt.completed) {
+    const resultPlacement = attempt.placement || placement
+    const resultObjectivePoints = attempt.objectivePoints ?? objectivePoints
+
     return (
       <section className="exam-workspace">
         <div className="exam-container result-layout">
           <div className="result-hero">
             <div className="result-check"><Check size={32} /></div>
             <p className="section-label">OBJECTIVE PROFILE COMPLETE</p>
-            <h1>{placement.title}</h1>
-            <p>{placement.detail}</p>
+            <h1>{resultPlacement.title}</h1>
+            <p>{resultPlacement.detail}</p>
           </div>
 
           <div className="result-score-grid">
-            <article><span>Objective score</span><strong>{objectivePoints}<small>/70</small></strong><p>Applied responses account for the remaining 30 points.</p></article>
+            <article><span>Objective score</span><strong>{resultObjectivePoints}<small>/70</small></strong><p>Applied responses account for the remaining 30 points.</p></article>
             <article><span>Communication</span><strong>{communication.percentage}%</strong><p>{communication.correct} of {communication.total} objective items correct.</p></article>
             <article><span>AI readiness</span><strong>{aiReadiness}%</strong><p>Combined AI foundations and research judgment.</p></article>
           </div>
@@ -168,15 +286,16 @@ export default function Exam() {
           <div className="review-panel">
             <div>
               <h2>What happens next</h2>
-              <p>The two applied responses require evaluator review before a final placement decision and full 100-point score are issued. This prevents open-ended judgment from being reduced to unreliable automatic scoring.</p>
+              <p>The two applied responses are intentionally not auto-scored. In a future operational version, an evaluator will review those 30 points before issuing final placement. This frontend milestone records your submitted objective profile without pretending that human review already exists.</p>
             </div>
-            <div className="review-status"><span>30 points</span><strong>Pending applied review</strong></div>
+            <div className="review-status"><span>30 points</span><strong>Evaluator review not connected</strong></div>
           </div>
 
-          <div className="result-actions">
-            <button className="button button--ghost" type="button" onClick={reset}><RotateCcw size={18} /> Clear local attempt</button>
+          <div className="result-actions result-actions--split">
+            <Link className="button button--ghost" to="/learner">View learner record</Link>
+            <button className="button" type="button" onClick={newAttempt}>Start another attempt <ArrowRight size={18} /></button>
           </div>
-          <p className="mvp-note">MVP note: this build stores the exam attempt locally in the browser only. Server submission and evaluator workflow have not been connected yet.</p>
+          <p className="mvp-note">Frontend-only milestone: this submitted attempt is stored in this browser and appears in your device-local learner history. It has not been transmitted to Cognita or reviewed by an evaluator.</p>
         </div>
       </section>
     )
@@ -184,7 +303,7 @@ export default function Exam() {
 
   const currentQuestions = currentStage.id === 'applied' ? [] : currentStage.questions
   const currentAnswered = currentQuestions.filter((question) => answers[question.id] !== undefined).length
-  const canAdvance = currentStage.id === 'applied' ? appliedAnswered === appliedTasks.length : currentAnswered === currentQuestions.length
+  const canAdvance = stageIsComplete(currentStage)
   const remainingSeconds = examMeta.recommendedMinutes * 60 - elapsed
 
   return (
@@ -193,7 +312,7 @@ export default function Exam() {
         <div className="exam-container exam-topbar-inner">
           <div>
             <strong>{examMeta.version}</strong>
-            <span>{candidate.name}</span>
+            <span>{attempt.candidate.name}</span>
           </div>
           <div className="exam-progress-wrap">
             <div className="exam-progress"><span style={{ width: `${progress}%` }} /></div>
@@ -207,7 +326,12 @@ export default function Exam() {
         <aside className="exam-sidebar">
           <p>Sections</p>
           {stages.map((stage, index) => (
-            <button key={stage.id} className={index === stageIndex ? 'is-active' : ''} onClick={() => setStageIndex(index)}>
+            <button
+              key={stage.id}
+              className={index === stageIndex ? 'is-active' : ''}
+              onClick={() => goToStage(index)}
+              disabled={index > maxReachableStage}
+            >
               <span>{index + 1}</span>
               <div><strong>{stage.title}</strong><small>{stage.subtitle}</small></div>
             </button>
@@ -250,9 +374,9 @@ export default function Exam() {
                     <p className="applied-guidance">{task.guidance}</p>
                     <label>
                       Your response
-                      <textarea rows="9" value={applied[task.id] || ''} onChange={(event) => setApplied((previous) => ({ ...previous, [task.id]: event.target.value }))} placeholder="Write your response in your own words…" />
+                      <textarea rows="9" value={applied[task.id] || ''} onChange={(event) => setAppliedResponse(task.id, event.target.value)} placeholder="Write your response in your own words…" />
                     </label>
-                    <small>{(applied[task.id] || '').trim().length < 40 ? 'Write at least a short developed response before submitting.' : 'Response captured.'}</small>
+                    <small>{(applied[task.id] || '').trim().length < 80 ? 'Write a developed response of at least 80 characters before submitting.' : 'Response captured.'}</small>
                   </div>
                 </article>
               ))}
@@ -262,8 +386,8 @@ export default function Exam() {
           <div className="exam-navigation">
             <button className="button button--ghost" type="button" onClick={previous} disabled={stageIndex === 0}><ArrowLeft size={18} /> Previous</button>
             <div className="exam-navigation-status">
-              {currentStage.id !== 'applied' && <span>{currentAnswered} of {currentQuestions.length} answered</span>}
-              {!canAdvance && <small>Complete this section to continue.</small>}
+              {currentStage.id !== 'applied' ? <span>{currentAnswered} of {currentQuestions.length} answered</span> : <span>{appliedAnswered} of {appliedTasks.length} developed responses ready</span>}
+              {!canAdvance ? <small>Complete this section to continue.</small> : null}
             </div>
             {stageIndex < stages.length - 1 ? (
               <button className="button" type="button" onClick={next} disabled={!canAdvance}>Next section <ArrowRight size={18} /></button>
