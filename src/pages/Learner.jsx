@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { ArrowRight, BookOpenCheck, CheckCircle2, FileClock, Laptop, Pencil, RotateCcw, ShieldCheck, UserRound } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
-import { clearDeviceData, createAttempt, getAttempts, getLearner, importLegacyExamIfAvailable, saveLearner } from '../lib/localLearner'
+import { clearDeviceData, createAttempt, getAttempts, getLearner, importLegacyExamIfAvailable, isCurrentQuestionnaire, saveLearner } from '../lib/localLearner'
 
 function formatDate(value) {
   if (!value) return 'Not started'
@@ -31,7 +31,7 @@ export default function Learner() {
   const [refreshKey, setRefreshKey] = useState(0)
 
   const attempts = useMemo(() => learner ? getAttempts(learner.id) : [], [learner, refreshKey])
-  const activeAttempt = attempts.find((attempt) => !attempt.completed)
+  const activeAttempt = attempts.find((attempt) => !attempt.completed && isCurrentQuestionnaire(attempt))
   const latestCompleted = attempts.find((attempt) => attempt.completed)
 
   const submitProfile = (event) => {
@@ -152,7 +152,7 @@ export default function Learner() {
                       <div className="attempt-main">
                         <div>
                           <strong>{attempt.examVersion}</strong>
-                          <span>{attempt.completed ? 'Submitted' : attempt.startedAt ? 'In progress' : 'Created'}</span>
+                          <span>{attempt.completed ? 'Submitted' : !isCurrentQuestionnaire(attempt) ? 'Not completed' : attempt.startedAt ? 'In progress' : 'Created'}</span>
                         </div>
                         <small>Updated {formatDate(attempt.updatedAt)}</small>
                       </div>
@@ -162,11 +162,13 @@ export default function Learner() {
                             <strong>{attempt.objectivePoints ?? '—'}<small>/70</small></strong>
                             <span>{attempt.placement?.title || 'Objective profile complete'}</span>
                           </>
+                        ) : !isCurrentQuestionnaire(attempt) ? (
+                          <span>Superseded questionnaire</span>
                         ) : (
                           <span>{attempt.startedAt ? 'Resume available' : 'Ready to begin'}</span>
                         )}
                       </div>
-                      {!attempt.completed && index === 0 ? <Link className="attempt-link" to="/entrance-exam/start">Resume <ArrowRight size={16} /></Link> : <CheckCircle2 className="attempt-done" size={20} />}
+                      {attempt.id === activeAttempt?.id ? <Link className="attempt-link" to="/entrance-exam/start">Resume <ArrowRight size={16} /></Link> : attempt.completed ? <CheckCircle2 className="attempt-done" size={20} /> : <FileClock className="attempt-done attempt-done--muted" size={20} />}
                     </article>
                   ))}
                 </div>

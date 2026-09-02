@@ -202,6 +202,8 @@ h2 { letter-spacing: -0.04em; }
 .integrity-note { display: flex; align-items: flex-start; gap: 12px; background: #f6f7fc; border-radius: 14px; padding: 16px; color: #5c6579; }
 .integrity-note svg { color: #5d62da; flex: 0 0 auto; }
 .integrity-note p { margin: 0; font-size: 13px; line-height: 1.55; }
+.exam-notice { background: #fff8ef; border: 1px solid #f0dfc6; border-radius: 12px; padding: 14px 16px; color: #7a5c33; font-size: 13px; line-height: 1.6; }
+.attempt-done--muted { color: #a9b0c0 !important; }
 
 .exam-topbar { position: sticky; top: 76px; z-index: 30; background: rgba(255,255,255,.96); backdrop-filter: blur(14px); border-bottom: 1px solid #e1e5ec; }
 .exam-topbar-inner { min-height: 70px; display: grid; grid-template-columns: 220px 1fr 150px; gap: 30px; align-items: center; }
@@ -228,6 +230,10 @@ h2 { letter-spacing: -0.04em; }
 .exam-section-heading h1 { font-size: clamp(38px, 4.2vw, 58px); margin-bottom: 8px; }
 .exam-section-heading > p:last-child { color: #778096; }
 .question-list { display: grid; gap: 18px; }
+.question-scenario { background: #f7f8fc; border: 1px solid #e1e5ed; border-left: 3px solid #6f55ed; border-radius: 16px; padding: 22px 24px; }
+.question-scenario .section-label { color: #5d65d8; margin-bottom: 12px; }
+.question-scenario p + p { margin-top: 10px; }
+.question-scenario p:not(.section-label) { color: #414b62; font-size: 14px; line-height: 1.7; }
 .question-card { margin: 0; padding: 26px; background: #fff; border: 1px solid #e1e5ed; border-radius: 18px; box-shadow: 0 6px 18px rgba(23, 34, 61, .035); }
 .question-card legend { width: 100%; padding: 0; margin-bottom: 20px; font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.55; color: #202941; }
 .question-card legend > span { display: inline-grid; place-items: center; width: 31px; height: 31px; margin-right: 12px; border-radius: 8px; background: #eff2f8; color: #606a83; font-size: 11px; vertical-align: middle; }
@@ -239,6 +245,10 @@ h2 { letter-spacing: -0.04em; }
 .option-letter { width: 28px; height: 28px; border-radius: 8px; background: #f0f2f6; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #778096; }
 .option-list label.is-selected .option-letter { background: #e4e5ff; color: #4e55cf; }
 .applied-list { display: grid; gap: 20px; }
+.applied-scenario { color: #414b62; background: #f7f8fc; border-radius: 12px; padding: 14px 16px; line-height: 1.7; font-size: 14px; margin-bottom: 14px; }
+.applied-guidance ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 5px; }
+.applied-guidance li { line-height: 1.5; }
+.applied-note { margin-top: 12px; color: #8a92a4; font-style: italic; }
 .applied-card { padding: 30px; background: #fff; border: 1px solid #e1e5ed; border-radius: 18px; display: grid; grid-template-columns: 60px 1fr; gap: 20px; }
 .applied-number { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: #151d40; color: #fff; font-weight: 800; }
 .applied-card > div:last-child > span { color: #5d65d8; font-size: 11px; letter-spacing: .12em; font-weight: 800; text-transform: uppercase; }

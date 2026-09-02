@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Verify CEE questionnaire and scoring
+        run: npm run verify
+
       - name: Build
         run: npm run build
 

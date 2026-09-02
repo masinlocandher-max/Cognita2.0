@@ -1,3 +1,5 @@
+import { examMeta } from '../data/exam'
+
 const STATE_KEY = 'cognita-v2-device-state'
 const LEGACY_EXAM_KEY = 'cognita-cee-v1-progress'
 const SCHEMA_VERSION = 1
@@ -67,8 +69,22 @@ export function getAttempt(attemptId) {
   return readDeviceState().attempts.find((attempt) => attempt.id === attemptId) || null
 }
 
+/**
+ * True when an attempt was started against the questionnaire currently shipped.
+ * Attempts stamped with an older item set must not be resumed or scored, since
+ * their stored answers point at questions that no longer exist.
+ */
+export function isCurrentQuestionnaire(attempt) {
+  return attempt?.questionnaireVersion === examMeta.questionnaireVersion
+}
+
 export function getActiveAttempt(learnerId) {
-  return getAttempts(learnerId).find((attempt) => !attempt.completed) || null
+  return getAttempts(learnerId).find((attempt) => !attempt.completed && isCurrentQuestionnaire(attempt)) || null
+}
+
+/** Unfinished attempts stranded by a questionnaire change. Kept, never resumed. */
+export function getSupersededAttempts(learnerId) {
+  return getAttempts(learnerId).filter((attempt) => !attempt.completed && !isCurrentQuestionnaire(attempt))
 }
 
 export function createAttempt(learner) {
@@ -77,7 +93,8 @@ export function createAttempt(learner) {
   const attempt = {
     id: uid('cee'),
     learnerId: learner.id,
-    examVersion: 'CEE v1.0',
+    examVersion: examMeta.version,
+    questionnaireVersion: examMeta.questionnaireVersion,
     candidate: { name: learner.fullName, email: learner.email },
     answers: {},
     applied: {},
@@ -135,6 +152,7 @@ export function importLegacyExamIfAvailable() {
 
     saveAttempt({
       ...attempt,
+      questionnaireVersion: legacy.questionnaireVersion || 'legacy',
       candidate: legacy.candidate,
       answers: legacy.answers || {},
       applied: legacy.applied || {},

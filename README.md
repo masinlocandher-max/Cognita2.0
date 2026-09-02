@@ -45,7 +45,9 @@ This is not server authentication. The profile exists only on the current browse
 Complete for the frontend-only milestone.
 
 - Functional CEE v1.0 exam interface
-- 45 objective assessment items
+- The approved CEE v1.0 production questionnaire and answer key
+- 45 objective assessment items (25 communication, 15 AI foundations, 5 research)
+- Shared scenario stems rendered with the items that depend on them
 - 2 applied-response tasks
 - 70 objective points automatically scored
 - 30 applied-response points deliberately reserved for human evaluation
@@ -79,6 +81,16 @@ The frontend automatically scores the 70 objective points. The remaining 30 appl
 
 The result shown by this frontend is therefore a preliminary objective placement indication, not a final institutional placement decision.
 
+Scoring follows the institutional formulas exactly — points are computed from raw item counts and rounded once for display, never from an already-rounded percentage. Placement thresholds compare unrounded percentages, so 79.4% is not promoted at 79.5%.
+
+Formulas, placement bands, the applied-response rubrics, and the known integrity boundaries of this build are documented in `docs/cee-v1-scoring-guide.md`. That document is institutional reference material and is not imported by the app, so it does not ship in the browser bundle.
+
+Implementation map:
+
+- `src/data/exam.js` — questionnaire and answer key
+- `src/lib/scoring.js` — scoring formulas and placement logic
+- `scripts/verify-cee.mjs` — integrity check, run by CI
+
 ## Local data model
 
 Frontend learner data is stored under a versioned browser key and contains:
@@ -91,6 +103,8 @@ Frontend learner data is stored under a versioned browser key and contains:
 - preliminary placement indication
 
 Submitted attempts remain in history. A new attempt creates a new record instead of overwriting the previous result.
+
+Every attempt is stamped with the questionnaire version it was started against. An unfinished attempt from an earlier item set is kept in history but cannot be resumed, because its stored answers point at questions the current exam no longer contains. Scoring such an attempt against the current key would produce a confident and wrong placement, which is worse than asking the learner to start again.
 
 ## Known boundary
 
@@ -105,6 +119,12 @@ Because this milestone is frontend-only:
 
 These are intentional product boundaries, not hidden production capabilities.
 
+## Exam integrity boundary
+
+Objective scoring runs in the browser, so the CEE answer key is present in the JavaScript bundle and can be read by anyone who opens developer tools. This is inherent to frontend-only scoring; obfuscation would not change it. Server-side scoring is the only real fix and belongs to a later phase.
+
+A second issue is in the approved questionnaire itself rather than in this code: the keyed option positions follow a visible repeating cycle, which a candidate could exploit without reading the items. Both boundaries are documented in `docs/cee-v1-scoring-guide.md` with the available remedies. Neither has been applied to v1.0.
+
 ## Development
 
 ```bash
@@ -117,6 +137,14 @@ Build check:
 ```bash
 npm run build
 ```
+
+Questionnaire and scoring check:
+
+```bash
+npm run verify
+```
+
+`npm run verify` fails if the questionnaire drifts from the approved 45-item shape or answer key, if the section weights stop summing to 70, or if scoring and placement stop matching the institutional formulas and thresholds. CI runs it before the build.
 
 A GitHub Actions workflow also runs the frontend build when Actions are enabled for the repository.
 

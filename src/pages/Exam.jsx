@@ -1,8 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Clock3, Flag, UserRound } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { appliedTasks, examMeta, examSections } from '../data/exam'
-import { createAttempt, getActiveAttempt, getLearner, importLegacyExamIfAvailable, saveAttempt, saveLearner } from '../lib/localLearner'
+import { appliedSection, appliedTasks, examMeta, examSections } from '../data/exam'
+import { createAttempt, getActiveAttempt, getLearner, getSupersededAttempts, importLegacyExamIfAvailable, saveAttempt, saveLearner } from '../lib/localLearner'
+import { scoreObjective } from '../lib/scoring'
+
+const MIN_APPLIED_CHARACTERS = 80
 
 function formatTime(seconds) {
   const safe = Math.max(0, seconds)
@@ -17,6 +20,7 @@ function bootExam() {
   return {
     learner,
     attempt: learner ? getActiveAttempt(learner.id) : null,
+    superseded: learner ? getSupersededAttempts(learner.id).length : 0,
   }
 }
 
@@ -30,7 +34,7 @@ export default function Exam() {
   })
   const [elapsed, setElapsed] = useState(0)
 
-  const stages = useMemo(() => [...examSections, { id: 'applied', title: 'Applied Response', subtitle: 'Independent written tasks' }], [])
+  const stages = useMemo(() => [...examSections, appliedSection], [])
   const answers = attempt?.answers || {}
   const applied = attempt?.applied || {}
   const stageIndex = attempt?.stageIndex || 0
@@ -50,67 +54,23 @@ export default function Exam() {
 
   const objectiveQuestions = useMemo(() => examSections.flatMap((section) => section.questions), [])
   const objectiveAnswered = objectiveQuestions.filter((question) => answers[question.id] !== undefined).length
-  const appliedAnswered = appliedTasks.filter((task) => (applied[task.id] || '').trim().length >= 80).length
+  const appliedAnswered = appliedTasks.filter((task) => (applied[task.id] || '').trim().length >= MIN_APPLIED_CHARACTERS).length
   const completedItems = objectiveAnswered + appliedAnswered
   const totalItems = objectiveQuestions.length + appliedTasks.length
   const progress = Math.round((completedItems / totalItems) * 100)
 
-  const scoreSection = (section) => {
-    const correct = section.questions.filter((question) => answers[question.id] === question.answer).length
-    return {
-      correct,
-      total: section.questions.length,
-      percentage: Math.round((correct / section.questions.length) * 100),
-    }
-  }
+  const scenarioByLeadQuestion = useMemo(() => {
+    const map = {}
+    examSections.forEach((section) => {
+      (section.scenarios || []).forEach((scenario) => {
+        map[scenario.appliesTo[0]] = scenario
+      })
+    })
+    return map
+  }, [])
 
-  const sectionScores = examSections.map(scoreSection)
-  const communication = sectionScores[0]
-  const ai = sectionScores[1]
-  const research = sectionScores[2]
-  const communicationPoints = Math.round((communication.percentage / 100) * 30)
-  const aiPoints = Math.round((ai.percentage / 100) * 25)
-  const researchPoints = Math.round((research.percentage / 100) * 15)
-  const objectivePoints = communicationPoints + aiPoints + researchPoints
-  const aiReadiness = Math.round(((ai.correct + research.correct) / (ai.total + research.total)) * 100)
-
-  const placement = useMemo(() => {
-    const communicationScore = communication.percentage
-    const aiScore = aiReadiness
-
-    if (communicationScore >= 80 && aiScore >= 80) {
-      return {
-        title: 'AI-01 readiness indicated',
-        detail: 'Your objective results indicate readiness to move beyond the foundation level. Applied responses still require review before final placement.',
-      }
-    }
-
-    if (communicationScore < 70 && aiScore >= 80) {
-      return {
-        title: 'AI-00 Communication Readiness indicated',
-        detail: 'Your AI foundation appears stronger than your current communication-readiness score. Communication support is the likely starting point.',
-      }
-    }
-
-    if (communicationScore >= 80 && aiScore < 70) {
-      return {
-        title: 'AI-00 AI Foundations indicated',
-        detail: 'Your communication readiness appears strong. AI foundations are the likely area to strengthen before progression.',
-      }
-    }
-
-    if (communicationScore < 70 && aiScore < 70) {
-      return {
-        title: 'Full AI-00 indicated',
-        detail: 'Your objective profile indicates that both AI foundations and communication readiness should be strengthened first.',
-      }
-    }
-
-    return {
-      title: 'Targeted bridge + review indicated',
-      detail: 'One or more readiness areas are near the progression threshold. Applied responses should be reviewed before final placement.',
-    }
-  }, [communication.percentage, aiReadiness])
+  const result = useMemo(() => scoreObjective(examSections, answers), [answers])
+  const { communication, ai, research, objectivePoints, aiReadiness, placement } = result
 
   const stageIsComplete = (stage) => {
     if (stage.id === 'applied') return appliedAnswered === appliedTasks.length
@@ -186,10 +146,12 @@ export default function Exam() {
       submittedAt: new Date().toISOString(),
       objectivePoints,
       scores: {
-        communication: { ...communication, points: communicationPoints },
-        aiFoundations: { ...ai, points: aiPoints },
-        research: { ...research, points: researchPoints },
+        communication,
+        aiFoundations: ai,
+        research,
         aiReadiness,
+        aiReadinessWeighted: result.aiReadinessWeighted,
+        aiReadinessByItem: result.aiReadinessByItem,
       },
       placement,
     }
@@ -244,6 +206,9 @@ export default function Exam() {
             <p className="section-label">CEE v1.0</p>
             <h1>Ready when you are, {learner.fullName.split(' ')[0]}.</h1>
             <p className="exam-intro">Your learner profile is ready. Once you begin, progress is automatically saved on this device so you can return and continue.</p>
+            {initial.superseded ? (
+              <p className="exam-notice">You have {initial.superseded === 1 ? 'an unfinished attempt' : `${initial.superseded} unfinished attempts`} from an earlier version of the questionnaire. {initial.superseded === 1 ? 'It cannot be resumed' : 'They cannot be resumed'}, because those answers point at questions the current exam no longer contains. Your history keeps the record; this will be a new attempt.</p>
+            ) : null}
             <div className="exam-profile-confirmation">
               <UserRound size={20} />
               <div><strong>{learner.fullName}</strong><span>{learner.email}</span></div>
@@ -266,6 +231,8 @@ export default function Exam() {
   if (attempt.completed) {
     const resultPlacement = attempt.placement || placement
     const resultObjectivePoints = attempt.objectivePoints ?? objectivePoints
+    const resultCommunication = attempt.scores?.communication || communication
+    const resultAiReadiness = attempt.scores?.aiReadiness ?? aiReadiness
 
     return (
       <section className="exam-workspace">
@@ -279,8 +246,8 @@ export default function Exam() {
 
           <div className="result-score-grid">
             <article><span>Objective score</span><strong>{resultObjectivePoints}<small>/70</small></strong><p>Applied responses account for the remaining 30 points.</p></article>
-            <article><span>Communication</span><strong>{communication.percentage}%</strong><p>{communication.correct} of {communication.total} objective items correct.</p></article>
-            <article><span>AI readiness</span><strong>{aiReadiness}%</strong><p>Combined AI foundations and research judgment.</p></article>
+            <article><span>Communication</span><strong>{resultCommunication.displayPercentage ?? resultCommunication.percentage}%</strong><p>{resultCommunication.correct} of {resultCommunication.total} objective items correct.</p></article>
+            <article><span>AI readiness</span><strong>{resultAiReadiness}%</strong><p>Combined AI foundations and research judgment, on the weighted point scale.</p></article>
           </div>
 
           <div className="review-panel">
@@ -342,41 +309,58 @@ export default function Exam() {
           <div className="exam-section-heading">
             <p className="section-label">SECTION {stageIndex + 1} OF {stages.length}</p>
             <h1>{currentStage.title}</h1>
-            <p>{currentStage.subtitle}</p>
+            <p>{currentStage.intro || currentStage.subtitle}</p>
           </div>
 
           {currentStage.id !== 'applied' ? (
             <div className="question-list">
-              {currentQuestions.map((question) => (
-                <fieldset className="question-card" key={question.id}>
-                  <legend><span>{question.id}</span>{question.prompt}</legend>
-                  <div className="option-list">
-                    {question.options.map((option, index) => (
-                      <label className={answers[question.id] === index ? 'is-selected' : ''} key={option}>
-                        <input type="radio" name={`question-${question.id}`} checked={answers[question.id] === index} onChange={() => choose(question.id, index)} />
-                        <span className="option-letter">{String.fromCharCode(65 + index)}</span>
-                        <span>{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-              ))}
+              {currentQuestions.map((question) => {
+                const scenario = scenarioByLeadQuestion[question.id]
+
+                return (
+                  <Fragment key={question.id}>
+                    {scenario ? (
+                      <aside className="question-scenario">
+                        <p className="section-label">{scenario.label}</p>
+                        {scenario.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                      </aside>
+                    ) : null}
+                    <fieldset className="question-card">
+                      <legend><span>{question.id}</span>{question.prompt}</legend>
+                      <div className="option-list">
+                        {question.options.map((option, index) => (
+                          <label className={answers[question.id] === index ? 'is-selected' : ''} key={option}>
+                            <input type="radio" name={`question-${question.id}`} checked={answers[question.id] === index} onChange={() => choose(question.id, index)} />
+                            <span className="option-letter">{String.fromCharCode(65 + index)}</span>
+                            <span>{option}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
+                  </Fragment>
+                )
+              })}
             </div>
           ) : (
             <div className="applied-list">
-              {appliedTasks.map((task, index) => (
+              {appliedTasks.map((task) => (
                 <article className="applied-card" key={task.id}>
-                  <div className="applied-number">0{index + 1}</div>
+                  <div className="applied-number">0{task.number}</div>
                   <div>
-                    <span>{task.points} points</span>
+                    <span>Task {task.number} · {task.points} points</span>
                     <h2>{task.title}</h2>
+                    <p className="applied-scenario">{task.scenario}</p>
                     <p className="applied-prompt">{task.prompt}</p>
-                    <p className="applied-guidance">{task.guidance}</p>
+                    <div className="applied-guidance">
+                      <p>{task.guidance}</p>
+                      <ul>{task.checklist.map((item) => <li key={item}>{item}</li>)}</ul>
+                      <p className="applied-note">{task.note}</p>
+                    </div>
                     <label>
                       Your response
                       <textarea rows="9" value={applied[task.id] || ''} onChange={(event) => setAppliedResponse(task.id, event.target.value)} placeholder="Write your response in your own words…" />
                     </label>
-                    <small>{(applied[task.id] || '').trim().length < 80 ? 'Write a developed response of at least 80 characters before submitting.' : 'Response captured.'}</small>
+                    <small>{(applied[task.id] || '').trim().length < MIN_APPLIED_CHARACTERS ? `Write a developed response of at least ${MIN_APPLIED_CHARACTERS} characters before submitting.` : 'Response captured.'}</small>
                   </div>
                 </article>
               ))}
