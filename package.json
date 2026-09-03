@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "verify": "node scripts/verify-cee.mjs"
+    "verify": "node scripts/verify-cee.mjs && node scripts/verify-content.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",

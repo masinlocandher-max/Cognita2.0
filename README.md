@@ -1,129 +1,135 @@
-# Cognita 2.0 — Frontend Milestone
+# Cognita 2.0
 
-Cognita Institute of Artificial Intelligence public website, device-local learner journey, and Cognita Entrance Exam experience.
+Cognita Institute of Artificial Intelligence — public website, learner journey,
+entrance exam, learning environment, evaluator workspace and administrative
+interface, built frontend-first.
 
 ## Product rule for this milestone
 
 Cognita 2.0 is intentionally frontend-only at this stage.
 
-There is no backend, Supabase project, server authentication, evaluator portal, payment system, or cloud learner record connected to this repository. The interface must not imply that browser-only data has been transmitted to Cognita.
+There is no backend, Supabase project, server authentication, evaluator portal,
+payment system, email delivery, or cloud learner record connected to this
+repository. **The interface must never imply that browser-only data has reached
+Cognita.** That rule is enforced in the build, not just in the copy — see
+*Honesty rules* below.
 
-## Phase status
+## Architecture
 
-### Phase 1 — Public website
+```
+UI  →  Feature logic  →  Service / Repository layer  →  Local implementation
+```
 
-Complete for the current frontend milestone.
+`src/repositories/localStore.js` is the only file that touches browser storage.
+No component imports it. Connecting a backend means replacing repository bodies;
+nothing above them moves.
 
-- Modern Cognita 2.0 public website
-- Who we are
-- What we do
-- Why Cognita is different
-- AI-00 positioning
-- Student journey
-- Cognita Entrance Exam positioning
-- Responsive desktop/mobile design
-- Learner journey entry in the global navigation
+Full detail: [`docs/FRONTEND_ARCHITECTURE.md`](docs/FRONTEND_ARCHITECTURE.md).
+Data contracts and security boundaries for the backend:
+[`docs/BACKEND_INTEGRATION_CONTRACT.md`](docs/BACKEND_INTEGRATION_CONTRACT.md).
 
-### Phase 2 — Learner identity
+```
+src/
+  app/            routing and the five layout shells
+  pages/          one file per route (public, app, learn, staff, admin)
+  features/       cee (entrance exam) · assessments (assessment engine)
+  components/     status pills, meters, tables, modals, state blocks
+  services/       journey, placement, learning-path logic
+  repositories/   every read and write, all async
+  hooks/          useAsync, learner context, learning context, document meta
+  lib/            status enums, ids, formatting
+  mock/           curriculum, cohort, attempts, evaluations, credentials
+  styles/         tokens, base, components, layout, features
+```
 
-Complete as a frontend-only device profile.
+## The six product layers
 
-- Device-local learner profile
-- Name and email identity record
-- Versioned localStorage data model
-- Edit profile flow
-- CEE attempt history
-- Resume status
-- Preliminary placement history
-- Clear device-data control
-- Legacy CEE localStorage migration
+```
+PUBLIC INSTITUTE → ADMISSIONS → PLACEMENT → LEARNING → ASSESSMENT → CREDENTIALS
+```
 
-This is not server authentication. The profile exists only on the current browser/device.
-
-### Phase 3 — Cognita Entrance Exam
-
-Complete for the frontend-only milestone.
-
-- Functional CEE v1.0 exam interface
-- The approved CEE v1.0 production questionnaire and answer key
-- 45 objective assessment items (25 communication, 15 AI foundations, 5 research)
-- Shared scenario stems rendered with the items that depend on them
-- 2 applied-response tasks
-- 70 objective points automatically scored
-- 30 applied-response points deliberately reserved for human evaluation
-- Device-local autosave
-- Resumable active attempt
-- Sequential section gating
-- Recommended-time display
-- Submitted attempt record
-- Objective readiness profile
-- Preliminary placement indication
-- Multiple attempt history without deleting previous submitted records
+All six run under one learner identity. The public site links into `/app`, `/app`
+links into `/learn`, and both read the same derived journey state, so the product
+cannot tell a learner two different things in two places.
 
 ## Routes
 
-- `/` — Cognita Institute public website
-- `/learner` — device-local learner profile and CEE history
-- `/entrance-exam` — Entrance Exam overview and readiness journey
-- `/entrance-exam/start` — CEE v1.0 exam experience
+**Public** — `/` `/about` `/programs` `/ai-00` `/ai-01` `/admissions`
+`/entrance-exam` `/contact` `/verify` `/verify/:credentialId`
 
-## Assessment model
+**Applicant and learner** — `/app` `/app/profile` `/app/application`
+`/app/entrance-exam` `/app/results` `/app/placement` `/app/enrollment`
 
-The CEE is a placement instrument rather than a simple pass/fail quiz.
+**Learning** — `/learn/dashboard` `/learn/program/:programId`
+`/learn/course/:courseId` `/learn/module/:moduleId` `/learn/lesson/:lessonId`
+`/learn/assessment/:assessmentId` `/learn/progress` `/learn/certificates`
 
-- Functional English & Communication — 30 points
-- AI Foundations — 25 points
-- Research & Verification Judgment — 15 points
-- Applied Communication & AI Evaluation — 30 points
-- Total — 100 points
+**Internal** (noindex, absent from public navigation) — `/staff`
+`/staff/evaluations` `/staff/evaluations/:attemptId` · `/admin` + 15 sections
 
-The frontend automatically scores the 70 objective points. The remaining 30 applied-response points are not automatically scored because open-ended judgment should not be reduced to unreliable keyword matching.
+**Redirects** — `/learner` → `/app`, `/entrance-exam/start` → `/app/entrance-exam`
 
-The result shown by this frontend is therefore a preliminary objective placement indication, not a final institutional placement decision.
+## The Cognita Entrance Exam
 
-Scoring follows the institutional formulas exactly — points are computed from raw item counts and rounded once for display, never from an already-rounded percentage. Placement thresholds compare unrounded percentages, so 79.4% is not promoted at 79.5%.
+CEE v1.0 production questionnaire: 45 objective items (25 communication,
+15 AI foundations, 5 research judgment) and 2 applied tasks.
 
-Formulas, placement bands, the applied-response rubrics, and the known integrity boundaries of this build are documented in `docs/cee-v1-scoring-guide.md`. That document is institutional reference material and is not imported by the app, so it does not ship in the browser bundle.
+| Area | Points |
+| --- | --- |
+| Functional English & Communication | 30 |
+| AI Foundations | 25 |
+| Research & Verification Judgment | 15 |
+| Applied Communication & AI Evaluation | 30 |
+| **Total** | **100** |
 
-Implementation map:
+70 objective points are scored automatically. The 30 applied points are reserved
+for a human evaluator — open-ended judgment is not reduced to keyword matching.
 
-- `src/data/exam.js` — questionnaire and answer key
-- `src/lib/scoring.js` — scoring formulas and placement logic
-- `scripts/verify-cee.mjs` — integrity check, run by CI
+Attempts are stamped with the questionnaire version they were taken on. An
+unfinished attempt from a superseded item set is kept in history but never
+resumed or rescored: scoring old answers against a new key produces a confident,
+wrong placement, which is worse than asking a candidate to start again.
 
-## Local data model
+Formulas, placement bands, applied rubrics and known integrity boundaries:
+[`docs/cee-v1-scoring-guide.md`](docs/cee-v1-scoring-guide.md).
 
-Frontend learner data is stored under a versioned browser key and contains:
+## Placement
 
-- one device-local learner profile
-- zero or more CEE attempts
-- answers and applied responses
-- progress and timing state
-- submitted objective scores
-- preliminary placement indication
+Placement is developmental, not punitive. There is no pass mark and no pass/fail
+result. Six outcomes: AI-01 readiness, AI-00 Communication Foundation, AI-00 AI
+Foundations, Full AI-00, Targeted Bridge, Manual Review.
 
-Submitted attempts remain in history. A new attempt creates a new record instead of overwriting the previous result.
+AI-00 is personalised. A module a placement waives is shown as waived rather than
+hidden — a learner can see what was skipped on their behalf, and open it anyway.
 
-Every attempt is stamped with the questionnaire version it was started against. An unfinished attempt from an earlier item set is kept in history but cannot be resumed, because its stored answers point at questions the current exam no longer contains. Scoring such an attempt against the current key would produce a confident and wrong placement, which is worse than asking the learner to start again.
+## Learning environment
 
-## Known boundary
+Programme → course → module → lesson → activity → assessment. Module states are
+explicit: required, optional, waived, completed, locked, current. A required
+module unlocks when the earlier required modules in its course are complete.
 
-Because this milestone is frontend-only:
+The assessment engine supports nine question types and serves every course.
+Objective items are scored on the client; anything marked `reviewedByHuman` is
+held for an evaluator, and the result screen reports the two figures separately
+rather than inventing a total for work nobody has read.
 
-- learner records do not sync between devices
-- clearing browser storage can delete local records
-- there is no password/login system
-- exam submission does not reach Cognita staff
-- applied responses are not yet reviewed
-- no final placement is issued
+Lessons marked `outline: true` carry a real structure but not finished
+courseware, and the interface says so rather than presenting a stub as a lesson.
 
-These are intentional product boundaries, not hidden production capabilities.
+## Honesty rules
 
-## Exam integrity boundary
+Encoded in the build, not just written in copy:
 
-Objective scoring runs in the browser, so the CEE answer key is present in the JavaScript bundle and can be read by anyone who opens developer tools. This is inherent to frontend-only scoring; obfuscation would not change it. Server-side scoring is the only real fix and belongs to a later phase.
-
-A second issue is in the approved questionnaire itself rather than in this code: the keyed option positions follow a visible repeating cycle, which a candidate could exploit without reading the items. Both boundaries are documented in `docs/cee-v1-scoring-guide.md` with the available remedies. Neither has been applied to v1.0.
+- The contact page shows an address instead of a form, because email delivery
+  does not exist.
+- Enrolment has no button and explains why — enrolment is a cohort place and,
+  where applicable, a fee.
+- File upload accepts a link and states that storage is not connected.
+- The admin interface performs no mutations. A button that persists nowhere is a
+  false confirmation.
+- Evaluator rubric scores and notes are labelled local drafts.
+- Credential verification states that it is a record lookup, not a proof.
+- Every learner surface carries the device-local notice.
 
 ## Development
 
@@ -132,24 +138,29 @@ npm install
 npm run dev
 ```
 
-Build check:
-
 ```bash
-npm run build
+npm run build     # production build
+npm run verify    # questionnaire, scoring and content integrity
 ```
 
-Questionnaire and scoring check:
+`npm run verify` fails if the CEE drifts from its approved 45-item shape or
+answer key, if scoring or placement stops matching the institutional formulas, or
+if the curriculum graph breaks — a module pointing at a missing lesson, a lesson
+referencing a renamed knowledge check, a placement that leaves a learner with no
+modules, or a status value with no icon. CI runs it before the build.
 
-```bash
-npm run verify
-```
+## Known boundaries
 
-`npm run verify` fails if the questionnaire drifts from the approved 45-item shape or answer key, if the section weights stop summing to 70, or if scoring and placement stop matching the institutional formulas and thresholds. CI runs it before the build.
+Frontend-only, by design at this stage:
 
-A GitHub Actions workflow also runs the frontend build when Actions are enabled for the repository.
+- No authentication; the learner record is device-local with no password.
+- Records do not sync between devices, and clearing browser storage destroys
+  them with no backup.
+- Application submission, exam submission and assessment submission reach nobody.
+- Applied responses are not reviewed; no final placement is issued.
+- `/staff` and `/admin` have no access control. They are noindex and unlinked,
+  which is obscurity, not security.
+- Client-side CEE scoring means the answer key is present in the bundle.
+- Curriculum is mock content.
 
-## Branch
-
-Active build branch: `build/cognita-mvp-v2`
-
-The older `cognita-institute` repository is not used as the active Cognita 2.0 frontend. Its operational concepts may be selectively reused in later phases without carrying forward the old product architecture or visual system.
+These are intentional product boundaries, not hidden production capabilities.

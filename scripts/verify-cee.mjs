@@ -8,8 +8,8 @@
  * Run with: npm run verify
  */
 
-import { appliedTasks, examMeta, examSections } from '../src/data/exam.js'
-import { derivePlacement, scoreObjective } from '../src/lib/scoring.js'
+import { appliedTasks, examMeta, examSections } from '../src/features/cee/questionnaire.js'
+import { derivePlacement, scoreObjective } from '../src/features/cee/scoring.js'
 
 const OFFICIAL_KEY =
   '1C 2A 3D 4B 5C 6B 7D 8A 9B 10C 11A 12D 13B 14C 15A 16D 17C 18B 19A 20D 21B 22C 23A 24D 25B ' +

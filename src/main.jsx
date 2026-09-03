@@ -1,25 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AppLayout from './components/AppLayout'
-import Home from './pages/Home'
-import EntranceExam from './pages/EntranceExam'
-import Exam from './pages/Exam'
-import Learner from './pages/Learner'
-import './styles.css'
-import './learner.css'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './app/AppRoutes.jsx'
+import './styles/tokens.css'
+import './styles/base.css'
+import './styles/components.css'
+import './styles/layout.css'
+import './styles/features.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/learner" element={<Learner />} />
-          <Route path="/entrance-exam" element={<EntranceExam />} />
-          <Route path="/entrance-exam/start" element={<Exam />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
-  </React.StrictMode>,
+  </StrictMode>,
 )

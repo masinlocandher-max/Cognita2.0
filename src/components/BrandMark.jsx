@@ -1,26 +1,21 @@
-export default function BrandMark({ compact = false }) {
-  return (
-    <div className={`brand-lockup ${compact ? 'brand-lockup--compact' : ''}`} aria-label="Cognita Institute of Artificial Intelligence">
-      <svg className="brand-mark" viewBox="0 0 120 120" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="cognitaGlow" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="55%" stopColor="#eef2ff" />
-            <stop offset="100%" stopColor="#b7c2ff" />
-          </linearGradient>
-          <linearGradient id="cognitaCyan" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stopColor="#35f2ff" />
-            <stop offset="100%" stopColor="#00b8ff" />
-          </linearGradient>
-        </defs>
-        <circle cx="52" cy="60" r="37" fill="none" stroke="url(#cognitaGlow)" strokeWidth="22" strokeDasharray="180 60" transform="rotate(43 52 60)" />
-        <path d="M68 61h20c10 0 17 7 17 17v12c0 10-7 17-17 17H68V61Z" fill="url(#cognitaGlow)" />
-        <circle cx="83" cy="32" r="15" fill="url(#cognitaCyan)" />
-      </svg>
-      <div className="brand-wording">
+import { Link } from 'react-router-dom'
+
+export default function BrandMark({ to = '/', variant = 'dark', compact = false }) {
+  const content = (
+    <span className={`brand brand--${variant}`}>
+      <span className="brand-glyph" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" role="presentation">
+          <rect width="32" height="32" rx="9" fill="currentColor" />
+          <path d="M22.5 11.4a7.4 7.4 0 1 0 0 9.2" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" />
+          <circle cx="23.4" cy="16" r="2.5" fill="#7d78ea" />
+        </svg>
+      </span>
+      <span className="brand-words">
         <strong>COGNITA</strong>
-        {!compact && <span>Institute of Artificial Intelligence</span>}
-      </div>
-    </div>
+        {!compact ? <span>Institute of Artificial Intelligence</span> : null}
+      </span>
+    </span>
   )
+
+  return to ? <Link to={to} className="brand-link" aria-label="Cognita Institute of Artificial Intelligence — home">{content}</Link> : content
 }
