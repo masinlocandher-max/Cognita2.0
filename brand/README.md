@@ -1,6 +1,6 @@
 # Cognita 2.0 Brand Kit
 
-This directory is the canonical implementation package for the Cognita 2.0 visual identity selected from the light professional brand direction.
+This directory is the canonical developer implementation package for the approved Cognita 2.0 light professional identity.
 
 ## Brand foundation
 
@@ -30,10 +30,10 @@ The system is intentionally light, academic, human, and technology-forward. Whit
 
 ## Contents
 
-- `logos/` — scalable SVG logo marks and lockups plus PNG exports
-- `mockups/` — editable SVG reference mockups plus PNG exports
-- `code/` — CSS tokens, JSON tokens, JavaScript exports, and an HTML preview
-- `reference/` — approved visual brand-board reference
+- `logos/` — scalable SVG logo marks, mono variants, compact lockup, and formal institutional lockup
+- `mockups/` — editable SVG reference mockups for certificate, student ID, public website, and learning collateral
+- `code/` — CSS design tokens, JSON tokens, JavaScript export, and an HTML brand preview
+- `reference/` — approved-direction notes and links to the canonical Google Drive visual kit
 
 ## Usage rules
 
@@ -47,6 +47,6 @@ The system is intentionally light, academic, human, and technology-forward. Whit
 
 ## Implementation
 
-Import `code/cognita-brand.css` once near the root of the frontend, then use the provided custom properties and utility classes. The SVG assets are standalone and can be used directly in React `<img>` tags, CSS backgrounds, metadata, and downloadable institutional materials.
+Import `code/cognita-brand.css` once near the root of the frontend, then use the provided custom properties and utility classes. The SVG assets are standalone and can be used directly in React `<img>` tags, CSS backgrounds, metadata, and institutional materials.
 
-The brand package is intentionally isolated from Cognita's existing assessment, progression, learner-data, and application logic until those surfaces are intentionally restyled.
+The Google Drive Brand Kit is the working visual/documentation source; this repository is the source-controlled implementation package. The brand package is intentionally isolated from Cognita's existing assessment, progression, learner-data, and application logic until those surfaces are intentionally restyled.
