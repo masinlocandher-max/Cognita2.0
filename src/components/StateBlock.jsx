@@ -1,4 +1,5 @@
-import * as icons from 'lucide-react'
+import { Inbox } from 'lucide-react'
+import { resolveIcon } from './icons.js'
 
 /**
  * The four states every data surface can be in, rendered consistently.
@@ -17,7 +18,7 @@ const PRESETS = {
 
 export default function StateBlock({ variant = 'empty', title, description, action, icon }) {
   const preset = PRESETS[variant] || PRESETS.empty
-  const Icon = icons[icon || preset.icon] || icons.Inbox
+  const Icon = resolveIcon(icon || preset.icon, Inbox)
 
   return (
     <div className="state-block" role={variant === 'error' ? 'alert' : undefined}>

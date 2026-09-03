@@ -1,4 +1,5 @@
-import * as icons from 'lucide-react'
+import { Info } from 'lucide-react'
+import { resolveIcon } from './icons.js'
 
 const TONE_ICON = {
   info: 'Info',
@@ -9,7 +10,7 @@ const TONE_ICON = {
 }
 
 export default function Alert({ tone = 'neutral', title, children, icon, role }) {
-  const Icon = icons[icon || TONE_ICON[tone] || 'Info'] || icons.Info
+  const Icon = resolveIcon(icon || TONE_ICON[tone] || 'Info', Info)
 
   return (
     <div className={`alert${tone !== 'neutral' ? ` alert--${tone}` : ''}`} role={role || (tone === 'critical' ? 'alert' : undefined)}>

@@ -1,4 +1,4 @@
-import * as icons from 'lucide-react'
+import { resolveIcon } from './icons.js'
 import { statusMeta } from '../lib/status.js'
 
 /**
@@ -8,7 +8,7 @@ import { statusMeta } from '../lib/status.js'
 export default function StatusPill({ status, label, tone, icon, size = 'md' }) {
   const meta = status ? statusMeta(status, label) : { label, tone: tone || 'quiet', icon: icon || 'Circle' }
   const resolvedTone = tone || meta.tone
-  const Icon = icons[icon || meta.icon] || icons.Circle
+  const Icon = resolveIcon(icon || meta.icon)
 
   return (
     <span className={`status status--${resolvedTone}${size === 'sm' ? ' status--sm' : ''}`}>
