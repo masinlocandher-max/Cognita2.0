@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 260" role="img" aria-labelledby="title">
+  <title id="title">Cognita horizontal logo</title>
+  <defs>
+    <linearGradient id="g" x1="20" y1="25" x2="225" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F46E5"/><stop offset="0.48" stop-color="#A855F7"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(20 15) scale(.9)">
+    <path fill="url(#g)" fill-rule="evenodd" d="M112 18a94 94 0 1 0 0 188v-52a42 42 0 1 1 0-84V18Z"/>
+    <circle cx="170" cy="58" r="29" fill="#06B6D4"/>
+    <path d="M142 104c0-11 9-20 20-20h50v45c0 43-35 78-78 78h-12v-83c0-11 9-20 20-20Z" fill="url(#g)"/>
+  </g>
+  <text x="260" y="125" font-family="Montserrat,Arial,sans-serif" font-size="92" font-weight="500" letter-spacing="15" fill="#071B3D">COGNITA</text>
+  <text x="265" y="178" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="500" letter-spacing="8" fill="#5B6780">INSTITUTE OF AI</text>
+  <circle cx="886" cy="112" r="9" fill="#06B6D4"/>
+</svg>

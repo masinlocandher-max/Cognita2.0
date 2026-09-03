@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 360" role="img" aria-labelledby="title">
+  <title id="title">The Cognita Institute of Artificial Intelligence formal lockup</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F46E5"/><stop offset=".5" stop-color="#A855F7"/><stop offset="1" stop-color="#06B6D4"/></linearGradient>
+  </defs>
+  <g transform="translate(56 32) scale(.85)">
+    <path fill="url(#g)" fill-rule="evenodd" d="M112 18a94 94 0 1 0 0 188v-52a42 42 0 1 1 0-84V18Z"/>
+    <circle cx="170" cy="58" r="29" fill="#06B6D4"/>
+    <path d="M142 104c0-11 9-20 20-20h50v45c0 43-35 78-78 78h-12v-83c0-11 9-20 20-20Z" fill="url(#g)"/>
+  </g>
+  <text x="280" y="130" font-family="Montserrat,Arial,sans-serif" font-size="78" font-weight="500" letter-spacing="12" fill="#071B3D">COGNITA</text>
+  <text x="284" y="182" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="600" letter-spacing="4" fill="#071B3D">THE COGNITA INSTITUTE</text>
+  <text x="284" y="215" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="600" letter-spacing="4" fill="#071B3D">OF ARTIFICIAL INTELLIGENCE</text>
+  <text x="284" y="280" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="7" fill="#4F46E5">THINK.  APPLY.  TRANSFORM.</text>
+</svg>

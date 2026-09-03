@@ -1,0 +1,112 @@
+:root {
+  --cognita-navy: #071b3d;
+  --cognita-indigo: #4f46e5;
+  --cognita-violet: #a855f7;
+  --cognita-cyan: #06b6d4;
+  --cognita-soft-gray: #f3f6fa;
+  --cognita-white: #ffffff;
+  --cognita-ink: #0b1634;
+  --cognita-muted: #5b6780;
+  --cognita-border: #dce4ef;
+  --cognita-success: #0f9f76;
+  --cognita-warning: #c47b14;
+  --cognita-danger: #c63d4f;
+
+  --cognita-gradient-brand: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 48%, #06b6d4 100%);
+  --cognita-gradient-soft: linear-gradient(135deg, rgba(79,70,229,.10), rgba(168,85,247,.08) 50%, rgba(6,182,212,.10));
+
+  --cognita-font-display: "Montserrat", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --cognita-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --cognita-radius-sm: 10px;
+  --cognita-radius-md: 16px;
+  --cognita-radius-lg: 24px;
+  --cognita-radius-pill: 999px;
+
+  --cognita-shadow-sm: 0 6px 20px rgba(7, 27, 61, .08);
+  --cognita-shadow-md: 0 16px 50px rgba(7, 27, 61, .12);
+  --cognita-shadow-focus: 0 0 0 4px rgba(6, 182, 212, .16);
+
+  --cognita-space-1: .25rem;
+  --cognita-space-2: .5rem;
+  --cognita-space-3: .75rem;
+  --cognita-space-4: 1rem;
+  --cognita-space-6: 1.5rem;
+  --cognita-space-8: 2rem;
+  --cognita-space-12: 3rem;
+  --cognita-space-16: 4rem;
+}
+
+.cognita-surface {
+  background: var(--cognita-white);
+  color: var(--cognita-ink);
+}
+
+.cognita-panel {
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid var(--cognita-border);
+  border-radius: var(--cognita-radius-lg);
+  box-shadow: var(--cognita-shadow-sm);
+}
+
+.cognita-eyebrow {
+  font-family: var(--cognita-font-body);
+  color: var(--cognita-indigo);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.cognita-display {
+  font-family: var(--cognita-font-display);
+  color: var(--cognita-navy);
+  font-weight: 700;
+  letter-spacing: -.035em;
+}
+
+.cognita-body {
+  font-family: var(--cognita-font-body);
+  color: var(--cognita-muted);
+  line-height: 1.65;
+}
+
+.cognita-gradient-text {
+  background: var(--cognita-gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cognita-button-primary {
+  appearance: none;
+  border: 0;
+  border-radius: var(--cognita-radius-pill);
+  background: var(--cognita-navy);
+  color: var(--cognita-white);
+  font: 600 .95rem/1 var(--cognita-font-body);
+  padding: .9rem 1.25rem;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.cognita-button-primary:hover { transform: translateY(-1px); box-shadow: var(--cognita-shadow-sm); }
+.cognita-button-primary:focus-visible { outline: none; box-shadow: var(--cognita-shadow-focus); }
+
+.cognita-button-accent {
+  appearance: none;
+  border: 0;
+  border-radius: var(--cognita-radius-pill);
+  background: var(--cognita-gradient-brand);
+  color: var(--cognita-white);
+  font: 600 .95rem/1 var(--cognita-font-body);
+  padding: .9rem 1.25rem;
+}
+
+.cognita-focus-ring:focus-visible {
+  outline: none;
+  box-shadow: var(--cognita-shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cognita-button-primary { transition: none; }
+}
