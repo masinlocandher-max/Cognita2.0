@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import Apply from './pages/Apply'
 import EntranceExam from './pages/EntranceExam'
 import Exam from './pages/Exam'
-import Learner from './pages/Learner'
 import Programs from './pages/Programs'
 import Payment from './pages/Payment'
 import AccountSetup from './pages/AccountSetup'
@@ -25,7 +24,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/apply" element={<Apply />} />
-          <Route path="/learner" element={<Learner />} />
           <Route path="/entrance-exam" element={<EntranceExam />} />
           <Route path="/entrance-exam/start" element={<Exam />} />
           <Route path="/programs" element={<Programs />} />
