@@ -72,7 +72,7 @@ const TERMS = {
     {
       heading: 'Accuracy',
       body: [
-        'Cognita aims to keep program information accurate and to state clearly where something is not yet defined. Program details, study loads and requirements may change as programs are finalised.',
+        'Cognita aims to keep program information accurate and to state clearly where something is not yet defined. Program details, study loads and requirements may change as programs are finalized.',
       ],
     },
     {

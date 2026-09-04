@@ -111,7 +111,13 @@ RATIONED.forEach(({ word, max }) => {
  * American forms — program, enrollment, organized. Mixed conventions on an
  * institutional site read as carelessness.
  */
-const BRITISH_FORMS = ['programme', 'enrolment', 'organised', 'personalised', 'recognise', 'behaviour', 'labelled', 'apologise', 'centre']
+const BRITISH_FORMS = [
+  'programme', 'enrolment', 'behaviour', 'labelled', 'apologise', 'centre', 'favour', 'defence',
+  // -ise / -isation forms. Words that are correctly spelled -ise in both
+  // conventions (precise, concise, exercise, promise) do not end in these.
+  'organis', 'personalis', 'recognis', 'specialis', 'memoris', 'optimis', 'finalis',
+  'individualis', 'authorisation', 'summaris', 'prioritis', 'emphasis[ei]', 'analys[ei]d',
+]
 files.forEach((file) => {
   const copy = extractCopy(readFileSync(file, 'utf8')).toLowerCase()
   BRITISH_FORMS.forEach((form) => {

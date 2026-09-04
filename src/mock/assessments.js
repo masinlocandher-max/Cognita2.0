@@ -245,7 +245,7 @@ export const assessments = [
     id: 'asmt_limits',
     moduleId: 'mod_limits',
     title: 'Limitations and Hallucination — module assessment',
-    summary: 'Recognising fabricated claims and responding to them appropriately.',
+    summary: 'Recognizing fabricated claims and responding to them appropriately.',
     estimatedMinutes: 20,
     passMark: 70,
     questions: [

@@ -360,7 +360,7 @@ export const lessons = [
       list([
         'Context is leverage. What you put in the instruction shapes the output more than any phrasing trick.',
         'Output is probabilistic. Similar prompts can produce different answers, and neither is a malfunction.',
-        'Fluency is not knowledge. The system is optimised to produce text that reads correctly, which is not the same as text that is correct.',
+        'Fluency is not knowledge. The system is optimized to produce text that reads correctly, which is not the same as text that is correct.',
       ]),
       callout('info', 'A useful mental model', 'Treat it as an extremely well-read colleague who never says “I am not sure” unless you ask them to.'),
       check('kc_how_1'),
@@ -429,7 +429,7 @@ export const lessons = [
     content: [
       p('Three questions decide whether AI assistance is appropriate: what you are putting in, whose work is coming out, and who answers for the result.'),
       h('What you put in'),
-      p('Client records, personal information, unpublished institutional material and credentials do not go into a public AI service without authorisation. The convenience is real; so is the disclosure.'),
+      p('Client records, personal information, unpublished institutional material and credentials do not go into a public AI service without authorization. The convenience is real; so is the disclosure.'),
       h('Who answers for it'),
       p('The person or organization approving and using the work. Not the model, not the vendor, not the prompt. This does not change because a tool was involved.'),
       check('kc_resp_1'),

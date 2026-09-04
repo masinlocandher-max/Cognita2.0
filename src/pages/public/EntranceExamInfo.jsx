@@ -107,7 +107,7 @@ export default function EntranceExamInfo() {
           <div className="statement-body">
             <p>
               The assessment measures current understanding and judgment rather than recall of material.
-              Preparing for it by memorising terminology would not improve your placement, and an
+              Preparing for it by memorizing terminology would not improve your placement, and an
               artificially high placement is not in your interest — you would begin study beyond where your
               understanding supports.
             </p>

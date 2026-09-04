@@ -54,12 +54,12 @@ export const pathways = [
     id: 'advanced',
     name: 'Advanced and Professional Learning',
     order: 3,
-    summary: 'For learners ready to explore deeper AI workflows, automation, strategic applications, and specialised areas.',
+    summary: 'For learners ready to explore deeper AI workflows, automation, strategic applications, and specialized areas.',
     description:
       'Advanced study is being developed. Cognita will publish the curriculum, entry requirements and study load when the programs are defined, rather than describing courses that do not yet exist.',
     forWhom: [
       'Students who have completed Applied Artificial Intelligence',
-      'Organisations placing a group of experienced staff',
+      'Organizations placing a group of experienced staff',
     ],
     status: 'in-development',
     programIds: [],
@@ -165,7 +165,7 @@ export const differentiators = [
   {
     id: 'understanding',
     title: 'Designed for understanding',
-    body: 'Students learn why and how these systems behave as they do. Memorising prompts produces capability that expires with the tool; understanding does not.',
+    body: 'Students learn why and how these systems behave as they do. Memorizing prompts produces capability that expires with the tool; understanding does not.',
   },
   {
     id: 'progressive',

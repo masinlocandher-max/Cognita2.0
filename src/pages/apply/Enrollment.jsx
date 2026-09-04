@@ -66,17 +66,17 @@ export default function Enrollment() {
               <li>Confirmation of your placement after institutional review of your written responses.</li>
               <li>Selection of a cohort start date.</li>
               <li>Any applicable fee, handled through a payment provider — not collected anywhere on this site today.</li>
-              <li>Issue of your enrollment record and access to the learning environment.</li>
+              <li>Issue of your enrollment record and access to the Cognita Student Portal.</li>
             </ol>
           </div>
 
           <div className="card">
-            <p className="card-title">You can explore the material now</p>
+            <p className="card-title">You can see how study is organized</p>
             <p className="muted" style={{ fontSize: 'var(--text-sm)', margin: 'var(--s-2) 0 var(--s-4)' }}>
-              The learning environment is open in this preview so you can see the structure of the pathway before
-              enrollment exists.
+              The Student Portal is open in this preview so you can see how study is structured before enrollment
+              exists.
             </p>
-            <Link className="btn btn--secondary" to="/portal/dashboard">Open the learning environment <ArrowRight size={16} /></Link>
+            <Link className="btn btn--secondary" to="/portal/dashboard">Open the Student Portal <ArrowRight size={16} /></Link>
           </div>
         </div>
       )}

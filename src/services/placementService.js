@@ -56,7 +56,7 @@ export const PLACEMENTS = {
     name: 'Targeted Bridge',
     headline: 'Close to the progression threshold — reviewed individually.',
     explanation: 'One or more areas sit between the principal thresholds. Cognita does not resolve this band automatically: an evaluator reads your written work and decides the starting point that fits you.',
-    nextStep: 'Await individualised review. Your placement will identify specific reinforcement rather than a full pathway.',
+    nextStep: 'Await individualized review. Your placement will identify specific reinforcement rather than a full pathway.',
     programId: 'prog_ai00',
     tone: 'attention',
     emphasis: [],

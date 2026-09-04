@@ -31,7 +31,7 @@ export const resources = [
     body: [
       paragraph('A generative language model does not look anything up. It produces text that fits the patterns it learned during training and the context it was given. That single mechanism explains most of what people find surprising about these systems — the usefulness, the fluency, and the failures.'),
       heading('Why the output reads so well'),
-      paragraph('The system is optimised to produce text that looks like text a competent person would write. It is very good at that. What it is not doing is checking whether the sentence is true, because truth is not the property being optimised. A well-formed sentence and a correct sentence are produced by the same process.'),
+      paragraph('The system is optimized to produce text that looks like text a competent person would write. It is very good at that. What it is not doing is checking whether the sentence is true, because truth is not the property being optimized. A well-formed sentence and a correct sentence are produced by the same process.'),
       note('The practical consequence', 'Tone tells you nothing about accuracy. A model has no mechanism for sounding less certain about a fact it invented than about one it did not.'),
       heading('Why the same question gives different answers'),
       paragraph('Generation involves choosing between plausible continuations. That choice is probabilistic and sensitive to the surrounding context, so similar prompts can produce different answers. This is a property of how the output is produced, not a fault and not evidence that the system is being inconsistent on purpose.'),
@@ -121,10 +121,10 @@ export const resources = [
     body: [
       paragraph('Most workplace questions about AI resolve into three: what are you putting in, whose work is coming out, and who answers for the result.'),
       heading('What you put in'),
-      paragraph('Client records, personal information, unpublished institutional material and credentials do not go into a public AI service without authorisation. The convenience is real. So is the disclosure — once information has been submitted to a third-party service, you no longer control where it sits or how it is retained.'),
+      paragraph('Client records, personal information, unpublished institutional material and credentials do not go into a public AI service without authorization. The convenience is real. So is the disclosure — once information has been submitted to a third-party service, you no longer control where it sits or how it is retained.'),
       list([
         'Safe by default: published material, generic exercises, your own draft writing',
-        'Not without authorisation: personal data, client records, unpublished internal documents, anything under a confidentiality obligation',
+        'Not without authorization: personal data, client records, unpublished internal documents, anything under a confidentiality obligation',
         'Never: passwords, access credentials, payment details',
       ]),
       heading('Whose work is coming out'),
