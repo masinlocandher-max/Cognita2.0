@@ -202,8 +202,9 @@ export function getLearningSnapshot() {
   const lessons = modules.flatMap((module) => module.lessons)
   const completed = state.completedLessons.filter((id) => lessons.some((lesson) => lesson.id === id)).length
   const total = lessons.length
-  const outputs = lessons.filter((lesson) => ['output', 'capstone'].includes(lesson.type))
+  const outputs = lessons.filter((lesson) => lesson.type === 'output')
   const submittedOutputs = outputs.filter((lesson) => state.submissions[lesson.id]?.text?.trim()).length
+  const passedOutputs = outputs.filter((lesson) => state.feedback[lesson.id]?.decision === 'pass').length
   const pendingReviews = Object.values(state.submissions).filter((submission) => ['submitted_for_review', 'resubmitted'].includes(submission.status)).length
   const openSupport = state.supportRequests.filter((request) => request.status === 'open_local_preview').length
 
@@ -216,6 +217,7 @@ export function getLearningSnapshot() {
     progress: total ? Math.round((completed / total) * 100) : 0,
     requiredOutputs: outputs.length,
     submittedOutputs,
+    passedOutputs,
     pendingReviews,
     openSupport,
   }
