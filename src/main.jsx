@@ -24,6 +24,7 @@ import './public-site.css'
 import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
 import './institutional-refinement.css'
+import './institutional-routing.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
