@@ -1,0 +1,1436 @@
+COGNITA INSTITUTE
+MASTER LEGAL, STUDENT, AND INSTITUTIONAL POLICY PACK
+Private Non-Degree Training Center
+Version 1.0
+Prepared: September 2026
+
+IMPORTANT DRAFTING NOTE
+This master policy pack is designed for Cognita Institute's current intended model as an independent private, non-degree training center in the Philippines. It is an operational draft and should be reviewed before launch against Cognita Institute's final business registration, actual program classifications, payment model, student age range, technology stack, and any TESDA, CHED, DepEd, PRC, DTI, NPC, BIR, or other regulatory requirements that become applicable.
+
+Nothing in this document should be used to claim government accreditation, recognition, registration, licensing, or authority that Cognita Institute or a specific program has not actually obtained.
+
+PLACEHOLDERS TO COMPLETE BEFORE PUBLICATION
+Legal/Registered Business Name: [INSERT LEGAL BUSINESS NAME]
+Trade Name: Cognita Institute
+Business Address: [INSERT BUSINESS ADDRESS]
+Official Email: [INSERT OFFICIAL EMAIL]
+Support Email: [INSERT SUPPORT EMAIL]
+Privacy Contact / DPO: [INSERT NAME OR ROLE AND EMAIL]
+Telephone/Mobile: [INSERT CONTACT NUMBER]
+Website: [INSERT OFFICIAL WEBSITE]
+Complaint Channel: [INSERT COMPLAINT EMAIL OR FORM]
+Refund Channel: [INSERT REFUND EMAIL OR FORM]
+Certificate Verification URL/Email: [INSERT VERIFICATION CHANNEL]
+Applicable Business Registration Numbers: [INSERT ONLY WHEN VERIFIED]
+
+CORE LEGAL REFERENCES CONSIDERED
+- Republic Act No. 10173, Data Privacy Act of 2012, and its implementing rules and NPC issuances.
+- Republic Act No. 11967, Internet Transactions Act of 2023, and applicable implementing rules.
+- Republic Act No. 7394, Consumer Act of the Philippines.
+- Applicable TESDA UTPRAS rules for TVET programs that fall within TESDA jurisdiction.
+- Applicable CHED, DepEd, PRC, DTI, NPC, BIR, and other Philippine rules where relevant.
+
+======================================================================
+1. INSTITUTIONAL STATUS AND EDUCATIONAL DISCLAIMER
+======================================================================
+
+1.1 Institutional Identity
+Cognita Institute is an independent private training center providing non-degree learning, continuing education, enrichment, skills development, and professional development programs.
+
+The use of the name "Institute" forms part of Cognita Institute's institutional identity. It does not, by itself, represent or imply government recognition, accreditation, licensing, endorsement, affiliation, or authorization.
+
+1.2 No Implied Government Recognition
+Unless expressly stated for a specific program and supported by valid official authority, Cognita Institute does not represent itself as:
+- a CHED-recognized higher education institution;
+- a DepEd-recognized basic education school;
+- a TESDA-registered TVET institution or provider for a particular program;
+- a PRC-licensed professional school or review provider;
+- a government agency; or
+- an institution authorized to grant government-recognized academic degrees, professional licenses, civil service eligibility, National Certificates, Certificates of Competency, or equivalent regulated credentials.
+
+1.3 Regulated Programs
+Where a program, qualification, or educational activity is subject to registration, accreditation, licensing, recognition, or other government authorization under Philippine law, Cognita Institute shall not advertise, enroll learners into, or represent that program as recognized or registered unless the required authority has been obtained.
+
+Any regulatory status applicable to a particular program must be stated separately and specifically on the official program page, together with accurate details of the issuing authority where appropriate.
+
+1.4 Cognita Entrance Examination
+The Cognita Entrance Examination (CEE) is an internal admissions and placement assessment administered solely for Cognita Institute purposes.
+
+Passing the CEE means that an applicant has satisfied Cognita Institute's internal admission requirements for the applicable program. The CEE is not a government examination, professional licensure examination, civil service examination, national competency assessment, academic equivalency examination, or government-recognized entrance examination unless an external authority expressly provides otherwise.
+
+1.5 Certificates
+Unless expressly stated otherwise for an authorized program, Cognita certificates are private institutional credentials documenting participation, completion, achievement, or performance within a Cognita program.
+
+A Cognita Certificate of Completion or Certificate of Achievement is not:
+- an academic degree;
+- a CHED-recognized credential;
+- a DepEd-recognized basic education credential;
+- a TESDA National Certificate or Certificate of Competency;
+- a professional license;
+- a civil service eligibility;
+- a government-issued certification; or
+- an automatic academic, employment, or professional equivalency.
+
+1.6 Outcomes
+Completion of a Cognita program does not guarantee employment, promotion, income, business success, admission to another institution, academic credit, government eligibility, professional licensing, or acceptance by an employer or third party.
+
+======================================================================
+2. PRIVACY NOTICE
+======================================================================
+
+2.1 Purpose
+Cognita Institute respects the privacy of applicants, learners, parents or guardians where applicable, instructors, website visitors, and other individuals whose personal data it processes.
+
+This Privacy Notice explains what data Cognita may collect, why it is processed, how it is used, who may receive it, how long it may be retained, and how data subjects may exercise their rights.
+
+2.2 Personal Information Controller
+The personal information controller is:
+
+[INSERT LEGAL BUSINESS NAME]
+Trading as: Cognita Institute
+Address: [INSERT BUSINESS ADDRESS]
+Privacy Contact: [INSERT PRIVACY CONTACT]
+Email: [INSERT PRIVACY EMAIL]
+Telephone: [INSERT CONTACT NUMBER]
+
+2.3 Categories of Personal Data
+Depending on the service used, Cognita may process:
+- name;
+- date of birth or age;
+- sex or gender information where genuinely required;
+- address and location information;
+- email address;
+- mobile number;
+- emergency contact information;
+- parent or guardian information for minors;
+- educational background;
+- application responses;
+- CEE answers, scores, attempts, timestamps, and results;
+- enrollment information;
+- program progress and assessment records;
+- submitted assignments and projects;
+- certificate and credential records;
+- payment and transaction records;
+- billing details;
+- communications with Cognita;
+- support and complaint records;
+- account information;
+- IP address;
+- browser, device, operating system, session, and security information;
+- login records;
+- platform activity and learning analytics;
+- integrity-monitoring information where disclosed and lawfully implemented;
+- cookies and analytics information;
+- marketing preferences; and
+- other information voluntarily submitted by the data subject.
+
+Cognita should collect government-issued IDs, biometric information, webcam recordings, screenshots, audio, or other higher-risk information only where genuinely necessary, proportionate, disclosed, and supported by an appropriate lawful basis.
+
+2.4 Sensitive Personal Information
+Certain educational records and other information may qualify as sensitive personal information under Philippine law. Cognita will apply heightened safeguards and will process such information only where legally permitted.
+
+2.5 Purposes of Processing
+Personal data may be processed for:
+- receiving and reviewing applications;
+- verifying applicant information;
+- administering admissions;
+- administering the CEE;
+- determining placement and program eligibility;
+- creating and maintaining learner accounts;
+- providing learning content and services;
+- recording learner progress;
+- administering assessments;
+- investigating academic or assessment integrity concerns;
+- issuing and verifying certificates;
+- processing payments, refunds, invoices, and receipts;
+- providing student support;
+- handling complaints and appeals;
+- sending service and administrative communications;
+- maintaining platform security;
+- preventing fraud, impersonation, unauthorized access, and abuse;
+- complying with legal and regulatory obligations;
+- maintaining required institutional and financial records;
+- improving courses and services using appropriately protected data;
+- conducting analytics;
+- administering surveys where appropriate; and
+- sending marketing communications where permitted.
+
+2.6 Bases for Processing
+Depending on the data and purpose, Cognita may process personal data based on:
+- consent;
+- steps requested by an applicant before entering into an enrollment contract;
+- performance of a contract;
+- compliance with legal obligations;
+- protection of lawful rights and interests;
+- legitimate interests where permitted and not overridden by the rights and freedoms of the data subject; or
+- another basis permitted under Philippine law.
+
+Where processing of sensitive personal information requires specific consent or another specific legal basis, Cognita will obtain or document the appropriate basis before processing.
+
+2.7 Automated Processing and Profiling
+If Cognita uses automated tools to assist with admissions screening, integrity checks, learner recommendations, personalization, or risk detection, Cognita shall disclose material automated processing where required by law.
+
+Automated tools should not be treated as the sole basis for high-impact adverse decisions without appropriate safeguards and human review where required or appropriate.
+
+2.8 CEE and Integrity Monitoring
+Before any CEE or assessment monitoring begins, Cognita will disclose what monitoring is used.
+
+Depending on the assessment design, this may include:
+- start and end times;
+- attempt logs;
+- browser or session information;
+- device information;
+- IP or network information;
+- prohibited navigation signals;
+- account activity;
+- identity-verification information; and
+- other reasonable integrity indicators.
+
+Webcam, microphone, biometric, facial recognition, continuous screen recording, or similar intrusive monitoring shall not be used merely because technically possible. Such tools require a separate necessity, proportionality, privacy, and compliance review before implementation.
+
+2.9 Third-Party Service Providers
+Cognita may use third-party providers for:
+- website hosting;
+- cloud infrastructure;
+- databases;
+- email;
+- authentication;
+- payment processing;
+- analytics;
+- customer support;
+- artificial intelligence;
+- learning platforms;
+- certificate delivery; and
+- security services.
+
+Cognita shall select providers reasonably capable of protecting personal data and shall implement appropriate contractual and security safeguards.
+
+2.10 Cross-Border Processing
+Some service providers may process or store data outside the Philippines. Where this occurs, Cognita will implement safeguards required by applicable law and will remain responsible for ensuring that processing is consistent with its privacy obligations.
+
+2.11 Data Sharing
+Personal data may be disclosed only to:
+- authorized Cognita personnel;
+- instructors or evaluators who require access;
+- contracted service providers;
+- payment processors;
+- professional advisers;
+- regulators or government authorities where legally required;
+- law enforcement pursuant to valid legal process; or
+- another recipient specifically authorized by the data subject or permitted by law.
+
+Cognita will not sell personal data.
+
+2.12 Retention
+Cognita will retain personal data only for as long as necessary for the purpose for which it was collected, legitimate institutional requirements, dispute handling, credential verification, or applicable legal and regulatory obligations.
+
+Specific retention periods shall be maintained in Cognita's internal Records Retention Schedule.
+
+When data is no longer required, Cognita will securely delete, anonymize, or dispose of it, subject to legal retention requirements.
+
+2.13 Security
+Cognita will maintain reasonable organizational, physical, and technical safeguards appropriate to the nature and risk of the information processed.
+
+Safeguards may include:
+- access controls;
+- least-privilege permissions;
+- strong authentication;
+- encryption where appropriate;
+- secure backups;
+- audit logs;
+- vulnerability management;
+- staff confidentiality obligations;
+- incident response procedures; and
+- periodic review of systems and service providers.
+
+2.14 Data Subject Rights
+Subject to applicable law, data subjects may have rights including:
+- the right to be informed;
+- the right to access;
+- the right to object;
+- the right to rectify inaccurate information;
+- the right to erasure or blocking where legally available;
+- the right to data portability where applicable;
+- the right to damages; and
+- the right to file a complaint with the National Privacy Commission.
+
+Requests may be sent to:
+[INSERT PRIVACY CONTACT]
+
+Cognita may need to verify the identity and authority of the person making a request before acting on it.
+
+2.15 Marketing Communications
+Marketing messages will be sent only when legally permitted. Recipients may unsubscribe or withdraw applicable consent through the mechanism provided in the communication.
+
+Administrative communications concerning an application, enrollment, payment, account, security issue, assessment, or other service matter are not marketing communications and may still be sent where necessary.
+
+2.16 Privacy Notice Changes
+Cognita may update this Privacy Notice when its services, systems, legal obligations, or processing practices change. Material changes will be communicated appropriately.
+
+======================================================================
+3. WEBSITE TERMS OF USE
+======================================================================
+
+3.1 Acceptance
+By using Cognita Institute's website or public digital services, a visitor agrees to these Terms of Use.
+
+3.2 Permitted Use
+The website may be used for lawful informational, admissions, enrollment, and learning-related purposes.
+
+3.3 Prohibited Use
+Users must not:
+- attempt unauthorized access;
+- disrupt the website;
+- scrape protected content without permission;
+- bypass security;
+- introduce malware;
+- impersonate another person;
+- submit fraudulent information;
+- copy or redistribute Cognita content unlawfully;
+- manipulate admissions or assessment systems; or
+- use the website in violation of law.
+
+3.4 Intellectual Property
+Unless otherwise stated, Cognita owns or lawfully uses the website's text, branding, graphics, course descriptions, assessments, interface content, and other protected materials.
+
+No intellectual property rights are transferred merely because a visitor accesses the website.
+
+3.5 Third-Party Links
+External sites and services may be subject to separate terms and privacy practices. Cognita is not responsible for third-party systems outside its reasonable control.
+
+3.6 Availability
+Cognita aims to maintain reliable access but does not guarantee uninterrupted website availability. Maintenance, security incidents, connectivity failures, or third-party disruptions may temporarily affect access.
+
+3.7 Information Accuracy
+Cognita will make reasonable efforts to keep public information accurate. Program pages, fees, schedules, and regulatory status should be verified before enrollment. In case of a material discrepancy, the current official enrollment documentation shall govern, subject to applicable consumer law.
+
+3.8 Governing Law
+These Terms are governed by applicable laws of the Republic of the Philippines.
+
+======================================================================
+4. ADMISSIONS POLICY
+======================================================================
+
+4.1 Admissions Principle
+Admission to Cognita Institute is based on eligibility, program requirements, readiness, available capacity, and compliance with the admissions process.
+
+4.2 Standard Admissions Flow
+Unless a program states otherwise, Cognita follows this process:
+
+Step 1: Applicant completes registration/application.
+Step 2: Cognita reviews the submitted application.
+Step 3: Approved applicants receive a CEE invitation by email.
+Step 4: Applicant completes the Cognita Entrance Examination within the stated conditions.
+Step 5: Cognita communicates a pass, fail, placement, or further-review decision.
+Step 6: Eligible applicants choose an available program.
+Step 7: Applicant reviews and accepts enrollment policies.
+Step 8: Applicant pays the applicable program fees.
+Step 9: Enrolled learner creates or activates a student account.
+Step 10: Learner receives access to the Cognita learning application.
+
+4.3 Application Information
+Applicants must provide accurate, complete, and current information. Cognita may request clarification or supporting documents reasonably necessary to evaluate eligibility.
+
+4.4 Admission Decisions
+Admission is not automatic.
+
+Cognita may:
+- approve an application;
+- deny an application;
+- request additional information;
+- require the CEE;
+- place an applicant into an appropriate level;
+- impose reasonable prerequisite conditions; or
+- defer admission when a program is unavailable.
+
+4.5 Fair Treatment
+Admissions decisions shall not be based on arbitrary, abusive, or unlawful discrimination.
+
+4.6 False or Misleading Information
+Materially false information, fraudulent documents, impersonation, or deliberate concealment may result in:
+- application denial;
+- cancellation of admission;
+- enrollment termination; or
+- certificate revocation if fraud is discovered after completion.
+
+4.7 CEE Requirement
+Where the CEE is required, the applicant must satisfy the CEE rules before final admission.
+
+4.8 Admission Validity
+An admission offer may be valid only for the period stated in the offer. Cognita may require reapplication or reassessment after expiration.
+
+4.9 No Guarantee
+Application submission, payment of an application fee, or invitation to take the CEE does not guarantee admission.
+
+======================================================================
+5. COGNITA ENTRANCE EXAMINATION AND ASSESSMENT POLICY
+======================================================================
+
+5.1 Purpose
+The Cognita Entrance Examination is an internal assessment intended to evaluate readiness, placement, and eligibility for Cognita programs.
+
+5.2 Access
+CEE access is issued only to the authorized applicant and may not be shared or transferred.
+
+5.3 Identity
+The person taking the CEE must be the applicant whose name appears in the application.
+
+5.4 Timer
+The CEE may be subject to a fixed time limit. The timer begins as stated on the examination screen and continues according to the examination rules.
+
+5.5 Permitted and Prohibited Resources
+Before the examination begins, Cognita will state whether notes, calculators, external websites, AI tools, reference materials, or other resources are permitted.
+
+Anything not expressly permitted for a closed assessment must be treated as prohibited.
+
+5.6 Artificial Intelligence
+Unless the examination instructions expressly permit it, use of ChatGPT, Gemini, Claude, Copilot, AI search, generative AI, or another AI assistance system during the CEE is prohibited.
+
+5.7 Integrity Guardrails
+Cognita may use proportionate technical and procedural controls to protect assessment integrity.
+
+These may include:
+- timers;
+- attempt limits;
+- randomized questions;
+- activity logging;
+- authentication;
+- browser-session controls;
+- network/device indicators;
+- question banks;
+- post-exam integrity review; and
+- manual review of suspicious activity.
+
+Any privacy-sensitive monitoring must be disclosed before the assessment.
+
+5.8 Technical Failure
+If an applicant experiences a material technical problem, the applicant must report it as soon as reasonably possible through the official support channel.
+
+Cognita may review technical logs before granting a restart or replacement attempt.
+
+5.9 Retakes
+Retake eligibility, waiting periods, number of attempts, and any applicable retake fee must be disclosed before enrollment or examination.
+
+Unless otherwise stated by a program:
+- retakes are not automatic;
+- Cognita may require a waiting period; and
+- integrity violations may result in longer restrictions or ineligibility.
+
+5.10 Invalidated Results
+Results may be invalidated where there is credible evidence of:
+- impersonation;
+- prohibited assistance;
+- answer sharing;
+- unauthorized AI use;
+- tampering;
+- multiple-person participation;
+- use of leaked assessment materials; or
+- material violation of examination rules.
+
+5.11 Result Review
+An applicant may request review of a result or integrity decision through the Appeals Policy.
+
+5.12 No External Equivalency
+CEE scores have no independent academic, government, licensing, or professional equivalency outside Cognita unless expressly recognized by another authority.
+
+======================================================================
+6. TERMS OF ENROLLMENT
+======================================================================
+
+6.1 Enrollment Contract
+Enrollment is completed only after the applicant:
+- satisfies admission requirements;
+- accepts the applicable policies and program terms;
+- completes required payment; and
+- receives confirmation from Cognita.
+
+6.2 Program Scope
+The learner is entitled to the program access, learning materials, assessments, services, and duration described in the enrollment offer.
+
+6.3 Learner Responsibilities
+Learners must:
+- provide accurate information;
+- protect account credentials;
+- complete their own required assessments;
+- follow academic integrity rules;
+- comply with lawful instructions;
+- communicate respectfully;
+- meet deadlines where applicable; and
+- use Cognita systems responsibly.
+
+6.4 Program Access
+Access is personal, limited, revocable, and subject to the stated access period.
+
+Access may not be sold, shared, transferred, sublicensed, or used to create competing copies of Cognita materials.
+
+6.5 Fees
+Fees and inclusions must be disclosed before payment.
+
+A learner is responsible only for charges properly disclosed and accepted, subject to applicable law.
+
+6.6 Curriculum
+Cognita may update lessons, examples, readings, software references, or learning activities to maintain accuracy and relevance, especially in fast-changing subjects such as artificial intelligence.
+
+Material changes must not unfairly deprive an enrolled learner of the essential value of the program purchased.
+
+6.7 Completion
+Enrollment alone does not guarantee completion or certification. Learners must satisfy the published requirements.
+
+6.8 Suspension or Termination
+Cognita may suspend or terminate access for serious or repeated violations, including:
+- fraud;
+- impersonation;
+- cheating;
+- harassment;
+- security abuse;
+- account sharing;
+- unlawful activity;
+- nonpayment where payment remains due; or
+- serious violation of institutional policies.
+
+Where appropriate, Cognita will provide notice and an opportunity to respond.
+
+6.9 Policy Acceptance
+Cognita may record:
+- policy title;
+- version;
+- acceptance date and time;
+- account identifier; and
+- relevant transaction or assessment identifier.
+
+6.10 Relationship
+Enrollment does not create employment, partnership, agency, professional licensing, or government-recognized student status beyond Cognita's private institutional relationship.
+
+======================================================================
+7. REFUND, CANCELLATION, AND WITHDRAWAL POLICY
+======================================================================
+
+7.1 Principle
+Cognita aims to apply clear, fair, and lawful refund rules.
+
+Nothing in this policy removes consumer remedies that cannot legally be waived.
+
+7.2 Disclosure Before Payment
+Before payment, Cognita will disclose:
+- amount due;
+- what the payment covers;
+- whether a fee is refundable;
+- applicable cancellation window;
+- program start/access conditions; and
+- refund request procedure.
+
+7.3 Application Fees
+If Cognita charges an application-processing fee, the fee may be treated as non-refundable once substantive application review has begun, except where:
+- the charge was duplicated;
+- the payment was made in error;
+- Cognita did not provide the paid processing service;
+- Cognita expressly approves a refund; or
+- applicable law requires a remedy.
+
+7.4 CEE Fees
+If Cognita separately charges a CEE fee, the fee may be treated as non-refundable once the applicant has accessed or commenced the examination, except where:
+- a material technical failure attributable to Cognita prevents completion;
+- there was a duplicate or erroneous charge;
+- Cognita cancels the examination without reasonable replacement; or
+- applicable law requires otherwise.
+
+7.5 Program/Tuition Fees
+The exact refund schedule for each program must be displayed before payment.
+
+Unless a specific program has a separately published schedule, Cognita should not activate paid enrollment until the following figures are completed:
+
+Before learner access is activated:
+[INSERT REFUND RULE]
+
+After access is activated but before substantial course use:
+[INSERT REFUND RULE]
+
+After substantial course content has been accessed or completed:
+[INSERT REFUND RULE]
+
+After certificate issuance:
+[INSERT REFUND RULE]
+
+No percentage or deadline should be invented or published until Cognita adopts the commercial rule.
+
+7.6 Cognita Cancellation
+If Cognita cancels a paid program and does not offer an acceptable equivalent replacement, the learner will receive a refund for the undelivered portion or another remedy required by law.
+
+7.7 Duplicate and Erroneous Payments
+Verified duplicate payments or amounts charged in error will be refunded to the appropriate payment channel, subject to payment-provider procedures.
+
+7.8 Change of Mind
+Where there is no defect, misrepresentation, nonperformance, or other legally recognized basis for a remedy, Cognita may apply its disclosed cancellation terms to a change-of-mind request.
+
+7.9 Misconduct
+Termination for serious learner misconduct does not automatically create a refund entitlement. Cognita will consider:
+- services already delivered;
+- contractual terms;
+- fairness;
+- the severity of the violation; and
+- applicable law.
+
+7.10 Technical Problems
+Temporary learner-side connectivity, device, or software problems do not automatically entitle a learner to a refund.
+
+Material prolonged failure of Cognita's service will be handled reasonably, which may include:
+- access extension;
+- rescheduled assessment;
+- replacement service;
+- partial refund; or
+- full refund where appropriate.
+
+7.11 Refund Requests
+Refund requests must be submitted to:
+[INSERT REFUND CHANNEL]
+
+The request should include:
+- learner name;
+- registered email;
+- transaction reference;
+- program;
+- amount;
+- reason; and
+- relevant evidence.
+
+7.12 Processing
+Cognita will acknowledge and review requests within a reasonable period and comply with applicable consumer-redress requirements.
+
+Approved refunds may take additional time to appear depending on the payment method or payment provider.
+
+7.13 Chargebacks
+Learners are encouraged to use Cognita's complaint and refund process before initiating a payment dispute, without limiting rights available under law or payment-provider rules.
+
+======================================================================
+8. ACADEMIC AND ASSESSMENT INTEGRITY POLICY
+======================================================================
+
+8.1 Principle
+Cognita evaluates the learner's own knowledge, skills, judgment, and work except where collaboration or AI assistance is expressly permitted.
+
+8.2 Academic Misconduct
+Misconduct may include:
+- plagiarism;
+- copying another learner's work;
+- unauthorized collaboration;
+- impersonation;
+- contract cheating;
+- unauthorized AI use;
+- fabrication of sources or results;
+- falsification of documents;
+- sharing assessment answers;
+- acquiring leaked examination materials;
+- bypassing assessment controls;
+- manipulating technical systems; or
+- submitting another person's work as one's own.
+
+8.3 AI and Integrity
+AI use is governed by both this policy and the AI Use Policy.
+
+Where an assessment is marked "No AI," any use of generative AI to answer, rewrite, solve, summarize, or materially produce assessed work is prohibited unless a specific accommodation or exception has been approved.
+
+8.4 Investigation
+Cognita may investigate credible integrity concerns using:
+- submitted work;
+- platform logs;
+- assessment records;
+- comparison evidence;
+- evaluator observations;
+- learner explanation; and
+- other lawful evidence.
+
+AI-detection tools alone should not be treated as conclusive proof of misconduct.
+
+8.5 Possible Outcomes
+Depending on severity, outcomes may include:
+- warning;
+- required resubmission;
+- score reduction;
+- assessment failure;
+- module failure;
+- temporary suspension;
+- invalidated CEE result;
+- removal from the program;
+- certificate withholding;
+- certificate revocation in cases of proven fraud; or
+- permanent ineligibility in exceptional serious cases.
+
+8.6 Fair Process
+Before a serious sanction, Cognita should provide the learner with the substance of the allegation and a reasonable opportunity to respond.
+
+8.7 Appeals
+Serious academic-integrity decisions may be appealed under the Complaints, Grievance, and Appeals Policy.
+
+======================================================================
+9. ARTIFICIAL INTELLIGENCE USE POLICY
+======================================================================
+
+9.1 Purpose
+Cognita teaches learners to use AI intelligently, ethically, and critically. AI is a learning tool, not a substitute for demonstrated competence.
+
+9.2 AI Use Categories
+Every assessment or activity should be classified as one of the following:
+
+A. AI ENCOURAGED
+AI may be used as part of the learning objective.
+
+B. AI ALLOWED WITH DISCLOSURE
+AI may be used, but the learner must disclose material assistance and remain responsible for accuracy.
+
+C. AI RESTRICTED
+Only specific AI functions or stages are permitted.
+
+D. NO AI
+AI assistance is prohibited for the activity or assessment.
+
+9.3 Learner Responsibility
+A learner remains responsible for:
+- factual accuracy;
+- citations;
+- originality;
+- confidentiality;
+- lawful use;
+- bias awareness;
+- safety;
+- the final submitted work; and
+- compliance with assessment instructions.
+
+9.4 Prohibited AI Uses
+Learners must not use AI to:
+- impersonate another person;
+- evade a closed assessment;
+- fabricate evidence;
+- fabricate references;
+- generate fraudulent documents;
+- bypass security controls;
+- harass or threaten;
+- process information unlawfully; or
+- violate another person's rights.
+
+9.5 Confidential and Personal Data
+Learners must not upload private Cognita materials, assessment questions, confidential business information, personal information, sensitive personal information, or another person's data into external AI systems unless specifically authorized and lawful.
+
+9.6 Disclosure
+Where disclosure is required, Cognita may ask learners to identify:
+- the AI tool used;
+- the purpose;
+- the material generated or assisted;
+- important prompts or process notes; and
+- how the learner verified the output.
+
+9.7 AI Output
+AI-generated content may be incomplete, biased, outdated, fabricated, or incorrect. Learners must verify important claims.
+
+9.8 Changes
+Because AI capabilities and regulation evolve rapidly, Cognita may update this policy and course-specific AI rules.
+
+======================================================================
+10. STUDENT CODE OF CONDUCT
+======================================================================
+
+10.1 Expected Conduct
+Learners are expected to:
+- act respectfully;
+- communicate professionally;
+- protect the learning environment;
+- follow assessment rules;
+- respect intellectual property;
+- protect other people's privacy; and
+- use Cognita systems lawfully.
+
+10.2 Prohibited Conduct
+Prohibited conduct includes:
+- harassment;
+- threats;
+- bullying;
+- discriminatory abuse;
+- sexual harassment;
+- doxxing;
+- stalking;
+- fraud;
+- cheating;
+- impersonation;
+- unauthorized account sharing;
+- intentional system disruption;
+- malware;
+- credential theft;
+- unauthorized access;
+- unlawful content distribution; and
+- retaliation against a person who raises a good-faith complaint.
+
+10.3 Discipline
+Cognita may apply proportionate disciplinary action based on:
+- seriousness;
+- intent;
+- harm;
+- repetition;
+- evidence; and
+- prior conduct.
+
+10.4 Immediate Protective Action
+Cognita may temporarily restrict access without completing the full disciplinary process first when reasonably necessary to protect learners, staff, data, assessments, or system security.
+
+======================================================================
+11. STUDENT ACCOUNT AND ACCEPTABLE USE POLICY
+======================================================================
+
+11.1 Personal Account
+Each student account is personal to the registered learner.
+
+11.2 Credential Security
+Learners must:
+- use strong credentials;
+- keep passwords private;
+- use required multi-factor authentication where available;
+- report suspected compromise; and
+- keep recovery information current.
+
+11.3 Account Sharing
+Sharing, selling, lending, or transferring a student account is prohibited.
+
+11.4 Acceptable Use
+The student application may be used only for authorized learning, support, assessment, and program activities.
+
+11.5 Prohibited Technical Activity
+Users must not:
+- reverse engineer protected systems except where law expressly permits;
+- scrape or mass-download protected learning content;
+- evade access controls;
+- exploit vulnerabilities;
+- probe systems without authorization;
+- automate examination answering;
+- alter logs;
+- interfere with other users;
+- distribute malware; or
+- misuse APIs.
+
+11.6 Security Response
+Cognita may restrict or suspend accounts when security risk is reasonably suspected.
+
+======================================================================
+12. PROGRAM PROGRESS, COMPLETION, AND ACCESS POLICY
+======================================================================
+
+12.1 Program Requirements
+Each program must publish its applicable:
+- modules;
+- required assessments;
+- passing scores;
+- practical requirements;
+- completion conditions; and
+- access period.
+
+12.2 Self-Paced Learning
+"Self-paced" means that the learner may progress within the stated program-access period subject to required sequencing, assessments, deadlines, or instructor interventions.
+
+It does not mean permanent lifetime access unless expressly stated.
+
+12.3 Progress
+Cognita may record completion, attempts, scores, attendance where applicable, submissions, and milestones.
+
+12.4 Failed Assessments
+Programs shall specify:
+- passing score;
+- number of allowed attempts;
+- remediation;
+- reassessment;
+- waiting period; and
+- any applicable reassessment fee.
+
+12.5 Inactivity
+Cognita may contact inactive learners and may close access after the published access period.
+
+12.6 Extensions
+Extensions may be granted under published criteria, including serious technical, personal, or institutional circumstances.
+
+12.7 Completion
+A learner is marked complete only when all mandatory requirements have been satisfied.
+
+======================================================================
+13. CERTIFICATE ISSUANCE AND VERIFICATION POLICY
+======================================================================
+
+13.1 Certificate Types
+Unless a different credential is lawfully authorized, Cognita may issue:
+- Certificate of Participation;
+- Certificate of Completion; or
+- Certificate of Achievement.
+
+13.2 Eligibility
+Certificate requirements may include:
+- completion of mandatory modules;
+- passing required assessments;
+- satisfactory project work;
+- compliance with academic integrity rules; and
+- settlement of properly due fees.
+
+13.3 Credential Status
+Private institutional certificates must not be presented as:
+- degrees;
+- TESDA National Certificates;
+- TESDA Certificates of Competency;
+- professional licenses;
+- civil service eligibility;
+- government credentials; or
+- regulated credentials unless that exact status is officially authorized.
+
+13.4 Verification
+Cognita may maintain a verification system using:
+- certificate number;
+- learner name;
+- program;
+- date issued;
+- status; and
+- verification code or URL.
+
+Verification should disclose only information necessary to authenticate the credential.
+
+13.5 Corrections
+A learner may request correction of clerical errors by providing appropriate evidence.
+
+13.6 Revocation
+Cognita may revoke or mark a certificate invalid where it was obtained through proven:
+- impersonation;
+- fraud;
+- falsified records;
+- serious assessment misconduct; or
+- technical error that made the credential invalid.
+
+A serious revocation should be subject to notice and an appeal process.
+
+======================================================================
+14. INTELLECTUAL PROPERTY AND LEARNER WORK POLICY
+======================================================================
+
+14.1 Cognita Materials
+Unless otherwise stated, Cognita owns or lawfully licenses:
+- curricula;
+- lessons;
+- videos;
+- graphics;
+- templates;
+- course text;
+- assessment items;
+- question banks;
+- rubrics;
+- software interfaces;
+- branding;
+- institutional documents; and
+- proprietary learning materials.
+
+14.2 Limited Learner License
+Enrollment gives the learner a limited, personal, non-transferable right to use Cognita materials for authorized learning purposes during the applicable access period.
+
+14.3 Prohibited Distribution
+Learners may not upload, sell, reproduce, distribute, publish, leak, or commercially exploit protected Cognita materials without permission.
+
+14.4 Learner Original Work
+Learners retain ownership of original intellectual property they independently create, subject to:
+- third-party rights;
+- lawful course requirements; and
+- limited rights required by Cognita to receive, store, review, grade, verify, and preserve the work.
+
+14.5 Portfolio and Marketing Use
+Cognita will not use identifiable learner work for public marketing merely because it was submitted for assessment.
+
+Separate permission should be obtained before using learner work, testimonials, names, photographs, or stories for promotional purposes, unless another lawful basis clearly applies.
+
+======================================================================
+15. COMPLAINTS, GRIEVANCE, AND APPEALS POLICY
+======================================================================
+
+15.1 Principle
+Cognita will maintain an accessible process for complaints and appeals.
+
+15.2 Matters Covered
+A complaint or appeal may concern:
+- admissions administration;
+- billing;
+- refunds;
+- program delivery;
+- instructor or staff conduct;
+- platform access;
+- privacy;
+- assessment administration;
+- academic-integrity decisions;
+- disciplinary decisions;
+- certificate issues; or
+- another institutional service.
+
+15.3 Complaint Channel
+Complaints may be submitted through:
+[INSERT COMPLAINT CHANNEL]
+
+15.4 Required Information
+A complaint should include:
+- name;
+- registered email;
+- program or application reference;
+- issue;
+- relevant dates;
+- requested resolution; and
+- supporting evidence where available.
+
+15.5 Internal Review Stages
+Stage 1: Student Support / Administrative Review
+Stage 2: Academic, Assessment, Billing, Privacy, or Management Review as appropriate
+Stage 3: Final Institutional Review where an appeal is permitted
+
+15.6 Seven-Day Consumer Redress Rule
+For matters covered by the Internet Transactions Act's internal redress mechanism, Cognita shall operate its complaint handling consistently with applicable statutory timelines, including the rule that the internal mechanism may be deemed exhausted where a complaint remains unresolved after seven calendar days from filing.
+
+This does not mean every complex matter can always be fully investigated within seven days, but Cognita should acknowledge, escalate, and handle such complaints promptly and in accordance with law.
+
+15.7 Appeals
+An appeal should identify:
+- the decision challenged;
+- why it is believed to be incorrect or procedurally unfair; and
+- any new or overlooked evidence.
+
+An appeal is not a guaranteed new assessment attempt.
+
+15.8 Retaliation
+Cognita prohibits retaliation against a person who raises a good-faith complaint.
+
+15.9 External Rights
+Nothing in this policy prevents a person from exercising rights before an appropriate regulator, government agency, alternative dispute-resolution body, or court where legally available.
+
+======================================================================
+16. PAYMENT AND BILLING TERMS
+======================================================================
+
+16.1 Price Transparency
+Before payment, Cognita will display or provide:
+- program/service name;
+- price;
+- material inclusions;
+- payment schedule;
+- applicable taxes or charges where required;
+- refund/cancellation terms; and
+- any recurring-payment terms.
+
+16.2 Payment Authorization
+The payer represents that the payment method used is authorized.
+
+16.3 Receipts and Invoices
+Cognita will provide electronic or paper receipts/invoices as required by applicable law and its tax obligations.
+
+16.4 Third-Party Processors
+Payments may be processed by third-party providers. Cognita should not store complete payment-card information unless it has a clear operational need and appropriate security controls.
+
+16.5 Installments
+If installments are offered, the schedule, consequences of missed payment, access conditions, and cancellation rules must be disclosed before enrollment.
+
+16.6 Failed Payments
+Cognita may suspend future access where an agreed payment remains properly due, after reasonable notice where appropriate.
+
+16.7 Price Changes
+Price changes apply prospectively unless an existing enrollment agreement expressly allows otherwise.
+
+======================================================================
+17. PROGRAM CHANGES, SUSPENSION, AND CANCELLATION POLICY
+======================================================================
+
+17.1 Routine Updates
+Cognita may update:
+- examples;
+- resources;
+- software references;
+- lesson sequence;
+- instructors;
+- assessment formats; and
+- supporting content
+
+when reasonably necessary to maintain quality, relevance, security, or compliance.
+
+17.2 Material Changes
+Material changes affecting the essential value of a paid program should be communicated to enrolled learners.
+
+17.3 Program Suspension
+Cognita may temporarily suspend a program for:
+- security incidents;
+- technical failure;
+- instructor unavailability;
+- legal or regulatory concerns;
+- force majeure; or
+- another serious operational reason.
+
+17.4 Program Cancellation
+If Cognita cancels a paid program and cannot provide a reasonably equivalent alternative, affected learners will be offered an appropriate remedy, which may include refund of the undelivered portion.
+
+17.5 Regulatory Change
+Cognita may delay, modify, suspend, or stop a program where necessary to comply with law or obtain required regulatory authorization.
+
+======================================================================
+18. COOKIE AND ANALYTICS NOTICE
+======================================================================
+
+18.1 Cookies
+Cognita's website and student application may use cookies or similar technologies.
+
+18.2 Categories
+These may include:
+- strictly necessary cookies;
+- authentication/session cookies;
+- security cookies;
+- preference cookies;
+- analytics cookies; and
+- marketing cookies where used.
+
+18.3 Necessary Technologies
+Some cookies are necessary for login, security, enrollment, payment, or basic website functions.
+
+18.4 Optional Technologies
+Where required, Cognita will provide appropriate choice or consent before using optional analytics, advertising, or tracking technologies.
+
+18.5 Third Parties
+Third-party services may set or read cookies according to their own services and Cognita's configuration.
+
+18.6 Controls
+Users may manage browser settings and any consent tools provided by Cognita. Disabling necessary technologies may affect service functionality.
+
+======================================================================
+19. MINOR LEARNER AND PARENT/GUARDIAN POLICY
+======================================================================
+
+STATUS BEFORE LAUNCH:
+Cognita must decide whether applicants under 18 will be accepted.
+
+If minors are NOT accepted:
+Cognita programs are currently available only to persons who meet the minimum age stated in the applicable admissions requirements. Applicants who do not meet that age requirement must not create an account or enroll.
+
+If minors ARE accepted, the following rules apply:
+
+19.1 Guardian Involvement
+Cognita may require a parent or legal guardian to:
+- authorize enrollment;
+- accept applicable terms;
+- consent where legally required;
+- authorize payment;
+- provide emergency contact details; and
+- participate in safeguarding communications.
+
+19.2 Data Minimization
+Cognita will collect only information reasonably necessary to administer the minor's education and protect the learner.
+
+19.3 Communications
+Staff communications with minors should use approved institutional channels and follow safeguarding rules.
+
+19.4 AI and Minors
+Cognita will apply age-appropriate AI guidance and will not encourage minors to disclose unnecessary personal or sensitive information to AI systems.
+
+19.5 Safety
+Any suspected abuse, exploitation, grooming, or serious safety concern shall be escalated according to applicable safeguarding and legal requirements.
+
+======================================================================
+20. ACCESSIBILITY AND REASONABLE ACCOMMODATION POLICY
+======================================================================
+
+20.1 Principle
+Cognita aims to make admissions, learning, and assessment reasonably accessible.
+
+20.2 Requests
+Applicants or learners may request reasonable accommodation for a documented or credibly explained need affecting access to the admissions process, CEE, learning platform, or assessments.
+
+20.3 Assessment Integrity
+An accommodation should provide fair access without fundamentally changing the competency being assessed.
+
+20.4 Privacy
+Information supporting an accommodation request shall be handled confidentially and only by persons who reasonably need access.
+
+20.5 Examples
+Depending on the program and need, accommodations may include:
+- additional assessment time;
+- alternative document formats;
+- captioning;
+- keyboard-accessible workflows;
+- adjusted scheduling;
+- assistive-technology compatibility; or
+- another reasonable modification.
+
+======================================================================
+21. MARKETING, TESTIMONIAL, AND COMMUNICATIONS POLICY
+======================================================================
+
+21.1 Accuracy
+Cognita marketing must not falsely claim:
+- government recognition;
+- accreditation;
+- guaranteed employment;
+- guaranteed income;
+- guaranteed certification;
+- guaranteed exam success;
+- professional licensing; or
+- external recognition that has not been verified.
+
+21.2 Testimonials
+Testimonials should reflect genuine experiences and must not be materially misleading.
+
+21.3 Learner Identity
+Names, photographs, videos, work samples, or stories should not be used for promotional purposes without appropriate permission or another lawful basis.
+
+21.4 Marketing Consent
+Where required, marketing consent shall be separate from mandatory enrollment acceptance.
+
+======================================================================
+22. INTERNAL RECORDS RETENTION AND DISPOSAL POLICY
+NOT FOR PUBLIC WEBSITE UNLESS COGNITA CHOOSES TO PUBLISH IT
+======================================================================
+
+22.1 Principle
+Cognita shall retain records only for defined operational, contractual, credential-verification, legal, regulatory, accounting, security, and dispute-resolution purposes.
+
+22.2 Required Retention Schedule
+Before launch, Cognita management must approve exact retention periods for:
+
+A. Unsuccessful applications
+Retention: [INSERT PERIOD]
+
+B. Successful applications and enrollment records
+Retention: [INSERT PERIOD]
+
+C. CEE responses and detailed attempt logs
+Retention: [INSERT PERIOD]
+
+D. CEE final results
+Retention: [INSERT PERIOD]
+
+E. Assessment submissions
+Retention: [INSERT PERIOD]
+
+F. Final grades/completion records
+Retention: [INSERT PERIOD]
+
+G. Certificate issuance and verification records
+Retention: [INSERT PERIOD]
+Note: a limited permanent or long-term verification record may be justified for authenticating credentials, subject to legal review and data minimization.
+
+H. Payment, receipt, invoice, and accounting records
+Retention: [INSERT PERIOD CONSISTENT WITH TAX/ACCOUNTING LAW]
+
+I. Refund and complaint records
+Retention: [INSERT PERIOD]
+
+J. Academic-integrity and disciplinary cases
+Retention: [INSERT PERIOD]
+
+K. Customer support communications
+Retention: [INSERT PERIOD]
+
+L. Security logs
+Retention: [INSERT PERIOD]
+
+M. Marketing consent records
+Retention: [INSERT PERIOD]
+
+22.3 Disposal
+Records shall be securely deleted, anonymized, shredded, or otherwise rendered irretrievable after the retention period unless a legal hold or other lawful reason requires continued retention.
+
+22.4 Legal Hold
+Deletion may be suspended where records are reasonably necessary for:
+- litigation;
+- government investigation;
+- audit;
+- complaint;
+- contractual dispute; or
+- another legal requirement.
+
+======================================================================
+23. INTERNAL DATA SECURITY AND BREACH RESPONSE POLICY
+NOT FOR PUBLIC WEBSITE UNLESS COGNITA CHOOSES TO PUBLISH IT
+======================================================================
+
+23.1 Security Governance
+Cognita shall identify the person or role responsible for privacy and information security.
+
+23.2 Access Control
+Staff access shall be limited according to role and necessity.
+
+23.3 Authentication
+Administrative and sensitive systems should use strong authentication and multi-factor authentication where supported.
+
+23.4 Production Data
+Real learner data must not be copied into insecure testing environments without authorization and safeguards.
+
+23.5 Secrets
+API keys, passwords, service-role credentials, database secrets, signing keys, and payment secrets must never be embedded in public frontend code or repositories.
+
+23.6 Incident Definition
+A security incident includes suspected:
+- unauthorized access;
+- data loss;
+- credential compromise;
+- malware;
+- exposed database;
+- leaked documents;
+- accidental disclosure;
+- unauthorized alteration; or
+- destruction of personal data.
+
+23.7 Response
+When an incident is detected:
+1. Preserve relevant evidence.
+2. Contain the incident.
+3. Revoke compromised credentials.
+4. Determine affected systems and data.
+5. Assess risk to data subjects.
+6. Escalate to the privacy/security lead.
+7. Document actions taken.
+8. Notify affected persons and/or the National Privacy Commission where required by applicable law.
+9. Correct the root cause.
+10. Conduct a post-incident review.
+
+23.8 Vendors
+Cognita shall review privacy and security risks before giving service providers access to learner data.
+
+======================================================================
+24. INTERNAL ASSESSMENT INTEGRITY OPERATING STANDARD
+======================================================================
+
+24.1 Objective
+Integrity controls must be effective enough to protect assessment validity while remaining proportionate to privacy risk.
+
+24.2 Preferred Controls
+Cognita should prefer lower-intrusion controls first:
+- authenticated access;
+- timed assessments;
+- question randomization;
+- large item banks;
+- one-question-at-a-time display where appropriate;
+- attempt limits;
+- plagiarism review;
+- oral verification for suspicious high-stakes submissions;
+- project-based assessments;
+- manual evaluator review;
+- versioned questions; and
+- activity logs.
+
+24.3 High-Intrusion Controls
+Webcam proctoring, facial recognition, biometric verification, continuous screen recording, microphone recording, invasive browser monitoring, or similar measures require separate approval after:
+- necessity assessment;
+- proportionality assessment;
+- privacy review;
+- security review;
+- retention decision;
+- vendor review; and
+- clear applicant disclosure.
+
+24.4 No Automatic Guilt
+A technical anomaly alone is not proof of cheating.
+
+======================================================================
+25. POLICY ACCEPTANCE, VERSION CONTROL, AND EVIDENCE STANDARD
+======================================================================
+
+25.1 Versioning
+Every material public policy should display:
+- policy title;
+- version number or effective date; and
+- date of last update.
+
+25.2 Acceptance Events
+Cognita should collect affirmative acceptance at these stages:
+
+Before CEE:
+- CEE Rules
+- Assessment Integrity Rules
+- Relevant Privacy/Monitoring Notice
+
+Before Payment:
+- Terms of Enrollment
+- Refund, Cancellation and Withdrawal Policy
+- Privacy Notice
+- Program-specific material terms
+
+At First Student-App Login:
+- Student Code of Conduct
+- Academic and Assessment Integrity Policy
+- AI Use Policy
+- Account and Acceptable Use Policy
+
+25.3 Acceptance Record
+The system should retain:
+- user/account ID;
+- policy identifier;
+- policy version;
+- timestamp;
+- transaction or assessment context; and
+- evidence of affirmative action.
+
+25.4 Material Changes
+Where a material policy change affects an existing learner's rights or obligations, Cognita should provide appropriate notice and obtain renewed acceptance where legally or contractually appropriate.
+
+======================================================================
+26. RECOMMENDED WEBSITE LEGAL CENTER
+======================================================================
+
+Public pages:
+1. Institutional Disclaimer
+2. Privacy Notice
+3. Website Terms of Use
+4. Terms of Enrollment
+5. Refund, Cancellation and Withdrawal Policy
+6. Admissions Policy
+7. CEE and Assessment Policy
+8. Academic and Assessment Integrity Policy
+9. AI Use Policy
+10. Student Code of Conduct
+11. Student Account and Acceptable Use Policy
+12. Program Progress and Completion Policy
+13. Certificate Issuance and Verification Policy
+14. Intellectual Property and Learner Work Policy
+15. Complaints, Grievance and Appeals Policy
+16. Payment and Billing Terms
+17. Program Changes, Suspension and Cancellation Policy
+18. Cookie and Analytics Notice
+19. Minor Learner and Parent/Guardian Policy, if minors are accepted
+20. Accessibility and Reasonable Accommodation Policy
+
+Internal policies:
+21. Records Retention and Disposal Policy
+22. Data Security and Breach Response Policy
+23. Assessment Integrity Operating Standard
+24. Policy Acceptance and Version Control Standard
+
+======================================================================
+27. REQUIRED PRE-LAUNCH DECISIONS
+======================================================================
+
+Cognita should NOT publish this pack as final until the following are decided and inserted:
+
+1. Exact registered legal entity/business name.
+2. Business address and legally required public contact information.
+3. Privacy contact or Data Protection Officer arrangement.
+4. Whether learners under 18 are accepted.
+5. Exact refund windows and percentages.
+6. Whether an application fee exists.
+7. Whether a CEE fee exists.
+8. Exact CEE retake rules.
+9. Exact course access duration.
+10. Exact reassessment rules and fees.
+11. Exact records retention periods.
+12. Payment processor and billing process.
+13. Tax receipt/invoice process.
+14. Complaint and refund channels.
+15. Certificate verification system.
+16. Final AI providers and third-party services.
+17. Final assessment-monitoring features.
+18. Whether any program falls under TESDA UTPRAS or another regulated framework.
+19. Whether any program is marketed for a regulated profession.
+20. NPC registration/exemption obligations based on Cognita's actual processing activities.
+
+======================================================================
+28. SHORT WEBSITE FOOTER DISCLAIMER
+======================================================================
+
+Cognita Institute is an independent private, non-degree training center. Unless expressly identified for a specific duly authorized program, Cognita does not represent itself as a CHED-recognized higher education institution, DepEd-recognized basic education school, TESDA-registered TVET provider, or government credentialing body. Cognita certificates for non-regulated programs are private institutional credentials and do not constitute academic degrees, TESDA National Certificates, professional licenses, civil service eligibility, or government-issued credentials. Terms, Privacy Notice, Refund Policy, and other institutional policies apply.
+
+======================================================================
+29. FINAL COMPLIANCE NOTE
+======================================================================
+
+A disclaimer does not exempt a program from a registration, licensing, accreditation, consumer-protection, privacy, tax, or other legal requirement that otherwise applies.
+
+In particular, Cognita must classify each paid public training program before enrollment begins. If a program legally falls within a regulated TVET or other educational framework, Cognita should obtain the required authority before offering or advertising the program in a manner that triggers that framework.
+
+END OF MASTER POLICY PACK
