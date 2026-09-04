@@ -12,6 +12,7 @@ import AccountSetup from './pages/AccountSetup'
 import StudentApp from './pages/StudentApp'
 import FounderConsole from './pages/FounderConsole'
 import AdmissionsReview from './pages/AdmissionsReview'
+import LearningReview from './pages/LearningReview'
 import './styles.css'
 import './learner.css'
 import './admissions.css'
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/app" element={<StudentApp />} />
           <Route path="/operations" element={<FounderConsole />} />
           <Route path="/operations/admissions" element={<AdmissionsReview />} />
+          <Route path="/operations/learning" element={<LearningReview />} />
         </Route>
       </Routes>
     </BrowserRouter>
