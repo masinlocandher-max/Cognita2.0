@@ -13,6 +13,7 @@ import StudentApp from './pages/StudentApp'
 import FounderConsole from './pages/FounderConsole'
 import AdmissionsReview from './pages/AdmissionsReview'
 import LearningReview from './pages/LearningReview'
+import ContactFallback from './pages/ContactFallback'
 import './styles.css'
 import './learner.css'
 import './admissions.css'
@@ -22,6 +23,7 @@ import './learning-review.css'
 import './public-site.css'
 import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
+import './institutional-refinement.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -39,6 +41,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/operations" element={<FounderConsole />} />
           <Route path="/operations/admissions" element={<AdmissionsReview />} />
           <Route path="/operations/learning" element={<LearningReview />} />
+          <Route path="*" element={<ContactFallback />} />
         </Route>
       </Routes>
     </BrowserRouter>
