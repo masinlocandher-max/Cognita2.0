@@ -20,6 +20,8 @@ export default function AppLayout() {
             <a href="/#about" onClick={() => setOpen(false)}>About</a>
             <a href="/#learning" onClick={() => setOpen(false)}>Learning</a>
             <a href="/#difference" onClick={() => setOpen(false)}>Why Cognita</a>
+            <Link to="/apply" onClick={() => setOpen(false)}>Admissions</Link>
+            <Link className="button button--small" to="/apply" onClick={() => setOpen(false)}>Apply to Cognita</Link>
           </nav>
         </div>
       </header>
@@ -35,7 +37,7 @@ export default function AppLayout() {
           <div className="footer-links">
             <a href="/#about">About Cognita</a>
             <a href="/#learning">Learning</a>
-            <a href="/#difference">Why Cognita</a>
+            <Link to="/apply">Admissions</Link>
           </div>
         </div>
         <div className="page-width footer-bottom">© {new Date().getFullYear()} Cognita Institute of Artificial Intelligence.</div>
