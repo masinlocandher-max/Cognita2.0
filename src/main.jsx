@@ -8,6 +8,8 @@ import Exam from './pages/Exam'
 import Learner from './pages/Learner'
 import './styles.css'
 import './learner.css'
+import '../brand/code/cognita-brand.css'
+import './brand-runtime.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
