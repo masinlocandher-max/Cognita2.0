@@ -10,6 +10,7 @@ import Programs from './pages/Programs'
 import Payment from './pages/Payment'
 import AccountSetup from './pages/AccountSetup'
 import StudentApp from './pages/StudentApp'
+import FounderConsole from './pages/FounderConsole'
 import AdmissionsReview from './pages/AdmissionsReview'
 import './styles.css'
 import './learner.css'
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/payment" element={<Payment />} />
           <Route path="/account-setup" element={<AccountSetup />} />
           <Route path="/app" element={<StudentApp />} />
+          <Route path="/operations" element={<FounderConsole />} />
           <Route path="/operations/admissions" element={<AdmissionsReview />} />
         </Route>
       </Routes>
