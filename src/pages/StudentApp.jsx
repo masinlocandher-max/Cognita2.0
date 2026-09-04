@@ -140,8 +140,10 @@ export default function StudentApp() {
     refresh()
   }
 
-  const outputs = learning.lessons.filter((lesson) => ['output', 'capstone'].includes(lesson.type))
-  const credentialReady = learning.progress === 100 && learning.submittedOutputs >= learning.requiredOutputs && learning.state.capstone.status === 'submitted_for_review'
+  const outputs = learning.lessons.filter((lesson) => lesson.type === 'output')
+  const feedbackEntries = Object.values(learning.state.feedback)
+  const hasFeedback = feedbackEntries.length > 0 || Boolean(learning.state.capstone.feedback)
+  const credentialReady = learning.progress === 100 && learning.passedOutputs >= learning.requiredOutputs && learning.state.capstone.status === 'passed'
 
   return (
     <section className="student-app-page student-workspace-page">
@@ -191,9 +193,9 @@ export default function StudentApp() {
 
               <div className="student-metric-grid">
                 <article><BookOpen /><span>Learning progress</span><strong>{learning.completed}/{learning.total}</strong><small>activities completed</small></article>
-                <article><FileCheck2 /><span>Required outputs</span><strong>{learning.submittedOutputs}/{learning.requiredOutputs}</strong><small>submitted locally</small></article>
+                <article><FileCheck2 /><span>Required outputs</span><strong>{learning.passedOutputs}/{learning.requiredOutputs}</strong><small>passed by facilitator</small></article>
                 <article><GraduationCap /><span>Capstone</span><strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong><small>competency evidence</small></article>
-                <article><MessageSquareText /><span>Support</span><strong>{learning.state.supportRequests.filter((request) => request.status.includes('open')).length}</strong><small>open local requests</small></article>
+                <article><MessageSquareText /><span>Support</span><strong>{learning.openSupport}</strong><small>open local requests</small></article>
               </div>
 
               {enrollment.programId === 'professional-ai-program' && (
@@ -258,6 +260,7 @@ export default function StudentApp() {
                         <h3>{selectedLesson.type === 'capstone' ? 'Working submission' : 'Activity response'}</h3>
                         <textarea rows="10" value={submissionDraft} onChange={(event) => setSubmissionDraft(event.target.value)} placeholder="Draft your response, evidence notes, reflection, or submission here..." />
                         <div><button className="button button--ghost" type="button" onClick={storeSubmission}>Save / submit locally</button><small>This does not transmit work to Cognita yet.</small></div>
+                        {learning.state.feedback[selectedLesson.id] && <div className={`inline-feedback is-${learning.state.feedback[selectedLesson.id].decision}`}><strong>{learning.state.feedback[selectedLesson.id].decision.toUpperCase()}</strong><p>{learning.state.feedback[selectedLesson.id].note}</p></div>}
                       </div>
                     )}
 
@@ -293,11 +296,21 @@ export default function StudentApp() {
           {tab === 'feedback' && (
             <div className="student-view">
               <div className="student-section-heading"><div><span>HUMAN REVIEW</span><h2>Feedback and revision queue</h2></div><MessageSquareText /></div>
-              <div className="feedback-empty">
-                <MessageSquareText size={36} />
-                <h3>No production feedback has been delivered yet.</h3>
-                <p>When the backend and facilitator workflow are connected, this area will show evaluator comments, PASS / REVISE decisions, revision deadlines, and the learner’s resubmission history. Local submissions are visible under Assessments and Portfolio.</p>
-              </div>
+              {hasFeedback ? (
+                <div className="feedback-list">
+                  {feedbackEntries.map((feedback) => {
+                    const lesson = learning.lessons.find((item) => item.id === feedback.lessonId)
+                    return <article key={feedback.lessonId} className={`feedback-card is-${feedback.decision}`}><div><span>{feedback.decision.toUpperCase()}</span><h3>{lesson?.title || feedback.lessonId}</h3><small>Reviewed {formatDate(feedback.reviewedAt)}</small></div><p>{feedback.note}</p>{feedback.decision === 'revise' && <button type="button" onClick={() => lesson && openLesson(lesson)}>Open work to revise</button>}</article>
+                  })}
+                  {learning.state.capstone.feedback && <article className={`feedback-card is-${learning.state.capstone.feedback.decision}`}><div><span>{learning.state.capstone.feedback.decision.toUpperCase()}</span><h3>Capstone evaluation</h3><small>Reviewed {formatDate(learning.state.capstone.feedback.reviewedAt)}</small></div><p>{learning.state.capstone.feedback.note}</p>{learning.state.capstone.feedback.decision === 'revise' && <button type="button" onClick={() => setTab('capstone')}>Open capstone to revise</button>}</article>}
+                </div>
+              ) : (
+                <div className="feedback-empty">
+                  <MessageSquareText size={36} />
+                  <h3>No facilitator feedback has been released yet.</h3>
+                  <p>Submitted outputs remain in review until the trainer records a PASS or REVISE decision with written feedback.</p>
+                </div>
+              )}
             </div>
           )}
 
@@ -310,6 +323,7 @@ export default function StudentApp() {
                 <label>Reflection and professional defense notes<textarea rows="8" value={capstoneReflection} onChange={(event) => setCapstoneReflection(event.target.value)} /></label>
                 <div className="capstone-actions"><button className="button button--ghost" type="button" onClick={saveCapstoneWork}>Save draft</button><button className="button" type="button" onClick={releaseCapstone}>Submit for review</button></div>
                 <small className="mvp-note">Frontend preview only. “Submit” records the state on this device and does not reach an evaluator.</small>
+                {learning.state.capstone.feedback && <div className={`inline-feedback is-${learning.state.capstone.feedback.decision}`}><strong>{learning.state.capstone.feedback.decision.toUpperCase()}</strong><p>{learning.state.capstone.feedback.note}</p></div>}
               </article>
               <aside className="capstone-status-card">
                 <span>CAPSTONE STATUS</span>
@@ -328,7 +342,8 @@ export default function StudentApp() {
                 {learning.state.portfolio.length ? learning.state.portfolio.map((lessonId) => {
                   const lesson = learning.lessons.find((item) => item.id === lessonId)
                   const submission = learning.state.submissions[lessonId]
-                  return <article key={lessonId}><Sparkles /><span>{lesson?.type || 'output'}</span><h3>{lesson?.title || lessonId}</h3><p>{submission?.text?.slice(0, 180)}{submission?.text?.length > 180 ? '…' : ''}</p><small>Updated {formatDate(submission?.updatedAt)}</small></article>
+                  const feedback = learning.state.feedback[lessonId]
+                  return <article key={lessonId}><Sparkles /><span>{lesson?.type || 'output'}</span><h3>{lesson?.title || lessonId}</h3><p>{submission?.text?.slice(0, 180)}{submission?.text?.length > 180 ? '…' : ''}</p>{feedback && <strong className={`portfolio-decision is-${feedback.decision}`}>{feedback.decision.toUpperCase()}</strong>}<small>Updated {formatDate(submission?.updatedAt)}</small></article>
                 }) : <div className="feedback-empty"><FolderOpen size={34} /><h3>Your portfolio will grow as you submit applied work.</h3></div>}
               </div>
             </div>
@@ -340,14 +355,14 @@ export default function StudentApp() {
                 <span>COGNITA INSTITUTE</span>
                 <Award size={44} />
                 <h2>Credential eligibility</h2>
-                <strong>{credentialReady ? 'Ready for evaluator verification' : 'Requirements in progress'}</strong>
-                <p>A Cognita credential is earned through demonstrated competence, required outputs, assessment evidence, and final review. This preview does not issue a certificate.</p>
+                <strong>{credentialReady ? 'Ready for final credential verification' : 'Requirements in progress'}</strong>
+                <p>A Cognita credential is earned through demonstrated competence, passed required outputs, capstone approval, assessment evidence, and final institutional review. This preview does not issue a certificate.</p>
               </article>
               <div className="credential-requirements">
                 <div className={learning.progress === 100 ? 'is-done' : ''}><CheckCircle2 /><span>All learning activities complete</span><strong>{learning.progress}%</strong></div>
-                <div className={learning.submittedOutputs >= learning.requiredOutputs ? 'is-done' : ''}><FileCheck2 /><span>Required outputs submitted</span><strong>{learning.submittedOutputs}/{learning.requiredOutputs}</strong></div>
-                <div className={learning.state.capstone.status === 'submitted_for_review' ? 'is-done' : ''}><GraduationCap /><span>Capstone submitted</span><strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong></div>
-                <div><ShieldCheck /><span>Human verification</span><strong>Pending production review</strong></div>
+                <div className={learning.passedOutputs >= learning.requiredOutputs ? 'is-done' : ''}><FileCheck2 /><span>Required outputs passed</span><strong>{learning.passedOutputs}/{learning.requiredOutputs}</strong></div>
+                <div className={learning.state.capstone.status === 'passed' ? 'is-done' : ''}><GraduationCap /><span>Capstone passed</span><strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong></div>
+                <div className={credentialReady ? 'is-done' : ''}><ShieldCheck /><span>Credential verification readiness</span><strong>{credentialReady ? 'Ready for final institutional check' : 'Pending requirements'}</strong></div>
               </div>
             </div>
           )}
@@ -363,7 +378,7 @@ export default function StudentApp() {
               </article>
               <aside className="support-history">
                 <span>REQUEST HISTORY</span>
-                {learning.state.supportRequests.length ? learning.state.supportRequests.map((request) => <div key={request.id}><strong>{request.status.replaceAll('_', ' ')}</strong><p>{request.message}</p><small>{formatDate(request.createdAt)}</small></div>) : <p>No support requests yet.</p>}
+                {learning.state.supportRequests.length ? learning.state.supportRequests.map((request) => <div key={request.id}><strong>{request.status.replaceAll('_', ' ')}</strong><p>{request.message}</p>{request.response && <div className="support-response"><span>Facilitator response</span><p>{request.response}</p></div>}<small>{formatDate(request.respondedAt || request.createdAt)}</small></div>) : <p>No support requests yet.</p>}
               </aside>
             </div>
           )}
