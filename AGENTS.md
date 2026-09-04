@@ -2,9 +2,10 @@
 
 ## Canonical institutional and academic sources
 
-Before changing programs, website copy, admissions language, CEE presentation, learning pathways, credentials, or learner experience, read:
+Before changing programs, website copy, admissions language, CEE presentation, learning pathways, credentials, learner experience, or internal operations, read:
 
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
+- `docs/V1-SOLO-OPERATOR-MODEL.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
@@ -21,6 +22,29 @@ Core program architecture:
 - Future short courses, micro-credentials, institutional training, pricing, credential names, and academic thresholds must not be invented before approval.
 
 Institutional principle: `Guided when you need structure. Flexible when you need freedom. The standard remains the same.`
+
+## V1 solo-operator model
+
+Cognita V1 must be operable by one real founder/operator for a deliberately small pilot intake.
+
+The same person may perform multiple functions, but the frontend and operating process must preserve them as separate responsibilities:
+
+- Founder / Institutional Lead
+- Admissions Reviewer
+- CEE Evaluator
+- Trainer / Facilitator
+- Student Support Lead
+- Records and Enrollment Administrator
+
+Core V1 principle: `One operator. Separate functions. Recorded decisions. No invented staff.`
+
+`/operations` is the device-local Founder Operations Console. It should show the next human action and organize work across admissions, CEE/evaluation, enrollment/payment, training/facilitation, academic records, and student support.
+
+`/operations/admissions` is the detailed local admissions/evaluator/payment simulator.
+
+Neither operations route is a production staff portal or security boundary during the frontend-only phase. Do not expose these routes in public navigation.
+
+Do not create shortcuts that bypass the canonical learner lifecycle because one person controls multiple roles. Before material scale, formal appeals, serious integrity cases, credential disputes/revocation, and significant complaints should gain an independent second-review mechanism.
 
 ## Brand is mandatory
 
@@ -88,7 +112,11 @@ Invitation/enrollment surfaces:
 - `/account-setup`
 - `/app`
 
-`/operations/admissions` is a development-only local simulator, not a production staff portal or security boundary.
+Internal frontend operations surfaces:
+- `/operations`
+- `/operations/admissions`
+
+Operations routes are development-only local simulators, not production staff portals or security boundaries.
 
 Do not publicly expose the raw CEE without an approved invitation. Do not expose the student app before enrollment/account activation.
 
@@ -102,6 +130,6 @@ Do not collect or store passwords in localStorage.
 
 ## Functional protection
 
-Brand/UI work must not casually alter admissions gates, CEE scoring, assessment content, timer behavior, integrity logging, evaluator-review requirement, local persistence, enrollment sequence, or app-access gates.
+Brand/UI work must not casually alter admissions gates, CEE scoring, assessment content, timer behavior, integrity logging, evaluator-review requirement, local persistence, enrollment sequence, app-access gates, or the solo-operator separation-of-functions rule.
 
 The application entry point must continue loading the canonical brand token layer and `src/brand-runtime.css`.
