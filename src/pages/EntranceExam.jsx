@@ -1,6 +1,9 @@
-import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, LockKeyhole, SearchCheck, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, LockKeyhole, Mail, SearchCheck, ShieldCheck } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { getApplication, verifyCeeInvite } from '../lib/admissions'
+
+const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
+const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
 
 export default function EntranceExam() {
   const [params] = useSearchParams()
@@ -14,10 +17,13 @@ export default function EntranceExam() {
         <div className="page-width gate-card">
           <LockKeyhole size={36} />
           <p className="section-label">INVITATION-ONLY ASSESSMENT</p>
-          <h1>The Cognita Entrance Exam is not publicly accessible.</h1>
-          <p>Applicants must register first. Admissions reviews the application, and approved applicants receive a CEE access link through email. Opening the exam URL directly does not grant access.</p>
+          <h1>The Cognita Entrance Examination is not publicly accessible.</h1>
+          <p>CEE access is issued only after an application has been reviewed and approved. Opening an examination URL directly does not grant access.</p>
           {application ? <p className="mvp-note">Current local application status: {application.status.replaceAll('_', ' ')}.</p> : null}
-          <Link className="button" to="/apply">Go to Cognita Admissions <ArrowRight size={18} /></Link>
+          <div className="gate-card-actions">
+            <a className="button" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20CEE%20Access%20Inquiry`}><Mail size={17} /> Contact Cognita about CEE access</a>
+            <a className="button button--ghost" href="/#admissions">View the admission process</a>
+          </div>
         </div>
       </section>
     )
@@ -28,14 +34,14 @@ export default function EntranceExam() {
       <section className="exam-hero">
         <div className="page-width exam-hero-grid">
           <div>
-            <p className="section-label section-label--light">COGNITA ENTRANCE EXAM</p>
+            <p className="section-label section-label--light">COGNITA ENTRANCE EXAMINATION</p>
             <h1>Your approved assessment session.</h1>
-            <p>{application.applicant.fullName}, your application has been approved for the Cognita Entrance Exam. This access is tied to the admissions invitation issued for {application.applicant.email}.</p>
+            <p>{application.applicant.fullName}, your application has been approved for the Cognita Entrance Examination. This access is tied to the admissions invitation issued for {application.applicant.email}.</p>
             <div className="exam-meta-row">
               <span><Clock3 size={18} /> 70-minute timed session</span>
               <span><FileCheck2 size={18} /> 45 objective items + 2 applied tasks</span>
             </div>
-            <Link className="button" to={`/entrance-exam/start?invite=${invite}`}>Continue to exam rules <ArrowRight size={18} /></Link>
+            <Link className="button" to={`/entrance-exam/start?invite=${invite}`}>Continue to examination rules <ArrowRight size={18} /></Link>
           </div>
           <div className="exam-score-card">
             <span>CEE v1.0</span>
