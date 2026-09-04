@@ -1,9 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import {
   Award,
   BookOpen,
   BriefcaseBusiness,
-  CalendarDays,
   Check,
   CheckCircle2,
   ChevronRight,
@@ -92,11 +91,7 @@ export default function StudentApp() {
   const selectedModule = selectedLesson
     ? learning.modules.find((module) => module.lessons.some((lesson) => lesson.id === selectedLesson.id))
     : null
-
-  const nextLesson = useMemo(
-    () => learning.lessons.find((lesson) => !learning.state.completedLessons.includes(lesson.id)) || learning.lessons[0],
-    [learning],
-  )
+  const nextLesson = learning.lessons.find((lesson) => !learning.state.completedLessons.includes(lesson.id)) || learning.lessons[0]
 
   const openLesson = (lesson) => {
     setSelectedLessonId(lesson.id)
