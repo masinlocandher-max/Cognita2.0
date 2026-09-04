@@ -1,6 +1,24 @@
 # Cognita 2.0 — Frontend Milestone
 
-Cognita Institute of Artificial Intelligence public website, device-local learner journey, and Cognita Entrance Exam experience.
+The Cognita Institute of Artificial Intelligence public website, device-local learner journey, and Cognita Entrance Exam experience.
+
+## Brand system — mandatory
+
+The Cognita 2.0 brand system committed in this repository is the visual source of truth for every website implementation, redesign, prototype, generated component, or deployment, regardless of whether the work is done with Codex, Claude, Copilot, Lovable, Replit, another AI builder, or manual development.
+
+- Official logos: `brand/logos/`
+- Brand rules: `brand/README.md`
+- Canonical CSS tokens: `brand/code/cognita-brand.css`
+- Machine-readable tokens: `brand/code/tokens.json`
+- JavaScript constants: `brand/code/brand.js`
+- Active website application layer: `src/brand-runtime.css`
+- Agent/tool instructions: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
+
+Do not redraw, regenerate, reinterpret, or replace the Cognita logo. The public identity is light, professional, academic, human, and technology-forward: white and soft gray dominate; deep navy is the primary authority color; indigo, violet, and cyan are controlled accents.
+
+Formal institutional name: **The Cognita Institute of Artificial Intelligence**  
+Brand essence: **Human Intelligence. Amplified.**  
+Learning framework: **THINK. APPLY. TRANSFORM.**
 
 ## Product rule for this milestone
 
@@ -122,6 +140,6 @@ A GitHub Actions workflow also runs the frontend build when Actions are enabled 
 
 ## Branch
 
-Active build branch: `build/cognita-mvp-v2`
+Canonical active branch: `main`
 
 The older `cognita-institute` repository is not used as the active Cognita 2.0 frontend. Its operational concepts may be selectively reused in later phases without carrying forward the old product architecture or visual system.
