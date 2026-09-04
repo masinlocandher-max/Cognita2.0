@@ -2,6 +2,25 @@
 
 The Cognita Institute of Artificial Intelligence public website, admissions flow, Cognita Entrance Exam, enrollment sequence, and student learning-app shell.
 
+## Cognita 2.0 source of truth
+
+For institutional positioning, mission and vision, admissions policy, AI-00 placement, the 10-week guided program, the self-paced program, future program layers, integrity standards, founder positioning, and unresolved academic-policy items, use:
+
+- `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` — canonical institutional and academic architecture
+- `docs/WEBSITE-CONTENT.md` — approved working website copy including About, Mission, Vision, Founder, admission-process content, and program content
+- `src/data/programs.js` — machine-readable active program catalog
+
+Active program model:
+
+- **AI-00 Foundation Bridge** — assigned through readiness evidence; not a normal commercial program choice
+- **Cognita Professional AI Program** — 10-week guided flagship, cohort-based and mentor-supported
+- **Cognita Skills Lab: Applied AI Foundations and Professional Practice** — self-paced, 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense
+- Future short courses, micro-credentials, institutional training, pricing, credentials, and academic thresholds remain subject to formal approval
+
+Core principle: **Guided when you need structure. Flexible when you need freedom. The standard remains the same.**
+
+Older Cognita/Cognita Academy documents and repositories are reference material only when they conflict with the current Cognita 2.0 source of truth.
+
 ## Brand system — mandatory
 
 The Cognita 2.0 brand system committed in this repository is the visual source of truth for every website implementation, redesign, prototype, generated component, or deployment, regardless of whether the work is done with Codex, Claude, Copilot, Lovable, Replit, another AI builder, or manual development.
@@ -58,9 +77,11 @@ The student lifecycle is sequential and must not be bypassed:
    - Final pass/fail is issued only after evaluator review.
    - In production, the decision is sent through email.
 
-5. **Program selection**
+5. **Readiness/pathway guidance and program selection**
    - Only applicants with a passing CEE decision may continue.
-   - Program choice happens after the admissions result, not during initial registration.
+   - Readiness evidence may support Foundation Required, Foundation Accelerated, or Direct Track Entry guidance once exact academic thresholds are approved.
+   - AI-00 is a foundation bridge rather than a normal commercial program choice.
+   - Eligible program choice happens after the admissions result, not during initial registration.
 
 6. **Payment**
    - Payment comes after program selection.
