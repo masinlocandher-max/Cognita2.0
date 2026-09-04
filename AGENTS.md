@@ -5,6 +5,7 @@
 Before changing programs, website copy, admissions language, CEE presentation, learning pathways, credentials, learner experience, or internal operations, read:
 
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
+- `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md`
 - `docs/V1-SOLO-OPERATOR-MODEL.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
@@ -12,16 +13,37 @@ Before changing programs, website copy, admissions language, CEE presentation, l
 
 These are the active Cognita 2.0 sources. Older Cognita Academy documents, old repositories, proposals, pricing sheets, and experiments may be used only as reference and must not silently override the current 2.0 model.
 
+### Source precedence and policy status
+
+`docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` contains the current LOCKED architecture.
+
+`docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` is the full academic/operational handbook draft. It may guide design and policy development, but any item marked PROVISIONAL or NOT YET APPROVED must not silently change production behavior, public claims, pricing, credentials, CEE scoring, attendance, refunds, admissions eligibility, or legal positioning.
+
+Policy states:
+
+- `LOCKED` — approved for implementation/use
+- `PROVISIONAL` — working rule pending approval, pilot evidence, legal/commercial review, or launch readiness
+- `NOT YET APPROVED` — unresolved and must not be invented
+- `SUPERSEDED` — replaced by a later approved version
+
 Core program architecture:
 
 - Admissions + CEE first.
 - AI-00 is a foundation bridge assigned through readiness evidence; it is not a normal commercial program card.
-- `Cognita Professional AI Program` is the flagship guided route: 10 weeks, cohort-based, mentor-supported, with up to 4 weeks of foundation adjusted by readiness and a 6-week specialization.
+- `Cognita Professional AI Program` is the flagship guided route: 10 weeks, cohort-based, mentor-supported, with up to 4 weeks of foundation adjusted by readiness and a 6-week specialization/capstone progression.
 - `Cognita Skills Lab: Applied AI Foundations and Professional Practice` is the self-paced route: 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense.
 - Guided and self-paced delivery differ in structure, not in the expectation of demonstrated competency.
-- Future short courses, micro-credentials, institutional training, pricing, credential names, and academic thresholds must not be invented before approval.
+- Future short courses, micro-credentials, institutional training, pricing, credential names, and final academic thresholds must not be invented before approval.
 
 Institutional principle: `Guided when you need structure. Flexible when you need freedom. The standard remains the same.`
+
+## Compliance boundary
+
+Cognita is positioned as a private, non-degree training and learning institution. Do not claim CHED recognition, TESDA registration/accreditation, TESDA National Certificates or Certificates of Competency, PRC recognition/licensure, degree equivalency, or government approval unless the applicable authority has actually been obtained and is independently verifiable.
+
+Before real enrollment, Cognita must resolve the regulatory classification of its Day-1 offerings. If an offering is operated as a TVET program, TESDA UTPRAS requirements may require program registration before offering the program or accepting enrollees. Do not imply that merely labeling a TVET credential “private/non-accredited” bypasses registration requirements.
+
+Do not introduce facial-recognition attendance or other high-risk biometric processing without explicit legal/privacy approval and necessity review.
 
 ## V1 solo-operator model
 
@@ -86,7 +108,7 @@ The current objective scoring logic may produce readiness indications. The learn
 - Foundation Accelerated
 - Direct Track Entry
 
-Exact thresholds are not yet approved. Do not silently change scoring, thresholds, or evaluator policy until a later task formally approves them.
+Exact thresholds are not LOCKED. The provisional handbook contains pilot bands only. Do not silently change scoring, thresholds, or evaluator policy until a later task formally approves them.
 
 CEE screens must explain purpose before enforcement. Applicants should understand that an honest result is more useful than an artificially high score because unauthorized assistance can produce inaccurate placement and place the learner into work for which they are not yet ready.
 
@@ -122,7 +144,7 @@ Do not publicly expose the raw CEE without an approved invitation. Do not expose
 
 ## Frontend-only operating rule
 
-Cognita 2.0 remains frontend-only until the product, curriculum, operations, and policies are genuinely ready to onboard real students. Do not add paid backend infrastructure, Supabase, server authentication, transactional email, payment processing, evaluator backend, or cloud learner records unless a later task explicitly moves the product into launch readiness.
+Cognita 2.0 remains frontend-only until the product, curriculum, operations, policies, and compliance path are genuinely ready to onboard real students. Do not add paid backend infrastructure, Supabase, server authentication, transactional email, payment processing, evaluator backend, or cloud learner records unless a later task explicitly moves the product into launch readiness.
 
 Browser-local records and email logs are simulations only. Never imply they were actually transmitted, delivered, reviewed, paid, or authenticated.
 
