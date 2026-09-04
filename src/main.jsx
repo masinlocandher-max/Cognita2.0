@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import Home from './pages/Home'
-import Apply from './pages/Apply'
+import ApplyPreview from './pages/Apply'
+import PublicAdmissions from './pages/PublicAdmissions'
 import EntranceExam from './pages/EntranceExam'
 import Exam from './pages/Exam'
 import Programs from './pages/Programs'
@@ -25,6 +26,7 @@ import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
 import './institutional-refinement.css'
 import './institutional-routing.css'
+import './public-admissions.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -32,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/apply" element={<Apply />} />
+          <Route path="/apply" element={<PublicAdmissions />} />
           <Route path="/entrance-exam" element={<EntranceExam />} />
           <Route path="/entrance-exam/start" element={<Exam />} />
           <Route path="/programs" element={<Programs />} />
@@ -40,6 +42,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/account-setup" element={<AccountSetup />} />
           <Route path="/app" element={<StudentApp />} />
           <Route path="/operations" element={<FounderConsole />} />
+          <Route path="/operations/apply-preview" element={<ApplyPreview />} />
           <Route path="/operations/admissions" element={<AdmissionsReview />} />
           <Route path="/operations/learning" element={<LearningReview />} />
           <Route path="*" element={<ContactFallback />} />
