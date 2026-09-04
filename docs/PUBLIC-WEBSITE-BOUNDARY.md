@@ -18,6 +18,23 @@ Do not expose fake or non-working backend behavior simply to create the appearan
 
 The goal is a complete public information experience, not a false claim that unfinished transactional systems are operating.
 
+## Current public route behavior
+
+Public routes:
+
+- `/` — institutional website and full public information surface
+- `/programs` — public program information; program selection remains gated by a passing admission decision
+- `/apply` — public Admissions information page and official email routing while the production application backend is unfinished
+- `/entrance-exam?invite=...` — invitation-only assessment access; invalid or missing access routes the visitor to official Cognita contact options
+
+The browser-local application simulator is preserved only for internal frontend QA at:
+
+- `/operations/apply-preview`
+
+It must not be presented as a production public application form.
+
+Unknown or unavailable public routes must not end in a blank page, inert control, misleading form, or generic 404. They should route to the Cognita assistance fallback with one-click email access to the official addresses and a route back to the institutional website.
+
 ## Public navigation
 
 The normal public navigation should focus on:
@@ -30,7 +47,7 @@ The normal public navigation should focus on:
 - FAQs
 - Contact
 
-Do not expose `/app`, `/operations`, `/operations/admissions`, or `/operations/learning` in normal public navigation.
+Do not expose `/app`, `/operations`, `/operations/apply-preview`, `/operations/admissions`, or `/operations/learning` in normal public navigation.
 
 Internal and learner routes may remain in the repository for frontend development and QA.
 
@@ -46,7 +63,32 @@ Alternate email:
 
 The domain email is the primary public contact. The Gmail address is an alternate contact.
 
-Until a production contact-form backend is connected, public contact actions should use these real email addresses rather than a form that implies successful server submission.
+Until a production contact-form or admissions backend is connected, public contact and admissions actions should use these real email addresses rather than a form that implies successful server submission.
+
+Where practical, primary `mailto:` actions should include the alternate address as `cc` so the user has one clear action while both institutional inboxes are available.
+
+## Visual credibility rule
+
+The public website should read as a modern private learning institution, not as a startup landing page or SaaS product.
+
+Prefer:
+
+- restrained white, soft gray, navy, and controlled brand accents;
+- editorial hierarchy and clear institutional typography;
+- straight or lightly rounded surfaces rather than excessive floating cards;
+- thin rules, formal content groupings, and generous but disciplined spacing;
+- factual program and admissions information;
+- calm, precise language;
+- clear institutional disclosures and contact details.
+
+Avoid:
+
+- excessive glows, gradients, glassmorphism, and decorative orbs;
+- oversized startup-style display typography that overwhelms institutional information;
+- bento-grid or product-dashboard visual language on public pages;
+- fake metrics, decorative status pills, or internal workflow vocabulary on public pages;
+- speculative fees, credentials, staff, regulatory status, or service availability;
+- generic “coming soon” dead ends when direct email contact is available.
 
 ## Website information standard
 
