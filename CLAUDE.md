@@ -2,8 +2,9 @@
 
 Use the committed Cognita 2.0 brand system for every visual or website change in this repository. Required sources: `brand/logos/`, `brand/code/cognita-brand.css`, `brand/code/tokens.json`, `brand/code/brand.js`, `src/brand-runtime.css`, and `brand/README.md`.
 
-Before changing institutional copy, admissions, CEE, programs, or the learner journey, also read:
+Before changing institutional copy, admissions, CEE, programs, learner journey, or internal operations, also read:
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
+- `docs/V1-SOLO-OPERATOR-MODEL.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
@@ -12,11 +13,33 @@ Do not recreate or reinterpret the logo. Do not introduce a dark-first public id
 
 Canonical student lifecycle: application → human admissions review → email CEE invitation → one persistent 70-minute CEE session with integrity guardrails → evaluator review → pass/fail email → academic pathway recommendation → program selection → payment confirmation → account activation → student learning app.
 
-Public routes are `/` and `/apply`. The CEE must remain invitation-only. `/programs`, `/payment`, `/account-setup`, and `/app` must remain gated by prior lifecycle state. The former `/learner` route must not be restored as a pre-enrollment account surface. `/operations/admissions` is a local QA simulator only, never a production staff portal.
+Public routes are `/` and `/apply`. The CEE must remain invitation-only. `/programs`, `/payment`, `/account-setup`, and `/app` must remain gated by prior lifecycle state. The former `/learner` route must not be restored as a pre-enrollment account surface.
+
+Internal operations routes are `/operations` and `/operations/admissions`. They are device-local QA/operating simulations only, never production staff portals. Do not expose them in public navigation.
+
+## V1 solo-operator rule
+
+Cognita V1 is designed to be operable by one founder/operator for a deliberately small pilot intake.
+
+The same person may perform these functions:
+- Founder / Institutional Lead
+- Admissions Reviewer
+- CEE Evaluator
+- Trainer / Facilitator
+- Student Support Lead
+- Records and Enrollment Administrator
+
+Do not represent these as separate employees when they are not. Preserve the functions as separate workflows and recorded decisions even when one person performs all of them.
+
+Core principle: **One operator. Separate functions. Recorded decisions. No invented staff.**
+
+The Founder Operations Console at `/operations` should identify the next human action and organize work across admissions, CEE/evaluation, enrollment/payment, training/facilitation, academic records, and student support.
+
+Do not create lifecycle bypasses just because the same operator controls multiple roles. Before material scale, formal appeals, serious integrity cases, credential disputes/revocation, and significant complaints should gain an independent second-review mechanism.
 
 Cognita remains frontend-only until it is genuinely ready to onboard real students. Do not add Supabase, paid backend infrastructure, server authentication, transactional email, payment processing, evaluator backends, or cloud learner records unless a later task explicitly moves the product into launch readiness. Browser-local email events are simulations only. Never imply delivery or server submission. Never store passwords in localStorage.
 
-Preserve admissions gates, CEE scoring, timer behavior, assessment content, evaluator-review requirement, integrity logging, local persistence, enrollment order, and student-app access gates unless a task explicitly changes institutional policy.
+Preserve admissions gates, CEE scoring, timer behavior, assessment content, evaluator-review requirement, integrity logging, local persistence, enrollment order, student-app access gates, and solo-operator separation-of-functions unless a task explicitly changes institutional policy.
 
 ## CEE purpose and integrity rule
 
