@@ -15,6 +15,7 @@ import AdmissionsReview from './pages/AdmissionsReview'
 import './styles.css'
 import './learner.css'
 import './admissions.css'
+import './founder-console.css'
 import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
 
