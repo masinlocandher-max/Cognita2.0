@@ -1,26 +1,9 @@
+import { PROGRAMS } from '../data/programs'
+
 const STATE_KEY = 'cognita-v2-admissions-state'
 const SCHEMA_VERSION = 1
 
-export const PROGRAMS = [
-  {
-    id: 'ai-foundations',
-    code: 'AI-00F',
-    name: 'AI Foundations',
-    summary: 'Foundational AI capability, responsible use, prompting, verification, and human judgment.',
-  },
-  {
-    id: 'communication-readiness',
-    code: 'AI-00C',
-    name: 'Communication Readiness',
-    summary: 'Functional English, comprehension, clarity, grammar, and instruction-building for effective AI-assisted work.',
-  },
-  {
-    id: 'applied-ai-learning',
-    code: 'AI-01',
-    name: 'Applied AI Learning',
-    summary: 'Higher-level practical AI learning for students whose readiness supports progression beyond the foundation level.',
-  },
-]
+export { PROGRAMS }
 
 const emptyState = () => ({
   schemaVersion: SCHEMA_VERSION,
@@ -155,7 +138,7 @@ export function approveApplication(note = '') {
     next,
     'cee_invitation',
     'Your Cognita Entrance Exam invitation',
-    `Your application has been approved for the Cognita Entrance Exam. Your invitation grants access to one timed CEE session.`,
+    'Your application has been approved for the Cognita Entrance Exam. Your invitation grants access to one timed CEE session.',
   )
   writeAdmissionsState(next)
   return application
@@ -257,7 +240,7 @@ export function decideCee(decision, evaluatorNote = '') {
     decision === 'passed' ? 'cee_passed' : 'cee_failed',
     decision === 'passed' ? 'Cognita Entrance Exam result: Passed' : 'Cognita Entrance Exam result: Not passed',
     decision === 'passed'
-      ? 'You passed the Cognita Entrance Exam. You may now continue to program selection and enrollment.'
+      ? 'You passed the Cognita Entrance Exam. You may now continue to program selection and enrollment. Your CEE readiness evidence may also inform a recommended learning pathway or AI-00 foundation requirement.'
       : 'You did not pass the Cognita Entrance Exam for this intake. Any reapplication, bridge, or readiness guidance will be communicated by Admissions.',
   )
   writeAdmissionsState(next)
