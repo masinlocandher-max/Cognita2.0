@@ -22,12 +22,12 @@ export default function AppLayout() {
           </button>
           <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
             <a href="/#about" onClick={close}>About</a>
-            <a href="/#programs" onClick={close}>Programs</a>
+            <Link to="/programs" onClick={close}>Programs</Link>
             <a href="/#admissions" onClick={close}>Admissions</a>
             <a href="/#cee" onClick={close}>CEE</a>
             <a href="/#training" onClick={close}>Institutional Training</a>
             <a href="/#faq" onClick={close}>FAQs</a>
-            <a className="button button--small" href={`mailto:${PRIMARY_EMAIL}?subject=Cognita%20Institute%20Inquiry`} onClick={close}>
+            <a className="button button--small" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20Institute%20Inquiry`} onClick={close}>
               <Mail size={16} /> Contact Cognita
             </a>
           </nav>
@@ -47,21 +47,22 @@ export default function AppLayout() {
           <div className="public-footer-column">
             <strong>Explore</strong>
             <a href="/#about">About Cognita</a>
-            <a href="/#programs">Programs</a>
+            <Link to="/programs">Programs</Link>
             <a href="/#admissions">Admissions</a>
             <a href="/#cee">Cognita Entrance Examination</a>
             <a href="/#training">Institutional Training</a>
+            <a href="/#faq">Frequently Asked Questions</a>
           </div>
           <div className="public-footer-column">
             <strong>Contact</strong>
-            <a href={`mailto:${PRIMARY_EMAIL}`}>{PRIMARY_EMAIL}</a>
-            <a href={`mailto:${ALTERNATE_EMAIL}`}>{ALTERNATE_EMAIL}</a>
-            <small>Primary institutional inquiries should be sent to the Cognita domain email.</small>
+            <a href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}`}>{PRIMARY_EMAIL}</a>
+            <a href={`mailto:${ALTERNATE_EMAIL}?cc=${PRIMARY_EMAIL}`}>{ALTERNATE_EMAIL}</a>
+            <small>Use the Cognita domain address for primary institutional correspondence.</small>
           </div>
         </div>
         <div className="page-width public-footer-legal">
           <span>© {new Date().getFullYear()} The Cognita Institute of Artificial Intelligence.</span>
-          <span>Private, non-degree training and learning institution. Program-specific regulatory status is disclosed before enrollment.</span>
+          <span>Private, non-degree training institution. Program-specific regulatory status is disclosed before enrollment.</span>
         </div>
       </footer>
     </div>
