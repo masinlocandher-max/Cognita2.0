@@ -6,6 +6,7 @@ Before changing institutional copy, admissions, CEE, programs, learner journey, 
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
 - `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md`
 - `docs/V1-SOLO-OPERATOR-MODEL.md`
+- `docs/PUBLIC-WEBSITE-BOUNDARY.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
@@ -14,9 +15,9 @@ Before changing institutional copy, admissions, CEE, programs, learner journey, 
 
 `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` is the current LOCKED institutional/program architecture.
 
-`docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` is the full Day-1 academic and operational handbook draft. It includes recommended legal positioning, eligibility, CEE pilot bands, 10-week curriculum, assessment/mastery rules, attendance, credentials, instructor/evaluator governance, appeals, records, SLAs, roadmap, and KPIs.
+`docs/PUBLIC-WEBSITE-BOUNDARY.md` is the current LOCKED public-site behavior while production backend systems are unfinished. It governs how the public site presents admissions, programs, contact, and backend-dependent actions without changing the underlying production lifecycle.
 
-Do not treat a PROVISIONAL rule as LOCKED merely because it appears detailed or institutional.
+`docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` is the full Day-1 academic and operational handbook draft. Do not treat a PROVISIONAL rule as LOCKED merely because it appears detailed or institutional.
 
 Policy states:
 - `LOCKED` — approved for implementation/use
@@ -24,17 +25,44 @@ Policy states:
 - `NOT YET APPROVED` — unresolved; do not invent or publish as policy
 - `SUPERSEDED` — replaced by a later approved version
 
-Do not recreate or reinterpret the logo. Do not introduce a dark-first public identity. The default system is light institutional: white and soft gray surfaces, deep navy authority, with controlled indigo, violet, and cyan accents.
+## Public institutional website rule
 
-Canonical student lifecycle: application → human admissions review → email CEE invitation → one persistent 70-minute CEE session with integrity guardrails → evaluator review → pass/fail email → academic pathway recommendation → program selection → payment confirmation → account activation → student learning app.
+The public Cognita website is an institutional information website, not the student classroom and not a startup/SaaS landing page.
 
-Public routes are `/` and `/apply`. The CEE must remain invitation-only. `/programs`, `/payment`, `/account-setup`, and `/app` must remain gated by prior lifecycle state. The former `/learner` route must not be restored as a pre-enrollment account surface.
+It should look like a credible modern private learning institution: restrained white and soft-gray surfaces, deep navy authority, controlled indigo/violet/cyan accents, editorial hierarchy, thin rules, factual copy, disciplined spacing, limited radii, and minimal shadows.
 
-Internal operations routes are `/operations` and `/operations/admissions`. They are device-local QA/operating simulations only, never production staff portals. Do not expose them in public navigation.
+Avoid excessive glows, glassmorphism, bento grids, fake metrics, decorative status pills, internal workflow jargon, oversized startup-style hero treatment, and speculative claims.
+
+Public routes:
+- `/`
+- `/programs`
+- `/apply`
+
+`/programs` is public for information browsing. Program selection remains gated by a passing admission decision.
+
+During the current frontend-only phase, `/apply` is a public Admissions information/contact page. It must not pretend to submit a server-side application. Official application and intake inquiries route to:
+- `info@thecognitainstitute.com` — primary
+- `cognitainstituteofai@gmail.com` — alternate
+
+The browser-local application simulator is internal only at `/operations/apply-preview`.
+
+Unknown or unavailable public routes should render the Cognita assistance fallback with one-click email access to the official addresses. Do not leave generic 404s, blank pages, inert “coming soon” controls, or fake forms.
+
+The CEE remains invitation-only. Invalid or missing CEE access must direct the visitor to official Cognita contact options and the public admission process.
+
+Do not expose `/app`, `/operations`, `/operations/apply-preview`, `/operations/admissions`, or `/operations/learning` in public navigation.
+
+## Canonical student lifecycle
+
+Production lifecycle: application → human admissions review → email CEE invitation → one persistent 70-minute CEE session with integrity guardrails → evaluator review → pass/fail email → academic pathway recommendation → program selection → payment confirmation → account activation → student learning app.
+
+The current public `/apply` email-routing surface is a temporary frontend presentation choice while the real admissions backend is unfinished. It does not change the production lifecycle.
+
+The former `/learner` page has been removed and must not be restored as a pre-enrollment account surface.
 
 ## Compliance rule
 
-Cognita is positioned as a private, non-degree training and learning institution. Do not claim CHED recognition, TESDA registration/accreditation, TESDA National Certificates or Certificates of Competency, PRC recognition/licensure, degree equivalency, or government approval unless the applicable authority has actually been obtained and is verifiable.
+Cognita is positioned as a private, non-degree training institution. Do not claim CHED recognition, TESDA registration/accreditation, TESDA National Certificates or Certificates of Competency, PRC recognition/licensure, degree equivalency, or government approval unless the applicable authority has actually been obtained and is verifiable.
 
 Before real enrollment, Cognita must resolve whether its Day-1 offerings fall within a TESDA-regulated TVET category requiring UTPRAS program registration. Do not assume that describing a TVET course as a “private/non-accredited certificate” removes a registration requirement.
 
