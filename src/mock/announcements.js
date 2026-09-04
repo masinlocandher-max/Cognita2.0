@@ -9,7 +9,7 @@ export const announcements = [
   {
     id: 'ann_002',
     title: 'AI-00 October cohort',
-    body: 'The October AI-00 cohort opens on 6 October. Learners with an issued placement can enrol from their dashboard once enrolment is connected.',
+    body: 'The October AI-00 cohort opens on 6 October. Learners with an issued placement can enrol from their dashboard once enrollment is connected.',
     publishedAt: '2026-08-25T00:00:00.000Z',
     audience: 'all',
   },

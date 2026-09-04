@@ -16,7 +16,7 @@ export default function JourneyRail({ stage }) {
   const current = journeyProgressIndex(stage)
 
   return (
-    <ol className="journey-rail" aria-label="Student journey progress">
+    <ol className="journey-rail" aria-label="Admissions progress">
       {JOURNEY_STEPS.map((step) => {
         const stepIndex = STEP_STAGE_INDEX[step.stage]
         const state = current > stepIndex ? 'done' : current >= stepIndex ? 'current' : 'upcoming'

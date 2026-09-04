@@ -17,7 +17,7 @@ export default function CourseView() {
 
   if (course.loading) return <LoadingRows rows={4} height={100} />
   if (course.error) return <StateBlock variant="error" description="This course could not be loaded." />
-  if (!course.data) return <StateBlock variant="empty" title="Course not found" action={<Link className="btn" to="/learn/dashboard">Back to learning</Link>} />
+  if (!course.data) return <StateBlock variant="empty" title="Course not found" action={<Link className="btn" to="/portal/dashboard">Back to learning</Link>} />
 
   const data = course.data
   const totalMinutes = data.modules.reduce((sum, module) => sum + module.lessons.reduce((inner, lesson) => inner + lesson.estimatedMinutes, 0), 0)
@@ -25,9 +25,9 @@ export default function CourseView() {
   return (
     <div className="stack-7">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/learn/dashboard">Learning</Link>
+        <Link to="/portal/dashboard">Learning</Link>
         <span aria-hidden="true">/</span>
-        <Link to={`/learn/program/${data.programId}`}>{data.program.title}</Link>
+        <Link to={`/portal/program/${data.programId}`}>{data.program.title}</Link>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{data.title}</span>
       </nav>
@@ -61,7 +61,7 @@ export default function CourseView() {
 
               {state?.locked
                 ? <p className="field-hint">Unlocks when the earlier required modules are complete.</p>
-                : <Link className="link-arrow" to={`/learn/module/${module.id}`}>Open module <ArrowRight size={15} /></Link>}
+                : <Link className="link-arrow" to={`/portal/module/${module.id}`}>Open module <ArrowRight size={15} /></Link>}
             </li>
           )
         })}

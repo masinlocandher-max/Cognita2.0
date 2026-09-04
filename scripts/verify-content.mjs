@@ -16,7 +16,7 @@ import { ceeAttempts } from '../src/mock/ceeAttempts.js'
 import { learners } from '../src/mock/learners.js'
 import { certificateDefinitions, issuedCredentials } from '../src/mock/certificates.js'
 import { PLACEMENTS } from '../src/services/placementService.js'
-import { STATUS_META, ModuleState, LessonState, CertificateState, EvaluationStatus, ApplicationStatus, AttemptStatus, EnrolmentStatus } from '../src/lib/status.js'
+import { STATUS_META, ModuleState, LessonState, CertificateState, EvaluationStatus, ApplicationStatus, AttemptStatus, EnrollmentStatus } from '../src/lib/status.js'
 
 const failures = []
 const check = (label, condition, detail = '') => {
@@ -70,7 +70,7 @@ Object.values(PLACEMENTS)
   .filter((placement) => placement.programId)
   .forEach((placement) => {
     const program = programs.find((item) => item.id === placement.programId)
-    check('placement programme exists', Boolean(program), placement.code)
+    check('placement program exists', Boolean(program), placement.code)
     if (!program) return
 
     const available = modules.filter((module) => {
@@ -138,7 +138,7 @@ issuedCredentials.forEach((credential) => {
 const presentedStates = [
   ...Object.values(ApplicationStatus), ...Object.values(AttemptStatus), ...Object.values(EvaluationStatus),
   ...Object.values(ModuleState), ...Object.values(LessonState), ...Object.values(CertificateState),
-  ...Object.values(EnrolmentStatus),
+  ...Object.values(EnrollmentStatus),
 ]
 presentedStates.forEach((status) => {
   check('status has presentation metadata', Boolean(STATUS_META[status]), status)
@@ -153,4 +153,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log(`Content integrity check passed — ${programs.length} programmes, ${courses.length} courses, ${modules.length} modules, ${lessons.length} lessons, ${assessments.length} assessments, ${Object.keys(knowledgeChecks).length} knowledge checks.`)
+console.log(`Content integrity check passed — ${programs.length} programs, ${courses.length} courses, ${modules.length} modules, ${lessons.length} lessons, ${assessments.length} assessments, ${Object.keys(knowledgeChecks).length} knowledge checks.`)

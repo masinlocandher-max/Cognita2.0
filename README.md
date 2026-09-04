@@ -1,8 +1,8 @@
 # Cognita 2.0
 
-Cognita Institute of Artificial Intelligence — public website, learner journey,
-entrance exam, learning environment, evaluator workspace and administrative
-interface, built frontend-first.
+The Cognita Institute of Artificial Intelligence — public website, admissions,
+Student Portal, evaluator workspace and administrative interface, built
+frontend-first.
 
 ## Product rule for this milestone
 
@@ -42,32 +42,53 @@ src/
   styles/         tokens, base, components, layout, features
 ```
 
+## Public website and Student Portal
+
+The most important structural rule in this repository is the separation between
+what is public and what is private.
+
+| Surface | Audience | Contains |
+| --- | --- | --- |
+| **Public website** | Prospective students, parents, professionals, partners, media | Programs, admissions, about, resources, contact |
+| **Applicant workspace** (`/apply`) | People going through admissions | Application, entrance exam, readiness profile, placement |
+| **Cognita Student Portal** (`/portal`) | Enrolled students | Courses, lessons, assessments, progress, certificates |
+
+Course material exists only under `/portal`, behind the portal entrance. The
+public website links *to* that entrance and never past it. Any direct navigation
+to a portal URL without a session lands on sign-in.
+
+**This is separation, not access control.** The session is device-local and a
+determined visitor can read the bundle. Real enforcement needs authentication and
+row-level security — see the backend contract.
+
 ## The six product layers
 
 ```
 PUBLIC INSTITUTE → ADMISSIONS → PLACEMENT → LEARNING → ASSESSMENT → CREDENTIALS
 ```
 
-All six run under one learner identity. The public site links into `/app`, `/app`
-links into `/learn`, and both read the same derived journey state, so the product
-cannot tell a learner two different things in two places.
+All six run under one learner identity, reading the same derived journey state,
+so the institution cannot tell a student two different things in two places.
 
 ## Routes
 
-**Public** — `/` `/about` `/programs` `/ai-00` `/ai-01` `/admissions`
-`/entrance-exam` `/contact` `/verify` `/verify/:credentialId`
+**Public** — `/` `/programs` `/programs/:programId` `/admissions`
+`/admissions/entrance-exam` `/admissions/apply` `/about` `/resources`
+`/resources/:slug` `/contact` `/privacy` `/terms` `/verify` `/verify/:credentialId`
 
-**Applicant and learner** — `/app` `/app/profile` `/app/application`
-`/app/entrance-exam` `/app/results` `/app/placement` `/app/enrollment`
+**Applicant** — `/apply` `/apply/profile` `/apply/application`
+`/apply/entrance-exam` `/apply/result` `/apply/placement` `/apply/enrollment`
 
-**Learning** — `/learn/dashboard` `/learn/program/:programId`
-`/learn/course/:courseId` `/learn/module/:moduleId` `/learn/lesson/:lessonId`
-`/learn/assessment/:assessmentId` `/learn/progress` `/learn/certificates`
+**Student Portal** — `/portal` (entrance) · `/portal/dashboard`
+`/portal/program/:programId` `/portal/course/:courseId` `/portal/module/:moduleId`
+`/portal/lesson/:lessonId` `/portal/assessment/:assessmentId` `/portal/progress`
+`/portal/certificates`
 
 **Internal** (noindex, absent from public navigation) — `/staff`
 `/staff/evaluations` `/staff/evaluations/:attemptId` · `/admin` + 15 sections
 
-**Redirects** — `/learner` → `/app`, `/entrance-exam/start` → `/app/entrance-exam`
+**Redirects** — `/learner` and `/app/*` → `/apply/*` · `/learn/*` → `/portal/*` ·
+`/entrance-exam` → `/admissions/entrance-exam` · `/ai-00` `/ai-01` → program pages
 
 ## The Cognita Entrance Exam
 
@@ -99,12 +120,12 @@ Placement is developmental, not punitive. There is no pass mark and no pass/fail
 result. Six outcomes: AI-01 readiness, AI-00 Communication Foundation, AI-00 AI
 Foundations, Full AI-00, Targeted Bridge, Manual Review.
 
-AI-00 is personalised. A module a placement waives is shown as waived rather than
+AI-00 is personalized. A module a placement waives is shown as waived rather than
 hidden — a learner can see what was skipped on their behalf, and open it anyway.
 
 ## Learning environment
 
-Programme → course → module → lesson → activity → assessment. Module states are
+Program → course → module → lesson → activity → assessment. Module states are
 explicit: required, optional, waived, completed, locked, current. A required
 module unlocks when the earlier required modules in its course are complete.
 
@@ -122,12 +143,12 @@ Encoded in the build, not just written in copy:
 
 - The contact page shows an address instead of a form, because email delivery
   does not exist.
-- Enrolment has no button and explains why — enrolment is a cohort place and,
+- Enrollment has no button and explains why — enrollment is a cohort place and,
   where applicable, a fee.
 - File upload accepts a link and states that storage is not connected.
 - The admin interface performs no mutations. A button that persists nowhere is a
   false confirmation.
-- Evaluator rubric scores and notes are labelled local drafts.
+- Evaluator rubric scores and notes are labeled local drafts.
 - Credential verification states that it is a record lookup, not a proof.
 - Every learner surface carries the device-local notice.
 
@@ -160,6 +181,10 @@ Frontend-only, by design at this stage:
 - Applied responses are not reviewed; no final placement is issued.
 - `/staff` and `/admin` have no access control. They are noindex and unlinked,
   which is obscurity, not security.
+- The Student Portal gate is a device-local session, not authentication. It
+  enforces the separation in the interface, not against a determined visitor.
+- The public site publishes no accreditation, recognition, partnership, ranking,
+  enrollment figure or graduate outcome, because none has been established.
 - Client-side CEE scoring means the answer key is present in the bundle.
 - Curriculum is mock content.
 

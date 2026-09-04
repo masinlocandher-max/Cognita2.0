@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import StatusPill from '../../components/StatusPill.jsx'
 import { placementFor } from '../../services/placementService.js'
 import { formatDateShort, formatDateTime } from '../../lib/format.js'
-import { ApplicationStatus, EnrolmentStatus, EvaluationStatus } from '../../lib/status.js'
+import { ApplicationStatus, EnrollmentStatus, EvaluationStatus } from '../../lib/status.js'
 import {
   listAnnouncementRows, listApplicationRows, listCertificateRows, listCurriculumRows,
-  listEnrolmentRows, listEvaluationRows, listExamRows, listLearnerRows, listPlacementRows, listStaffRows,
+  listEnrollmentRows, listEvaluationRows, listExamRows, listLearnerRows, listPlacementRows, listStaffRows,
 } from '../../repositories/adminRepository.js'
 
 /**
@@ -36,7 +36,7 @@ export const ADMIN_SECTIONS = [
         { value: 'awaiting_review', label: 'Awaiting review' },
         { value: 'placement_issued', label: 'Placement issued' },
         { value: 'active_learner', label: 'Active learner' },
-        { value: 'program_complete', label: 'Programme complete' },
+        { value: 'program_complete', label: 'Program complete' },
       ],
     }],
     columns: [
@@ -133,7 +133,7 @@ export const ADMIN_SECTIONS = [
       { id: 'fullName', label: 'Learner', render: (row) => <span className="cell-strong">{row.fullName}</span> },
       { id: 'reference', label: 'Reference' },
       { id: 'placement', label: 'Placement', render: (row) => placementFor(row.placement).name },
-      { id: 'enrolment', label: 'Enrolment', render: (row) => <StatusPill status={row.enrolment} /> },
+      { id: 'enrollment', label: 'Enrollment', render: (row) => <StatusPill status={row.enrollment} /> },
     ],
   },
   {
@@ -142,12 +142,12 @@ export const ADMIN_SECTIONS = [
     label: 'Programs',
     group: 'Curriculum',
     title: 'Programs',
-    description: 'Programme definitions.',
+    description: 'Program definitions.',
     load: () => listCurriculumRows('programs'),
     searchFields: ['title', 'code'],
     columns: [
       { id: 'code', label: 'Code' },
-      { id: 'title', label: 'Programme', render: (row) => <span className="cell-strong">{row.title}</span> },
+      { id: 'title', label: 'Program', render: (row) => <span className="cell-strong">{row.title}</span> },
       { id: 'level', label: 'Level' },
       { id: 'courses', label: 'Courses', numeric: true },
       { id: 'weeks', label: 'Weeks', numeric: true },
@@ -159,13 +159,13 @@ export const ADMIN_SECTIONS = [
     label: 'Courses',
     group: 'Curriculum',
     title: 'Courses',
-    description: 'Courses within each programme.',
+    description: 'Courses within each program.',
     load: () => listCurriculumRows('courses'),
     searchFields: ['title', 'code'],
     columns: [
       { id: 'code', label: 'Code' },
       { id: 'title', label: 'Course', render: (row) => <span className="cell-strong">{row.title}</span> },
-      { id: 'program', label: 'Programme' },
+      { id: 'program', label: 'Program' },
       { id: 'modules', label: 'Modules', numeric: true },
     ],
   },
@@ -219,27 +219,27 @@ export const ADMIN_SECTIONS = [
     ],
   },
   {
-    id: 'enrolments',
+    id: 'enrollments',
     to: '/admin/enrollments',
-    label: 'Enrolments',
+    label: 'Enrollments',
     group: 'Operations',
-    title: 'Enrolments',
-    description: 'Learners enrolled in a programme.',
-    load: listEnrolmentRows,
+    title: 'Enrollments',
+    description: 'Learners enrolled in a program.',
+    load: listEnrollmentRows,
     searchFields: ['fullName', 'reference', 'program'],
     filters: [{
       id: 'status',
       label: 'Status',
       options: [
-        { value: EnrolmentStatus.PENDING, label: 'Pending' },
-        { value: EnrolmentStatus.ACTIVE, label: 'Active' },
-        { value: EnrolmentStatus.COMPLETED, label: 'Completed' },
+        { value: EnrollmentStatus.PENDING, label: 'Pending' },
+        { value: EnrollmentStatus.ACTIVE, label: 'Active' },
+        { value: EnrollmentStatus.COMPLETED, label: 'Completed' },
       ],
     }],
     columns: [
       { id: 'fullName', label: 'Learner', render: (row) => <span className="cell-strong">{row.fullName}</span> },
       { id: 'reference', label: 'Reference' },
-      { id: 'program', label: 'Programme' },
+      { id: 'program', label: 'Program' },
       { id: 'status', label: 'Status', render: (row) => <StatusPill status={row.status} /> },
     ],
   },
@@ -255,7 +255,7 @@ export const ADMIN_SECTIONS = [
     columns: [
       { id: 'credentialId', label: 'Credential', render: (row) => <Link className="cell-strong" to={`/verify/${row.credentialId}`}>{row.credentialId}</Link> },
       { id: 'learnerName', label: 'Learner' },
-      { id: 'programTitle', label: 'Programme' },
+      { id: 'programTitle', label: 'Program' },
       { id: 'issuedAt', label: 'Issued', render: (row) => formatDateShort(row.issuedAt) },
       { id: 'state', label: 'State', render: (row) => <StatusPill status={row.state} /> },
     ],
@@ -298,7 +298,7 @@ export const ADMIN_SECTIONS = [
     group: 'Operations',
     title: 'Settings',
     description: 'Institutional configuration.',
-    notConnected: 'Settings govern real institutional behaviour — cohort dates, fee structures, review cycles, notification templates. None of those systems exist behind this build, so there is nothing here to configure yet. The section is present so the information architecture is settled before the backend arrives.',
+    notConnected: 'Settings govern real institutional behavior — cohort dates, fee structures, review cycles, notification templates. None of those systems exist behind this build, so there is nothing here to configure yet. The section is present so the information architecture is settled before the backend arrives.',
   },
 ]
 

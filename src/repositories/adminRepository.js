@@ -16,7 +16,7 @@ import { issuedCredentials } from '../mock/certificates.js'
 import { announcements } from '../mock/announcements.js'
 import { courses, lessons, modules, programs } from '../mock/programs.js'
 import { assessments } from '../mock/assessments.js'
-import { ApplicationStatus, EnrolmentStatus, EvaluationStatus, JourneyStage } from '../lib/status.js'
+import { ApplicationStatus, EnrollmentStatus, EvaluationStatus, JourneyStage } from '../lib/status.js'
 import { settle } from './localStore.js'
 
 /**
@@ -62,7 +62,7 @@ export async function getOverview() {
       { id: 'applications', label: 'Applications submitted', value: learners.filter((l) => l.application === ApplicationStatus.SUBMITTED).length, note: 'Of all records' },
       { id: 'attempts', label: 'CEE attempts submitted', value: ceeAttempts.length, note: 'CEE v1.0 production' },
       { id: 'pending', label: 'Awaiting evaluation', value: pending + inReview, note: `${pending} pending, ${inReview} in review` },
-      { id: 'enrolled', label: 'Active enrolments', value: learners.filter((l) => l.enrolment === EnrolmentStatus.ACTIVE).length, note: 'AI-00 pathway' },
+      { id: 'enrolled', label: 'Active enrollments', value: learners.filter((l) => l.enrollment === EnrollmentStatus.ACTIVE).length, note: 'AI-00 pathway' },
       { id: 'credentials', label: 'Credentials issued', value: issuedCredentials.filter((c) => c.state === 'issued').length, note: 'Mock records' },
     ],
     journeyBreakdown: Object.values(JourneyStage)
@@ -80,7 +80,7 @@ export async function listLearnerRows() {
     municipality: learner.municipality,
     journeyStage: learner.journeyStage,
     application: learner.application,
-    enrolment: learner.enrolment,
+    enrollment: learner.enrollment,
     placement: learner.placement,
     createdAt: learner.createdAt,
   })), 0)
@@ -138,20 +138,20 @@ export async function listPlacementRows() {
       reference: learner.reference,
       fullName: learner.fullName,
       placement: learner.placement,
-      enrolment: learner.enrolment,
+      enrollment: learner.enrollment,
       createdAt: learner.createdAt,
     })), 0)
 }
 
-export async function listEnrolmentRows() {
+export async function listEnrollmentRows() {
   return settle(learners
-    .filter((learner) => learner.enrolment !== EnrolmentStatus.NOT_ENROLLED)
+    .filter((learner) => learner.enrollment !== EnrollmentStatus.NOT_ENROLLED)
     .map((learner) => ({
       id: `${learner.id}_enr`,
       reference: learner.reference,
       fullName: learner.fullName,
       program: learner.placement === 'AI-01' ? 'AI-01 Applied AI Practice' : 'AI-00 Foundation Pathway',
-      status: learner.enrolment,
+      status: learner.enrollment,
       createdAt: learner.createdAt,
     })), 0)
 }

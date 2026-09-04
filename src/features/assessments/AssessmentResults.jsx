@@ -76,7 +76,7 @@ export default function AssessmentResults({ assessment, result, backTo }) {
 
       <div className="wrap-actions">
         <Link className="btn" to={backTo}>Back to the module <ArrowRight size={16} /></Link>
-        <Link className="btn btn--secondary" to="/learn/progress">View progress</Link>
+        <Link className="btn btn--secondary" to="/portal/progress">View progress</Link>
       </div>
     </div>
   )

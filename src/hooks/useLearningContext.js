@@ -3,14 +3,14 @@ import { getProgram, getProgress } from '../repositories/learningRepository.js'
 import { getModuleOverrides } from '../repositories/learningRepository.js'
 import { getLatestSubmittedAttempt } from '../repositories/ceeRepository.js'
 import { subscribe } from '../repositories/localStore.js'
-import { nextLessonFor, programIdForPlacement, resolveModuleStates, summariseProgram } from '../services/learningPathService.js'
+import { nextLessonFor, programIdForPlacement, resolveModuleStates, summarizeProgram } from '../services/learningPathService.js'
 
 /**
- * Resolves the learner's programme, module states, progress roll-up and next
+ * Resolves the learner's program, module states, progress roll-up and next
  * lesson in one place, so every learning screen agrees on what is unlocked.
  *
  * With no placement yet, the AI-00 pathway is shown in preview form — the
- * learning environment is browsable before enrolment exists.
+ * learning environment is browsable before enrollment exists.
  */
 export function useLearningContext(programIdOverride = null) {
   const [state, setState] = useState({ loading: true, program: null, moduleStates: {}, summary: null, nextLesson: null, placementCode: null, progress: {} })
@@ -28,7 +28,7 @@ export function useLearningContext(programIdOverride = null) {
       loading: false,
       program,
       moduleStates,
-      summary: summariseProgram(program, moduleStates),
+      summary: summarizeProgram(program, moduleStates),
       nextLesson: nextLessonFor(program, moduleStates),
       placementCode,
       progress,

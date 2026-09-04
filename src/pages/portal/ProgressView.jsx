@@ -71,7 +71,7 @@ export default function ProgressView() {
                   return (
                     <tr key={module.id}>
                       <td className="cell-strong">
-                        {state?.locked ? module.title : <Link to={`/learn/module/${module.id}`}>{module.title}</Link>}
+                        {state?.locked ? module.title : <Link to={`/portal/module/${module.id}`}>{module.title}</Link>}
                       </td>
                       <td>{course.title}</td>
                       <td className="cell-num">{state?.completedLessons}/{state?.totalLessons}</td>
@@ -109,7 +109,7 @@ export default function ProgressView() {
       </section>
 
       <div className="wrap-actions">
-        <Link className="btn btn--secondary" to="/learn/dashboard">Back to learning <ArrowRight size={16} /></Link>
+        <Link className="btn btn--secondary" to="/portal/dashboard">Back to learning <ArrowRight size={16} /></Link>
       </div>
     </div>
   )

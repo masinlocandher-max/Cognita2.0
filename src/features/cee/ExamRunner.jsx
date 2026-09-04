@@ -106,7 +106,7 @@ export default function ExamRunner({ learner, attempt, supersededCount, onChange
     }
     await persist(submitted)
     setConfirmSubmit(false)
-    navigate('/app/results')
+    navigate('/apply/result')
   }
 
   /* ---------------------------------------------------------------- Intro */
@@ -156,7 +156,7 @@ export default function ExamRunner({ learner, attempt, supersededCount, onChange
           <button className="btn btn--lg" type="button" disabled={!acknowledged} onClick={begin}>
             {current ? 'Resume exam' : 'Start exam'} <ArrowRight size={17} />
           </button>
-          <Link className="btn btn--secondary btn--lg" to="/app">Back to dashboard</Link>
+          <Link className="btn btn--secondary btn--lg" to="/apply">Back to dashboard</Link>
         </div>
         {!acknowledged ? <p className="field-hint">Confirm the acknowledgment above to begin.</p> : null}
       </div>

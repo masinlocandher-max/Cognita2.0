@@ -1,5 +1,5 @@
 /**
- * The personalised AI-00 pathway.
+ * The personalized AI-00 pathway.
  *
  * A learner takes the modules their readiness profile identifies. Modules a
  * placement waives are shown as waived rather than hidden — a learner should be
@@ -68,7 +68,7 @@ export function resolveModuleStates(program, { placementCode = null, progress = 
 }
 
 /** Program-level roll-up used by the dashboard, progress page and certificates. */
-export function summariseProgram(program, moduleStates) {
+export function summarizeProgram(program, moduleStates) {
   const entries = program.courses.flatMap((course) => course.modules.map((module) => ({ module, state: moduleStates[module.id] })))
   const counted = entries.filter(({ state }) => state.intent !== ModuleState.WAIVED)
   const required = entries.filter(({ state }) => state.intent === ModuleState.REQUIRED)

@@ -376,3 +376,48 @@ a.lesson-title:hover { color: var(--accent-600); }
   .lesson-footer-nav .btn { width: 100%; }
   .verify-form { flex-direction: column; align-items: stretch; }
 }
+
+/* ============================================================ Portal entrance */
+.portal-gate { min-height: 100vh; display: grid; place-items: center; padding: var(--s-6) var(--page-gutter); background: var(--ink-900); }
+.portal-gate-inner { width: 100%; max-width: 1080px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: clamp(var(--s-7), 6vw, var(--s-10)); align-items: center; }
+.portal-gate-brand { display: grid; gap: var(--s-4); align-content: center; color: rgba(255,255,255,.6); }
+.portal-gate-name { font-family: var(--font-display); font-size: clamp(30px, 3.6vw, 44px); color: #fff; letter-spacing: -.018em; }
+.portal-gate-blurb { max-width: 42ch; font-size: var(--text-md); line-height: 1.75; }
+.portal-gate-card { display: grid; gap: var(--s-5); padding: clamp(var(--s-6), 4vw, var(--s-8)); background: var(--paper); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); align-content: start; }
+.portal-gate-card h1 { font-size: var(--display-sm); letter-spacing: -.015em; }
+.portal-gate-identity { padding: var(--s-5); border: 1px solid var(--slate-100); border-radius: var(--r-md); background: var(--paper-sunken); display: grid; gap: 3px; }
+.portal-gate-identity-name { font-size: var(--text-lg); font-weight: 640; color: var(--slate-900); }
+.portal-gate-foot { font-size: var(--text-xs); color: var(--slate-500); line-height: 1.65; }
+
+/* ============================================================ Portal shell */
+.portal-shell { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; background: var(--page); }
+.portal-bar { position: sticky; top: 0; z-index: 55; background: var(--ink-900); color: #fff; border-bottom: 1px solid rgba(255,255,255,.08); }
+.portal-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); min-height: 64px; flex-wrap: wrap; }
+.portal-bar-brand { display: flex; align-items: center; gap: var(--s-4); }
+.portal-bar-tag { padding: 3px 9px; border: 1px solid rgba(255,255,255,.2); border-radius: var(--r-full); font-size: var(--text-2xs); font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.62); }
+.portal-nav { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+.portal-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: var(--r-xs); font-size: var(--text-sm); font-weight: 550; color: rgba(255,255,255,.66); }
+.portal-nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.portal-nav a.is-active { background: rgba(255,255,255,.13); color: #fff; font-weight: 620; }
+.portal-bar-right { display: flex; align-items: center; gap: var(--s-4); }
+.portal-body { width: 100%; max-width: var(--page-max); margin: 0 auto; padding: var(--s-8) var(--page-gutter) var(--s-10); }
+.portal-foot { border-top: 1px solid var(--slate-100); background: var(--paper); padding-block: var(--s-5); font-size: var(--text-xs); color: var(--slate-500); }
+
+/* ============================================================ Applicant shell */
+.apply-bar { position: sticky; top: 0; z-index: 55; background: rgba(255,255,255,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-100); }
+.apply-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); min-height: 68px; }
+.apply-bar-tag { padding: 3px 9px; border: 1px solid var(--slate-200); border-radius: var(--r-full); font-size: var(--text-2xs); font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-500); }
+.app-avatar--light { background: var(--slate-100); color: var(--slate-700); }
+.apply-bar .app-identity-text strong { color: var(--slate-900); }
+.apply-bar .app-identity-text span { color: var(--slate-500); }
+
+@media (max-width: 1023px) {
+  .portal-gate-inner { grid-template-columns: minmax(0, 1fr); }
+  .portal-gate-brand { text-align: left; }
+}
+
+@media (max-width: 860px) {
+  .portal-bar-inner { min-height: 58px; }
+  .portal-nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: var(--s-2); flex-wrap: nowrap; }
+  .portal-nav a { white-space: nowrap; }
+}

@@ -23,7 +23,7 @@ export default function EntranceExam() {
           <h1>Cognita Entrance Exam</h1>
           <p>Create your learner record first so your attempt is saved against it.</p>
         </div>
-        <Link className="btn" to="/app/profile">Create learner record <ArrowRight size={16} /></Link>
+        <Link className="btn" to="/apply/profile">Create learner record <ArrowRight size={16} /></Link>
       </>
     )
   }
@@ -43,7 +43,7 @@ export default function EntranceExam() {
         </Alert>
 
         <div className="wrap-actions" style={{ marginTop: 'var(--s-6)' }}>
-          <Link className="btn" to="/app/results">View readiness profile <ArrowRight size={16} /></Link>
+          <Link className="btn" to="/apply/result">View readiness profile <ArrowRight size={16} /></Link>
           <button
             className="btn btn--secondary"
             type="button"

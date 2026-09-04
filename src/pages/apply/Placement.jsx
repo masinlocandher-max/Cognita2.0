@@ -38,7 +38,7 @@ export default function Placement() {
           variant="empty"
           title="Placement follows the entrance exam"
           description="Once your objective profile is complete, a preliminary placement appears here with the modules that apply to you."
-          action={<Link className="btn" to="/app/entrance-exam">Go to the entrance exam <ArrowRight size={16} /></Link>}
+          action={<Link className="btn" to="/apply/entrance-exam">Go to the entrance exam <ArrowRight size={16} /></Link>}
         />
       </>
     )
@@ -80,8 +80,8 @@ export default function Placement() {
           <p className="card-title">Recommended next step</p>
           <p style={{ marginTop: 'var(--s-3)', lineHeight: 1.7 }}>{placement.nextStep}</p>
           <div className="wrap-actions" style={{ marginTop: 'var(--s-5)' }}>
-            <Link className="btn" to="/app/enrollment">Enrolment <ArrowRight size={16} /></Link>
-            {placement.programId ? <Link className="btn btn--secondary" to={`/learn/program/${placement.programId}`}>Preview the pathway</Link> : null}
+            <Link className="btn" to="/apply/enrollment">Enrollment <ArrowRight size={16} /></Link>
+            {placement.programId ? <Link className="btn btn--secondary" to={`/portal/program/${placement.programId}`}>Preview the pathway</Link> : null}
           </div>
         </section>
       </div>

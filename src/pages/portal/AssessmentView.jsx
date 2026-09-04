@@ -12,14 +12,14 @@ export default function AssessmentView() {
 
   if (assessment.loading) return <LoadingRows rows={4} height={110} />
   if (assessment.error) return <StateBlock variant="error" description="This assessment could not be loaded." />
-  if (!assessment.data) return <StateBlock variant="empty" title="Assessment not found" action={<Link className="btn" to="/learn/dashboard">Back to learning</Link>} />
+  if (!assessment.data) return <StateBlock variant="empty" title="Assessment not found" action={<Link className="btn" to="/portal/dashboard">Back to learning</Link>} />
 
   return (
     <>
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/learn/dashboard">Learning</Link>
+        <Link to="/portal/dashboard">Learning</Link>
         <span aria-hidden="true">/</span>
-        <Link to={`/learn/module/${assessment.data.moduleId}`}>Module</Link>
+        <Link to={`/portal/module/${assessment.data.moduleId}`}>Module</Link>
         <span aria-hidden="true">/</span>
         <span aria-current="page">Assessment</span>
       </nav>

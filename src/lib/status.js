@@ -25,7 +25,7 @@ export const JOURNEY_STEPS = [
   { stage: JourneyStage.CEE_SUBMITTED, label: 'Entrance Exam', short: 'Exam' },
   { stage: JourneyStage.AWAITING_REVIEW, label: 'Institutional review', short: 'Review' },
   { stage: JourneyStage.PLACEMENT_ISSUED, label: 'Placement', short: 'Placement' },
-  { stage: JourneyStage.ENROLLED, label: 'Enrolment', short: 'Enrol' },
+  { stage: JourneyStage.ENROLLED, label: 'Enrollment', short: 'Enrol' },
   { stage: JourneyStage.ACTIVE_LEARNER, label: 'Learning', short: 'Learn' },
 ]
 
@@ -94,7 +94,7 @@ export const CertificateState = {
   REVOKED: 'revoked',
 }
 
-export const EnrolmentStatus = {
+export const EnrollmentStatus = {
   NOT_ENROLLED: 'not_enrolled',
   PENDING: 'pending',
   ACTIVE: 'active',
@@ -163,11 +163,11 @@ export const STATUS_META = {
   [CertificateState.ISSUED]: { label: 'Issued', tone: 'positive', icon: 'BadgeCheck' },
   [CertificateState.REVOKED]: { label: 'Revoked', tone: 'critical', icon: 'CircleSlash' },
 
-  // Enrolment
-  [EnrolmentStatus.NOT_ENROLLED]: { label: 'Not enrolled', tone: 'quiet', icon: 'Circle' },
-  [EnrolmentStatus.PENDING]: { label: 'Pending', tone: 'attention', icon: 'Hourglass' },
-  [EnrolmentStatus.ACTIVE]: { label: 'Active', tone: 'positive', icon: 'CircleCheck' },
-  [EnrolmentStatus.COMPLETED]: { label: 'Completed', tone: 'accent', icon: 'Flag' },
+  // Enrollment
+  [EnrollmentStatus.NOT_ENROLLED]: { label: 'Not enrolled', tone: 'quiet', icon: 'Circle' },
+  [EnrollmentStatus.PENDING]: { label: 'Pending', tone: 'attention', icon: 'Hourglass' },
+  [EnrollmentStatus.ACTIVE]: { label: 'Active', tone: 'positive', icon: 'CircleCheck' },
+  [EnrollmentStatus.COMPLETED]: { label: 'Completed', tone: 'accent', icon: 'Flag' },
 
   // Assessment attempts
   [AssessmentAttemptStatus.AWAITING_REVIEW]: { label: 'Awaiting review', tone: 'attention', icon: 'Inbox' },

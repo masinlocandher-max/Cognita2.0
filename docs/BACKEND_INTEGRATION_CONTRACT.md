@@ -76,8 +76,8 @@ Currently authored content in `src/mock/programs.js` and
 for the hydration the UI expects (a program returns nested courses → modules →
 lessons in one call).
 
-Module personalisation fields — `required_for`, `optional_for`, `waived_for`
-(arrays of placement codes) — drive the personalised pathway and must survive
+Module personalization fields — `required_for`, `optional_for`, `waived_for`
+(arrays of placement codes) — drive the personalized pathway and must survive
 the migration.
 
 ### `lesson_progress`
@@ -106,7 +106,7 @@ be summed into a single mark before a human has read the written work.
 | `assessmentRepository` | `listAssessments` · `getAssessment` · `getKnowledgeCheck` · `listAttemptsFor` · `getOrCreateAttempt` · `saveAssessmentAttempt` · `scoreAssessment` |
 | `evaluatorRepository` | `listEvaluations` · `getEvaluation` · `getEvaluationByAttempt` · `saveEvaluationDraft` · `discardLocalEvaluation` · `queueCounts` |
 | `certificateRepository` | `listCertificateDefinitions` · `listLearnerCertificates` · `verifyCredential` |
-| `adminRepository` | `getOverview` · `queryCollection` · `list*Rows` (learners, applications, exams, evaluations, placements, curriculum, enrolments, certificates, announcements, staff) |
+| `adminRepository` | `getOverview` · `queryCollection` · `list*Rows` (learners, applications, exams, evaluations, placements, curriculum, enrollments, certificates, announcements, staff) |
 
 `queryCollection` already accepts `{ search, searchFields, filters, sort, page,
 pageSize }` and returns `{ rows, total, page, pageCount, pageSize }` — the shape
@@ -130,19 +130,28 @@ The frontend enforces none of this today, and must not be trusted to.
 5. **Final placement** is written only by an evaluator action, never derived
    client-side.
 6. **Credential verification** is a public read of a minimal projection — name,
-   programme, state, issue date. Nothing else.
+   program, state, issue date. Nothing else.
 7. **Staff routes** (`/staff`, `/admin`) currently have no access control. They
    are `noindex` and unlinked, which is obscurity, not security.
+8. **The Student Portal gate must become real authentication.** Today `/portal`
+   holds a device-local session (`sessionRepository.js`) that separates the
+   public website from course material in the interface. It protects nothing.
+   The backend must gate `/portal/*` on an authenticated session with an active
+   enrollment, and serve course material only to students entitled to it.
+9. **Enrollment status becomes an authorization fact**, not display data. A
+   learner without an active enrollment must not receive course content from the
+   API, regardless of what the client requests.
 
 ## Capabilities to add, and what currently stands in for them
 
 | Capability | Current state | Where it plugs in |
 | --- | --- | --- |
 | Authentication | Device-local profile, no password | `learnerRepository` |
+| Portal access | Device-local session, no enforcement | `sessionRepository` |
 | Database | `localStore.js` | All repositories |
 | File storage | `SubmissionPlaceholder` accepts a link and says so | `assessmentRepository` |
 | Email | Contact page shows an address instead of a form | New `notificationRepository` |
-| Payments | Enrolment has no button and explains why | New `enrolmentRepository` |
+| Payments | Enrollment has no button and explains why | New `enrolmentRepository` |
 | Certificate issuance | Eligibility computed; issuance absent | `certificateRepository` |
 | Analytics | None | Route-level hook in `AppRoutes` |
 
@@ -152,6 +161,8 @@ Every one of these is stated in the interface where a user could otherwise
 assume more:
 
 - Learner records, applications, exam attempts and progress live in one browser.
+- Student Portal access is a device-local session; it is separation in the
+  interface, not access control.
 - Application submission reaches nobody.
 - Applied CEE responses are not sent to an evaluator.
 - Evaluator rubric scores and notes are local drafts.

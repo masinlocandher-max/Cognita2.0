@@ -1,98 +1,122 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { admissionsSteps } from '../../content/institute.js'
 import { useDocumentTitle } from '../../hooks/useRobots.js'
+import { useReveal } from '../../hooks/useReveal.js'
 
 export default function Admissions() {
   useDocumentTitle('Admissions')
+  useReveal()
 
   return (
     <>
-      <section className="page-hero">
+      <section className="inst-hero on-ink" style={{ paddingBlock: 'clamp(var(--s-9), 7vw, 112px)' }}>
         <div className="page-width">
-          <p className="eyebrow">Admissions</p>
-          <h1>Admission by readiness, not by ranking.</h1>
-          <p className="lead reading" style={{ marginTop: 'var(--s-5)' }}>
-            Cognita does not select a cohort by competition. The admissions process exists to place you
-            correctly — which means the honest answer is sometimes “start at the foundation”.
+          <p className="inst-eyebrow">Admissions</p>
+          <h1 style={{ maxWidth: '17ch' }}>Admission is by placement.</h1>
+          <p className="inst-hero-lead">
+            Cognita does not rank applicants against one another. Admissions establishes where your study
+            should begin, so you neither repeat what you already understand nor start beyond it.
           </p>
+          <div className="inst-hero-actions">
+            <Link className="btn btn--onink btn--lg" to="/admissions/apply">Apply to Cognita <ArrowRight size={17} /></Link>
+            <Link className="btn btn--quiet-onink btn--lg" to="/programs">Explore Programs</Link>
+          </div>
         </div>
       </section>
 
-      <section className="section section--paper">
-        <div className="page-width">
-          <div className="section-head">
-            <p className="eyebrow">The process</p>
-            <h2>What happens, in order.</h2>
+      <section className="inst-section inst-section--paper">
+        <div className="page-width" data-reveal>
+          <div className="section-marker">
+            <span className="section-marker-num" aria-hidden="true">01</span>
+            <div>
+              <h2>The admissions process</h2>
+              <p>Six steps. Most applicants complete the first four in a single sitting.</p>
+            </div>
           </div>
 
-          <ol className="step-list step-list--compact">
-            <li>
-              <span className="step-index" aria-hidden="true">01</span>
-              <div>
-                <h3>Create your learner record</h3>
-                <p>Name, email, and where you are based. In this preview build the record lives on your device.</p>
-              </div>
-            </li>
-            <li>
-              <span className="step-index" aria-hidden="true">02</span>
-              <div>
-                <h3>Complete the application</h3>
-                <p>Seven questions about your goals, background, and available time. Ten minutes, honestly answered.</p>
-              </div>
-            </li>
-            <li>
-              <span className="step-index" aria-hidden="true">03</span>
-              <div>
-                <h3>Sit the Cognita Entrance Exam</h3>
-                <p>Seventy minutes recommended. Forty-five objective items and two written tasks, done independently.</p>
-              </div>
-            </li>
-            <li>
-              <span className="step-index" aria-hidden="true">04</span>
-              <div>
-                <h3>Institutional review</h3>
-                <p>An evaluator reads your two written responses against a published rubric. This is a person, so it is not instant.</p>
-              </div>
-            </li>
-            <li>
-              <span className="step-index" aria-hidden="true">05</span>
-              <div>
-                <h3>Placement and enrolment</h3>
-                <p>You receive a readiness profile, a placement, and the modules that apply to you.</p>
-              </div>
-            </li>
-          </ol>
+          <div className="process-list">
+            {admissionsSteps.map((step, index) => (
+              <article className="process-item" key={step.id}>
+                <span className="process-step" aria-hidden="true">Step {String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section section--sunken">
-        <div className="page-width prose-columns">
-          <div>
+      <section className="inst-section inst-section--sunken">
+        <div className="page-width requirement-grid" data-reveal>
+          <article>
             <h2>Requirements</h2>
-            <p>No degree requirement, no technical background, no prior AI experience. You need functional English, an internet connection, and the willingness to do the work independently.</p>
-          </div>
-          <div>
-            <h2>Cost</h2>
-            <p>Fees are not published on this preview build, and no payment is collected anywhere on this site. Anything else would be inventing a commitment we cannot currently honour.</p>
-          </div>
-          <div>
+            <ul className="clean-list">
+              <li>No degree requirement and no technical background</li>
+              <li>Functional English, since study and assessment are conducted in English</li>
+              <li>A reliable internet connection and a device you can study on</li>
+              <li>Willingness to complete the entrance exam independently</li>
+            </ul>
+          </article>
+
+          <article>
+            <h2>Fees</h2>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              Program fees are not published on this preview website, and no payment is collected anywhere on
+              it. Publishing a figure Cognita has not set would be misleading, so we have left it out until
+              the fee structure is confirmed.
+            </p>
+          </article>
+
+          <article>
             <h2>Timelines</h2>
-            <p>Applied responses are reviewed in weekly cycles. The exact turnaround depends on evaluator capacity in a given cycle and is confirmed at review, not promised in advance.</p>
-          </div>
-          <div>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              Written responses are reviewed in cycles by an evaluator. Turnaround depends on evaluator
+              capacity in a given cycle and is confirmed at review rather than promised in advance.
+            </p>
+          </article>
+
+          <article>
             <h2>Reapplying</h2>
-            <p>You can sit the entrance exam more than once. Previous attempts stay in your record rather than being overwritten — placement looks at your profile, not your best single number.</p>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              You may sit the entrance exam more than once. Previous attempts are kept in your record rather
+              than overwritten, because placement considers your profile rather than a single result.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="inst-section inst-section--paper">
+        <div className="page-width statement-split" data-reveal>
+          <div>
+            <p className="inst-eyebrow" style={{ color: 'var(--brand-violet-600)' }}>The entrance exam</p>
+            <p className="statement">A placement assessment, not a competitive entrance test.</p>
+          </div>
+          <div className="statement-body">
+            <p>
+              The Cognita Entrance Exam is part of the admissions process. It measures functional
+              communication, understanding of artificial intelligence, and research judgment, and it includes
+              two written tasks that an evaluator reads.
+            </p>
+            <p>
+              There is no pass mark. The result is a readiness profile that identifies where your study
+              begins and which modules apply to you.
+            </p>
+            <Link className="link-arrow" to="/admissions/entrance-exam">About the entrance exam <ArrowRight size={15} /></Link>
           </div>
         </div>
       </section>
 
-      <section className="section section--paper">
-        <div className="page-width cta-band cta-band--light">
-          <div>
-            <h2>Begin your application.</h2>
-            <p className="muted">Start with a learner record, then the application, then the exam.</p>
+      <section className="inst-section inst-section--ink">
+        <div className="page-width inst-close">
+          <h2>Begin your application</h2>
+          <p>A short set of questions about your goals, background and available study time.</p>
+          <div className="inst-close-actions">
+            <Link className="btn btn--onink btn--lg" to="/admissions/apply">Apply to Cognita <ArrowRight size={17} /></Link>
+            <Link className="btn btn--quiet-onink btn--lg" to="/contact">Ask a question</Link>
           </div>
-          <Link className="btn btn--lg" to="/app">Begin student journey <ArrowRight size={17} /></Link>
         </div>
       </section>
     </>

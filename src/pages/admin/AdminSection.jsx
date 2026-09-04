@@ -10,7 +10,7 @@ import Alert from '../../components/Alert.jsx'
  * Renders any admin section from its configuration.
  *
  * `?state=` renders a state for design review — empty, error, restricted or
- * loading. It is a labelled preview of a real state, not a simulated failure,
+ * loading. It is a labeled preview of a real state, not a simulated failure,
  * and it never appears unless the parameter is present in the URL.
  */
 export default function AdminSection({ sectionId }) {

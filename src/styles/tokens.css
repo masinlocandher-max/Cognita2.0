@@ -33,6 +33,17 @@
   --slate-100: #e7eaf1;
   --slate-050: #f2f4f8;
 
+  /* Brand — refined blue into violet. Used as a single luminous system, never
+     as decoration for its own sake. */
+  --brand-blue-700: #1e3fa8;
+  --brand-blue-600: #2a52cc;
+  --brand-blue-500: #3b6ae5;
+  --brand-violet-600: #5b4bd6;
+  --brand-violet-500: #7059e8;
+  --brand-luminous: linear-gradient(112deg, var(--brand-blue-600) 0%, var(--brand-violet-500) 62%, #8a6ff0 100%);
+  --brand-luminous-soft: linear-gradient(112deg, rgba(42,82,204,.10) 0%, rgba(112,89,232,.10) 100%);
+  --brand-hairline: linear-gradient(90deg, transparent, rgba(112,89,232,.5), transparent);
+
   /* Accent — a single voice, used sparingly. */
   --accent-700: #3730a3;
   --accent-600: #4640c4;

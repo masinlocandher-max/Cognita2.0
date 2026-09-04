@@ -2,44 +2,56 @@ import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './ScrollToTop.jsx'
 import PublicLayout from './PublicLayout.jsx'
-import AppLayout from './AppLayout.jsx'
-import LearnLayout from './LearnLayout.jsx'
+import ApplyLayout from './ApplyLayout.jsx'
+import PortalLayout from './PortalLayout.jsx'
 import InternalLayout from './InternalLayout.jsx'
 import { LoadingRows } from '../components/StateBlock.jsx'
 
 /*
- * The public site is the first thing most people load, so it ships eagerly.
- * Everything behind it — the learner app, the learning environment, and the two
- * internal surfaces — is split out, so a visitor reading the homepage does not
- * download the evaluator workspace and the admin interface.
+ * Three audiences, three route groups.
+ *
+ *   Public   — the institute website, open to everyone
+ *   Apply    — the applicant workspace, for people going through admissions
+ *   Portal   — the Cognita Student Portal, for enrolled students
+ *
+ * Course material lives only under /portal, which is reachable through the
+ * portal entrance and nowhere else. The public site links to the entrance, not
+ * past it.
+ *
+ * The public pages ship eagerly; everything behind them is split out.
  */
 import Home from '../pages/public/Home.jsx'
 import About from '../pages/public/About.jsx'
 import Programs from '../pages/public/Programs.jsx'
-import Ai00 from '../pages/public/Ai00.jsx'
-import Ai01 from '../pages/public/Ai01.jsx'
+import ProgramDetail from '../pages/public/ProgramDetail.jsx'
 import Admissions from '../pages/public/Admissions.jsx'
 import EntranceExamInfo from '../pages/public/EntranceExamInfo.jsx'
+import ApplyStart from '../pages/public/ApplyStart.jsx'
+import Resources from '../pages/public/Resources.jsx'
+import ResourceArticle from '../pages/public/ResourceArticle.jsx'
 import Contact from '../pages/public/Contact.jsx'
+import Legal from '../pages/public/Legal.jsx'
 import NotFound from '../pages/public/NotFound.jsx'
 
-const Dashboard = lazy(() => import('../pages/app/Dashboard.jsx'))
-const Profile = lazy(() => import('../pages/app/Profile.jsx'))
-const Application = lazy(() => import('../pages/app/Application.jsx'))
-const EntranceExam = lazy(() => import('../pages/app/EntranceExam.jsx'))
-const Results = lazy(() => import('../pages/app/Results.jsx'))
-const Placement = lazy(() => import('../pages/app/Placement.jsx'))
-const Enrollment = lazy(() => import('../pages/app/Enrollment.jsx'))
+const VerifyCredential = lazy(() => import('../pages/public/VerifyCredential.jsx'))
 
-const LearnDashboard = lazy(() => import('../pages/learn/LearnDashboard.jsx'))
-const ProgramView = lazy(() => import('../pages/learn/ProgramView.jsx'))
-const CourseView = lazy(() => import('../pages/learn/CourseView.jsx'))
-const ModuleView = lazy(() => import('../pages/learn/ModuleView.jsx'))
-const LessonView = lazy(() => import('../pages/learn/LessonView.jsx'))
-const AssessmentView = lazy(() => import('../pages/learn/AssessmentView.jsx'))
-const ProgressView = lazy(() => import('../pages/learn/ProgressView.jsx'))
-const Certificates = lazy(() => import('../pages/learn/Certificates.jsx'))
-const VerifyCredential = lazy(() => import('../pages/learn/VerifyCredential.jsx'))
+const ApplyOverview = lazy(() => import('../pages/apply/ApplyOverview.jsx'))
+const Profile = lazy(() => import('../pages/apply/Profile.jsx'))
+const Application = lazy(() => import('../pages/apply/Application.jsx'))
+const EntranceExam = lazy(() => import('../pages/apply/EntranceExam.jsx'))
+const Results = lazy(() => import('../pages/apply/Results.jsx'))
+const Placement = lazy(() => import('../pages/apply/Placement.jsx'))
+const Enrollment = lazy(() => import('../pages/apply/Enrollment.jsx'))
+
+const PortalSignIn = lazy(() => import('../pages/portal/PortalSignIn.jsx'))
+const PortalDashboard = lazy(() => import('../pages/portal/PortalDashboard.jsx'))
+const ProgramView = lazy(() => import('../pages/portal/ProgramView.jsx'))
+const CourseView = lazy(() => import('../pages/portal/CourseView.jsx'))
+const ModuleView = lazy(() => import('../pages/portal/ModuleView.jsx'))
+const LessonView = lazy(() => import('../pages/portal/LessonView.jsx'))
+const AssessmentView = lazy(() => import('../pages/portal/AssessmentView.jsx'))
+const ProgressView = lazy(() => import('../pages/portal/ProgressView.jsx'))
+const Certificates = lazy(() => import('../pages/portal/Certificates.jsx'))
 
 const EvaluatorHome = lazy(() => import('../pages/staff/EvaluatorHome.jsx'))
 const EvaluationQueue = lazy(() => import('../pages/staff/EvaluationQueue.jsx'))
@@ -61,43 +73,49 @@ export default function AppRoutes() {
       <ScrollToTop />
       <Suspense fallback={<div className="page-width" style={{ paddingBlock: 'var(--s-9)' }}><LoadingRows rows={3} height={90} /></div>}>
         <Routes>
-          {/* Public institute */}
+          {/* The public institute website */}
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
             <Route path="/programs" element={<Programs />} />
-            <Route path="/ai-00" element={<Ai00 />} />
-            <Route path="/ai-01" element={<Ai01 />} />
+            <Route path="/programs/:programId" element={<ProgramDetail />} />
             <Route path="/admissions" element={<Admissions />} />
-            <Route path="/entrance-exam" element={<EntranceExamInfo />} />
+            <Route path="/admissions/entrance-exam" element={<EntranceExamInfo />} />
+            <Route path="/admissions/apply" element={<ApplyStart />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:slug" element={<ResourceArticle />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Legal document="privacy" />} />
+            <Route path="/terms" element={<Legal document="terms" />} />
             <Route path="/verify" element={<VerifyCredential />} />
             <Route path="/verify/:credentialId" element={<VerifyCredential />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 
-          {/* Applicant and learner */}
-          <Route element={<AppLayout />}>
-            <Route path="/app" element={<Dashboard />} />
-            <Route path="/app/profile" element={<Profile />} />
-            <Route path="/app/application" element={<Application />} />
-            <Route path="/app/entrance-exam" element={<EntranceExam />} />
-            <Route path="/app/results" element={<Results />} />
-            <Route path="/app/placement" element={<Placement />} />
-            <Route path="/app/enrollment" element={<Enrollment />} />
+          {/* Applicant workspace — admissions activity, before enrollment */}
+          <Route element={<ApplyLayout />}>
+            <Route path="/apply" element={<ApplyOverview />} />
+            <Route path="/apply/profile" element={<Profile />} />
+            <Route path="/apply/application" element={<Application />} />
+            <Route path="/apply/entrance-exam" element={<EntranceExam />} />
+            <Route path="/apply/result" element={<Results />} />
+            <Route path="/apply/placement" element={<Placement />} />
+            <Route path="/apply/enrollment" element={<Enrollment />} />
           </Route>
 
-          {/* Learning environment */}
-          <Route element={<LearnLayout />}>
-            <Route path="/learn" element={<Navigate to="/learn/dashboard" replace />} />
-            <Route path="/learn/dashboard" element={<LearnDashboard />} />
-            <Route path="/learn/program/:programId" element={<ProgramView />} />
-            <Route path="/learn/course/:courseId" element={<CourseView />} />
-            <Route path="/learn/module/:moduleId" element={<ModuleView />} />
-            <Route path="/learn/lesson/:lessonId" element={<LessonView />} />
-            <Route path="/learn/assessment/:assessmentId" element={<AssessmentView />} />
-            <Route path="/learn/progress" element={<ProgressView />} />
-            <Route path="/learn/certificates" element={<Certificates />} />
+          {/* Student Portal entrance — public visitors reach this and stop here */}
+          <Route path="/portal" element={<PortalSignIn />} />
+
+          {/* Student Portal — enrolled students only */}
+          <Route element={<PortalLayout />}>
+            <Route path="/portal/dashboard" element={<PortalDashboard />} />
+            <Route path="/portal/program/:programId" element={<ProgramView />} />
+            <Route path="/portal/course/:courseId" element={<CourseView />} />
+            <Route path="/portal/module/:moduleId" element={<ModuleView />} />
+            <Route path="/portal/lesson/:lessonId" element={<LessonView />} />
+            <Route path="/portal/assessment/:assessmentId" element={<AssessmentView />} />
+            <Route path="/portal/progress" element={<ProgressView />} />
+            <Route path="/portal/certificates" element={<Certificates />} />
           </Route>
 
           {/* Evaluator workspace — internal, noindex, not in public navigation */}
@@ -107,7 +125,7 @@ export default function AppRoutes() {
             <Route path="/staff/evaluations/:attemptId" element={<EvaluationReview />} />
           </Route>
 
-          {/* Admin — internal, noindex */}
+          {/* Administrative interface — internal, noindex */}
           <Route element={<InternalLayout title="Cognita Admin" subtitle="Institutional interface" nav={ADMIN_NAV} />}>
             <Route path="/admin" element={<AdminOverview />} />
             {ADMIN_NAV.filter((item) => item.to && item.to !== '/admin').map((item) => (
@@ -115,9 +133,23 @@ export default function AppRoutes() {
             ))}
           </Route>
 
-          {/* Routes that existed before this build */}
-          <Route path="/learner" element={<Navigate to="/app" replace />} />
-          <Route path="/entrance-exam/start" element={<Navigate to="/app/entrance-exam" replace />} />
+          {/* Routes that existed before this structure */}
+          <Route path="/learner" element={<Navigate to="/apply" replace />} />
+          <Route path="/app" element={<Navigate to="/apply" replace />} />
+          <Route path="/app/profile" element={<Navigate to="/apply/profile" replace />} />
+          <Route path="/app/application" element={<Navigate to="/apply/application" replace />} />
+          <Route path="/app/entrance-exam" element={<Navigate to="/apply/entrance-exam" replace />} />
+          <Route path="/app/results" element={<Navigate to="/apply/result" replace />} />
+          <Route path="/app/placement" element={<Navigate to="/apply/placement" replace />} />
+          <Route path="/app/enrollment" element={<Navigate to="/apply/enrollment" replace />} />
+          <Route path="/entrance-exam" element={<Navigate to="/admissions/entrance-exam" replace />} />
+          <Route path="/entrance-exam/start" element={<Navigate to="/apply/entrance-exam" replace />} />
+          <Route path="/ai-00" element={<Navigate to="/programs/prog-foundations" replace />} />
+          <Route path="/ai-01" element={<Navigate to="/programs/prog-applied" replace />} />
+          <Route path="/learn" element={<Navigate to="/portal" replace />} />
+          <Route path="/learn/dashboard" element={<Navigate to="/portal/dashboard" replace />} />
+          <Route path="/learn/progress" element={<Navigate to="/portal/progress" replace />} />
+          <Route path="/learn/certificates" element={<Navigate to="/portal/certificates" replace />} />
         </Routes>
       </Suspense>
     </>

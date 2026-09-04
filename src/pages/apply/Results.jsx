@@ -33,7 +33,7 @@ export default function Results() {
           variant="empty"
           title="Your profile appears after you submit the exam"
           description="The objective sections are scored immediately on submission. The two applied tasks are read by a person."
-          action={<Link className="btn" to="/app/entrance-exam">Go to the entrance exam <ArrowRight size={16} /></Link>}
+          action={<Link className="btn" to="/apply/entrance-exam">Go to the entrance exam <ArrowRight size={16} /></Link>}
         />
       </>
     )
@@ -103,8 +103,8 @@ export default function Results() {
       </section>
 
       <div className="wrap-actions" style={{ marginTop: 'var(--s-7)' }}>
-        <Link className="btn" to="/app/placement">View placement and next step <ArrowRight size={16} /></Link>
-        <Link className="btn btn--secondary" to="/app/entrance-exam">Attempt history</Link>
+        <Link className="btn" to="/apply/placement">View placement and next step <ArrowRight size={16} /></Link>
+        <Link className="btn btn--secondary" to="/apply/entrance-exam">Attempt history</Link>
       </div>
     </>
   )

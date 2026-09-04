@@ -12,12 +12,12 @@ export default function ProgramView() {
   useDocumentTitle(program?.title)
 
   if (loading) return <LoadingRows rows={4} height={100} />
-  if (!program) return <StateBlock variant="empty" title="Programme not found" description="This programme does not exist in the current curriculum." action={<Link className="btn" to="/learn/dashboard">Back to learning</Link>} />
+  if (!program) return <StateBlock variant="empty" title="Program not found" description="This program does not exist in the current curriculum." action={<Link className="btn" to="/portal/dashboard">Back to learning</Link>} />
 
   return (
     <div className="stack-7">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/learn/dashboard">Learning</Link>
+        <Link to="/portal/dashboard">Learning</Link>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{program.title}</span>
       </nav>
@@ -29,7 +29,7 @@ export default function ProgramView() {
       </div>
 
       <div className="card">
-        <Meter value={summary.percentage} max={100} valueText={`${summary.percentage}%`} label="Programme completion" tone={summary.percentage === 100 ? 'positive' : 'accent'} />
+        <Meter value={summary.percentage} max={100} valueText={`${summary.percentage}%`} label="Program completion" tone={summary.percentage === 100 ? 'positive' : 'accent'} />
       </div>
 
       {program.courses.map((course) => (
@@ -39,7 +39,7 @@ export default function ProgramView() {
               <p className="course-code">{course.code}</p>
               <h2 style={{ fontSize: 'var(--display-sm)' }}>{course.title}</h2>
             </div>
-            <Link className="link-arrow" to={`/learn/course/${course.id}`}>Course detail <ArrowRight size={15} /></Link>
+            <Link className="link-arrow" to={`/portal/course/${course.id}`}>Course detail <ArrowRight size={15} /></Link>
           </div>
 
           <ul className="module-cards">
@@ -55,7 +55,7 @@ export default function ProgramView() {
                   <Meter value={state?.percentage || 0} max={100} valueText={`${state?.completedLessons}/${state?.totalLessons} lessons`} label={`${module.title} progress`} />
                   {state?.locked
                     ? <p className="field-hint">Unlocks when the earlier required modules in this course are complete.</p>
-                    : <Link className="link-arrow" to={`/learn/module/${module.id}`}>Open module <ArrowRight size={15} /></Link>}
+                    : <Link className="link-arrow" to={`/portal/module/${module.id}`}>Open module <ArrowRight size={15} /></Link>}
                 </li>
               )
             })}

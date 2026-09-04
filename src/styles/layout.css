@@ -1,8 +1,8 @@
 /* ============================================================ Brand */
 .brand-link { display: inline-flex; }
 .brand { display: inline-flex; align-items: center; gap: 11px; }
-.brand-glyph { display: grid; place-items: center; color: var(--ink-900); }
-.brand--light .brand-glyph { color: #fff; }
+.brand-glyph { display: grid; place-items: center; color: var(--ink-900); --mark-arc: #fff; --mark-dot: #8a7ff2; }
+.brand--light .brand-glyph { color: #fff; --mark-arc: var(--ink-900); --mark-dot: var(--brand-violet-600); }
 .brand--light .brand-words strong { color: #fff; }
 .brand--light .brand-words span { color: rgba(255,255,255,.62); }
 .brand-words { display: grid; line-height: 1.15; }

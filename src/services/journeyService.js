@@ -6,7 +6,7 @@
  * end up telling a learner two different things in two places.
  */
 
-import { ApplicationStatus, AttemptStatus, EnrolmentStatus, JourneyStage } from '../lib/status.js'
+import { ApplicationStatus, AttemptStatus, EnrollmentStatus, JourneyStage } from '../lib/status.js'
 import { attemptStatus } from '../repositories/ceeRepository.js'
 import { deriveApplicationStatus } from '../repositories/admissionsRepository.js'
 
@@ -16,9 +16,9 @@ import { deriveApplicationStatus } from '../repositories/admissionsRepository.js
  * @param {object|null} input.application
  * @param {object|null} input.activeAttempt   in-progress attempt on the current questionnaire
  * @param {object|null} input.submittedAttempt most recent submitted attempt
- * @param {object|null} input.enrolment
+ * @param {object|null} input.enrollment
  */
-export function deriveJourney({ learner, application, activeAttempt, submittedAttempt, enrolment, programSummary } = {}) {
+export function deriveJourney({ learner, application, activeAttempt, submittedAttempt, enrollment, programSummary } = {}) {
   const applicationStatus = deriveApplicationStatus(application)
   const examStatus = attemptStatus(activeAttempt || submittedAttempt)
 
@@ -29,37 +29,37 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
       examStatus: AttemptStatus.NOT_STARTED,
       nextAction: {
         label: 'Begin your student journey',
-        to: '/app/profile',
+        to: '/apply/profile',
         description: 'Set up a learner record on this device to start your application.',
       },
     }
   }
 
-  if (enrolment?.status === EnrolmentStatus.COMPLETED || programSummary?.requiredComplete) {
+  if (enrollment?.status === EnrollmentStatus.COMPLETED || programSummary?.requiredComplete) {
     return {
       stage: JourneyStage.PROGRAM_COMPLETE,
       applicationStatus,
       examStatus,
-      nextAction: { label: 'View certificates', to: '/learn/certificates', description: 'Your required modules are complete.' },
+      nextAction: { label: 'View certificates', to: '/portal/certificates', description: 'Your required modules are complete.' },
     }
   }
 
-  if (enrolment?.status === EnrolmentStatus.ACTIVE) {
+  if (enrollment?.status === EnrollmentStatus.ACTIVE) {
     return {
       stage: JourneyStage.ACTIVE_LEARNER,
       applicationStatus,
       examStatus,
-      nextAction: { label: 'Continue learning', to: '/learn/dashboard', description: 'Pick up where you left off.' },
+      nextAction: { label: 'Continue learning', to: '/portal/dashboard', description: 'Continue your study in the Student Portal.' },
     }
   }
 
   if (submittedAttempt?.placement) {
-    if (enrolment?.status === EnrolmentStatus.PENDING) {
+    if (enrollment?.status === EnrollmentStatus.PENDING) {
       return {
         stage: JourneyStage.ENROLLED,
         applicationStatus,
         examStatus,
-        nextAction: { label: 'View enrolment', to: '/app/enrollment', description: 'Your enrolment request is recorded on this device.' },
+        nextAction: { label: 'View enrollment', to: '/apply/enrollment', description: 'Your enrollment request is recorded on this device.' },
       }
     }
 
@@ -67,7 +67,7 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
       stage: JourneyStage.PLACEMENT_ISSUED,
       applicationStatus,
       examStatus,
-      nextAction: { label: 'View placement', to: '/app/placement', description: 'See your readiness profile and recommended starting point.' },
+      nextAction: { label: 'View placement', to: '/apply/placement', description: 'See your readiness profile and recommended starting point.' },
       caveat: 'Preliminary — applied responses still require institutional review.',
     }
   }
@@ -77,7 +77,7 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
       stage: JourneyStage.AWAITING_REVIEW,
       applicationStatus,
       examStatus: AttemptStatus.SUBMITTED,
-      nextAction: { label: 'View readiness profile', to: '/app/results', description: 'Your objective profile is complete.' },
+      nextAction: { label: 'View readiness profile', to: '/apply/result', description: 'Your objective profile is complete.' },
     }
   }
 
@@ -86,7 +86,7 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
       stage: JourneyStage.CEE_IN_PROGRESS,
       applicationStatus,
       examStatus: AttemptStatus.IN_PROGRESS,
-      nextAction: { label: 'Resume entrance exam', to: '/app/entrance-exam', description: 'Your progress is saved on this device.' },
+      nextAction: { label: 'Resume entrance exam', to: '/apply/entrance-exam', description: 'Your progress is saved on this device.' },
     }
   }
 
@@ -95,7 +95,7 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
       stage: JourneyStage.APPLICANT,
       applicationStatus,
       examStatus,
-      nextAction: { label: 'Begin entrance exam', to: '/app/entrance-exam', description: '70 minutes recommended. Progress is saved as you go.' },
+      nextAction: { label: 'Begin entrance exam', to: '/apply/entrance-exam', description: '70 minutes recommended. Progress is saved as you go.' },
     }
   }
 
@@ -105,7 +105,7 @@ export function deriveJourney({ learner, application, activeAttempt, submittedAt
     examStatus,
     nextAction: {
       label: applicationStatus === ApplicationStatus.NOT_STARTED ? 'Start your application' : 'Continue application',
-      to: '/app/application',
+      to: '/apply/application',
       description: 'A short set of questions about your goals and background.',
     },
   }

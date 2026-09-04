@@ -1,7 +1,7 @@
 /**
  * Mock curriculum for the frontend build.
  *
- * Enough structure to exercise program navigation, module states, personalised
+ * Enough structure to exercise program navigation, module states, personalized
  * pathways, gating and lesson progression. Lessons marked `outline: true` carry
  * a real skeleton but not finished courseware, and the interface says so rather
  * than presenting a stub as a written lesson.
@@ -32,7 +32,7 @@ export const programs = [
     code: 'AI00',
     title: 'AI-00 Foundation Pathway',
     tagline: 'Readiness before tooling.',
-    summary: 'Builds the communication, AI-foundations and verification judgment a learner needs before applied AI work. Personalised: a learner takes the areas their readiness profile identifies, not all of them by default.',
+    summary: 'Builds the communication, AI-foundations and verification judgment a learner needs before applied AI work. Personalized: a learner takes the areas their readiness profile identifies, not all of them by default.',
     level: 'Foundation',
     estimatedWeeks: 6,
     courseIds: ['course_comm', 'course_aifound', 'course_research'],
@@ -88,7 +88,7 @@ export const courses = [
 ]
 
 /**
- * `requiredFor` / `waivedFor` drive the personalised AI-00 pathway. A learner
+ * `requiredFor` / `waivedFor` drive the personalized AI-00 pathway. A learner
  * placed into AI-00 AI Foundations does not repeat the communication modules
  * their entrance exam already demonstrated.
  */
@@ -240,7 +240,7 @@ export const lessons = [
     estimatedMinutes: 10,
     objectives: [
       'Cut filler without cutting meaning',
-      'Recognise the difference between short and clear',
+      'Recognize the difference between short and clear',
     ],
     content: [
       p('Concision is not brevity. A short sentence that drops a necessary condition is worse than a long one that keeps it. The test is not word count — it is whether removing the words removed anything a reader needed.'),
@@ -283,7 +283,7 @@ export const lessons = [
       example(
         'Vague and defensive',
         'Your project is late because things happened. Sorry, but it is not really our fault.',
-        'The project will be delivered three days later than scheduled. We apologise for the delay and have adjusted the workflow to meet the revised delivery date of 18 September.',
+        'The project will be delivered three days later than scheduled. We apologize for the delay and have adjusted the workflow to meet the revised delivery date of 18 September.',
         'The second version names the size of the delay, owns it without excess, and gives a date the reader can plan against.',
       ),
       callout('attention', 'A common failure', 'Over-apology reads as instability. One clear apology is stronger than three.'),
@@ -329,7 +329,7 @@ export const lessons = [
         'The request as it usually arrives',
         'Make a caption for our tourism post.',
         'Write a 70-word Facebook caption for Filipino weekend travellers. Use an inviting but credible tone. Do not invent attractions, awards, statistics, or claims — use only the three attractions listed above.',
-        'The second version fixes length, platform, audience, tone, and the one thing that would embarrass the organisation if it went wrong.',
+        'The second version fixes length, platform, audience, tone, and the one thing that would embarrass the organization if it went wrong.',
       ),
       callout('info', 'The verification rule is the one people skip', 'It is also the one that prevents a fabricated award ending up on a municipal page.'),
       check('kc_instruction_1'),
@@ -355,7 +355,7 @@ export const lessons = [
     estimatedMinutes: 13,
     objectives: ['Describe in plain language how a generative model produces text', 'Explain why the same prompt can produce different answers'],
     content: [
-      p('A generative model does not look anything up. It produces the next piece of text that fits the patterns it learned and the context you gave it. That single fact explains most of its behaviour — the fluency, the usefulness, and the failures.'),
+      p('A generative model does not look anything up. It produces the next piece of text that fits the patterns it learned and the context you gave it. That single fact explains most of its behavior — the fluency, the usefulness, and the failures.'),
       h('Three consequences'),
       list([
         'Context is leverage. What you put in the instruction shapes the output more than any phrasing trick.',
@@ -386,7 +386,7 @@ export const lessons = [
     estimatedMinutes: 14,
     objectives: [
       'Define hallucination precisely',
-      'Recognise the three claim types most likely to be fabricated',
+      'Recognize the three claim types most likely to be fabricated',
       'Apply a verification rule before a claim reaches the public',
     ],
     content: [
@@ -431,7 +431,7 @@ export const lessons = [
       h('What you put in'),
       p('Client records, personal information, unpublished institutional material and credentials do not go into a public AI service without authorisation. The convenience is real; so is the disclosure.'),
       h('Who answers for it'),
-      p('The person or organisation approving and using the work. Not the model, not the vendor, not the prompt. This does not change because a tool was involved.'),
+      p('The person or organization approving and using the work. Not the model, not the vendor, not the prompt. This does not change because a tool was involved.'),
       check('kc_resp_1'),
     ],
   },

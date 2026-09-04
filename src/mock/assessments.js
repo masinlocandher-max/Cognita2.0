@@ -47,7 +47,7 @@ export const knowledgeChecks = {
       { id: 'd', label: 'We are slightly behind but should be fine.' },
     ],
     correct: ['b'],
-    explanation: 'It gives the new date first, states the size of the slip, and does not shift blame or over-apologise.',
+    explanation: 'It gives the new date first, states the size of the slip, and does not shift blame or over-apologize.',
   },
   kc_instruction_1: {
     id: 'kc_instruction_1',
@@ -94,7 +94,7 @@ export const knowledgeChecks = {
     prompt: 'Who carries final responsibility for professional work produced with AI assistance?',
     options: [
       { id: 'a', label: 'The model vendor' },
-      { id: 'b', label: 'The person or organisation approving and using the work' },
+      { id: 'b', label: 'The person or organization approving and using the work' },
       { id: 'c', label: 'Nobody, if the tool made the error' },
       { id: 'd', label: 'The prompt author only' },
     ],
@@ -106,7 +106,7 @@ export const knowledgeChecks = {
     type: SINGLE_CHOICE,
     prompt: 'You need the enacted text of a Philippine national law. Which is strongest?',
     options: [
-      { id: 'a', label: 'A reputable news article summarising the law' },
+      { id: 'a', label: 'A reputable news article summarizing the law' },
       { id: 'b', label: 'An official legal or government source carrying the enacted text' },
       { id: 'c', label: 'An AI summary with no citations' },
       { id: 'd', label: 'A widely shared social post from a lawyer' },
@@ -175,7 +175,7 @@ export const assessments = [
       },
       {
         id: 'q_cl_4', type: SCENARIO_JUDGMENT, points: 15,
-        scenario: 'A colleague sends you a draft announcement reading: “The programme will begin soon. Interested students should reach out.” It goes public tomorrow.',
+        scenario: 'A colleague sends you a draft announcement reading: “The program will begin soon. Interested students should reach out.” It goes public tomorrow.',
         prompt: 'What is the most useful single change?',
         options: [
           { id: 'a', label: 'Make the tone more formal.' },

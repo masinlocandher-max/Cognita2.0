@@ -21,7 +21,7 @@ export const emptyStore = () => ({
   application: null,
   attempts: [],
   placements: [],
-  enrolments: [],
+  enrollments: [],
   lessonProgress: {},
   moduleOverrides: {},
   assessmentAttempts: [],

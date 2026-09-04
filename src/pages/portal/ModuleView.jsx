@@ -20,7 +20,7 @@ export default function ModuleView() {
   useDocumentTitle(module.data?.title)
 
   if (module.loading) return <LoadingRows rows={4} height={90} />
-  if (!module.data) return <StateBlock variant="empty" title="Module not found" action={<Link className="btn" to="/learn/dashboard">Back to learning</Link>} />
+  if (!module.data) return <StateBlock variant="empty" title="Module not found" action={<Link className="btn" to="/portal/dashboard">Back to learning</Link>} />
 
   const data = module.data
   const state = moduleStates[data.id]
@@ -28,9 +28,9 @@ export default function ModuleView() {
   return (
     <div className="stack-7">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/learn/dashboard">Learning</Link>
+        <Link to="/portal/dashboard">Learning</Link>
         <span aria-hidden="true">/</span>
-        <Link to={`/learn/course/${data.course.id}`}>{data.course.title}</Link>
+        <Link to={`/portal/course/${data.course.id}`}>{data.course.title}</Link>
         <span aria-hidden="true">/</span>
         <span aria-current="page">{data.title}</span>
       </nav>
@@ -72,7 +72,7 @@ export default function ModuleView() {
                 <div className="lesson-main">
                   {state?.locked
                     ? <span className="lesson-title">{lesson.title}</span>
-                    : <Link className="lesson-title" to={`/learn/lesson/${lesson.id}`}>{lesson.title}</Link>}
+                    : <Link className="lesson-title" to={`/portal/lesson/${lesson.id}`}>{lesson.title}</Link>}
                   <span className="muted">{formatMinutes(lesson.estimatedMinutes)}{lesson.outline ? ' · outline' : ''}</span>
                 </div>
                 <StatusPill status={lessonState} />
@@ -90,7 +90,7 @@ export default function ModuleView() {
           </div>
           <h3 style={{ fontSize: 'var(--text-lg)', marginBottom: 'var(--s-2)' }}>{assessment.data.title}</h3>
           <p className="card-note" style={{ marginBottom: 'var(--s-4)' }}>{assessment.data.summary}</p>
-          <Link className="btn" to={`/learn/assessment/${assessment.data.id}`}>Open assessment <ArrowRight size={16} /></Link>
+          <Link className="btn" to={`/portal/assessment/${assessment.data.id}`}>Open assessment <ArrowRight size={16} /></Link>
         </section>
       ) : null}
     </div>

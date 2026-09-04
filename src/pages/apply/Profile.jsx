@@ -40,7 +40,7 @@ export default function Profile() {
     await reload()
     setSaved(true)
     window.setTimeout(() => setSaved(false), 2600)
-    if (!learner) navigate('/app/application')
+    if (!learner) navigate('/apply/application')
   }
 
   return (

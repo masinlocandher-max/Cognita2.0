@@ -1,98 +1,132 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, ScanSearch, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BrainCircuit, Clock3, FileText, Languages, ScanSearch, ShieldCheck } from 'lucide-react'
 import { examMeta } from '../../features/cee/questionnaire.js'
 import { useDocumentTitle } from '../../hooks/useRobots.js'
+import { useReveal } from '../../hooks/useReveal.js'
 
+/**
+ * Public description of the entrance exam.
+ *
+ * Describes the exam as part of admissions and placement. It states the
+ * structure a candidate needs in order to prepare, and deliberately publishes
+ * neither the answer key nor the placement rules used to interpret a result.
+ */
 export default function EntranceExamInfo() {
   useDocumentTitle('Cognita Entrance Exam')
+  useReveal()
 
   return (
     <>
-      <section className="page-hero page-hero--ink on-ink">
-        <div className="page-width exam-hero-grid">
+      <section className="inst-hero on-ink" style={{ paddingBlock: 'clamp(var(--s-9), 7vw, 112px)' }}>
+        <div className="page-width inst-hero-inner">
           <div>
-            <p className="eyebrow eyebrow--light">Cognita Entrance Exam</p>
-            <h1>Find the right place to begin.</h1>
-            <p className="hero-lead" style={{ marginTop: 'var(--s-5)' }}>
-              The CEE is a placement assessment. It identifies what you already have, what would benefit from
-              reinforcement, and whether you are ready beyond the foundation level.
+            <p className="inst-eyebrow">Admissions · Placement</p>
+            <h1 style={{ maxWidth: '15ch' }}>The Cognita Entrance Exam</h1>
+            <p className="inst-hero-lead">
+              A placement assessment completed as part of admissions. It establishes where your study
+              begins — there is no pass mark and no ranking against other applicants.
             </p>
-            <div className="exam-meta-row">
-              <span><Clock3 size={17} aria-hidden="true" /> {examMeta.recommendedMinutes} minutes recommended</span>
-              <span><FileCheck2 size={17} aria-hidden="true" /> {examMeta.objectiveItems} objective items + 2 applied tasks</span>
-            </div>
-            <div className="wrap-actions" style={{ marginTop: 'var(--s-6)' }}>
-              <Link className="btn btn--onink btn--lg" to="/app/entrance-exam">Begin the exam <ArrowRight size={17} /></Link>
-            </div>
+            <dl className="inst-hero-meta">
+              <div><dt>Recommended time</dt><dd>{examMeta.recommendedMinutes} minutes</dd></div>
+              <div><dt>Structure</dt><dd>{examMeta.objectiveItems} objective items, 2 written tasks</dd></div>
+              <div><dt>Review</dt><dd>Written work read by an evaluator</dd></div>
+            </dl>
           </div>
 
-          <aside className="exam-score-card" aria-label="Score composition">
-            <p className="eyebrow eyebrow--muted">{examMeta.version}</p>
-            <strong className="exam-score-total">{examMeta.totalPoints}</strong>
-            <p>Total assessment points</p>
-            <ul className="exam-score-breakdown">
-              <li><b>30</b><span>Communication</span></li>
-              <li><b>25</b><span>AI foundations</span></li>
-              <li><b>15</b><span>Research judgment</span></li>
-              <li><b>30</b><span>Applied response</span></li>
-            </ul>
-            <p className="exam-score-note">70 points are scored automatically. The remaining 30 are read by a person.</p>
+          <aside className="hero-index" aria-label="Exam structure">
+            <p className="hero-index-label">Assessment structure</p>
+            <ol>
+              <li><span className="hero-index-num" aria-hidden="true">01</span><div><strong>Functional English and communication</strong><span>Comprehension, clarity, professional communication and precise instruction</span></div></li>
+              <li><span className="hero-index-num" aria-hidden="true">02</span><div><strong>AI foundations</strong><span>Capability, limitation, responsible use and human responsibility</span></div></li>
+              <li><span className="hero-index-num" aria-hidden="true">03</span><div><strong>Research and verification judgment</strong><span>Source evaluation, currency and verification behavior</span></div></li>
+              <li><span className="hero-index-num" aria-hidden="true">04</span><div><strong>Applied written tasks</strong><span>Two written responses reviewed by an evaluator</span></div></li>
+            </ol>
           </aside>
         </div>
       </section>
 
-      <section className="section section--paper">
-        <div className="page-width">
-          <div className="section-head">
-            <p className="eyebrow">What it measures</p>
-            <h2>Readiness is broader than knowing AI terms.</h2>
-            <p>Some questions test whether you can recognise missing information, uncertainty, misleading claims, or unsafe assumptions.</p>
+      <section className="inst-section inst-section--paper">
+        <div className="page-width" data-reveal>
+          <div className="section-marker">
+            <span className="section-marker-num" aria-hidden="true">01</span>
+            <div>
+              <h2>What the exam measures</h2>
+              <p>Readiness is broader than familiarity with AI terminology. Some questions test whether you can recognize missing information, uncertainty, or a claim that will not hold up.</p>
+            </div>
           </div>
 
           <div className="grid-auto">
             <article className="value-card"><Languages aria-hidden="true" /><h3>Functional communication</h3><p>Comprehension, grammar, clarity, and the ability to give a precise instruction.</p></article>
-            <article className="value-card"><BrainCircuit aria-hidden="true" /><h3>AI foundations</h3><p>Capability, limitation, hallucination risk, prompting, and human responsibility.</p></article>
-            <article className="value-card"><ScanSearch aria-hidden="true" /><h3>Research judgment</h3><p>Source authority, current information, verification behaviour, and uncertainty.</p></article>
-            <article className="value-card"><FileCheck2 aria-hidden="true" /><h3>Applied instruction</h3><p>Turning a vague request into a controlled, responsible instruction.</p></article>
-            <article className="value-card"><ShieldCheck aria-hidden="true" /><h3>Critical judgment</h3><p>Challenging unsupported AI output instead of accepting it because it sounds certain.</p></article>
+            <article className="value-card"><BrainCircuit aria-hidden="true" /><h3>AI foundations</h3><p>How generative systems behave, where they fail, and who carries responsibility for the output.</p></article>
+            <article className="value-card"><ScanSearch aria-hidden="true" /><h3>Research judgment</h3><p>Source authority, current information, verification behavior and uncertainty.</p></article>
+            <article className="value-card"><FileText aria-hidden="true" /><h3>Applied instruction</h3><p>Turning a vague request into a controlled, responsible instruction.</p></article>
+            <article className="value-card"><ShieldCheck aria-hidden="true" /><h3>Critical judgment</h3><p>Questioning unsupported output rather than accepting it because it sounds certain.</p></article>
           </div>
         </div>
       </section>
 
-      <section className="section section--sunken">
-        <div className="page-width prose-columns">
-          <div>
-            <h2>It is not pass or fail</h2>
-            <p>There is no pass mark. The result is a readiness profile that names a starting point. A foundation placement is the ordinary outcome, not a rejection.</p>
-          </div>
-          <div>
+      <section className="inst-section inst-section--sunken">
+        <div className="page-width requirement-grid" data-reveal>
+          <article>
+            <h2>There is no pass mark</h2>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              The result is a readiness profile describing each area of the assessment. Beginning at the
+              foundations pathway is the ordinary outcome for most applicants, not a rejection.
+            </p>
+          </article>
+          <article>
             <h2>Two written tasks</h2>
-            <p>Thirty of the hundred points come from written work that an evaluator reads against a rubric. We do not auto-mark judgment, because keyword matching is not assessment.</p>
-          </div>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              A portion of the assessment is written work read by an evaluator against a rubric. Cognita does
+              not mark judgment automatically, because keyword matching is not assessment.
+            </p>
+          </article>
+          <article>
+            <h2>Complete it independently</h2>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              No AI assistant, search engine, translator or other person during the assessment. The result is
+              only useful to you if it reflects what you can currently do.
+            </p>
+          </article>
+          <article>
+            <h2>How long it takes</h2>
+            <p className="muted" style={{ fontSize: 'var(--text-sm)', lineHeight: 1.75 }}>
+              {examMeta.recommendedMinutes} minutes is a recommendation rather than a limit. Your progress is
+              saved as you work, so the assessment can be paused and resumed.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="inst-section inst-section--paper">
+        <div className="page-width statement-split" data-reveal>
           <div>
-            <h2>Do it independently</h2>
-            <p>No AI assistant, search engine, translator, or other person during the exam. The result is only useful to you if it reflects what you can currently do.</p>
+            <p className="inst-eyebrow" style={{ color: 'var(--brand-violet-600)' }}>Preparation</p>
+            <p className="statement">There is nothing to revise.</p>
           </div>
-          <div>
-            <h2>You can sit it again</h2>
-            <p>Attempts are kept in your record rather than overwritten. Reapplying is normal.</p>
+          <div className="statement-body">
+            <p>
+              The assessment measures current understanding and judgment rather than recall of material.
+              Preparing for it by memorising terminology would not improve your placement, and an
+              artificially high placement is not in your interest — you would begin study beyond where your
+              understanding supports.
+            </p>
+            <p>
+              Answer as you would work. That produces a placement that fits.
+            </p>
+            <Link className="link-arrow" to="/admissions/apply">Begin an application <ArrowRight size={15} /></Link>
           </div>
         </div>
       </section>
 
-      <section className="section section--paper">
-        <div className="page-width readiness-panel">
-          <div>
-            <p className="eyebrow">Before you begin</p>
-            <h2>Four commitments.</h2>
+      <section className="inst-section inst-section--ink">
+        <div className="page-width inst-close">
+          <h2>Apply and complete the assessment</h2>
+          <p>The application takes a few minutes. The entrance exam follows it.</p>
+          <div className="inst-close-actions">
+            <Link className="btn btn--onink btn--lg" to="/admissions/apply">Apply to Cognita <ArrowRight size={17} /></Link>
+            <Link className="btn btn--quiet-onink btn--lg" to="/admissions">Admissions information</Link>
           </div>
-          <ul className="clean-list">
-            <li>No generative AI tools during the exam.</li>
-            <li>No web browsing for the objective sections.</li>
-            <li>Answer from your own understanding and judgment.</li>
-            <li>Applied responses written in your own words.</li>
-          </ul>
-          <Link className="btn btn--lg" to="/app/entrance-exam">Start {examMeta.version} <ArrowRight size={17} /></Link>
         </div>
       </section>
     </>

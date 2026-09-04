@@ -27,7 +27,7 @@ export default function Application() {
           <h1>Application</h1>
           <p>Create your learner record first — the application attaches to it.</p>
         </div>
-        <Link className="btn" to="/app/profile">Create learner record <ArrowRight size={16} /></Link>
+        <Link className="btn" to="/apply/profile">Create learner record <ArrowRight size={16} /></Link>
       </>
     )
   }
@@ -58,7 +58,7 @@ export default function Application() {
 
     await submitApplication()
     await reload()
-    navigate('/app/entrance-exam')
+    navigate('/apply/entrance-exam')
   }
 
   return (

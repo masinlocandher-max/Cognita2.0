@@ -88,7 +88,7 @@ export default function LessonView() {
 
   if (lesson.loading) return <LoadingRows rows={5} height={70} />
   if (lesson.error) return <StateBlock variant="error" description="This lesson could not be loaded." />
-  if (!lesson.data) return <StateBlock variant="empty" title="Lesson not found" action={<Link className="btn" to="/learn/dashboard">Back to learning</Link>} />
+  if (!lesson.data) return <StateBlock variant="empty" title="Lesson not found" action={<Link className="btn" to="/portal/dashboard">Back to learning</Link>} />
 
   const data = lesson.data
   const record = progress?.[data.id]
@@ -104,11 +104,11 @@ export default function LessonView() {
   return (
     <article className="lesson">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/learn/dashboard">Learning</Link>
+        <Link to="/portal/dashboard">Learning</Link>
         <span aria-hidden="true">/</span>
-        <Link to={`/learn/course/${data.course.id}`}>{data.course.title}</Link>
+        <Link to={`/portal/course/${data.course.id}`}>{data.course.title}</Link>
         <span aria-hidden="true">/</span>
-        <Link to={`/learn/module/${data.module.id}`}>{data.module.title}</Link>
+        <Link to={`/portal/module/${data.module.id}`}>{data.module.title}</Link>
       </nav>
 
       <header className="lesson-head">
@@ -149,9 +149,9 @@ export default function LessonView() {
       <footer className="lesson-footer">
         <div className="lesson-footer-nav">
           {data.previousLessonId ? (
-            <Link className="btn btn--secondary" to={`/learn/lesson/${data.previousLessonId}`}><ArrowLeft size={16} /> Previous lesson</Link>
+            <Link className="btn btn--secondary" to={`/portal/lesson/${data.previousLessonId}`}><ArrowLeft size={16} /> Previous lesson</Link>
           ) : (
-            <Link className="btn btn--secondary" to={`/learn/module/${data.module.id}`}><ArrowLeft size={16} /> Back to module</Link>
+            <Link className="btn btn--secondary" to={`/portal/module/${data.module.id}`}><ArrowLeft size={16} /> Back to module</Link>
           )}
 
           <button className={`btn${completed ? ' btn--secondary' : ''}`} type="button" onClick={complete}>
@@ -160,9 +160,9 @@ export default function LessonView() {
           </button>
 
           {data.nextLessonId ? (
-            <Link className="btn btn--ghost" to={`/learn/lesson/${data.nextLessonId}`}>Next lesson <ArrowRight size={16} /></Link>
+            <Link className="btn btn--ghost" to={`/portal/lesson/${data.nextLessonId}`}>Next lesson <ArrowRight size={16} /></Link>
           ) : (
-            <Link className="btn btn--ghost" to={`/learn/module/${data.module.id}`}>Finish module <ArrowRight size={16} /></Link>
+            <Link className="btn btn--ghost" to={`/portal/module/${data.module.id}`}>Finish module <ArrowRight size={16} /></Link>
           )}
         </div>
         <p className="muted" style={{ fontSize: 'var(--text-xs)' }}>Progress is saved on this device as you go.</p>
