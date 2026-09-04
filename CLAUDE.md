@@ -2,12 +2,27 @@
 
 Use the committed Cognita 2.0 brand system for every visual or website change in this repository. Required sources: `brand/logos/`, `brand/code/cognita-brand.css`, `brand/code/tokens.json`, `brand/code/brand.js`, `src/brand-runtime.css`, and `brand/README.md`.
 
-Before changing institutional copy, admissions, CEE, programs, learner journey, or internal operations, also read:
+Before changing institutional copy, admissions, CEE, programs, learner journey, curriculum presentation, student policy, credentials, or internal operations, also read:
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
+- `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md`
 - `docs/V1-SOLO-OPERATOR-MODEL.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
+
+## Source precedence and policy status
+
+`docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` is the current LOCKED institutional/program architecture.
+
+`docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` is the full Day-1 academic and operational handbook draft. It includes recommended legal positioning, eligibility, CEE pilot bands, 10-week curriculum, assessment/mastery rules, attendance, credentials, instructor/evaluator governance, appeals, records, SLAs, roadmap, and KPIs.
+
+Do not treat a PROVISIONAL rule as LOCKED merely because it appears detailed or institutional.
+
+Policy states:
+- `LOCKED` — approved for implementation/use
+- `PROVISIONAL` — working rule pending approval, pilot evidence, legal/commercial review, or launch readiness
+- `NOT YET APPROVED` — unresolved; do not invent or publish as policy
+- `SUPERSEDED` — replaced by a later approved version
 
 Do not recreate or reinterpret the logo. Do not introduce a dark-first public identity. The default system is light institutional: white and soft gray surfaces, deep navy authority, with controlled indigo, violet, and cyan accents.
 
@@ -16,6 +31,14 @@ Canonical student lifecycle: application → human admissions review → email C
 Public routes are `/` and `/apply`. The CEE must remain invitation-only. `/programs`, `/payment`, `/account-setup`, and `/app` must remain gated by prior lifecycle state. The former `/learner` route must not be restored as a pre-enrollment account surface.
 
 Internal operations routes are `/operations` and `/operations/admissions`. They are device-local QA/operating simulations only, never production staff portals. Do not expose them in public navigation.
+
+## Compliance rule
+
+Cognita is positioned as a private, non-degree training and learning institution. Do not claim CHED recognition, TESDA registration/accreditation, TESDA National Certificates or Certificates of Competency, PRC recognition/licensure, degree equivalency, or government approval unless the applicable authority has actually been obtained and is verifiable.
+
+Before real enrollment, Cognita must resolve whether its Day-1 offerings fall within a TESDA-regulated TVET category requiring UTPRAS program registration. Do not assume that describing a TVET course as a “private/non-accredited certificate” removes a registration requirement.
+
+Do not introduce facial-recognition attendance or other invasive biometric monitoring without explicit approval, necessity, privacy review, and legal basis.
 
 ## V1 solo-operator rule
 
@@ -39,7 +62,7 @@ Do not create lifecycle bypasses just because the same operator controls multipl
 
 Cognita remains frontend-only until it is genuinely ready to onboard real students. Do not add Supabase, paid backend infrastructure, server authentication, transactional email, payment processing, evaluator backends, or cloud learner records unless a later task explicitly moves the product into launch readiness. Browser-local email events are simulations only. Never imply delivery or server submission. Never store passwords in localStorage.
 
-Preserve admissions gates, CEE scoring, timer behavior, assessment content, evaluator-review requirement, integrity logging, local persistence, enrollment order, student-app access gates, and solo-operator separation-of-functions unless a task explicitly changes institutional policy.
+Preserve admissions gates, CEE scoring, timer behavior, assessment content, evaluator-review requirement, integrity logging, local persistence, enrollment order, student-app access gates, and solo-operator separation-of-functions unless a task explicitly changes LOCKED institutional policy.
 
 ## CEE purpose and integrity rule
 
@@ -55,6 +78,8 @@ Before the integrity pledge, clearly encourage applicants to answer wholehearted
 
 Do not use threatening or adversarial integrity language. Integrity safeguards should be framed as protecting the learner, fairness, academic standards, and the credibility of Cognita credentials.
 
+The provisional academic handbook contains pilot scoring/placement bands. These are not final policy. Do not silently change the active CEE scoring logic or publish those bands as guaranteed admission rules without explicit approval.
+
 ## Program architecture
 
 The two primary learner routes are:
@@ -64,4 +89,14 @@ The two primary learner routes are:
 
 AI-00 is a foundation bridge assigned through readiness evidence and evaluator judgment. It is not a normal commercial program card.
 
+The provisional handbook provides the current week-by-week 10-week curriculum draft. It may be used to build curriculum prototypes or internal academic views, but do not present it as finally approved if the UI/document explicitly distinguishes LOCKED from PROVISIONAL content.
+
 Core operating principle: **Guided when you need structure. Flexible when you need freedom. The standard remains the same.**
+
+## Credential and pricing protection
+
+Do not invent tuition, discounts, refund rules, government-recognition language, or credential names.
+
+The provisional recommended Day-1 credential is `Cognita Certificate of Completion`, subject to final approval. Avoid `Certificate of Competency` because that wording can be confused with TESDA's official CoC terminology.
+
+Historical prices from older Cognita documents remain reference material only.
