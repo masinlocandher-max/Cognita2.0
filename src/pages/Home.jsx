@@ -1,10 +1,9 @@
 import { ArrowRight, BrainCircuit, CheckCircle2, Gauge, GraduationCap, Languages, SearchCheck, ShieldCheck, Sparkles, Waypoints } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 const journey = [
   { number: '01', title: 'Discover Cognita', body: 'Understand the institute, the learning standard, and what your journey can become.' },
-  { number: '02', title: 'Take the Entrance Exam', body: 'A placement assessment checks AI readiness, communication, comprehension, and research judgment.' },
-  { number: '03', title: 'Receive your starting point', body: 'Your results identify the right entry level instead of forcing every learner through the same path.' },
+  { number: '02', title: 'Understand your readiness', body: 'Cognita uses readiness evidence to understand strengths, communication needs, and foundational gaps.' },
+  { number: '03', title: 'Receive your starting point', body: 'Placement is designed to match the learner with the right entry level instead of forcing everyone through the same path.' },
   { number: '04', title: 'Build real capability', body: 'Progress through practical AI learning with clearer instructions, stronger judgment, and applied output.' },
 ]
 
@@ -19,7 +18,7 @@ export default function Home() {
             <h1>AI education for people who want to use it well.</h1>
             <p className="hero-lead">The Cognita Institute of Artificial Intelligence develops practical AI capability through strong foundations, communication readiness, critical thinking, and real-world application.</p>
             <div className="hero-actions">
-              <Link className="button" to="/entrance-exam">Take the Cognita Entrance Exam <ArrowRight size={18} /></Link>
+              <a className="button" href="#learning">Explore Cognita learning <ArrowRight size={18} /></a>
               <a className="text-link" href="#about">Explore Cognita</a>
             </div>
           </div>
@@ -93,8 +92,8 @@ export default function Home() {
               <div className="offering-icon"><Gauge /></div>
               <div>
                 <span>ENTRY</span>
-                <h3>Cognita Entrance Exam</h3>
-                <p>A readiness and placement assessment covering functional communication, AI foundations, research judgment, and applied instruction quality.</p>
+                <h3>Readiness & Placement</h3>
+                <p>A structured readiness process helps identify communication strength, AI foundations, research judgment, and the learner's appropriate starting point.</p>
               </div>
             </article>
             <article className="offering">
@@ -128,14 +127,14 @@ export default function Home() {
       <section className="section section--ink">
         <div className="page-width split-layout split-layout--center">
           <div>
-            <p className="section-label section-label--light">WHY THE EXAM MATTERS</p>
-            <h2>Placement should come from evidence, not assumptions.</h2>
+            <p className="section-label section-label--light">WHY PLACEMENT MATTERS</p>
+            <h2>Learning should begin from evidence, not assumptions.</h2>
           </div>
           <div className="exam-reasons">
             <div><CheckCircle2 /><span>Identifies where the learner is already ready.</span></div>
             <div><CheckCircle2 /><span>Finds specific gaps that can be strengthened.</span></div>
             <div><CheckCircle2 /><span>Avoids unnecessary repetition for stronger learners.</span></div>
-            <div><CheckCircle2 /><span>Creates a more defensible path into AI-01.</span></div>
+            <div><CheckCircle2 /><span>Creates a more defensible path into higher-level learning.</span></div>
           </div>
         </div>
       </section>
@@ -162,10 +161,10 @@ export default function Home() {
         <div className="page-width cta-panel">
           <Waypoints size={36} />
           <div>
-            <h2>Find the right place to begin.</h2>
-            <p>The Cognita Entrance Exam is designed to identify readiness, not to reward memorization.</p>
+            <h2>Build from the right starting point.</h2>
+            <p>Cognita is designed around readiness, practical learning, and responsible use rather than one-size-fits-all instruction.</p>
           </div>
-          <Link className="button button--light" to="/entrance-exam">View the exam journey <ArrowRight size={18} /></Link>
+          <a className="button button--light" href="#difference">Explore the learning model <ArrowRight size={18} /></a>
         </div>
       </section>
     </>
