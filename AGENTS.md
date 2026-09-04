@@ -2,10 +2,11 @@
 
 ## Canonical institutional and academic sources
 
-Before changing programs, website copy, admissions language, learning pathways, credentials, or learner experience, read:
+Before changing programs, website copy, admissions language, CEE presentation, learning pathways, credentials, or learner experience, read:
 
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
 - `docs/WEBSITE-CONTENT.md`
+- `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
 
 These are the active Cognita 2.0 sources. Older Cognita Academy documents, old repositories, proposals, pricing sheets, and experiments may be used only as reference and must not silently override the current 2.0 model.
@@ -51,7 +52,9 @@ Do not bypass or reorder this sequence:
 
 The former standalone `/learner` route must not be restored as a pre-enrollment student account surface.
 
-## CEE placement policy
+## CEE purpose, placement, and integrity policy
+
+The Cognita Entrance Examination is not merely a barrier, pass/fail quiz, or anti-cheating mechanism. Its academic purpose is to understand the applicant's actual readiness, identify strengths and gaps, and support an appropriate learning pathway.
 
 The current objective scoring logic may produce readiness indications. The learner-facing Cognita 2.0 pathway model is:
 
@@ -60,6 +63,16 @@ The current objective scoring logic may produce readiness indications. The learn
 - Direct Track Entry
 
 Exact thresholds are not yet approved. Do not silently change scoring, thresholds, or evaluator policy until a later task formally approves them.
+
+CEE screens must explain purpose before enforcement. Applicants should understand that an honest result is more useful than an artificially high score because unauthorized assistance can produce inaccurate placement and place the learner into work for which they are not yet ready.
+
+Required institutional message:
+
+`The CEE is not designed to catch learners out. It is designed to understand them accurately.`
+
+Before the integrity pledge, encourage applicants to answer wholeheartedly, independently, and without unauthorized help. Explain that Cognita does not expect every applicant to know everything already. Needing foundation support is not automatically a negative outcome; it gives Cognita better evidence about where learning should begin.
+
+Integrity safeguards should be framed as protecting the learner, assessment fairness, academic standards, and the credibility of Cognita credentials. Do not use threatening, shaming, or adversarial language.
 
 ## Surface boundary
 
