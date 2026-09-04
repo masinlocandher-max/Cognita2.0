@@ -1,10 +1,11 @@
 import { ArrowRight, BrainCircuit, CheckCircle2, Gauge, GraduationCap, Languages, SearchCheck, ShieldCheck, Sparkles, Waypoints } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const journey = [
-  { number: '01', title: 'Discover Cognita', body: 'Understand the institute, the learning standard, and what your journey can become.' },
-  { number: '02', title: 'Understand your readiness', body: 'Cognita uses readiness evidence to understand strengths, communication needs, and foundational gaps.' },
-  { number: '03', title: 'Receive your starting point', body: 'Placement is designed to match the learner with the right entry level instead of forcing everyone through the same path.' },
-  { number: '04', title: 'Build real capability', body: 'Progress through practical AI learning with clearer instructions, stronger judgment, and applied output.' },
+  { number: '01', title: 'Apply to Cognita', body: 'Submit an admissions application before any entrance assessment is issued.' },
+  { number: '02', title: 'Admissions review', body: 'Approved applicants receive a Cognita Entrance Exam invitation through email.' },
+  { number: '03', title: 'Complete the CEE', body: 'Take the timed assessment independently, then wait for the official pass/fail decision.' },
+  { number: '04', title: 'Enroll and begin', body: 'Successful applicants choose a program, complete payment, activate an account, and enter the student app.' },
 ]
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
             <h1>AI education for people who want to use it well.</h1>
             <p className="hero-lead">The Cognita Institute of Artificial Intelligence develops practical AI capability through strong foundations, communication readiness, critical thinking, and real-world application.</p>
             <div className="hero-actions">
-              <a className="button" href="#learning">Explore Cognita learning <ArrowRight size={18} /></a>
+              <Link className="button" to="/apply">Apply to Cognita <ArrowRight size={18} /></Link>
               <a className="text-link" href="#about">Explore Cognita</a>
             </div>
           </div>
@@ -93,7 +94,7 @@ export default function Home() {
               <div>
                 <span>ENTRY</span>
                 <h3>Readiness & Placement</h3>
-                <p>A structured readiness process helps identify communication strength, AI foundations, research judgment, and the learner's appropriate starting point.</p>
+                <p>A structured admissions and readiness process helps identify communication strength, AI foundations, research judgment, and the learner's appropriate starting point.</p>
               </div>
             </article>
             <article className="offering">
@@ -143,7 +144,7 @@ export default function Home() {
         <div className="page-width">
           <div className="section-heading">
             <p className="section-label">STUDENT JOURNEY</p>
-            <h2>One journey. A starting point that fits the learner.</h2>
+            <h2>Admission first. Learning begins inside the student app.</h2>
           </div>
           <div className="journey-line">
             {journey.map((step) => (
@@ -161,10 +162,10 @@ export default function Home() {
         <div className="page-width cta-panel">
           <Waypoints size={36} />
           <div>
-            <h2>Build from the right starting point.</h2>
-            <p>Cognita is designed around readiness, practical learning, and responsible use rather than one-size-fits-all instruction.</p>
+            <h2>Begin with Admissions.</h2>
+            <p>Entrance exam access is issued only after an application has been reviewed and approved.</p>
           </div>
-          <a className="button button--light" href="#difference">Explore the learning model <ArrowRight size={18} /></a>
+          <Link className="button button--light" to="/apply">Start an application <ArrowRight size={18} /></Link>
         </div>
       </section>
     </>
