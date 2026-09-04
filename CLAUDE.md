@@ -1,22 +1,13 @@
 # Cognita 2.0 — Claude instructions
 
-Use the committed Cognita 2.0 brand system for every visual or website change in this repository.
-
-Required sources:
-- `brand/logos/` for the official SVG logo assets
-- `brand/code/cognita-brand.css` for canonical design tokens
-- `brand/code/tokens.json` and `brand/code/brand.js` for machine-readable values
-- `src/brand-runtime.css` for the active website brand layer
-- `brand/README.md` for usage rules
+Use the committed Cognita 2.0 brand system for every visual or website change in this repository. Required sources: `brand/logos/`, `brand/code/cognita-brand.css`, `brand/code/tokens.json`, `brand/code/brand.js`, `src/brand-runtime.css`, and `brand/README.md`.
 
 Do not recreate or reinterpret the logo. Do not introduce a dark-first public identity. The default system is light institutional: white and soft gray surfaces, deep navy authority, with controlled indigo, violet, and cyan accents.
 
-Public/student boundary:
-- `/` is the public institutional website.
-- `/learner`, `/entrance-exam`, and `/entrance-exam/start` are internal frontend student/admissions routes during the current build phase.
-- Do not expose those internal routes in the public global navigation, footer, or homepage calls to action unless explicitly requested.
-- Public copy may explain readiness, placement, AI-00, and the learning model without directly launching the CEE or learner workspace.
+Canonical student lifecycle: application → human admissions review → email CEE invitation → one persistent 70-minute CEE session with integrity guardrails → evaluator review → pass/fail email → program selection → payment confirmation → account activation → student learning app.
 
-Cognita remains frontend-only until it is ready to onboard real students. Do not add Supabase, paid backend infrastructure, server authentication, evaluator systems, payments, or cloud learner records unless a later task explicitly moves the product into student-launch readiness.
+Public routes are `/` and `/apply`. The CEE must remain invitation-only. `/programs`, `/payment`, `/account-setup`, and `/app` must remain gated by prior lifecycle state. The former `/learner` route must not be restored as a pre-enrollment account surface. `/operations/admissions` is a local QA simulator only, never a production staff portal.
 
-Preserve CEE scoring, assessment content, learner data, local persistence, progression, and routing unless the requested task explicitly changes functionality.
+Cognita remains frontend-only until it is genuinely ready to onboard real students. Do not add Supabase, paid backend infrastructure, server authentication, transactional email, payment processing, evaluator backends, or cloud learner records unless a later task explicitly moves the product into launch readiness. Browser-local email events are simulations only. Never imply delivery or server submission. Never store passwords in localStorage.
+
+Preserve admissions gates, CEE scoring, timer behavior, assessment content, evaluator-review requirement, integrity logging, local persistence, enrollment order, and student-app access gates unless a task explicitly changes institutional policy.
