@@ -1,13 +1,14 @@
 import { BookOpenCheck, CheckCircle2, ClipboardCheck, GraduationCap, Mail, ShieldCheck, UserRoundCheck, WalletCards } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getEmailLog, readAdmissionsState } from '../lib/admissions'
+import { getLearningSnapshot } from '../lib/learning'
 
 function statusLabel(value) {
   if (!value) return 'Not started'
   return value.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
 
-function actionFor(state) {
+function actionFor(state, learning) {
   const application = state.application
   const enrollment = state.enrollment
   const account = state.account
@@ -20,7 +21,10 @@ function actionFor(state) {
   if (application.status === 'cee_passed' && !enrollment) return { title: 'Awaiting program selection', detail: 'The successful applicant must choose an eligible learning route before payment.', href: '/programs', cta: 'View program stage' }
   if (enrollment?.payment?.status === 'awaiting_confirmation') return { title: 'Payment confirmation required', detail: 'Confirm payment only after the approved payment/accounting evidence is available.', href: '/operations/admissions', cta: 'Review payment' }
   if (enrollment?.payment?.status === 'confirmed' && !account) return { title: 'Account activation pending', detail: 'Payment is confirmed. The student can now activate learning-app access.', href: '/account-setup', cta: 'Open activation stage' }
-  if (account?.status === 'frontend_preview_active') return { title: 'Student is active', detail: 'The learner has app access. Your next recurring work is teaching, feedback, assessment, support, and records review.', href: '/app', cta: 'Open student app' }
+  if (account?.status === 'frontend_preview_active' && learning.openSupport > 0) return { title: 'Student support response required', detail: `${learning.openSupport} learner support request${learning.openSupport === 1 ? '' : 's'} need your response.`, href: '/operations/learning', cta: 'Open support queue' }
+  if (account?.status === 'frontend_preview_active' && learning.pendingReviews > 0) return { title: 'Learner output review required', detail: `${learning.pendingReviews} submitted output${learning.pendingReviews === 1 ? '' : 's'} are waiting for PASS or REVISE feedback.`, href: '/operations/learning', cta: 'Review submissions' }
+  if (account?.status === 'frontend_preview_active' && learning.state.capstone.status === 'submitted_for_review') return { title: 'Capstone evaluation required', detail: 'The learner has submitted the capstone and professional-defense notes for review.', href: '/operations/learning', cta: 'Review capstone' }
+  if (account?.status === 'frontend_preview_active') return { title: 'Student is active', detail: 'No immediate review queue is waiting. Continue facilitation, monitor progress, and remain available for learner support.', href: '/app', cta: 'Open student app' }
   if (application.status === 'cee_failed' || application.status === 'not_approved') return { title: 'Admissions cycle closed', detail: 'No enrollment action is due unless a new intake, bridge pathway, or reapplication is formally opened.', href: '/apply', cta: 'View decision status' }
 
   return { title: 'Review current record', detail: 'The local preview has a state that needs an operator check.', href: '/operations/admissions', cta: 'Open operations' }
@@ -28,11 +32,12 @@ function actionFor(state) {
 
 export default function FounderConsole() {
   const state = readAdmissionsState()
+  const learning = getLearningSnapshot()
   const emails = getEmailLog()
   const application = state.application
   const enrollment = state.enrollment
   const account = state.account
-  const nextAction = actionFor(state)
+  const nextAction = actionFor(state, learning)
 
   const roles = [
     {
@@ -56,19 +61,19 @@ export default function FounderConsole() {
     {
       icon: GraduationCap,
       name: 'Training & Facilitation',
-      status: account ? 'Student access active' : 'No active student',
+      status: account ? `${learning.pendingReviews} review${learning.pendingReviews === 1 ? '' : 's'} pending` : 'No active student',
       detail: 'Deliver lessons, facilitate guided sessions, review outputs, require revision, and protect the academic standard.',
     },
     {
       icon: BookOpenCheck,
       name: 'Academic Records',
-      status: account ? 'Learner record active' : 'No active learner record',
+      status: account ? `${learning.progress}% learning progress` : 'No active learner record',
       detail: 'Track progress, assessment evidence, feedback, completion requirements, capstone status, and credential eligibility.',
     },
     {
       icon: UserRoundCheck,
       name: 'Student Support',
-      status: account ? 'Student support active' : 'Not active',
+      status: account ? `${learning.openSupport} open request${learning.openSupport === 1 ? '' : 's'}` : 'Not active',
       detail: 'Handle learner questions, reasonable support, schedule concerns, and issues that require human judgment.',
     },
   ]
@@ -98,7 +103,8 @@ export default function FounderConsole() {
           <article><span>Applicant</span><strong>{application?.applicant?.fullName || 'None'}</strong><small>{application?.reference || 'No application reference'}</small></article>
           <article><span>Admissions</span><strong>{statusLabel(application?.status)}</strong><small>{application?.applicant?.email || 'No applicant email'}</small></article>
           <article><span>Enrollment</span><strong>{statusLabel(enrollment?.status)}</strong><small>{enrollment?.programName || 'No program selected'}</small></article>
-          <article><span>Student app</span><strong>{account ? 'Active preview' : 'Not active'}</strong><small>{account?.email || 'Account not activated'}</small></article>
+          <article><span>Learning</span><strong>{account ? `${learning.progress}% complete` : 'Not active'}</strong><small>{account ? `${learning.passedOutputs}/${learning.requiredOutputs} outputs passed` : 'No learner record yet'}</small></article>
+          <article><span>Needs review</span><strong>{account ? learning.pendingReviews : 0}</strong><small>{account ? `${learning.openSupport} support request${learning.openSupport === 1 ? '' : 's'}` : 'No active queues'}</small></article>
           <article><span>Institutional notices</span><strong>{emails.length}</strong><small>Frontend email events recorded</small></article>
         </div>
 
@@ -123,6 +129,7 @@ export default function FounderConsole() {
 
         <div className="founder-console-links">
           <Link to="/operations/admissions"><ClipboardCheck size={18} /> Admissions & CEE operations</Link>
+          <Link to="/operations/learning"><BookOpenCheck size={18} /> Learning & facilitation review</Link>
           <Link to="/app"><GraduationCap size={18} /> Student learning app</Link>
           <Link to="/apply"><Mail size={18} /> Applicant status surface</Link>
         </div>
