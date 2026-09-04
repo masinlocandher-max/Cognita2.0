@@ -11,7 +11,7 @@ function emptyState() {
     completedLessons: [],
     submissions: {},
     feedback: {},
-    capstone: { status: 'not_started', draft: '', reflection: '' },
+    capstone: { status: 'not_started', draft: '', reflection: '', feedback: null },
     portfolio: [],
     supportRequests: [],
     profile: { preferredName: '', bio: '', goals: '' },
@@ -62,19 +62,50 @@ export function toggleLessonComplete(lessonId) {
 
 export function saveSubmission(lessonId, text) {
   const state = readLearningState()
+  const trimmed = text.trim()
   const submissions = {
     ...state.submissions,
     [lessonId]: {
       lessonId,
-      text: text.trim(),
-      status: text.trim() ? 'submitted_for_review' : 'draft',
+      text: trimmed,
+      status: trimmed ? 'submitted_for_review' : 'draft',
       updatedAt: new Date().toISOString(),
+      submittedAt: trimmed ? new Date().toISOString() : null,
     },
   }
-  const portfolio = text.trim() && !state.portfolio.includes(lessonId)
+  const feedback = { ...state.feedback }
+  if (trimmed && feedback[lessonId]?.decision === 'revise') {
+    feedback[lessonId] = { ...feedback[lessonId], status: 'resubmitted', resubmittedAt: new Date().toISOString() }
+  }
+  const portfolio = trimmed && !state.portfolio.includes(lessonId)
     ? [...state.portfolio, lessonId]
     : state.portfolio
-  return writeLearningState({ ...state, submissions, portfolio, lastVisitedLessonId: lessonId })
+  return writeLearningState({ ...state, submissions, feedback, portfolio, lastVisitedLessonId: lessonId })
+}
+
+export function reviewSubmission(lessonId, decision, note) {
+  const state = readLearningState()
+  if (!['pass', 'revise'].includes(decision) || !note.trim() || !state.submissions[lessonId]?.text?.trim()) return state
+  const now = new Date().toISOString()
+  const feedback = {
+    ...state.feedback,
+    [lessonId]: {
+      lessonId,
+      decision,
+      note: note.trim(),
+      status: 'released',
+      reviewedAt: now,
+    },
+  }
+  const submissions = {
+    ...state.submissions,
+    [lessonId]: {
+      ...state.submissions[lessonId],
+      status: decision === 'pass' ? 'passed' : 'revision_required',
+      reviewedAt: now,
+    },
+  }
+  return writeLearningState({ ...state, feedback, submissions })
 }
 
 export function saveCapstone(input) {
@@ -104,6 +135,23 @@ export function submitCapstone() {
   })
 }
 
+export function reviewCapstone(decision, note) {
+  const state = readLearningState()
+  if (!['pass', 'revise'].includes(decision) || !note.trim() || state.capstone.status !== 'submitted_for_review') return state
+  return writeLearningState({
+    ...state,
+    capstone: {
+      ...state.capstone,
+      status: decision === 'pass' ? 'passed' : 'revision_required',
+      feedback: {
+        decision,
+        note: note.trim(),
+        reviewedAt: new Date().toISOString(),
+      },
+    },
+  })
+}
+
 export function setTrack(track) {
   const state = readLearningState()
   if (!GUIDED_TRACK_OPTIONS.includes(track)) return state
@@ -128,8 +176,23 @@ export function createSupportRequest(message) {
     message: message.trim(),
     status: 'open_local_preview',
     createdAt: new Date().toISOString(),
+    response: null,
   }
   return writeLearningState({ ...state, supportRequests: [request, ...state.supportRequests] })
+}
+
+export function respondToSupportRequest(requestId, response) {
+  const state = readLearningState()
+  if (!response.trim()) return state
+  const supportRequests = state.supportRequests.map((request) => request.id === requestId
+    ? {
+        ...request,
+        status: 'responded_local_preview',
+        response: response.trim(),
+        respondedAt: new Date().toISOString(),
+      }
+    : request)
+  return writeLearningState({ ...state, supportRequests })
 }
 
 export function getLearningSnapshot() {
@@ -141,6 +204,8 @@ export function getLearningSnapshot() {
   const total = lessons.length
   const outputs = lessons.filter((lesson) => ['output', 'capstone'].includes(lesson.type))
   const submittedOutputs = outputs.filter((lesson) => state.submissions[lesson.id]?.text?.trim()).length
+  const pendingReviews = Object.values(state.submissions).filter((submission) => ['submitted_for_review', 'resubmitted'].includes(submission.status)).length
+  const openSupport = state.supportRequests.filter((request) => request.status === 'open_local_preview').length
 
   return {
     state,
@@ -151,6 +216,8 @@ export function getLearningSnapshot() {
     progress: total ? Math.round((completed / total) * 100) : 0,
     requiredOutputs: outputs.length,
     submittedOutputs,
+    pendingReviews,
+    openSupport,
   }
 }
 
