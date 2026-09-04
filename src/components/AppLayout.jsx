@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import BrandMark from './BrandMark'
 
 export default function AppLayout() {
@@ -20,9 +20,6 @@ export default function AppLayout() {
             <a href="/#about" onClick={() => setOpen(false)}>About</a>
             <a href="/#learning" onClick={() => setOpen(false)}>Learning</a>
             <a href="/#difference" onClick={() => setOpen(false)}>Why Cognita</a>
-            <NavLink to="/entrance-exam" onClick={() => setOpen(false)}>Entrance Exam</NavLink>
-            <NavLink to="/learner" onClick={() => setOpen(false)}>Learner</NavLink>
-            <Link className="button button--small" to="/learner" onClick={() => setOpen(false)}>Start your journey</Link>
           </nav>
         </div>
       </header>
@@ -36,8 +33,9 @@ export default function AppLayout() {
           <BrandMark />
           <p>Practical AI education built around readiness, critical thinking, responsible use, and real-world application.</p>
           <div className="footer-links">
-            <Link to="/entrance-exam">Cognita Entrance Exam</Link>
-            <Link to="/learner">Learner profile</Link>
+            <a href="/#about">About Cognita</a>
+            <a href="/#learning">Learning</a>
+            <a href="/#difference">Why Cognita</a>
           </div>
         </div>
         <div className="page-width footer-bottom">© {new Date().getFullYear()} Cognita Institute of Artificial Intelligence.</div>
