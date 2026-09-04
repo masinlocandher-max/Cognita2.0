@@ -1,173 +1,254 @@
-import { useState } from 'react'
-import { ArrowRight, CheckCircle2, Clock3, FileCheck2, Mail, ShieldCheck } from 'lucide-react'
+import { useMemo, useRef, useState } from 'react'
+import { ArrowRight, CircleAlert, FileCheck2, Mail, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { getApplication, submitApplication } from '../lib/admissions'
+import { getAccount, getApplication, getEnrollment, submitApplication } from '../lib/admissions'
+import AdmissionStatusPanel, { resolveAdmissionState } from '../components/AdmissionStatus'
 
-const statusCopy = {
-  under_review: {
-    label: 'APPLICATION UNDER REVIEW',
-    title: 'Your application is with Cognita Admissions.',
-    body: 'Admissions review comes before the entrance exam. If approved, the CEE invitation and access instructions will be sent to the email address on your application.',
-  },
-  approved_for_cee: {
-    label: 'APPROVED FOR CEE',
-    title: 'Your entrance exam invitation has been issued.',
-    body: 'Use only the CEE access link sent through the admissions email. Entrance exam access is invitation-only and is not part of the public website.',
-  },
-  cee_in_progress: {
-    label: 'CEE IN PROGRESS',
-    title: 'Your timed entrance exam session has started.',
-    body: 'Complete the CEE within the issued session. Your timer persists from the moment the assessment begins.',
-  },
-  cee_review_pending: {
-    label: 'RESULT UNDER REVIEW',
-    title: 'Your CEE has been submitted for evaluation.',
-    body: 'Objective results are recorded, but Cognita does not issue a final admissions decision until the complete assessment has been reviewed. Your pass/fail result will be communicated by email.',
-  },
-  cee_passed: {
-    label: 'CEE PASSED',
-    title: 'You are eligible to continue enrollment.',
-    body: 'Your next step is to choose an eligible Cognita program, review enrollment requirements, and proceed to payment.',
-  },
-  cee_failed: {
-    label: 'CEE NOT PASSED',
-    title: 'Your current admissions cycle is complete.',
-    body: 'Admissions will communicate any reapplication, bridge, or readiness guidance through the official result email.',
-  },
-  not_approved: {
-    label: 'APPLICATION DECISION',
-    title: 'Your application was not approved for this intake.',
-    body: 'Please refer to the admissions email for the formal decision and any next-step guidance.',
-  },
-}
+/**
+ * The Cognita application, and the applicant's status once it exists.
+ *
+ * The form asks only what Admissions needs to review eligibility, and the
+ * post-submission view answers the question every applicant actually has:
+ * where am I, and what happens next.
+ */
+
+const FIELDS = [
+  { id: 'fullName', label: 'Full name', type: 'text', autoComplete: 'name', required: true },
+  { id: 'email', label: 'Email address', type: 'email', autoComplete: 'email', required: true, hint: 'Admission instructions and your examination access are issued to this address.' },
+  { id: 'mobile', label: 'Mobile number', type: 'tel', autoComplete: 'tel', required: true },
+  { id: 'location', label: 'City or municipality', type: 'text', autoComplete: 'address-level2', required: true },
+  { id: 'highestEducation', label: 'Highest education completed', type: 'text', required: true, hint: 'For example: Senior High School, Some College, Bachelor’s Degree.' },
+]
 
 export default function Apply() {
   const [application, setApplication] = useState(() => getApplication())
+  const [errors, setErrors] = useState({})
+  const formRef = useRef(null)
   const [form, setForm] = useState({
-    fullName: '',
-    email: '',
-    mobile: '',
-    location: '',
-    highestEducation: '',
-    statement: '',
-    consent: false,
+    fullName: '', email: '', mobile: '', location: '', highestEducation: '', statement: '', consent: false,
   })
+
+  const enrollment = getEnrollment()
+  const account = getAccount()
+  const state = useMemo(() => resolveAdmissionState(application, enrollment, account), [application, enrollment, account])
+
+  const update = (id, value) => {
+    setForm((current) => ({ ...current, [id]: value }))
+    setErrors((current) => ({ ...current, [id]: undefined }))
+  }
 
   const submit = (event) => {
     event.preventDefault()
-    if (!form.consent) return
+    const next = {}
+
+    FIELDS.forEach((field) => {
+      if (!String(form[field.id] || '').trim()) next[field.id] = 'This field is required.'
+    })
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      next.email = 'Enter a valid email address.'
+    }
+    if (!String(form.statement || '').trim()) next.statement = 'Please tell Admissions why you are applying.'
+    if (!form.consent) next.consent = 'Please confirm before submitting your application.'
+
+    setErrors(next)
+    if (Object.keys(next).length) {
+      const first = document.getElementById(Object.keys(next)[0])
+      first?.focus()
+      first?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      return
+    }
+
     setApplication(submitApplication(form))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  /* ------------------------------------------------- Existing application */
   if (application) {
-    const copy = statusCopy[application.status] || statusCopy.under_review
-
     return (
       <section className="admissions-page">
-        <div className="page-width admissions-status-layout">
-          <article className="admissions-status-card">
-            <p className="section-label">{copy.label}</p>
-            <h1>{copy.title}</h1>
-            <p>{copy.body}</p>
-            <div className="application-reference">
-              <span>Application reference</span>
-              <strong>{application.reference}</strong>
-            </div>
-            <div className="application-reference">
-              <span>Admissions email</span>
-              <strong>{application.applicant.email}</strong>
-            </div>
-            {application.status === 'cee_passed' ? (
-              <Link className="button" to="/programs">Choose a program <ArrowRight size={18} /></Link>
-            ) : null}
-          </article>
+        <div className="page-width ci-stack-lg">
+          <header className="ci-admissions-head">
+            <p className="section-label">Cognita Admissions</p>
+            <h1>Your application</h1>
+            <p>
+              This page shows exactly where your application stands and what happens next. Cognita communicates
+              formal decisions through your registered email address in production.
+            </p>
+          </header>
 
-          <aside className="process-card">
-            <h2>Cognita admissions sequence</h2>
-            <ol className="institution-steps">
-              <li className="is-current"><span>01</span><div><strong>Application</strong><small>Submit admissions information.</small></div></li>
-              <li><span>02</span><div><strong>Admissions review</strong><small>Approval is required before CEE access.</small></div></li>
-              <li><span>03</span><div><strong>CEE invitation</strong><small>Issued through the applicant's email.</small></div></li>
-              <li><span>04</span><div><strong>Evaluation & result</strong><small>Pass/fail decision sent by email.</small></div></li>
-              <li><span>05</span><div><strong>Program & enrollment</strong><small>Program selection, payment, account, then app access.</small></div></li>
-            </ol>
-          </aside>
+          <AdmissionStatusPanel application={application} enrollment={enrollment} account={account} />
+
+          {state.key === 'approved_for_cee' ? (
+            <div className="ci-notice ci-notice--info">
+              <Mail size={17} aria-hidden="true" />
+              <div>
+                <strong>Your examination access has been issued.</strong>
+                Entrance examination access is invitation-only and reaches you through your registered email
+                address. Opening the examination URL directly does not grant access.
+              </div>
+            </div>
+          ) : null}
+
+          <div className="ci-grid ci-grid--2">
+            <article className="ci-card">
+              <p className="ci-card-title">Application details</p>
+              <dl className="ci-detail-list">
+                <div><dt>Reference</dt><dd className="ci-tabular">{application.reference}</dd></div>
+                <div><dt>Applicant</dt><dd>{application.applicant.fullName}</dd></div>
+                <div><dt>Email</dt><dd>{application.applicant.email}</dd></div>
+                <div><dt>Location</dt><dd>{application.applicant.location}</dd></div>
+                <div><dt>Submitted</dt><dd>{new Date(application.submittedAt).toLocaleString('en-PH', { dateStyle: 'medium', timeStyle: 'short' })}</dd></div>
+              </dl>
+            </article>
+
+            <article className="ci-card ci-card--soft">
+              <p className="ci-card-title">While you wait</p>
+              <ul className="ci-route-list">
+                <li>Check the email address on your application regularly, including spam or promotions folders.</li>
+                <li>Prepare a suitable device and internet connection for the examination.</li>
+                <li>Review the programs so you know your options if you are admitted.</li>
+              </ul>
+              <div className="ci-row" style={{ marginTop: '18px' }}>
+                <Link className="button button--ghost button--small" to="/programs">Explore Our Programs</Link>
+              </div>
+            </article>
+          </div>
+
+          <div className="ci-notice ci-notice--sim">
+            <ShieldCheck size={17} aria-hidden="true" />
+            <div>
+              <strong>Frontend preview — nothing has been transmitted.</strong>
+              This build stores your application in this browser only. It has not been sent to Cognita, no
+              email has been delivered, and no staff member has reviewed it.
+            </div>
+          </div>
         </div>
       </section>
     )
   }
 
+  /* ------------------------------------------------------------ New application */
   return (
-    <>
-      <section className="admissions-hero">
-        <div className="page-width admissions-hero-grid">
-          <div>
-            <p className="section-label section-label--light">COGNITA ADMISSIONS</p>
-            <h1>Apply first. Assessment comes after review.</h1>
-            <p>Cognita follows an admissions process rather than offering an open public entrance exam. Submit your application, wait for Admissions review, and receive your next step through email.</p>
-          </div>
-          <div className="admissions-principles">
-            <div><FileCheck2 /><strong>Application before assessment</strong></div>
-            <div><Mail /><strong>Email-based admissions notices</strong></div>
-            <div><Clock3 /><strong>Timed CEE after approval</strong></div>
-            <div><ShieldCheck /><strong>Integrity and human review</strong></div>
-          </div>
-        </div>
-      </section>
+    <section className="admissions-page">
+      <div className="page-width ci-apply-layout">
+        <div className="ci-stack-lg">
+          <header className="ci-admissions-head">
+            <p className="section-label">Step 01 of the admission process</p>
+            <h1>Begin your application</h1>
+            <p>
+              Complete the Cognita application form and provide the required applicant information. Your
+              application allows Cognita to review your basic eligibility and determine whether you may proceed
+              to the next stage of admission.
+            </p>
+          </header>
 
-      <section className="section section--white">
-        <div className="page-width application-grid">
-          <form className="application-form" onSubmit={submit}>
-            <div className="section-heading section-heading--wide">
-              <p className="section-label">APPLICATION FORM</p>
-              <h2>Applicant information</h2>
-              <p>Use an email address you can access. Formal admissions notices, CEE invitation, result, and enrollment instructions will use this address once Cognita's production email system is connected.</p>
+          <form className="ci-card candidate-form" onSubmit={submit} ref={formRef} noValidate>
+            {FIELDS.map((field) => (
+              <div className="ci-field" key={field.id}>
+                <label htmlFor={field.id}>{field.label}</label>
+                <input
+                  id={field.id}
+                  className="ci-input"
+                  type={field.type}
+                  value={form[field.id]}
+                  autoComplete={field.autoComplete}
+                  aria-invalid={Boolean(errors[field.id])}
+                  aria-describedby={errors[field.id] ? `${field.id}-error` : field.hint ? `${field.id}-hint` : undefined}
+                  onChange={(event) => update(field.id, event.target.value)}
+                />
+                {errors[field.id] ? (
+                  <p className="ci-field-error" id={`${field.id}-error`}>
+                    <CircleAlert size={14} aria-hidden="true" /> {errors[field.id]}
+                  </p>
+                ) : field.hint ? (
+                  <p className="ci-field-hint" id={`${field.id}-hint`}>{field.hint}</p>
+                ) : null}
+              </div>
+            ))}
+
+            <div className="ci-field">
+              <label htmlFor="statement">Why are you applying to Cognita?</label>
+              <textarea
+                id="statement"
+                className="ci-textarea"
+                value={form.statement}
+                aria-invalid={Boolean(errors.statement)}
+                aria-describedby={errors.statement ? 'statement-error' : 'statement-hint'}
+                onChange={(event) => update('statement', event.target.value)}
+              />
+              {errors.statement ? (
+                <p className="ci-field-error" id="statement-error">
+                  <CircleAlert size={14} aria-hidden="true" /> {errors.statement}
+                </p>
+              ) : (
+                <p className="ci-field-hint" id="statement-hint">
+                  A few sentences about what you want to be able to do. Write it in your own words — this is read
+                  by a person, not scored automatically.
+                </p>
+              )}
             </div>
 
-            <div className="form-grid">
-              <label>
-                Full legal/preferred name
-                <input required autoComplete="name" value={form.fullName} onChange={(event) => setForm({ ...form, fullName: event.target.value })} />
-              </label>
-              <label>
-                Email address
-                <input required type="email" autoComplete="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
-              </label>
-              <label>
-                Mobile number
-                <input required autoComplete="tel" value={form.mobile} onChange={(event) => setForm({ ...form, mobile: event.target.value })} />
-              </label>
-              <label>
-                City / Province
-                <input required autoComplete="address-level2" value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} />
-              </label>
-              <label className="form-span-2">
-                Highest educational attainment
-                <input required value={form.highestEducation} onChange={(event) => setForm({ ...form, highestEducation: event.target.value })} />
-              </label>
-              <label className="form-span-2">
-                Why do you want to study with Cognita?
-                <textarea required rows="7" value={form.statement} onChange={(event) => setForm({ ...form, statement: event.target.value })} />
-              </label>
-            </div>
-
-            <label className="consent-row">
-              <input type="checkbox" checked={form.consent} onChange={(event) => setForm({ ...form, consent: event.target.checked })} required />
-              <span>I certify that the information in this application is accurate and I understand that submitting an application does not automatically grant CEE or student-app access.</span>
+            <label className="ci-consent" htmlFor="consent">
+              <input
+                id="consent"
+                type="checkbox"
+                checked={form.consent}
+                aria-invalid={Boolean(errors.consent)}
+                aria-describedby={errors.consent ? 'consent-error' : undefined}
+                onChange={(event) => update('consent', event.target.checked)}
+              />
+              <span>
+                <strong>I confirm my information is accurate.</strong>
+                I understand that Cognita reviews applications before issuing entrance examination access, and
+                that admission does not automatically guarantee completion or certification.
+              </span>
             </label>
+            {errors.consent ? (
+              <p className="ci-field-error" id="consent-error">
+                <CircleAlert size={14} aria-hidden="true" /> {errors.consent}
+              </p>
+            ) : null}
 
-            <button className="button" type="submit">Submit application <ArrowRight size={18} /></button>
+            <button className="button button--block" type="submit">
+              Submit application <ArrowRight size={17} />
+            </button>
           </form>
-
-          <aside className="admissions-side-note">
-            <CheckCircle2 />
-            <h3>What happens after submission?</h3>
-            <p>Admissions reviews the application. Approved applicants receive a CEE invitation by email. The CEE result is reviewed before a pass/fail decision is issued. Only successful applicants continue to program selection and enrollment.</p>
-            <p className="mvp-note">Frontend milestone: this form currently stores its record only in this browser. It does not yet transmit an application or send email.</p>
-          </aside>
         </div>
-      </section>
-    </>
+
+        <aside className="ci-apply-aside">
+          <article className="ci-card">
+            <p className="ci-card-title">What happens after you submit</p>
+            <ol className="ci-mini-steps">
+              <li><span>02</span><div><strong>Application review</strong><small>A person reviews your application before any examination access is issued.</small></div></li>
+              <li><span>03</span><div><strong>CEE access by email</strong><small>Approved applicants receive invitation-only examination access.</small></div></li>
+              <li><span>04</span><div><strong>Entrance examination</strong><small>One timed session, completed independently.</small></div></li>
+              <li><span>05</span><div><strong>Result and pathway</strong><small>Released after evaluator review of your applied responses.</small></div></li>
+            </ol>
+            <Link className="text-link" to="/#admission" style={{ marginTop: '8px' }}>
+              View the full admission process <ArrowRight size={15} />
+            </Link>
+          </article>
+
+          <article className="ci-card ci-card--soft">
+            <p className="ci-card-title">Before you apply</p>
+            <ul className="ci-route-list">
+              <li>Provide complete and accurate information.</li>
+              <li>Use an email address you check regularly.</li>
+              <li>Have a suitable device and internet connection.</li>
+              <li>Be prepared to follow Cognita’s academic-integrity policies.</li>
+            </ul>
+          </article>
+
+          <div className="ci-notice ci-notice--sim">
+            <FileCheck2 size={17} aria-hidden="true" />
+            <div>
+              <strong>Frontend preview</strong>
+              Your application is stored in this browser only. It is not transmitted to Cognita and no email is
+              delivered.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
   )
 }

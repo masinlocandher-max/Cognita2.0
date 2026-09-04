@@ -16,6 +16,7 @@ import './learner.css'
 import './admissions.css'
 import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
+import './institutional.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

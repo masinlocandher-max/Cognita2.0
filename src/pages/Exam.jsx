@@ -253,7 +253,7 @@ export default function Exam() {
       <section className="admissions-page">
         <div className="page-width gate-card">
           <LockKeyhole size={36} />
-          <p className="section-label">CEE ACCESS REQUIRED</p>
+          <p className="section-label section-label--plain">Examination access required</p>
           <h1>This assessment requires an approved admissions invitation.</h1>
           <p>Register first and wait for Cognita Admissions to issue your entrance-exam access through email.</p>
           <Link className="button" to="/apply">Return to Admissions</Link>
@@ -267,9 +267,21 @@ export default function Exam() {
       <section className="exam-workspace exam-workspace--setup">
         <div className="exam-container exam-setup-card">
           <div>
-            <p className="section-label">CEE v1.0 · APPROVED CANDIDATE</p>
-            <h1>Confirm the assessment rules before starting.</h1>
-            <p className="exam-intro">The 70-minute timer begins only when you press Start exam. Once started, refreshing or leaving the page does not reset the timer.</p>
+            <p className="section-label">CEE v1.0 · Approved applicant</p>
+            <h1>Before you begin</h1>
+            <p className="ci-purpose-lead" style={{ marginTop: '14px' }}>
+              The CEE is not designed to catch you out. It is designed to understand your current readiness
+              accurately.
+            </p>
+            <p className="exam-intro">
+              Answering independently helps Cognita recommend the learning pathway that can support you best.
+              Needing foundational support is an ordinary starting point, not a failure — an artificially high
+              result can place you above your actual readiness and make study harder.
+            </p>
+            <p className="exam-intro">
+              The 70-minute session begins only when you press start. Once started, refreshing or leaving the
+              page does not reset the timer.
+            </p>
             <div className="exam-profile-confirmation">
               <UserRound size={20} />
               <div><strong>{application.applicant.fullName}</strong><span>{application.applicant.email}</span></div>
@@ -297,7 +309,7 @@ export default function Exam() {
         <div className="exam-container result-layout">
           <div className="result-hero">
             <div className="result-check"><Check size={32} /></div>
-            <p className="section-label">CEE SUBMITTED</p>
+            <p className="section-label section-label--plain">Examination submitted</p>
             <h1>Your assessment is now pending evaluator review.</h1>
             <p>Cognita does not issue the final result on this screen. Your complete assessment, including the two applied responses and any integrity events, must be reviewed before the official pass/fail decision is released through email.</p>
           </div>
@@ -336,13 +348,28 @@ export default function Exam() {
             <div className="exam-progress"><span style={{ width: `${progress}%` }} /></div>
             <span>{progress}% complete</span>
           </div>
-          <div className={`exam-timer ${remainingSeconds <= 600 ? 'is-low' : ''}`}><Clock3 size={17} /> {formatTime(remainingSeconds)}</div>
+          <div
+            className={`exam-timer ${remainingSeconds <= 300 ? 'is-critical' : remainingSeconds <= 600 ? 'is-low' : ''}`}
+            role="timer"
+            aria-live="off"
+          >
+            <Clock3 size={17} aria-hidden="true" />
+            <span className="ci-visually-hidden">Time remaining in this session: </span>
+            {formatTime(remainingSeconds)}
+          </div>
         </div>
       </div>
 
       <div className="exam-container exam-body">
         <aside className="exam-sidebar">
-          <div className="integrity-note"><ShieldCheck size={18} /><p>Integrity log active · {attempt.integrityEvents?.length || 0} event(s)</p></div>
+          <div className="integrity-note">
+            <ShieldCheck size={18} aria-hidden="true" />
+            <p>
+              Integrity safeguards active. They keep assessment conditions fair and protect your placement
+              from being set above your actual readiness.
+              {attempt.integrityEvents?.length ? ` ${attempt.integrityEvents.length} event(s) recorded for evaluator context.` : ''}
+            </p>
+          </div>
           <p>Sections</p>
           {stages.map((stage, index) => (
             <button
@@ -359,7 +386,7 @@ export default function Exam() {
 
         <div className="exam-content">
           <div className="exam-section-heading">
-            <p className="section-label">SECTION {stageIndex + 1} OF {stages.length}</p>
+            <p className="section-label">Section {stageIndex + 1} of {stages.length}</p>
             <h1>{currentStage.title}</h1>
             <p>{currentStage.subtitle}</p>
           </div>
