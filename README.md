@@ -26,6 +26,20 @@ Cognita 2.0 is intentionally frontend-only at this stage.
 
 There is no backend, Supabase project, server authentication, evaluator portal, payment system, or cloud learner record connected to this repository. The interface must not imply that browser-only data has been transmitted to Cognita.
 
+This frontend-only operating model remains in effect through the build and QA phase. Paid backend infrastructure should only be introduced when Cognita is genuinely ready to onboard real students.
+
+## Public and student architecture
+
+The public institutional website and the student/admissions experience are intentionally separate surfaces.
+
+- `/` is the public Cognita website.
+- `/learner`, `/entrance-exam`, and `/entrance-exam/start` remain functional internal frontend routes for development, QA, and future student-launch preparation.
+- Internal learner and CEE routes are not linked from the public global navigation, footer, or homepage calls to action during the current phase.
+- The public site may explain readiness, placement, AI-00, and Cognita's learning model without directly exposing the operational learner workspace or launching the CEE.
+- Do not publicly promote or expose the Cognita Entrance Exam from the institutional homepage unless a later product decision explicitly changes this rule.
+
+This separation is a product boundary, not a security boundary. Because there is no authentication backend yet, direct URLs are not access-controlled and must not be treated as secure student-only infrastructure.
+
 ## Phase status
 
 ### Phase 1 — Public website
@@ -38,9 +52,9 @@ Complete for the current frontend milestone.
 - Why Cognita is different
 - AI-00 positioning
 - Student journey
-- Cognita Entrance Exam positioning
+- Readiness and placement positioning
 - Responsive desktop/mobile design
-- Learner journey entry in the global navigation
+- Public navigation separated from internal student/admissions routes
 
 ### Phase 2 — Learner identity
 
@@ -78,10 +92,12 @@ Complete for the frontend-only milestone.
 
 ## Routes
 
-- `/` — Cognita Institute public website
-- `/learner` — device-local learner profile and CEE history
-- `/entrance-exam` — Entrance Exam overview and readiness journey
-- `/entrance-exam/start` — CEE v1.0 exam experience
+- `/` — public Cognita Institute website
+- `/learner` — internal device-local learner profile and CEE history
+- `/entrance-exam` — internal Entrance Exam overview and readiness journey
+- `/entrance-exam/start` — internal CEE v1.0 exam experience
+
+The three student/admissions routes remain reachable by direct URL for development and QA but are intentionally absent from the public institutional navigation during this phase.
 
 ## Assessment model
 
@@ -120,6 +136,7 @@ Because this milestone is frontend-only:
 - exam submission does not reach Cognita staff
 - applied responses are not yet reviewed
 - no final placement is issued
+- direct student/admissions URLs are not access-controlled
 
 These are intentional product boundaries, not hidden production capabilities.
 
