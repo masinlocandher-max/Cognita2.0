@@ -7,9 +7,11 @@ Before changing programs, website copy, admissions language, CEE presentation, l
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
 - `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md`
 - `docs/V1-SOLO-OPERATOR-MODEL.md`
+- `docs/STUDENT-APP-FRONTEND.md`
 - `docs/WEBSITE-CONTENT.md`
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md`
 - `src/data/programs.js`
+- `src/data/learning.js`
 
 These are the active Cognita 2.0 sources. Older Cognita Academy documents, old repositories, proposals, pricing sheets, and experiments may be used only as reference and must not silently override the current 2.0 model.
 
@@ -18,6 +20,8 @@ These are the active Cognita 2.0 sources. Older Cognita Academy documents, old r
 `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` contains the current LOCKED architecture.
 
 `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` is the full academic/operational handbook draft. It may guide design and policy development, but any item marked PROVISIONAL or NOT YET APPROVED must not silently change production behavior, public claims, pricing, credentials, CEE scoring, attendance, refunds, admissions eligibility, or legal positioning.
+
+`docs/STUDENT-APP-FRONTEND.md` is the active implementation map for the frontend learner workspace and trainer-review loop. It does not override locked academic policy.
 
 Policy states:
 
@@ -64,9 +68,35 @@ Core V1 principle: `One operator. Separate functions. Recorded decisions. No inv
 
 `/operations/admissions` is the detailed local admissions/evaluator/payment simulator.
 
-Neither operations route is a production staff portal or security boundary during the frontend-only phase. Do not expose these routes in public navigation.
+`/operations/learning` is the detailed local trainer/facilitator simulator for submitted learner outputs, PASS/REVISE decisions, capstone review, and student-support responses.
+
+These operations routes are not production staff portals or security boundaries during the frontend-only phase. Do not expose them in public navigation.
 
 Do not create shortcuts that bypass the canonical learner lifecycle because one person controls multiple roles. Before material scale, formal appeals, serious integrity cases, credential disputes/revocation, and significant complaints should gain an independent second-review mechanism.
+
+## Student learning frontend
+
+`/app` is the enrolled-student learning environment and must remain gated behind completed enrollment and account activation.
+
+The current frontend workspace includes:
+
+- Overview
+- Learn
+- Assessments
+- Feedback
+- Capstone
+- Portfolio
+- Credential
+- Support
+- Profile / learning settings
+
+The app persists device-local learning state for simulation. It supports activity completion, applied submissions, trainer PASS/REVISE feedback, capstone drafting and review state, portfolio evidence, support requests and local responses, learner profile information, and learning preferences.
+
+Do not reduce `/app` back to a placeholder dashboard without explicit product approval.
+
+Do not equate clicking an activity-completion control with academic competence. Credential readiness requires completed learning activities, PASS on all required outputs, PASS on the capstone, and later final institutional verification before any real credential is issued.
+
+`REVISE` is a feedback state requiring improvement and resubmission, not a permanent failure state.
 
 ## Brand is mandatory
 
@@ -95,6 +125,8 @@ Do not bypass or reorder this sequence:
 9. Payment comes after program selection.
 10. Student account activation comes only after payment confirmation.
 11. Learning happens inside `/app`, separate from the public institutional website.
+12. Required learner outputs receive human PASS/REVISE review before they count toward credential readiness.
+13. The capstone requires human review and PASS before credential readiness.
 
 The former standalone `/learner` route must not be restored as a pre-enrollment student account surface.
 
@@ -137,6 +169,7 @@ Invitation/enrollment surfaces:
 Internal frontend operations surfaces:
 - `/operations`
 - `/operations/admissions`
+- `/operations/learning`
 
 Operations routes are development-only local simulators, not production staff portals or security boundaries.
 
@@ -146,12 +179,12 @@ Do not publicly expose the raw CEE without an approved invitation. Do not expose
 
 Cognita 2.0 remains frontend-only until the product, curriculum, operations, policies, and compliance path are genuinely ready to onboard real students. Do not add paid backend infrastructure, Supabase, server authentication, transactional email, payment processing, evaluator backend, or cloud learner records unless a later task explicitly moves the product into launch readiness.
 
-Browser-local records and email logs are simulations only. Never imply they were actually transmitted, delivered, reviewed, paid, or authenticated.
+Browser-local records, email logs, learner submissions, trainer feedback, support requests, and review decisions are simulations only. Never imply they were actually transmitted, delivered, reviewed on a server, paid, authenticated, or preserved as production academic records.
 
 Do not collect or store passwords in localStorage.
 
 ## Functional protection
 
-Brand/UI work must not casually alter admissions gates, CEE scoring, assessment content, timer behavior, integrity logging, evaluator-review requirement, local persistence, enrollment sequence, app-access gates, or the solo-operator separation-of-functions rule.
+Brand/UI work must not casually alter admissions gates, CEE scoring, assessment content, timer behavior, integrity logging, evaluator-review requirement, local persistence, enrollment sequence, app-access gates, the solo-operator separation-of-functions rule, PASS/REVISE review behavior, capstone review, or credential-readiness rules.
 
 The application entry point must continue loading the canonical brand token layer and `src/brand-runtime.css`.
