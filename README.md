@@ -6,8 +6,11 @@ The Cognita Institute of Artificial Intelligence public website, admissions flow
 
 For institutional positioning, mission and vision, admissions policy, AI-00 placement, the 10-week guided program, the self-paced program, future program layers, integrity standards, founder positioning, and unresolved academic-policy items, use:
 
-- `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` — canonical institutional and academic architecture
+- `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` — canonical LOCKED institutional and academic architecture
+- `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` — full Day-1 academic/operational handbook draft, including legal positioning, eligibility, CEE pilot bands, 10-week curriculum, assessment/mastery, attendance, credentials, instructors, appeals, records, SLAs, roadmap, and KPIs. **PROVISIONAL rules do not override LOCKED architecture.**
+- `docs/V1-SOLO-OPERATOR-MODEL.md` — V1 one-founder/operator execution model and separation of functions
 - `docs/WEBSITE-CONTENT.md` — approved working website copy including About, Mission, Vision, Founder, admission-process content, and program content
+- `docs/CEE-PURPOSE-AND-INTEGRITY.md` — canonical CEE purpose, honesty, placement, and integrity rationale
 - `src/data/programs.js` — machine-readable active program catalog
 
 Active program model:
@@ -15,11 +18,22 @@ Active program model:
 - **AI-00 Foundation Bridge** — assigned through readiness evidence; not a normal commercial program choice
 - **Cognita Professional AI Program** — 10-week guided flagship, cohort-based and mentor-supported
 - **Cognita Skills Lab: Applied AI Foundations and Professional Practice** — self-paced, 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense
-- Future short courses, micro-credentials, institutional training, pricing, credentials, and academic thresholds remain subject to formal approval
+- Future short courses, micro-credentials, institutional training, pricing, credentials, and final academic thresholds remain subject to formal approval
 
 Core principle: **Guided when you need structure. Flexible when you need freedom. The standard remains the same.**
 
 Older Cognita/Cognita Academy documents and repositories are reference material only when they conflict with the current Cognita 2.0 source of truth.
+
+## Policy status rule
+
+Cognita uses four policy states:
+
+- **LOCKED** — approved for implementation/use
+- **PROVISIONAL** — working rule pending approval, pilot evidence, legal/commercial review, or launch readiness
+- **NOT YET APPROVED** — unresolved and must not be invented
+- **SUPERSEDED** — replaced by a later approved version
+
+The new Academic & Institutional v1.0 handbook is deliberately **PROVISIONAL**. It may guide curriculum/policy development, but it must not silently change CEE scoring, tuition, refund rules, credentials, attendance, eligibility, or other LOCKED behavior until explicitly approved.
 
 ## Brand system — mandatory
 
@@ -164,8 +178,9 @@ Before accepting real students, Cognita will require at minimum:
 - cloud student records and cross-device progress
 - student privacy, consent, retention, and institutional policies
 - complete curriculum and learning delivery inside the student app
+- resolved legal/regulatory classification, including whether Day-1 offerings require TESDA UTPRAS registration
 
-Those systems should be introduced only when the frontend product, curriculum, operations, policies, and student journey are ready for real intake.
+Those systems should be introduced only when the frontend product, curriculum, operations, policies, compliance path, and student journey are ready for real intake.
 
 ## Development
 
