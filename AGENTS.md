@@ -1,5 +1,26 @@
 # Cognita 2.0 repository instructions
 
+## Canonical institutional and academic sources
+
+Before changing programs, website copy, admissions language, learning pathways, credentials, or learner experience, read:
+
+- `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`
+- `docs/WEBSITE-CONTENT.md`
+- `src/data/programs.js`
+
+These are the active Cognita 2.0 sources. Older Cognita Academy documents, old repositories, proposals, pricing sheets, and experiments may be used only as reference and must not silently override the current 2.0 model.
+
+Core program architecture:
+
+- Admissions + CEE first.
+- AI-00 is a foundation bridge assigned through readiness evidence; it is not a normal commercial program card.
+- `Cognita Professional AI Program` is the flagship guided route: 10 weeks, cohort-based, mentor-supported, with up to 4 weeks of foundation adjusted by readiness and a 6-week specialization.
+- `Cognita Skills Lab: Applied AI Foundations and Professional Practice` is the self-paced route: 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense.
+- Guided and self-paced delivery differ in structure, not in the expectation of demonstrated competency.
+- Future short courses, micro-credentials, institutional training, pricing, credential names, and academic thresholds must not be invented before approval.
+
+Institutional principle: `Guided when you need structure. Flexible when you need freedom. The standard remains the same.`
+
 ## Brand is mandatory
 
 Every website, admissions surface, student surface, prototype, redesign, generated component, and deployment created from this repository must use the Cognita 2.0 brand system already committed here.
@@ -22,12 +43,23 @@ Do not bypass or reorder this sequence:
 4. CEE uses one persistent 70-minute session, integrity acknowledgement, integrity-event logging, and timeout submission.
 5. Objective scoring is not the final admission decision. Applied responses require evaluator review.
 6. Final pass/fail is released after review and communicated through email in production.
-7. Only passing applicants may choose a program.
-8. Payment comes after program selection.
-9. Student account activation comes only after payment confirmation.
-10. Learning happens inside `/app`, separate from the public institutional website.
+7. Passing applicants receive readiness/pathway guidance where applicable.
+8. Only passing applicants may choose an eligible program.
+9. Payment comes after program selection.
+10. Student account activation comes only after payment confirmation.
+11. Learning happens inside `/app`, separate from the public institutional website.
 
 The former standalone `/learner` route must not be restored as a pre-enrollment student account surface.
+
+## CEE placement policy
+
+The current objective scoring logic may produce readiness indications. The learner-facing Cognita 2.0 pathway model is:
+
+- Foundation Required
+- Foundation Accelerated
+- Direct Track Entry
+
+Exact thresholds are not yet approved. Do not silently change scoring, thresholds, or evaluator policy until a later task formally approves them.
 
 ## Surface boundary
 
