@@ -9,11 +9,14 @@ import {
   getEmailLog,
   readAdmissionsState,
 } from '../lib/admissions'
+import { clearCeeEvaluation, saveCeeEvaluation } from '../lib/evaluation'
 import { getAttempt } from '../lib/localLearner'
 
 export default function AdmissionsReview() {
   const [state, setState] = useState(() => readAdmissionsState())
   const [note, setNote] = useState('')
+  const [promptScore, setPromptScore] = useState('')
+  const [judgmentScore, setJudgmentScore] = useState('')
 
   const refresh = () => setState(readAdmissionsState())
   const application = state.application
@@ -33,8 +36,20 @@ export default function AdmissionsReview() {
   }
 
   const decide = (decision) => {
+    if (!attempt || promptScore === '' || judgmentScore === '' || !note.trim()) return
+
+    saveCeeEvaluation({
+      attemptId: attempt.id,
+      promptTask: promptScore,
+      judgmentTask: judgmentScore,
+      objectivePoints: attempt.objectivePoints || 0,
+      decision,
+      evaluatorNote: note,
+    })
     decideCee(decision, note)
     setNote('')
+    setPromptScore('')
+    setJudgmentScore('')
     refresh()
   }
 
@@ -45,6 +60,7 @@ export default function AdmissionsReview() {
 
   const reset = () => {
     clearAdmissionsPreview()
+    clearCeeEvaluation()
     window.location.reload()
   }
 
@@ -62,6 +78,11 @@ export default function AdmissionsReview() {
   }
 
   const invitePath = application.ceeInvite ? `/entrance-exam?invite=${application.ceeInvite.code}` : null
+  const promptNumeric = Number(promptScore)
+  const judgmentNumeric = Number(judgmentScore)
+  const scoringReady = promptScore !== '' && judgmentScore !== '' && note.trim() && promptNumeric >= 0 && promptNumeric <= 15 && judgmentNumeric >= 0 && judgmentNumeric <= 15
+  const appliedTotal = (Number.isFinite(promptNumeric) ? promptNumeric : 0) + (Number.isFinite(judgmentNumeric) ? judgmentNumeric : 0)
+  const totalScore = (attempt?.objectivePoints || 0) + appliedTotal
 
   return (
     <section className="ops-page">
@@ -70,7 +91,7 @@ export default function AdmissionsReview() {
           <div>
             <p className="section-label">INTERNAL FRONTEND PREVIEW</p>
             <h1>Admissions Operations</h1>
-            <p>Local-only simulation of review, result release, payment confirmation, and email events.</p>
+            <p>Local-only simulation of review, evaluation, result release, payment confirmation, and email events.</p>
           </div>
           <button className="button button--ghost" type="button" onClick={reset}><RotateCcw size={17} /> Reset preview</button>
         </header>
@@ -113,7 +134,7 @@ export default function AdmissionsReview() {
         {attempt?.completed && application.status === 'cee_review_pending' ? (
           <article className="ops-card">
             <div className="ops-card-heading">
-              <div><span>CEE EVALUATION</span><h2>Release final decision</h2></div>
+              <div><span>CEE EVALUATION</span><h2>Score applied work and release final decision</h2></div>
               <strong>{attempt.objectivePoints ?? 0}/70 objective</strong>
             </div>
             <div className="ops-data-grid">
@@ -125,11 +146,28 @@ export default function AdmissionsReview() {
                 <div key={id}><span>{id}</span><p>{response || 'No response submitted.'}</p></div>
               ))}
             </div>
+            <div className="ops-score-grid">
+              <label>
+                Applied Communication Task
+                <span>0–15 points</span>
+                <input type="number" min="0" max="15" step="1" value={promptScore} onChange={(event) => setPromptScore(event.target.value)} />
+              </label>
+              <label>
+                AI Response Evaluation
+                <span>0–15 points</span>
+                <input type="number" min="0" max="15" step="1" value={judgmentScore} onChange={(event) => setJudgmentScore(event.target.value)} />
+              </label>
+              <div className="ops-score-total">
+                <span>Working total</span>
+                <strong>{totalScore}/100</strong>
+                <small>Final pass/fail remains an evaluator decision until Cognita formally approves a threshold policy.</small>
+              </div>
+            </div>
             <div className="ops-actions">
-              <textarea rows="3" placeholder="Evaluator note / rationale" value={note} onChange={(event) => setNote(event.target.value)} />
+              <textarea rows="3" placeholder="Required evaluator rationale" value={note} onChange={(event) => setNote(event.target.value)} />
               <div>
-                <button className="button" type="button" onClick={() => decide('passed')}><CheckCircle2 size={18} /> Mark passed</button>
-                <button className="button button--ghost" type="button" onClick={() => decide('failed')}><XCircle size={18} /> Mark not passed</button>
+                <button className="button" type="button" disabled={!scoringReady} onClick={() => decide('passed')}><CheckCircle2 size={18} /> Mark passed</button>
+                <button className="button button--ghost" type="button" disabled={!scoringReady} onClick={() => decide('failed')}><XCircle size={18} /> Mark not passed</button>
               </div>
             </div>
           </article>
