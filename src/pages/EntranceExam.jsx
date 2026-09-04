@@ -1,20 +1,41 @@
-import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, Laptop, SearchCheck, ShieldCheck } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { ArrowRight, BrainCircuit, Clock3, FileCheck2, Languages, LockKeyhole, SearchCheck, ShieldCheck } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { getApplication, verifyCeeInvite } from '../lib/admissions'
 
 export default function EntranceExam() {
+  const [params] = useSearchParams()
+  const invite = params.get('invite') || ''
+  const application = getApplication()
+  const allowed = verifyCeeInvite(invite)
+
+  if (!allowed) {
+    return (
+      <section className="admissions-page">
+        <div className="page-width gate-card">
+          <LockKeyhole size={36} />
+          <p className="section-label">INVITATION-ONLY ASSESSMENT</p>
+          <h1>The Cognita Entrance Exam is not publicly accessible.</h1>
+          <p>Applicants must register first. Admissions reviews the application, and approved applicants receive a CEE access link through email. Opening the exam URL directly does not grant access.</p>
+          {application ? <p className="mvp-note">Current local application status: {application.status.replaceAll('_', ' ')}.</p> : null}
+          <Link className="button" to="/apply">Go to Cognita Admissions <ArrowRight size={18} /></Link>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <>
       <section className="exam-hero">
         <div className="page-width exam-hero-grid">
           <div>
             <p className="section-label section-label--light">COGNITA ENTRANCE EXAM</p>
-            <h1>Find the right place to begin.</h1>
-            <p>The Cognita Entrance Exam is a readiness and placement assessment. It helps identify what a learner already knows, where support is needed, and whether the learner is ready to progress beyond the foundation level.</p>
+            <h1>Your approved assessment session.</h1>
+            <p>{application.applicant.fullName}, your application has been approved for the Cognita Entrance Exam. This access is tied to the admissions invitation issued for {application.applicant.email}.</p>
             <div className="exam-meta-row">
-              <span><Clock3 size={18} /> 70 minutes recommended</span>
+              <span><Clock3 size={18} /> 70-minute timed session</span>
               <span><FileCheck2 size={18} /> 45 objective items + 2 applied tasks</span>
             </div>
-            <Link className="button" to="/entrance-exam/start">Begin the exam <ArrowRight size={18} /></Link>
+            <Link className="button" to={`/entrance-exam/start?invite=${invite}`}>Continue to exam rules <ArrowRight size={18} /></Link>
           </div>
           <div className="exam-score-card">
             <span>CEE v1.0</span>
@@ -35,7 +56,6 @@ export default function EntranceExam() {
           <div className="section-heading section-heading--wide">
             <p className="section-label">WHAT IT MEASURES</p>
             <h2>Readiness is broader than memorizing AI terms.</h2>
-            <p>The exam checks the abilities that affect whether a learner can use AI clearly, safely, and effectively.</p>
           </div>
           <div className="measure-grid">
             <article><Languages /><h3>Functional communication</h3><p>Comprehension, grammar, clarity, and the ability to express intent.</p></article>
@@ -47,44 +67,21 @@ export default function EntranceExam() {
         </div>
       </section>
 
-      <section className="section section--soft">
-        <div className="page-width split-layout">
-          <div>
-            <p className="section-label">WHY IT MATTERS</p>
-            <h2>The exam is a placement tool, not an intelligence test.</h2>
-          </div>
-          <div className="prose-large">
-            <p>Some learners already have strong AI foundations but need communication reinforcement. Others communicate well but need a stronger understanding of AI. Some are ready to move forward immediately.</p>
-            <p>Cognita uses the exam to avoid making those learners follow the exact same starting path.</p>
-          </div>
-        </div>
-      </section>
-
       <section className="section section--white">
         <div className="page-width readiness-panel">
           <div>
-            <p className="section-label">BEFORE YOU BEGIN</p>
-            <h2>Complete the exam independently.</h2>
+            <p className="section-label">INTEGRITY RULES</p>
+            <h2>Complete the CEE independently.</h2>
           </div>
           <ul className="clean-list">
-            <li>No generative AI tools during the exam.</li>
-            <li>No web browsing for the objective sections.</li>
-            <li>Answer based on your own understanding and judgment.</li>
-            <li>Applied responses should be written in your own words.</li>
-            <li>Your result is used to identify the most appropriate starting point.</li>
+            <li>The 70-minute timer begins when you start and does not reset on refresh.</li>
+            <li>No generative AI tools during the assessment.</li>
+            <li>No web browsing for objective sections.</li>
+            <li>Applied responses must be your own work.</li>
+            <li>Leaving the exam window may be logged as an integrity event.</li>
+            <li>When time expires, the current attempt is submitted for review.</li>
           </ul>
-          <Link className="button" to="/entrance-exam/start">Start CEE v1.0 <ArrowRight size={18} /></Link>
-        </div>
-      </section>
-
-      <section className="section section--soft section--local-storage">
-        <div className="page-width local-storage-band">
-          <Laptop size={26} />
-          <div>
-            <h2>Frontend-only for this milestone.</h2>
-            <p>Your learner profile, progress, answers, and submitted objective result are stored on this browser only. They are not sent to Cognita staff and do not sync across devices.</p>
-          </div>
-          <Link className="text-link text-link--dark" to="/learner">View learner profile</Link>
+          <Link className="button" to={`/entrance-exam/start?invite=${invite}`}>Proceed to CEE v1.0 <ArrowRight size={18} /></Link>
         </div>
       </section>
     </>
