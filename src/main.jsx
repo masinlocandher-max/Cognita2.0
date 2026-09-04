@@ -18,6 +18,7 @@ import './learner.css'
 import './admissions.css'
 import './founder-console.css'
 import './student-app.css'
+import './learning-review.css'
 import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
 
