@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap');
+
+/*
+ * Cognita 2.0 runtime brand layer.
+ * This file intentionally loads after the legacy page styles so the approved
+ * light institutional identity is the visual source of truth without changing
+ * assessment, learner-data, progression, or routing logic.
+ */
+
+:root {
+  --ink: var(--cognita-ink);
+  --ink-2: var(--cognita-navy);
+  --navy: var(--cognita-navy);
+  --blue: var(--cognita-indigo);
+  --violet: var(--cognita-violet);
+  --cyan: var(--cognita-cyan);
+  --cyan-bright: var(--cognita-cyan);
+  --soft: var(--cognita-soft-gray);
+  --line: var(--cognita-border);
+  --muted: var(--cognita-muted);
+  --white: var(--cognita-white);
+  --shadow: var(--cognita-shadow-sm);
+}
+
+html { background: var(--cognita-white); }
+body {
+  background: var(--cognita-white);
+  color: var(--cognita-ink);
+  font-family: var(--cognita-font-body);
+}
+
+h1, h2, h3, strong, .brand-wording,
+.question-card legend,
+.attempt-index {
+  font-family: var(--cognita-font-display);
+}
+
+::selection {
+  background: rgba(79, 70, 229, .16);
+  color: var(--cognita-navy);
+}
+
+.site-header {
+  background: rgba(255, 255, 255, .92);
+  color: var(--cognita-navy);
+  border-bottom: 1px solid rgba(220, 228, 239, .9);
+  box-shadow: 0 8px 30px rgba(7, 27, 61, .04);
+}
+
+.header-inner { height: 78px; }
+.brand-link { display: inline-flex; align-items: center; }
+.brand-lockup { color: var(--cognita-navy); gap: 0; }
+.brand-lockup img,
+.brand-lockup .brand-logo-image { display: block; height: auto; width: 250px; max-width: min(42vw, 250px); }
+.brand-lockup--compact img,
+.brand-lockup--compact .brand-logo-image { width: 205px; max-width: min(44vw, 205px); }
+.brand-mark { filter: none; }
+
+.site-nav { color: var(--cognita-muted); }
+.site-nav > a:not(.button):hover,
+.site-nav > a:not(.button).active { color: var(--cognita-navy); }
+.mobile-menu { color: var(--cognita-navy); }
+
+.button,
+.cognita-button-primary {
+  background: var(--cognita-navy);
+  color: var(--cognita-white);
+  border-radius: var(--cognita-radius-pill);
+  box-shadow: 0 10px 28px rgba(7, 27, 61, .14);
+}
+.button:hover { box-shadow: 0 14px 32px rgba(7, 27, 61, .18); }
+.button--light,
+.button--ghost {
+  background: var(--cognita-white);
+  color: var(--cognita-navy);
+  border: 1px solid var(--cognita-border);
+  box-shadow: none;
+}
+.text-link,
+.text-link--dark { color: var(--cognita-indigo); }
+
+.hero--dark {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(168, 85, 247, .11), transparent 30%),
+    radial-gradient(circle at 70% 66%, rgba(6, 182, 212, .09), transparent 28%),
+    linear-gradient(155deg, #ffffff 0%, #f8f9ff 52%, #f3fbfd 100%);
+  color: var(--cognita-navy);
+}
+.hero::after,
+.exam-hero::after {
+  background: linear-gradient(90deg, transparent, var(--cognita-indigo), var(--cognita-cyan), transparent);
+  opacity: .34;
+}
+.hero-lead { color: var(--cognita-muted); }
+.hero-orb--one { border-color: rgba(79, 70, 229, .13); box-shadow: 0 0 120px rgba(79, 70, 229, .05) inset; }
+.hero-orb--two { border-color: rgba(6, 182, 212, .12); }
+.signal-core {
+  background: var(--cognita-white);
+  box-shadow: 0 0 0 10px rgba(255,255,255,.72), 0 0 48px rgba(79,70,229,.22), 0 0 90px rgba(6,182,212,.16);
+}
+.orbit { border-color: rgba(7, 27, 61, .13); box-shadow: none; }
+.orbit--1 { border-color: rgba(6, 182, 212, .45); }
+.orbit--2 { border-color: rgba(168, 85, 247, .42); }
+.orbit--3 { border-color: rgba(79, 70, 229, .22); }
+.signal-label { color: #79869e; }
+
+.section--soft,
+.exam-workspace,
+.learner-page { background: var(--cognita-soft-gray); }
+.section--ink {
+  background: linear-gradient(180deg, #f7f9fc, #f1f5fa);
+  color: var(--cognita-ink);
+  border-block: 1px solid var(--cognita-border);
+}
+.section--ink p,
+.section--ink .exam-reasons div { color: var(--cognita-muted); }
+.section-label,
+.section-label--light { color: var(--cognita-indigo); }
+.principle-grid svg,
+.measure-grid svg,
+.local-only-note svg,
+.learner-profile-heading svg,
+.empty-attempts svg,
+.local-storage-band > svg { color: var(--cognita-indigo); }
+.offering-icon,
+.learner-card-icon {
+  background: rgba(79, 70, 229, .08);
+  color: var(--cognita-indigo);
+}
+.offering--featured .offering-icon {
+  background: rgba(6, 182, 212, .10);
+  color: #078aa1;
+  box-shadow: none;
+}
+
+.cta-panel {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(6,182,212,.13), transparent 28%),
+    radial-gradient(circle at 18% 100%, rgba(168,85,247,.10), transparent 30%),
+    var(--cognita-white);
+  color: var(--cognita-navy);
+  border: 1px solid var(--cognita-border);
+  box-shadow: var(--cognita-shadow-md);
+}
+.cta-panel > svg { color: var(--cognita-cyan); }
+.cta-panel p { color: var(--cognita-muted); }
+
+.site-footer {
+  background: #f7f9fc;
+  color: var(--cognita-navy);
+  border-top: 1px solid var(--cognita-border);
+}
+.footer-grid > p,
+.footer-links,
+.footer-bottom { color: var(--cognita-muted); }
+.footer-bottom { border-top-color: var(--cognita-border); }
+
+.exam-hero {
+  background:
+    radial-gradient(circle at 86% 16%, rgba(168,85,247,.12), transparent 28%),
+    radial-gradient(circle at 70% 70%, rgba(6,182,212,.09), transparent 25%),
+    linear-gradient(145deg, #ffffff, #f7f8ff 66%, #f2fbfc);
+  color: var(--cognita-navy);
+}
+.exam-hero p,
+.exam-meta-row { color: var(--cognita-muted); }
+.exam-score-card {
+  background: rgba(255,255,255,.90);
+  color: var(--cognita-navy);
+  border: 1px solid var(--cognita-border);
+  box-shadow: var(--cognita-shadow-md);
+}
+.exam-score-card > span { color: #078aa1; }
+.exam-score-card > p,
+.score-breakdown span { color: var(--cognita-muted); }
+.score-breakdown { border-top-color: var(--cognita-border); }
+.score-breakdown div { border-bottom-color: var(--cognita-border); }
+.score-breakdown b { color: var(--cognita-navy); }
+.clean-list li::before { background: var(--cognita-cyan); }
+
+.exam-workspace--setup {
+  background: radial-gradient(circle at 86% 6%, rgba(79,70,229,.08), transparent 28%), var(--cognita-soft-gray);
+}
+.exam-setup-card,
+.question-card,
+.applied-card,
+.result-score-grid article,
+.learner-profile-card,
+.learner-summary-card,
+.attempt-history-section,
+.local-storage-band {
+  border-color: var(--cognita-border);
+}
+.candidate-form input:focus,
+.applied-card textarea:focus {
+  border-color: var(--cognita-cyan);
+  box-shadow: var(--cognita-shadow-focus);
+}
+.exam-progress span { background: var(--cognita-gradient-brand); }
+.exam-sidebar button.is-active > span,
+.applied-number { background: var(--cognita-navy); }
+.option-list input { accent-color: var(--cognita-indigo); }
+.option-list label.is-selected {
+  border-color: rgba(79, 70, 229, .55);
+  background: rgba(79, 70, 229, .055);
+}
+.option-list label.is-selected .option-letter {
+  background: rgba(79, 70, 229, .10);
+  color: var(--cognita-indigo);
+}
+.applied-guidance {
+  background: rgba(79, 70, 229, .045);
+  border-left-color: var(--cognita-indigo);
+}
+.review-panel {
+  background: var(--cognita-white);
+  color: var(--cognita-navy);
+  border: 1px solid var(--cognita-border);
+  box-shadow: var(--cognita-shadow-sm);
+}
+.review-panel p { color: var(--cognita-muted); }
+.review-status span { color: #078aa1; }
+
+.learner-page {
+  background: radial-gradient(circle at 90% 0, rgba(79,70,229,.06), transparent 24%), var(--cognita-soft-gray);
+}
+.learner-summary-card--profile {
+  background:
+    radial-gradient(circle at 95% 10%, rgba(6,182,212,.12), transparent 32%),
+    linear-gradient(145deg, #ffffff, #f7f8ff 68%, #f5fbfc);
+  color: var(--cognita-navy);
+  border-color: var(--cognita-border);
+}
+.learner-summary-card--profile p,
+.learner-summary-card--profile small { color: var(--cognita-muted); }
+.learner-summary-card--profile .learner-card-topline > span { color: #078aa1; }
+.learner-card-topline button {
+  background: var(--cognita-white);
+  color: var(--cognita-indigo);
+  border: 1px solid var(--cognita-border);
+}
+
+@media (max-width: 820px) {
+  .header-inner { height: 70px; }
+  .site-nav {
+    top: 74px;
+    background: rgba(255,255,255,.98);
+    border: 1px solid var(--cognita-border);
+    box-shadow: var(--cognita-shadow-md);
+  }
+  .site-nav > a:not(.button) { color: var(--cognita-muted); }
+  .brand-lockup--compact img,
+  .brand-lockup--compact .brand-logo-image { width: 178px; max-width: 55vw; }
+  .exam-topbar { top: 70px; }
+}
+
+@media (max-width: 520px) {
+  .brand-lockup--compact img,
+  .brand-lockup--compact .brand-logo-image { width: 152px; }
+}
