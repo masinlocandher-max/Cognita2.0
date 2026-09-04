@@ -1,11 +1,10 @@
-import { ArrowRight, BookOpenCheck, GraduationCap, Languages, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpenCheck, GraduationCap, Sparkles } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getApplication, getEnrollment, PROGRAMS, selectProgram } from '../lib/admissions'
 
 const icons = {
-  'ai-foundations': Sparkles,
-  'communication-readiness': Languages,
-  'applied-ai-learning': GraduationCap,
+  'professional-ai-program': GraduationCap,
+  'skills-lab': Sparkles,
 }
 
 export default function Programs() {
@@ -37,8 +36,12 @@ export default function Programs() {
       <div className="page-width">
         <div className="section-heading section-heading--wide">
           <p className="section-label">PROGRAM SELECTION</p>
-          <h1>Choose your Cognita program.</h1>
-          <p>Your CEE has been marked passed. Select the program you want to enter. Cognita can later use placement evidence to recommend or restrict programs when final curriculum rules are approved.</p>
+          <h1>Choose your Cognita learning route.</h1>
+          <p>Both routes use competency-based progression. Guided learning provides more structure and human support; self-paced learning provides more schedule flexibility. The academic standard remains the same.</p>
+          {application?.placement?.title && (
+            <p><strong>CEE readiness indication:</strong> {application.placement.title}. Final pathway requirements remain subject to Cognita academic policy and evaluator guidance.</p>
+          )}
+          <p><strong>AI-00 Foundation Bridge:</strong> AI-00 is assigned as foundational support when readiness evidence shows it is needed. It is not a separate commercial program choice.</p>
         </div>
 
         <div className="program-grid">
@@ -50,6 +53,7 @@ export default function Programs() {
                 <Icon />
                 <span>{program.code}</span>
                 <h2>{program.name}</h2>
+                <p><strong>{program.duration}</strong> · {program.delivery}</p>
                 <p>{program.summary}</p>
                 <button className="button" type="button" onClick={() => choose(program.id)}>
                   {selected ? 'Continue with this program' : 'Choose program'} <ArrowRight size={18} />
