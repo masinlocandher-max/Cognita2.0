@@ -1,5 +1,4 @@
-import compactLogo from '../../brand/logos/cognita-lockup-horizontal.svg'
-import formalLogo from '../../brand/logos/cognita-lockup-formal.svg'
+import wordmark from '../../brand/logos/cognita-wordmark.webp'
 
 export default function BrandMark({ compact = false }) {
   return (
@@ -9,8 +8,8 @@ export default function BrandMark({ compact = false }) {
     >
       <img
         className="brand-logo-image"
-        src={compact ? compactLogo : formalLogo}
-        alt="The Cognita Institute of Artificial Intelligence"
+        src={wordmark}
+        alt="Cognita"
       />
     </div>
   )
