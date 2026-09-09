@@ -1,0 +1,165 @@
+:root {
+  --cognita-deep-navy: #0b1f3b;
+  --cognita-midnight-blue: #102a56;
+  --cognita-luminous-blue: #3b82f6;
+  --cognita-ivory: #f8fafc;
+  --cognita-cool-gray: #94a3b8;
+  --cognita-warm-gold: #d4af7c;
+
+  --cognita-font-display: "Tiempos Headline", Georgia, "Times New Roman", serif;
+  --cognita-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --cognita-radius-sm: 10px;
+  --cognita-radius-md: 18px;
+  --cognita-radius-lg: 28px;
+  --cognita-radius-pill: 999px;
+
+  --cognita-border-light: rgba(225, 236, 255, .40);
+  --cognita-border-dark: rgba(165, 203, 255, .22);
+  --cognita-shadow-architectural: 0 30px 80px rgba(4, 15, 32, .22);
+  --cognita-shadow-soft: 0 18px 50px rgba(11, 31, 59, .10);
+  --cognita-gold-line: linear-gradient(90deg, transparent, rgba(212,175,124,.82), transparent);
+}
+
+.cognita-brand-surface {
+  background: var(--cognita-ivory);
+  color: var(--cognita-deep-navy);
+  font-family: var(--cognita-font-body);
+}
+
+.cognita-display {
+  margin: 0;
+  font-family: var(--cognita-font-display);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .98;
+}
+
+.cognita-body {
+  font-family: var(--cognita-font-body);
+  color: var(--cognita-cool-gray);
+  line-height: 1.7;
+}
+
+.cognita-matte-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 28%, rgba(59,130,246,.16), transparent 30%),
+    linear-gradient(145deg, var(--cognita-deep-navy), #07162c 62%, var(--cognita-midnight-blue));
+  color: var(--cognita-ivory);
+}
+
+.cognita-matte-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.cognita-hologram-stack {
+  position: relative;
+  isolation: isolate;
+  perspective: 1200px;
+}
+
+.cognita-hologram-panel {
+  position: relative;
+  border: 1px solid var(--cognita-border-light);
+  border-radius: var(--cognita-radius-lg);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.055)),
+    linear-gradient(180deg, rgba(59,130,246,.08), rgba(16,42,86,.08));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    var(--cognita-shadow-architectural);
+  backdrop-filter: blur(28px) saturate(115%);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+}
+
+.cognita-hologram-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(118deg, rgba(255,255,255,.20), transparent 28%, transparent 72%, rgba(59,130,246,.10));
+  opacity: .62;
+}
+
+.cognita-hologram-panel--gold-edge {
+  border-color: rgba(212,175,124,.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.25),
+    0 0 42px rgba(212,175,124,.08),
+    var(--cognita-shadow-architectural);
+}
+
+.cognita-light-panel {
+  background: rgba(248,250,252,.92);
+  color: var(--cognita-deep-navy);
+  border: 1px solid rgba(148,163,184,.26);
+  border-radius: var(--cognita-radius-lg);
+  box-shadow: var(--cognita-shadow-soft);
+}
+
+.cognita-gold-rule {
+  width: 54px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--cognita-warm-gold);
+}
+
+.cognita-button-primary,
+.cognita-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  min-height: 48px;
+  padding: .85rem 1.35rem;
+  border-radius: var(--cognita-radius-pill);
+  font: 600 .92rem/1 var(--cognita-font-body);
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.cognita-button-primary {
+  border: 1px solid rgba(212,175,124,.72);
+  color: #081528;
+  background: linear-gradient(180deg, #efd098, var(--cognita-warm-gold));
+  box-shadow: 0 12px 34px rgba(212,175,124,.16);
+}
+
+.cognita-button-secondary {
+  border: 1px solid rgba(248,250,252,.48);
+  color: var(--cognita-ivory);
+  background: rgba(8,21,40,.28);
+  backdrop-filter: blur(14px);
+}
+
+.cognita-button-primary:hover,
+.cognita-button-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.cognita-eyebrow {
+  color: var(--cognita-warm-gold);
+  font: 600 .72rem/1.2 var(--cognita-font-body);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+}
+
+.cognita-wordmark {
+  display: block;
+  width: min(100%, 340px);
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cognita-button-primary,
+  .cognita-button-secondary { transition: none; }
+}
