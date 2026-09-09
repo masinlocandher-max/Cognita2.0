@@ -18,22 +18,54 @@ Do not expose fake or non-working backend behavior simply to create the appearan
 
 The goal is a complete public information experience, not a false claim that unfinished transactional systems are operating.
 
+## Security boundary during the frontend-only phase
+
+The current repository does not have production authentication or server-side authorization. Therefore the production build follows **default deny** for every route that would require a trusted identity.
+
+A normal production build must register only the explicit public route allowlist. Internal operations, CEE execution, payment, account activation, and student-app routes are development-only until their server-side authorization exists and is tested.
+
+Hiding links or buttons is not a security control. A protected route must not be made production-live merely because it is absent from navigation.
+
 ## Current public route behavior
 
 Public routes:
 
-- `/` — institutional website and full public information surface
-- `/programs` — public program information; program selection remains gated by a passing admission decision
-- `/apply` — public Admissions information page and official email routing while the production application backend is unfinished
-- `/entrance-exam?invite=...` — invitation-only assessment access; invalid or missing access routes the visitor to official Cognita contact options
+- `/` — Cognita institutional website
+- `/about` — institutional information
+- `/founder` — founder information
+- `/programs` — public program information; real program selection remains unavailable until a secure enrollment backend exists
+- `/programs/professional-ai-program` — public flagship-program information
+- `/programs/skills-lab` — public Skills Lab information
+- `/admissions` — public Admissions information and official email routing
+- `/apply` — same public Admissions information while the production application backend is unfinished
+- `/cee` — public CEE purpose/structure information only
+- `/organizations` — institutional training information
+- `/policies` — policy index
+- `/privacy` — privacy policy
+- `/terms` — terms of use
+- `/academic-integrity` — academic integrity and AI-use policy
+- `/student-policies` — student policies
+- `/institutional-status` — institutional status and regulatory disclosure
 
-The browser-local application simulator is preserved only for internal frontend QA at:
+The browser-local application simulator is preserved only for internal frontend QA in development mode. The timed CEE, payment, account activation, student app, and staff/review consoles are also development-only.
 
+Unknown or unavailable public routes must not end in a blank page, inert control, misleading form, or fake backend. They should route to the Cognita assistance fallback with one-click email access to the official addresses and a route back to the institutional website.
+
+## Development-only routes
+
+The following routes may exist in source for local QA, but a normal production build must deny them until server-side identity and authorization are implemented:
+
+- `/entrance-exam`
+- `/entrance-exam/start`
+- `/payment`
+- `/account-setup`
+- `/app`
+- `/operations`
 - `/operations/apply-preview`
+- `/operations/admissions`
+- `/operations/learning`
 
-It must not be presented as a production public application form.
-
-Unknown or unavailable public routes must not end in a blank page, inert control, misleading form, or generic 404. They should route to the Cognita assistance fallback with one-click email access to the official addresses and a route back to the institutional website.
+These are not a production access-control model.
 
 ## Public navigation
 
@@ -47,9 +79,7 @@ The normal public navigation should focus on:
 - FAQs
 - Contact
 
-Do not expose `/app`, `/operations`, `/operations/apply-preview`, `/operations/admissions`, or `/operations/learning` in normal public navigation.
-
-Internal and learner routes may remain in the repository for frontend development and QA.
+Do not expose development-only learner or operations routes in normal public navigation.
 
 ## Contact details
 
@@ -114,13 +144,16 @@ At minimum it should explain:
 
 ## Backend-dependent items
 
-The following should not be represented as production-live until the actual infrastructure is connected and tested:
+The following must not be represented as production-live until the actual infrastructure and authorization model are connected and tested:
 
 - server-submitted applications;
 - transactional admissions email;
+- authenticated applicant-status access;
 - secure CEE invitation tokens;
+- timed CEE execution and server-authoritative submission;
+- protected CEE question bank/scoring;
 - production authentication;
-- payment processing;
+- payment processing and confirmation;
 - secure staff/evaluator access;
 - cloud student records;
 - cross-device progress;
@@ -128,4 +161,9 @@ The following should not be represented as production-live until the actual infr
 - production support ticketing;
 - verified credential issuance.
 
-These systems may continue to exist as clearly separated local frontend simulations for product development.
+These systems may continue to exist as clearly separated local frontend simulations for product development, but they must not ship as available production functionality.
+
+See also:
+
+- `docs/security/ACCESS-CONTROL-MATRIX.md`
+- `docs/security/SECURITY-AUDIT-2026-09-10.md`
