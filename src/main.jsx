@@ -15,6 +15,20 @@ import FounderConsole from './pages/FounderConsole'
 import AdmissionsReview from './pages/AdmissionsReview'
 import LearningReview from './pages/LearningReview'
 import ContactFallback from './pages/ContactFallback'
+import {
+  AboutCognita,
+  Founder,
+  EntranceExamInfo,
+  Organizations,
+  ProfessionalProgram,
+  SkillsLabProgram,
+  InstitutionalStatus,
+  PoliciesIndex,
+  PrivacyPolicy,
+  TermsOfUse,
+  AcademicIntegrityPolicy,
+  StudentPolicies,
+} from './pages/PublicInformation'
 import './styles.css'
 import './learner.css'
 import './admissions.css'
@@ -27,6 +41,7 @@ import './brand-runtime.css'
 import './institutional-refinement.css'
 import './institutional-routing.css'
 import './public-admissions.css'
+import './institutional-info.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -34,10 +49,23 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutCognita />} />
+          <Route path="/founder" element={<Founder />} />
+          <Route path="/programs" element={<Programs />} />
+          <Route path="/programs/professional-ai-program" element={<ProfessionalProgram />} />
+          <Route path="/programs/skills-lab" element={<SkillsLabProgram />} />
+          <Route path="/admissions" element={<PublicAdmissions />} />
           <Route path="/apply" element={<PublicAdmissions />} />
+          <Route path="/cee" element={<EntranceExamInfo />} />
+          <Route path="/organizations" element={<Organizations />} />
+          <Route path="/policies" element={<PoliciesIndex />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfUse />} />
+          <Route path="/academic-integrity" element={<AcademicIntegrityPolicy />} />
+          <Route path="/student-policies" element={<StudentPolicies />} />
+          <Route path="/institutional-status" element={<InstitutionalStatus />} />
           <Route path="/entrance-exam" element={<EntranceExam />} />
           <Route path="/entrance-exam/start" element={<Exam />} />
-          <Route path="/programs" element={<Programs />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/account-setup" element={<AccountSetup />} />
           <Route path="/app" element={<StudentApp />} />

@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpenCheck, CheckCircle2, GraduationCap, Lock, Mail, Sparkles } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FOUNDATION_BRIDGE } from '../data/programs'
 import { getApplication, getEnrollment, PROGRAMS, selectProgram } from '../lib/admissions'
 
@@ -14,6 +14,7 @@ const icons = {
 const details = {
   'professional-ai-program': {
     intended: 'Learners who benefit from structure, deadlines, live guidance, human feedback, cohort accountability, and an intensive applied-learning environment.',
+    page: '/programs/professional-ai-program',
     structure: [
       'Foundation layer of up to four weeks, adjusted through CEE readiness evidence',
       'Six-week specialization and capstone progression',
@@ -24,6 +25,7 @@ const details = {
   },
   'skills-lab': {
     intended: 'Independent learners who need greater control over when and how they study without lowering the academic standard required to complete the program.',
+    page: '/programs/skills-lab',
     structure: [
       'Eight-module core covering foundations through capstone',
       'Recommended 28-day rhythm and approximately 32–40 learning hours',
@@ -112,6 +114,7 @@ export default function Programs() {
                   </div>
 
                   <div className="public-program-detail__footer">
+                    <Link className="button button--ghost" to={detail.page}>View complete program <ArrowRight size={17} /></Link>
                     {canSelect ? (
                       <button className="button" type="button" onClick={() => choose(program.id)}>
                         <CheckCircle2 size={17} /> {selected ? 'Continue with this program' : 'Choose this program'}
