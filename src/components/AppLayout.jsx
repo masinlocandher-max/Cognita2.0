@@ -21,14 +21,14 @@ export default function AppLayout() {
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
           <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
-            <a href="/#about" onClick={close}>About</a>
+            <Link to="/about" onClick={close}>About</Link>
             <Link to="/programs" onClick={close}>Programs</Link>
-            <a href="/#admissions" onClick={close}>Admissions</a>
-            <a href="/#cee" onClick={close}>CEE</a>
-            <a href="/#training" onClick={close}>Institutional Training</a>
-            <a href="/#faq" onClick={close}>FAQs</a>
+            <Link to="/admissions" onClick={close}>Admissions</Link>
+            <Link to="/cee" onClick={close}>CEE</Link>
+            <Link to="/organizations" onClick={close}>For Organizations</Link>
+            <Link to="/policies" onClick={close}>Policies</Link>
             <a className="button button--small" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20Institute%20Inquiry`} onClick={close}>
-              <Mail size={16} /> Contact Cognita
+              <Mail size={16} /> Contact
             </a>
           </nav>
         </div>
@@ -45,13 +45,22 @@ export default function AppLayout() {
             <p>Structured, practical AI education for Filipino learners. Admission is intentional. Learning is structured. Progress is earned.</p>
           </div>
           <div className="public-footer-column">
-            <strong>Explore</strong>
-            <a href="/#about">About Cognita</a>
+            <strong>Institution</strong>
+            <Link to="/about">About Cognita</Link>
+            <Link to="/founder">Founder</Link>
             <Link to="/programs">Programs</Link>
-            <a href="/#admissions">Admissions</a>
-            <a href="/#cee">Cognita Entrance Examination</a>
-            <a href="/#training">Institutional Training</a>
-            <a href="/#faq">Frequently Asked Questions</a>
+            <Link to="/admissions">Admissions</Link>
+            <Link to="/cee">Cognita Entrance Examination</Link>
+            <Link to="/organizations">For Organizations</Link>
+          </div>
+          <div className="public-footer-column">
+            <strong>Policies & transparency</strong>
+            <Link to="/policies">Public Policies</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Use</Link>
+            <Link to="/academic-integrity">Academic Integrity & AI Use</Link>
+            <Link to="/student-policies">Student Policies</Link>
+            <Link to="/institutional-status">Institutional Status</Link>
           </div>
           <div className="public-footer-column">
             <strong>Contact</strong>
