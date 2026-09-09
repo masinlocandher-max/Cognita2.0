@@ -134,7 +134,7 @@ export default function AdmissionsReview() {
         {attempt?.completed && application.status === 'cee_review_pending' ? (
           <article className="ops-card">
             <div className="ops-card-heading">
-              <div><span>CEE EVALUATION</span><h2>Score applied work and release final decision</h2></div>
+              <div><span>CEE v1.1 EVALUATION</span><h2>Score applied work and release final decision</h2></div>
               <strong>{attempt.objectivePoints ?? 0}/70 objective</strong>
             </div>
             <div className="ops-data-grid">
@@ -146,14 +146,21 @@ export default function AdmissionsReview() {
                 <div key={id}><span>{id}</span><p>{response || 'No response submitted.'}</p></div>
               ))}
             </div>
+
+            <div className="ops-statement">
+              <span>Applied scoring rubric</span>
+              <p><strong>Task 1, Applied Instruction & Workflow Design:</strong> scope and instruction quality 0–3; privacy and data boundaries 0–3; escalation and human control 0–3; verification and failure safeguards 0–3; clarity and practical usability 0–3.</p>
+              <p><strong>Task 2, AI Evidence & Decision Audit:</strong> identification of unsupported claims 0–3; evidence and source plan 0–3; reasoning, causation, and generalization judgment 0–3; operational and human-risk analysis 0–3; quality of the recommended decision process 0–3.</p>
+            </div>
+
             <div className="ops-score-grid">
               <label>
-                Applied Communication Task
+                Applied Instruction & Workflow Design
                 <span>0–15 points</span>
                 <input type="number" min="0" max="15" step="1" value={promptScore} onChange={(event) => setPromptScore(event.target.value)} />
               </label>
               <label>
-                AI Response Evaluation
+                AI Evidence & Decision Audit
                 <span>0–15 points</span>
                 <input type="number" min="0" max="15" step="1" value={judgmentScore} onChange={(event) => setJudgmentScore(event.target.value)} />
               </label>
@@ -164,7 +171,7 @@ export default function AdmissionsReview() {
               </div>
             </div>
             <div className="ops-actions">
-              <textarea rows="3" placeholder="Required evaluator rationale" value={note} onChange={(event) => setNote(event.target.value)} />
+              <textarea rows="3" placeholder="Required evaluator rationale: cite the strongest and weakest evidence in the candidate response" value={note} onChange={(event) => setNote(event.target.value)} />
               <div>
                 <button className="button" type="button" disabled={!scoringReady} onClick={() => decide('passed')}><CheckCircle2 size={18} /> Mark passed</button>
                 <button className="button button--ghost" type="button" disabled={!scoringReady} onClick={() => decide('failed')}><XCircle size={18} /> Mark not passed</button>
