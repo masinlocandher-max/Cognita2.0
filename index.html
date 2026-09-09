@@ -14,6 +14,30 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      This is a client-rendered application, so without JavaScript the root
+      element stays empty. A blank white page tells a visitor nothing, so say
+      plainly what happened and what they can do about it.
+    -->
+    <noscript>
+      <div style="max-width:34rem;margin:12vh auto;padding:0 1.5rem;font:400 16px/1.7 system-ui,-apple-system,'Segoe UI',sans-serif;color:#5B6780">
+        <p style="font:700 13px/1 system-ui;letter-spacing:.16em;text-transform:uppercase;color:#4F46E5;margin:0 0 1.25rem">
+          The Cognita Institute of Artificial Intelligence
+        </p>
+        <h1 style="font:800 clamp(28px,5vw,40px)/1.15 system-ui;letter-spacing:-.03em;color:#071B3D;margin:0 0 1.25rem">
+          This site needs JavaScript to run.
+        </h1>
+        <p style="margin:0 0 1rem">
+          Cognita&rsquo;s admission process, entrance examination, and program information are
+          delivered by an application that runs in your browser. With JavaScript turned off,
+          none of it can load.
+        </p>
+        <p style="margin:0">
+          Enable JavaScript for this site and reload the page. If you cannot, please use a
+          different browser or device to apply.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -287,6 +287,9 @@ html, body { overflow-x: clip; }
   border-block-end: var(--rule-hair);
   align-items: start;
 }
+/* Violet is only safe on large text: the index numeral is >=19px at weight 700,
+   so the 3:1 large-text threshold applies and 3.96:1 clears it. Never use
+   violet for body-size text. */
 .ed-list-item:hover .ed-index { color: var(--cognita-violet); }
 .ed-list-item .ed-index { transition: color var(--ed-fast) var(--ci-ease); }
 .ed-list-item p { font-size: var(--t-300); line-height: var(--lh-body); color: var(--cognita-muted); }
