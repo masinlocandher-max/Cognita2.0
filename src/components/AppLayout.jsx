@@ -64,23 +64,53 @@ export default function AppLayout() {
         <Outlet />
       </main>
 
-      <footer className="site-footer">
-        <div className="page-width footer-grid">
-          <BrandMark />
-          <p>
-            The Cognita Institute of Artificial Intelligence is a private training and learning institution
-            designed for Filipino learners.
-          </p>
-          <div className="footer-links">
-            <a href="/#about">About Cognita</a>
-            <a href="/#admission">Admission Process</a>
-            <Link to="/programs">Programs</Link>
-            <Link to="/apply">Apply</Link>
+      <footer className="ed-footer">
+        <div className="page-width">
+          <div className="ed-footer-top">
+            <div className="ed-footer-brand">
+              <BrandMark onDark />
+              <p>
+                A private training and learning institution designed for Filipino learners.
+                Admission is intentional. Learning is structured. Progress is earned.
+              </p>
+            </div>
+
+            <nav className="ed-footer-nav" aria-label="Footer">
+              <div>
+                <p className="ed-footer-heading">Institute</p>
+                <a href="/#about">About Cognita</a>
+                <a href="/#approach">Learning philosophy</a>
+                <a href="/#founder">Founder</a>
+                <Link to="/policies">Institutional status</Link>
+              </div>
+              <div>
+                <p className="ed-footer-heading">Admission</p>
+                <a href="/#admission">Admission process</a>
+                <Link to="/programs">Programs</Link>
+                <Link to="/apply">Apply</Link>
+                <Link to="/faq">Questions</Link>
+              </div>
+              <div>
+                <p className="ed-footer-heading">Legal</p>
+                <Link to="/privacy">Privacy</Link>
+                <Link to="/terms">Terms of use</Link>
+                <Link to="/contact">Contact</Link>
+              </div>
+            </nav>
           </div>
-        </div>
-        <div className="page-width footer-bottom">
-          <span>© {new Date().getFullYear()} The Cognita Institute of Artificial Intelligence.</span>
-          <span>Admission is intentional. Learning is structured. Progress is earned.</span>
+
+          {/* The disclosure belongs here, in plain sight, not buried on one page. */}
+          <p className="ed-footer-disclosure">
+            Cognita is in development and is not yet enrolling students. It does not claim accreditation,
+            government recognition, or institutional partnership. This site runs entirely in your browser;
+            information you enter is kept on your device and is not transmitted.{' '}
+            <Link to="/policies">Read the full institutional status</Link>.
+          </p>
+
+          <div className="ed-footer-bottom">
+            <span>© {new Date().getFullYear()} The Cognita Institute of Artificial Intelligence.</span>
+            <span>Guided when you need structure. Flexible when you need freedom.</span>
+          </div>
         </div>
       </footer>
     </div>

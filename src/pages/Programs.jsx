@@ -77,16 +77,18 @@ export default function Programs() {
     <>
       <section className="section section--white" style={{ paddingBottom: 'clamp(28px, 4vw, 44px)' }}>
         <div className="page-width">
-          <div className="section-heading">
-            <p className="section-label">Explore our programs</p>
-            <h1 style={{ fontSize: 'clamp(28px, 3.6vw, 44px)', color: 'var(--cognita-navy)', lineHeight: 1.12 }}>
-              Learning designed for Filipino learners.
-            </h1>
-            <p>
-              Cognita Institute develops structured training programs that help learners build practical
-              knowledge, strengthen foundational skills, and develop capabilities they can apply beyond the
-              classroom. Our programs combine flexible learning with clear standards, guided progression,
-              assessments, and measurable learning outcomes.
+          <div className="ed-grid" style={{ marginBlockEnd: 'clamp(28px, 4vw, 44px)' }}>
+            <div className="ed-c1-6">
+              <p className="ed-label">Explore our programs</p>
+              <h1 className="ed-doc-title" style={{ marginBlockStart: 'var(--s-4)' }}>
+                Learning designed for Filipino learners.
+              </h1>
+            </div>
+            <p className="ed-c8-5 ed-body" style={{ alignSelf: 'end' }}>
+              Cognita develops structured training programs that help learners build practical knowledge,
+              strengthen foundational skills, and develop capabilities they can apply beyond the classroom.
+              Both routes combine flexible learning with clear standards, guided progression, assessment, and
+              measurable outcomes.
             </p>
           </div>
 

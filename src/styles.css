@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
 :root {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -29,7 +28,7 @@ button, input, textarea { font: inherit; }
 button { cursor: pointer; }
 img, svg { display: block; }
 
-h1, h2, h3, strong, .brand-wording { font-family: 'Manrope', 'Inter', sans-serif; }
+h1, h2, h3, strong, .brand-wording { font-family: var(--cognita-font-display); }
 h1, h2, h3, p { margin-top: 0; }
 h1 { letter-spacing: -0.055em; }
 h2 { letter-spacing: -0.04em; }
@@ -229,7 +228,7 @@ h2 { letter-spacing: -0.04em; }
 .exam-section-heading > p:last-child { color: #778096; }
 .question-list { display: grid; gap: 18px; }
 .question-card { margin: 0; padding: 26px; background: #fff; border: 1px solid #e1e5ed; border-radius: 18px; box-shadow: 0 6px 18px rgba(23, 34, 61, .035); }
-.question-card legend { width: 100%; padding: 0; margin-bottom: 20px; font-family: 'Manrope', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.55; color: #202941; }
+.question-card legend { width: 100%; padding: 0; margin-bottom: 20px; font-family: var(--cognita-font-display); font-size: 16px; font-weight: 700; line-height: 1.55; color: #202941; }
 .question-card legend > span { display: inline-grid; place-items: center; width: 31px; height: 31px; margin-right: 12px; border-radius: 8px; background: #eff2f8; color: #606a83; font-size: 11px; vertical-align: middle; }
 .option-list { display: grid; gap: 8px; }
 .option-list label { display: grid; grid-template-columns: 22px 34px 1fr; align-items: center; gap: 10px; min-height: 54px; border: 1px solid #e3e6ed; border-radius: 12px; padding: 10px 13px; color: #4e586d; cursor: pointer; transition: border-color .15s ease, background .15s ease; }

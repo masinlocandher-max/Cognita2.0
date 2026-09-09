@@ -222,8 +222,11 @@ textarea:focus-visible,
 .ci-founder-id { display: grid; gap: 6px; }
 .ci-founder-name { font-family: var(--cognita-font-display); font-size: clamp(22px, 2.4vw, 30px); color: var(--cognita-navy); letter-spacing: -.015em; }
 .ci-founder-role { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--cognita-muted); font-weight: 600; }
+/* The user-agent stylesheet gives blockquote a 40px inline margin. Left in
+ * place it squeezed the founder's message into a 121px column at 320px wide —
+ * the most human moment on the page, rendered nearly unreadable on a phone. */
 .ci-founder-message {
-  margin-top: 26px; padding: clamp(22px, 3vw, 32px);
+  margin: 26px 0 0; padding: clamp(22px, 3vw, 32px);
   background: var(--cognita-soft-gray);
   border-radius: var(--cognita-radius-md);
   border-left: 3px solid var(--cognita-indigo);

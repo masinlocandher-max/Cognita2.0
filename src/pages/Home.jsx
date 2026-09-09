@@ -41,34 +41,57 @@ export default function Home() {
 
   return (
     <>
-      {/* 1 — What is Cognita */}
-      <section className="hero hero--dark">
-        <div className="page-width hero-grid">
-          <div className="hero-copy">
-            <span className="ci-hero-eyebrow">The Cognita Institute of Artificial Intelligence</span>
-            <h1>Learn with structure. Advance with purpose.</h1>
-            <p className="ci-hero-sub">
-              Training designed for Filipino learners who want to build real knowledge, practical
-              capability, and measurable progress.
-            </p>
-            <div className="hero-actions">
-              <a className="button" href="#admission">View the Admission Process <ArrowRight size={18} /></a>
-              <Link className="text-link" to="/programs">Explore Our Programs <ArrowRight size={16} /></Link>
+      {/* 1 — What Cognita is. A masthead, not a banner: the admission ladder
+          overlaps the statement column and a ruled fact strip closes it. */}
+      <section className="ed-hero">
+        <div className="page-width ed-hero-inner">
+          <p className="ed-hero-eyebrow">
+            <span>The Cognita Institute of Artificial Intelligence</span>
+            <span>Admission by examination</span>
+          </p>
+
+          <div className="ed-grid">
+            <div className="ed-c1-6 ed-hero-statement">
+              <h1 className="ed-statement">
+                Learn with structure. <em>Advance with purpose.</em>
+              </h1>
+              <p className="ed-hero-sub">
+                Training designed for Filipino learners who want to build real knowledge,
+                practical capability, and measurable progress.
+              </p>
+              <div className="ed-hero-actions">
+                <a className="button" href="#admission">
+                  View the admission process <ArrowRight size={18} aria-hidden="true" />
+                </a>
+                <Link className="text-link" to="/programs">
+                  Explore our programs <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </div>
             </div>
-            <p className="ci-hero-principle">Admission is intentional. Learning is structured. Progress is earned.</p>
+
+            <aside className="ed-c7-6 ed-ladder" aria-label="How admission works, in three stages">
+              <p className="ed-ladder-title">The route in</p>
+              <div className="ed-ladder-step">
+                <span className="ed-index">01</span>
+                <span><b>Apply</b><p>You submit an application. Admissions reviews it.</p></span>
+              </div>
+              <div className="ed-ladder-step">
+                <span className="ed-index">02</span>
+                <span><b>Sit the CEE</b><p>Approved applicants are invited to the entrance examination by email.</p></span>
+              </div>
+              <div className="ed-ladder-step">
+                <span className="ed-index">03</span>
+                <span><b>Receive your pathway</b><p>An evaluator reviews your work before any result is released.</p></span>
+              </div>
+            </aside>
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <div className="signal-field">
-              <div className="signal-core" />
-              <span className="orbit orbit--1" />
-              <span className="orbit orbit--2" />
-              <span className="orbit orbit--3" />
-              <span className="signal-label signal-label--a">THINK</span>
-              <span className="signal-label signal-label--b">APPLY</span>
-              <span className="signal-label signal-label--c">TRANSFORM</span>
-            </div>
-          </div>
+          <dl className="ed-facts">
+            <div><dt>Admission</dt><dd>By application and entrance examination</dd></div>
+            <div><dt>Delivery</dt><dd>Online</dd></div>
+            <div><dt>Instruction</dt><dd>English</dd></div>
+            <div><dt>Learning routes</dt><dd>Guided cohort or self-paced</dd></div>
+          </dl>
         </div>
       </section>
 
@@ -133,125 +156,142 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 — Why the approach differs */}
-      <section className="section section--white" id="approach">
+      {/* 3 — Why the approach differs. Ruled index list; the numerals and rules
+          carry the structure, so nothing needs a box around it. */}
+      <section className="ed-section ed-section--white" id="approach">
         <div className="page-width ci-reveal">
-          <div className="section-heading">
-            <p className="section-label">Learning philosophy</p>
-            <h2>Completing lessons is not the same as developing competence.</h2>
-            <p>
+          <div className="ed-grid">
+            <div className="ed-c1-6">
+              <p className="ed-label">Learning philosophy</p>
+              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
+                Completing lessons is not the same as developing competence.
+              </h2>
+            </div>
+            <p className="ed-c8-5 ed-body" style={{ alignSelf: 'end', paddingBlockEnd: 'var(--s-5)' }}>
               A learner does not earn a credential simply by opening lessons, watching videos, or meeting
               attendance requirements. Cognita learning is based on understanding, practice, assessment,
               output, revision, and demonstrated competence.
             </p>
           </div>
-          <div className="ci-grid ci-grid--2">
-            {PRINCIPLES.map(({ icon: Icon, title, body }) => (
-              <article className="ci-card" key={title}>
-                <Icon size={20} aria-hidden="true" style={{ color: 'var(--cognita-indigo)' }} />
-                <h3 style={{ fontSize: '17px', margin: '12px 0 8px', color: 'var(--cognita-navy)' }}>{title}</h3>
-                <p style={{ fontSize: '15px', lineHeight: 1.7, color: 'var(--cognita-muted)' }}>{body}</p>
+
+          <div className="ed-list">
+            {PRINCIPLES.map(({ title, body }, i) => (
+              <article className="ed-list-item ed-stagger" key={title}>
+                <span className="ed-index">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="ed-h3">{title}</h3>
+                <p>{body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4 — How admission works */}
-      <section className="section section--soft" id="admission">
+      {/* 4 — How admission works. Nine steps read as one process, not nine
+          cards: a single ruled list, then the conditions and the way in. */}
+      <section className="ed-section ed-section--soft" id="admission">
         <div className="page-width ci-reveal">
-          <div className="section-heading">
-            <p className="section-label">View the admission process</p>
-            <h2>Your study at Cognita begins with admission.</h2>
-            <p>
-              Cognita Institute follows a structured admission process designed to help ensure that applicants
-              are ready for the learning experience and are placed appropriately before enrollment.
-            </p>
+          <div className="ed-grid">
+            <div className="ed-c1-7">
+              <p className="ed-label">The admission process</p>
+              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
+                Your study at Cognita begins with admission.
+              </h2>
+              <p className="ed-body ed-measure">
+                Cognita follows a structured admission process designed to help ensure that applicants are
+                ready for the learning experience and are placed appropriately before enrollment.
+              </p>
+            </div>
           </div>
 
-          <div className="ci-process">
+          <div className="ed-list" style={{ marginBlockStart: 'clamp(32px, 5vw, 56px)' }}>
             {ADMISSION_STEPS.map((item) => (
-              <article className="ci-process-item" key={item.step}>
-                <span className="ci-process-step">{item.step}</span>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
+              <article className="ed-list-item" key={item.step}>
+                <span className="ed-index">{item.step.replace('Step ', '')}</span>
+                <h3 className="ed-h3">{item.title}</h3>
+                <p>{item.body}</p>
               </article>
             ))}
           </div>
 
-          <div className="ci-grid ci-grid--2" style={{ marginTop: 'clamp(28px, 4vw, 44px)' }}>
-            <article className="ci-card">
-              <p className="ci-card-title">Before you apply</p>
-              <ul className="ci-route-list">
+          <div className="ed-grid" style={{ marginBlockStart: 'clamp(40px, 6vw, 72px)' }}>
+            <div className="ed-c1-6">
+              <p className="ed-label ed-label--muted">Before you apply</p>
+              <ul className="ed-conditions">
                 <li>Provide complete and accurate information.</li>
                 <li>Have access to a working email address.</li>
                 <li>Have a suitable device and internet connection for the examination and online learning.</li>
                 <li>Be prepared to follow Cognita’s academic-integrity and student policies.</li>
                 <li>Understand that admission does not automatically guarantee completion or certification.</li>
               </ul>
-            </article>
-            <article className="ci-card ci-card--soft">
-              <p className="ci-card-title">Ready to begin?</p>
-              <p style={{ fontSize: '15.5px', lineHeight: 1.7, color: 'var(--cognita-muted)', marginBottom: '20px' }}>
-                Take the first step toward becoming a Cognita learner. Your application is reviewed by a person
-                before any examination access is issued.
-              </p>
-              <div className="ci-row">
-                <Link className="button" to="/apply">Begin Your Application <ArrowRight size={17} /></Link>
-                <Link className="text-link" to="/programs">Explore Our Programs</Link>
+            </div>
+            <div className="ed-c8-5 ed-quote" style={{ alignSelf: 'center' }}>
+              <p>Your application is read by a person before any examination access is issued.</p>
+              <div className="ed-hero-actions" style={{ marginBlockStart: 'var(--s-5)' }}>
+                <Link className="button" to="/apply">
+                  Begin your application <ArrowRight size={17} aria-hidden="true" />
+                </Link>
               </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5 — What learning routes exist */}
-      <section className="section section--white" id="programs">
+      {/* 5 — What learning routes exist. Two routes on one shared spine, so
+          this reads as a single decision rather than two competing products. */}
+      <section className="ed-section ed-section--white" id="programs">
         <div className="page-width ci-reveal">
-          <div className="section-heading">
-            <p className="section-label">Two primary ways to learn</p>
-            <h2>Guided when you need structure. Flexible when you need freedom.</h2>
-            <p>
+          <div className="ed-grid">
+            <div className="ed-c1-7">
+              <p className="ed-label">Two primary ways to learn</p>
+              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
+                Guided when you need structure. Flexible when you need freedom.
+              </h2>
+            </div>
+            <p className="ed-c8-5 ed-body" style={{ alignSelf: 'end', paddingBlockEnd: 'var(--s-5)' }}>
               Both routes use competency-based progression. Guided and self-paced learners may study
               differently, but the standard required to complete remains the same.
             </p>
           </div>
 
-          <div className="ci-routes">
-            <article className="ci-route">
-              <span className="ci-route-code"><GraduationCap size={13} aria-hidden="true" /> {guided.code}</span>
-              <h3>{guided.name}</h3>
-              <p className="ci-route-meta">{guided.duration} · {guided.delivery}</p>
-              <p>{guided.summary}</p>
-              <dl className="ci-route-facts">
+          <div className="ed-compare" style={{ marginBlockStart: 'clamp(24px, 4vw, 40px)' }}>
+            <article>
+              <span className="ed-compare-code">
+                <GraduationCap size={13} aria-hidden="true" /> {guided.code}
+              </span>
+              <h3 className="ed-h3" style={{ marginBlockStart: 'var(--s-3)' }}>{guided.name}</h3>
+              <p className="ed-compare-meta">{guided.duration} · {guided.delivery}</p>
+              <p className="ed-body" style={{ marginBlockStart: 'var(--s-4)' }}>{guided.summary}</p>
+              <dl>
                 <div><dt>Academic model</dt><dd>Foundation + 6-week specialization</dd></div>
                 <div><dt>Completion</dt><dd>Demonstrated competency</dd></div>
               </dl>
-              <Link className="text-link" to="/programs">View the 10-Week Program <ArrowRight size={16} /></Link>
+              <Link className="text-link" to="/programs" style={{ marginBlockStart: 'var(--s-5)' }}>
+                View the 10-week program <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </article>
 
-            <article className="ci-route">
-              <span className="ci-route-code"><Sparkles size={13} aria-hidden="true" /> {selfPaced.code}</span>
-              <h3>Cognita Skills Lab</h3>
-              <p className="ci-route-meta">{selfPaced.duration} · {selfPaced.delivery}</p>
-              <p>{selfPaced.summary}</p>
-              <dl className="ci-route-facts">
+            <article>
+              <span className="ed-compare-code">
+                <Sparkles size={13} aria-hidden="true" /> {selfPaced.code}
+              </span>
+              <h3 className="ed-h3" style={{ marginBlockStart: 'var(--s-3)' }}>Cognita Skills Lab</h3>
+              <p className="ed-compare-meta">{selfPaced.duration} · {selfPaced.delivery}</p>
+              <p className="ed-body" style={{ marginBlockStart: 'var(--s-4)' }}>{selfPaced.summary}</p>
+              <dl>
                 <div><dt>Core promise</dt><dd>{selfPaced.promise}</dd></div>
                 <div><dt>Structure</dt><dd>Eight modules + capstone</dd></div>
               </dl>
-              <Link className="text-link" to="/programs">View the Self-Paced Program <ArrowRight size={16} /></Link>
+              <Link className="text-link" to="/programs" style={{ marginBlockStart: 'var(--s-5)' }}>
+                View the self-paced program <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </article>
           </div>
 
-          <div className="ci-standard">
-            <strong>The standard remains the same.</strong>
-            <p>
-              Progress is based on demonstrated learning, not simply time spent inside the platform. Required
-              outputs, assessments, and competency checks apply to both routes.
-            </p>
-          </div>
+          <p className="ed-standard-line">
+            <strong>The standard remains the same.</strong> Progress is based on demonstrated learning, not
+            time spent inside the platform. Required outputs, assessments, and competency checks apply to
+            both routes.
+          </p>
         </div>
       </section>
 

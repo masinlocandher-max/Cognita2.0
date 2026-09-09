@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Cognita mark</title>
+  <desc id="desc">Cognita gradient C and i symbol.</desc>
+  <defs>
+    <linearGradient id="cognitaGradient" x1="28" y1="32" x2="215" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="0.48" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#cognitaGradient)" fill-rule="evenodd" d="M112 18a94 94 0 1 0 0 188v-52a42 42 0 1 1 0-84V18Z"/>
+  <circle cx="170" cy="58" r="29" fill="#06B6D4"/>
+  <path d="M142 104c0-11 9-20 20-20h50v45c0 43-35 78-78 78h-12v-83c0-11 9-20 20-20Z" fill="url(#cognitaGradient)"/>
+</svg>

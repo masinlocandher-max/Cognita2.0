@@ -44,7 +44,7 @@
 .attempt-history-heading > span { color: #858da0; font-size: 12px; }
 .attempt-list { border-top: 1px solid #e4e8ef; }
 .attempt-row { min-height: 96px; display: grid; grid-template-columns: 54px minmax(220px, 1fr) minmax(220px, .85fr) auto; gap: 20px; align-items: center; border-bottom: 1px solid #e7eaf0; }
-.attempt-index { color: #7d86a0; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+.attempt-index { color: #7d86a0; font-family: var(--cognita-font-display); font-size: 12px; font-weight: 800; letter-spacing: .1em; }
 .attempt-main > div { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .attempt-main strong { font-size: 14px; }
 .attempt-main span { padding: 5px 8px; border-radius: 999px; background: #f0f2f7; color: #6f788c; font-size: 10px; font-weight: 700; }
