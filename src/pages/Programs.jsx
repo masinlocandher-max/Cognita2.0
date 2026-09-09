@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react'
 import { ArrowRight, BookOpenCheck, CheckCircle2, GraduationCap, Lock, Mail, Sparkles } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
-import { FOUNDATION_BRIDGE } from '../data/programs'
-import { getApplication, getEnrollment, PROGRAMS, selectProgram } from '../lib/admissions'
+import { FOUNDATION_BRIDGE, PROGRAMS } from '../data/programs'
 
 const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
 const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
+const PREVIEW_ENABLED = import.meta.env.DEV
 
 const icons = {
   'professional-ai-program': GraduationCap,
@@ -37,14 +38,32 @@ const details = {
 
 export default function Programs() {
   const navigate = useNavigate()
-  const application = getApplication()
-  const enrollment = getEnrollment()
-  const canSelect = application?.ceeDecision?.status === 'passed'
+  const [previewState, setPreviewState] = useState({ application: null, enrollment: null })
 
-  const choose = (programId) => {
-    if (!canSelect) return
-    selectProgram(programId)
-    navigate('/payment')
+  useEffect(() => {
+    if (!PREVIEW_ENABLED) return undefined
+
+    let cancelled = false
+    import('../lib/admissions').then(({ getApplication, getEnrollment }) => {
+      if (!cancelled) {
+        setPreviewState({ application: getApplication(), enrollment: getEnrollment() })
+      }
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const application = previewState.application
+  const enrollment = previewState.enrollment
+  const canSelect = PREVIEW_ENABLED && application?.ceeDecision?.status === 'passed'
+
+  const choose = async (programId) => {
+    if (!canSelect || !PREVIEW_ENABLED) return
+    const { selectProgram } = await import('../lib/admissions')
+    const selected = selectProgram(programId)
+    if (selected) navigate('/payment')
   }
 
   return (
