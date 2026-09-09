@@ -1,52 +1,101 @@
-# Cognita 2.0 Brand Kit
+# Cognita Brand System
 
-This directory is the canonical developer implementation package for the approved Cognita 2.0 light professional identity.
+This directory is the canonical source-controlled implementation of the current Cognita identity.
 
-## Brand foundation
+## Brand platform
 
 **Formal name:** The Cognita Institute of Artificial Intelligence  
-**Compact lockup:** COGNITA / Institute of AI  
-**Brand essence:** Human Intelligence. Amplified.  
+**Primary wordmark:** COGNITA  
+**Primary promise:** Human potential amplified by AI.  
+**Supporting line:** Real skills. Real Guidance. A more capable Philippines.  
 **Learning framework:** THINK. APPLY. TRANSFORM.
 
-The system is intentionally light, academic, human, and technology-forward. White and soft gray carry most surfaces. Deep navy provides institutional authority; indigo, violet, and cyan provide controlled digital accents.
+## Art direction
+
+Cognita uses a **matte holographic institutional system**: premium academic authority combined with restrained AI-era depth.
+
+The visual language is cinematic and future-facing without becoming cyberpunk, gaming-like, glossy, or synthetic. Matte navy architecture, frosted glass planes, luminous blue intelligence layers, brushed warm-gold accents, precise serif typography, and disciplined negative space should create the feeling of a serious AI institute building capability for the Philippines.
+
+### Core visual rules
+
+- Use matte, low-sheen surfaces rather than glossy plastic or chrome.
+- Use layered frosted holographic panels for depth and controlled overlap.
+- Keep glow diffused and restrained. Avoid neon overload.
+- Warm gold is a precision accent, not a dominant fill.
+- Deep navy and midnight blue establish authority and depth.
+- Ivory/light sections provide breathing room. The website should not be all-dark or all-white.
+- Primary digital hero art should not rely on people, generic stock photography, robots, or AI faces.
+- The Philippines may be used as a meaningful visual anchor when relevant.
+- Do not publish invented social proof, learner counts, placement rates, mentor counts, or other unverified metrics.
+- Avoid decorative UI that implies functionality or institutional claims that do not exist.
 
 ## Canonical palette
 
-- Deep Navy — `#071B3D`
-- Indigo — `#4F46E5`
-- Violet — `#A855F7`
-- Cyan — `#06B6D4`
-- Soft Gray — `#F3F6FA`
-- White — `#FFFFFF`
-- Ink — `#0B1634`
-- Muted Text — `#5B6780`
+- Deep Navy — `#0B1F3B`
+- Midnight Blue — `#102A56`
+- Luminous Blue — `#3B82F6`
+- Ivory — `#F8FAFC`
+- Cool Gray — `#94A3B8`
+- Warm Gold — `#D4AF7C`
+
+Deep Navy, Midnight Blue, and Ivory carry most surfaces. Luminous Blue is reserved for intelligence, interaction, and holographic illumination. Warm Gold signals opportunity, human potential, and premium institutional detail.
 
 ## Typography
 
-- Headlines / brand: Montserrat, 600–700
-- Body / UI: Inter, 400–600
-- Fallback: system sans-serif
+- Display / editorial headlines: **Tiempos Headline** where licensed and available.
+- Display fallback: Georgia or another approved high-contrast serif.
+- Body / UI: **Inter**.
+- Do not commit or distribute proprietary font files in this repository.
 
-## Contents
+## Brand attributes
 
-- `logos/` — scalable SVG logo marks, mono variants, compact lockup, and formal institutional lockup
-- `mockups/` — editable SVG reference mockups for certificate, student ID, public website, and learning collateral
-- `code/` — CSS design tokens, JSON tokens, JavaScript export, and an HTML brand preview
-- `reference/` — approved-direction notes and links to the canonical Google Drive visual kit
+- Intelligent
+- Human-centered
+- Premium
+- Practical
+- Credible
+- Progressive
 
-## Usage rules
+## Logo usage
 
-1. Use the full-color mark on white or very light neutral backgrounds as the default.
-2. Use the navy or white mono mark when reproduction, contrast, or institutional formality requires it.
-3. Do not add glow to the primary institutional logo. Glow can exist only as a digital campaign, launch, video, or hero treatment.
-4. Maintain clear space around the mark equal to at least the diameter of the cyan dot.
-5. Do not stretch, rotate, bevel, outline, recolor individual pieces arbitrarily, or place the mark over noisy photography without a contrast field.
-6. Use the gradient sparingly. Navy and white should dominate long-form, academic, admissions, assessment, and certificate surfaces.
-7. Keep the public website approachable and institutional. Student-only app surfaces may use more color and interactivity.
+The current logo is a **wordmark-only identity**. Do not reintroduce the superseded icon system.
 
-## Implementation
+- Default: navy COGNITA wordmark on Ivory/white.
+- Dark application: white wordmark on Deep Navy or Midnight Blue.
+- Keep the stylized `A` intact.
+- Maintain generous clear space.
+- Do not stretch, redraw, add an icon, apply bevels, add glow directly to the logo, or recolor individual letters.
+- The formal descriptor `INSTITUTE OF ARTIFICIAL INTELLIGENCE` may sit beneath the wordmark in institutional applications.
 
-Import `code/cognita-brand.css` once near the root of the frontend, then use the provided custom properties and utility classes. The SVG assets are standalone and can be used directly in React `<img>` tags, CSS backgrounds, metadata, and institutional materials.
+## Matte hologram recipe
 
-The Google Drive Brand Kit is the working visual/documentation source; this repository is the source-controlled implementation package. The brand package is intentionally isolated from Cognita's existing assessment, progression, learner-data, and application logic until those surfaces are intentionally restyled.
+A holographic panel should feel like frosted optical glass, not transparent plastic:
+
+- Surface opacity: approximately 8–18%
+- Backdrop blur: approximately 18–36px
+- Border: 1px cool-white/blue at low opacity
+- Reflection: broad, diffused, low intensity
+- Bloom: localized, never full-panel
+- Gold edge/light: optional and sparse
+- Shadow: architectural and soft
+- Overlap: intentional, with clear foreground/midground/background hierarchy
+
+## Page balance
+
+Use contrast deliberately:
+
+- High-impact hero and CEE moments may use Deep Navy / Midnight Blue.
+- Program, admissions, policy, and long-form information may use Ivory/light surfaces.
+- Avoid an entirely dark page and avoid an overexposed all-white page.
+- Holographic depth should be strongest near the hero and become quieter as the page becomes more academic and informational.
+
+## Repository contents
+
+- `logos/` — approved wordmark reference asset
+- `code/tokens.json` — machine-readable brand tokens
+- `code/brand.js` — JavaScript brand export
+- `code/cognita-brand.css` — CSS variables and reusable brand primitives
+- `code/preview.html` — coded brand preview
+- `reference/APPROVED-DIRECTION.md` — detailed art-direction rules for design and engineering
+
+This brand package is the design source of truth. Product/application runtime styles should only be migrated to it deliberately and must not be assumed updated merely because the brand kit changes.
