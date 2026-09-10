@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify production access-control boundary
+        run: npm run security:check
+
       - name: Upload built frontend
         uses: actions/upload-artifact@v4
         with:

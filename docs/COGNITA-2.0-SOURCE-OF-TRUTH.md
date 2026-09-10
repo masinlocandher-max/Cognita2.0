@@ -1,9 +1,11 @@
 # Cognita 2.0 — Institutional and Academic Source of Truth
 
 Status: Canonical working source for Cognita 2.0
-Updated: 2026-09-04
+Updated: 2026-09-05
 
 This document supersedes conflicting program structures, pricing assumptions, naming, enrollment sequences, and product architecture from older Cognita/Cognita Academy materials.
+
+**Operational companion:** `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` contains the detailed Day-1 academic and operating-policy draft, including regulatory/compliance boundaries, provisional admissions eligibility, CEE pilot bands, the week-by-week 10-week curriculum, assessment/mastery architecture, attendance, credentials, instructors/evaluators, appeals, records, SLAs, roadmap, and KPIs. Items marked PROVISIONAL or NOT YET APPROVED in that document do not override the LOCKED architecture here until explicitly approved.
 
 ## 1. Institutional identity
 
@@ -416,30 +418,32 @@ Historical figures such as ₱15,000 Core, ₱25,000 Premium, or older short-cou
 
 ## 18. Items still requiring final academic approval
 
-The following are not yet locked and must not be invented:
+The following remain not LOCKED. Detailed provisional recommendations now exist in `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` where noted, but they must not be treated as final policy until explicitly approved:
+
 - exact CEE pass threshold and applied-task rubric;
 - exact thresholds for Foundation Required, Foundation Accelerated, and Direct Track Entry;
-- final week-by-week 10-week 2.0 curriculum map;
+- final approval of the week-by-week 10-week 2.0 curriculum map;
 - exact required deliverable count;
 - final tuition and payment structure;
-- admission eligibility criteria beyond the current application/CEE flow;
+- final Day-1 admission eligibility criteria;
 - final credential names and credential hierarchy;
 - grading and mastery thresholds;
 - attendance policy for guided cohorts;
-- remediation, reapplication, retake, appeal, and academic-probation rules;
+- remediation, reapplication, retake, appeal, and academic-standing rules;
 - instructor/evaluator qualification standards;
 - student handbook and final policy suite;
-- final Day 1 public course catalog.
+- final regulatory classification and TESDA-registration path, where applicable.
 
 ## 19. Source precedence
 
 When sources conflict, use this order:
 
 1. explicit current institutional decisions approved for Cognita 2.0;
-2. this Cognita 2.0 source-of-truth document;
-3. `AGENTS.md`, `CLAUDE.md`, repository README and active 2.0 code;
-4. current approved Cognita 2.0 brand system;
-5. selectively reused academic material from older Cognita documents;
-6. older Cognita Academy/Cognita Institute repositories, proposals, pricing sheets, and experiments.
+2. this Cognita 2.0 source-of-truth document for LOCKED architecture;
+3. `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` for detailed PROVISIONAL operating recommendations;
+4. `AGENTS.md`, `CLAUDE.md`, repository README and active 2.0 code;
+5. current approved Cognita 2.0 brand system;
+6. selectively reused academic material from older Cognita documents;
+7. older Cognita Academy/Cognita Institute repositories, proposals, pricing sheets, and experiments.
 
-Older material may inform Cognita 2.0 but must never silently override the current institutional architecture.
+Older material may inform Cognita 2.0 but must never silently override the current institutional architecture. A PROVISIONAL recommendation must never silently override a LOCKED rule.

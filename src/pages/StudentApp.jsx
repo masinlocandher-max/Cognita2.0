@@ -1,112 +1,408 @@
+import { useState } from 'react'
 import {
-  Award, BookOpen, CalendarDays, ClipboardCheck, FolderOpen, GraduationCap,
-  LifeBuoy, LockKeyhole, Megaphone, MessageSquareText, NotebookTabs, TrendingUp,
+  Award,
+  BookOpen,
+  BriefcaseBusiness,
+  Check,
+  CheckCircle2,
+  ChevronRight,
+  CircleHelp,
+  ClipboardCheck,
+  FileCheck2,
+  FolderOpen,
+  GraduationCap,
+  LayoutDashboard,
+  LockKeyhole,
+  MessageSquareText,
+  NotebookTabs,
+  Settings,
+  ShieldCheck,
+  Sparkles,
+  UserRound,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { getAccount, getApplication, getEnrollment, hasStudentAppAccess } from '../lib/admissions'
-import AdmissionStatusPanel from '../components/AdmissionStatus'
+import { getAccount, getEnrollment, hasStudentAppAccess } from '../lib/admissions'
+import { GUIDED_TRACK_OPTIONS } from '../data/learning'
+import {
+  createSupportRequest,
+  getLearningSnapshot,
+  readLearningState,
+  saveCapstone,
+  saveProfile,
+  saveSettings,
+  saveSubmission,
+  setTrack,
+  submitCapstone,
+  toggleLessonComplete,
+} from '../lib/learning'
 
-/**
- * The Cognita Learning App.
- *
- * The private learning environment for enrolled students, separate from the
- * public institutional website. The structure below is the surface the
- * production curriculum will occupy. Areas without approved content say so
- * rather than presenting invented lessons or fabricated progress.
- */
-
-const AREAS = [
-  { icon: NotebookTabs, title: 'Modules', body: 'Structured lessons and learning materials for your enrolled program.' },
-  { icon: ClipboardCheck, title: 'Assessments', body: 'Competency checks, quizzes, and practical exercises tied to each module.' },
-  { icon: FolderOpen, title: 'Submissions', body: 'Required outputs, revision status, and submission history.' },
-  { icon: MessageSquareText, title: 'Feedback', body: 'Mentor and facilitator review on your submitted work.' },
-  { icon: TrendingUp, title: 'Progress', body: 'Completion against required outputs rather than time spent.' },
-  { icon: CalendarDays, title: 'Schedule', body: 'Cohort deadlines for guided study, or your own rhythm when self-paced.' },
-  { icon: GraduationCap, title: 'Capstone', body: 'Your capstone workspace and professional defense requirements.' },
-  { icon: Award, title: 'Portfolio and credentials', body: 'Portfolio evidence and completion status for your program.' },
-  { icon: LifeBuoy, title: 'Student support', body: 'Academic and administrative help while you study.' },
-  { icon: Megaphone, title: 'Notices', body: 'Institutional announcements relevant to your enrollment.' },
+const NAV = [
+  ['overview', LayoutDashboard, 'Overview'],
+  ['learn', BookOpen, 'Learn'],
+  ['assessments', ClipboardCheck, 'Assessments'],
+  ['feedback', MessageSquareText, 'Feedback'],
+  ['capstone', GraduationCap, 'Capstone'],
+  ['portfolio', FolderOpen, 'Portfolio'],
+  ['credential', Award, 'Credential'],
+  ['support', CircleHelp, 'Support'],
+  ['profile', UserRound, 'Profile'],
 ]
+
+function formatDate(value) {
+  if (!value) return 'Not yet'
+  return new Intl.DateTimeFormat('en-PH', { dateStyle: 'medium' }).format(new Date(value))
+}
+
+function Gate() {
+  return (
+    <section className="student-app-page">
+      <div className="page-width gate-card">
+        <LockKeyhole size={36} />
+        <p className="section-label">STUDENT APP</p>
+        <h1>Student access has not been activated.</h1>
+        <p>The learning app is reserved for enrolled students. Complete admissions, CEE, program selection, payment, and account activation first.</p>
+        <Link className="button button--ghost" to="/apply">View admissions status</Link>
+      </div>
+    </section>
+  )
+}
 
 export default function StudentApp() {
   const account = getAccount()
   const enrollment = getEnrollment()
-  const application = getApplication()
+  const [tab, setTab] = useState('overview')
+  const [selectedLessonId, setSelectedLessonId] = useState(null)
+  const [learning, setLearning] = useState(() => getLearningSnapshot())
+  const [submissionDraft, setSubmissionDraft] = useState('')
+  const [capstoneDraft, setCapstoneDraft] = useState(() => readLearningState().capstone.draft || '')
+  const [capstoneReflection, setCapstoneReflection] = useState(() => readLearningState().capstone.reflection || '')
+  const [supportMessage, setSupportMessage] = useState('')
+  const [profile, setProfile] = useState(() => readLearningState().profile)
+  const [settingsState, setSettingsState] = useState(() => readLearningState().settings)
 
-  if (!hasStudentAppAccess()) {
-    return (
-      <section className="admissions-page">
-        <div className="page-width ci-stack-lg">
-          <div className="gate-card">
-            <LockKeyhole size={34} aria-hidden="true" />
-            <p className="section-label section-label--plain">Cognita Learning App</p>
-            <h1>Student access has not been activated.</h1>
-            <p>
-              The Learning App is reserved for enrolled students. Admission, examination, program selection,
-              enrollment, and account activation come first.
-            </p>
-            <Link className="button" to="/apply">View your admission status <span aria-hidden="true">→</span></Link>
-          </div>
-          {application ? (
-            <AdmissionStatusPanel application={application} enrollment={enrollment} account={account} />
-          ) : null}
-        </div>
-      </section>
-    )
+  const refresh = () => setLearning(getLearningSnapshot())
+
+  if (!hasStudentAppAccess()) return <Gate />
+
+  const firstName = account.fullName.split(' ')[0]
+  const selectedLesson = selectedLessonId
+    ? learning.lessons.find((lesson) => lesson.id === selectedLessonId)
+    : null
+  const selectedModule = selectedLesson
+    ? learning.modules.find((module) => module.lessons.some((lesson) => lesson.id === selectedLesson.id))
+    : null
+  const nextLesson = learning.lessons.find((lesson) => !learning.state.completedLessons.includes(lesson.id)) || learning.lessons[0]
+
+  const openLesson = (lesson) => {
+    setSelectedLessonId(lesson.id)
+    setSubmissionDraft(learning.state.submissions[lesson.id]?.text || '')
+    setTab('learn')
   }
 
+  const completeLesson = (lessonId) => {
+    toggleLessonComplete(lessonId)
+    refresh()
+  }
+
+  const storeSubmission = () => {
+    if (!selectedLesson) return
+    saveSubmission(selectedLesson.id, submissionDraft)
+    refresh()
+  }
+
+  const changeTrack = (event) => {
+    setTrack(event.target.value)
+    setSelectedLessonId(null)
+    refresh()
+  }
+
+  const saveCapstoneWork = () => {
+    saveCapstone({ draft: capstoneDraft, reflection: capstoneReflection })
+    refresh()
+  }
+
+  const releaseCapstone = () => {
+    saveCapstone({ draft: capstoneDraft, reflection: capstoneReflection })
+    submitCapstone()
+    refresh()
+  }
+
+  const sendSupport = () => {
+    if (!supportMessage.trim()) return
+    createSupportRequest(supportMessage)
+    setSupportMessage('')
+    refresh()
+  }
+
+  const saveProfileForm = () => {
+    saveProfile(profile)
+    saveSettings(settingsState)
+    refresh()
+  }
+
+  const outputs = learning.lessons.filter((lesson) => lesson.type === 'output')
+  const feedbackEntries = Object.values(learning.state.feedback)
+  const hasFeedback = feedbackEntries.length > 0 || Boolean(learning.state.capstone.feedback)
+  const credentialReady = learning.progress === 100 && learning.passedOutputs >= learning.requiredOutputs && learning.state.capstone.status === 'passed'
+
   return (
-    <section className="ci-app-shell">
-      <div className="page-width">
-        <header className="ci-app-head">
-          <div>
-            <p className="section-label">Cognita Learning App</p>
-            <h1>Welcome, {account.fullName.split(' ')[0]}.</h1>
-            <p>Your learning environment, separate from the public Cognita website.</p>
+    <section className="student-app-page student-workspace-page">
+      <div className="student-workspace page-width">
+        <aside className="student-sidebar">
+          <div className="student-sidebar-brand">
+            <span>COGNITA</span>
+            <strong>Student App</strong>
           </div>
-          <div className="ci-program-chip">
+          <nav aria-label="Student app navigation">
+            {NAV.map(([id, Icon, label]) => (
+              <button key={id} type="button" className={tab === id ? 'is-active' : ''} onClick={() => setTab(id)}>
+                <Icon size={18} />
+                <span>{label}</span>
+              </button>
+            ))}
+          </nav>
+          <div className="student-sidebar-foot">
             <span>{enrollment.programCode}</span>
             <strong>{enrollment.programName}</strong>
+            <small>Frontend learning preview</small>
           </div>
-        </header>
+        </aside>
 
-        <article className="ci-continue">
-          <div>
-            <p className="ci-card-title" style={{ color: 'rgba(255,255,255,.55)' }}>Continue learning</p>
-            <h2>Your learning path</h2>
-            <p>
-              Lessons, activities, checkpoints, and facilitator guidance for your enrolled program appear here.
-              Cognita has not yet published approved curriculum content for this build, so no modules are
-              listed and no progress is recorded.
-            </p>
-          </div>
-          <div className="ci-continue-progress">
-            <div className="ci-continue-meter" role="img" aria-label="Program progress: not started">
-              <span style={{ width: '0%' }} />
+        <main className="student-workspace-main">
+          <header className="student-topbar">
+            <div>
+              <span className="student-kicker">COGNITA STUDENT APP</span>
+              <h1>{tab === 'overview' ? `Welcome, ${firstName}.` : NAV.find(([id]) => id === tab)?.[2]}</h1>
             </div>
-            <p>Curriculum not yet connected</p>
-          </div>
-        </article>
+            <div className="student-progress-chip">
+              <span>Overall progress</span>
+              <strong>{learning.progress}%</strong>
+            </div>
+          </header>
 
-        <div className="ci-app-grid" style={{ marginTop: '22px' }}>
-          {AREAS.map(({ icon: Icon, title, body }) => (
-            <article className="ci-app-tile ci-app-tile--pending" key={title}>
-              <Icon size={19} aria-hidden="true" />
-              <h3>{title}</h3>
-              <p>{body}</p>
-              <span className="ci-app-pending">Opens with approved curriculum</span>
-            </article>
-          ))}
-        </div>
+          {tab === 'overview' && (
+            <div className="student-view">
+              <section className="student-continue-panel">
+                <div>
+                  <span>NEXT ACTION</span>
+                  <h2>{nextLesson?.title || 'Learning path complete'}</h2>
+                  <p>{learning.progress === 100 ? 'Review your portfolio, capstone, and credential requirements.' : 'Continue with the next incomplete learning activity in your program.'}</p>
+                </div>
+                {nextLesson && <button className="button" type="button" onClick={() => openLesson(nextLesson)}>Continue learning <ChevronRight size={18} /></button>}
+              </section>
 
-        <div className="ci-notice ci-notice--sim" style={{ marginTop: '26px' }}>
-          <BookOpen size={17} aria-hidden="true" />
-          <div>
-            <strong>Frontend preview — no curriculum, no cloud records.</strong>
-            This environment shows the structure of the Cognita Learning App. Lessons, submissions, mentor
-            review, and progress are not connected, and nothing here is stored outside this browser.
-          </div>
-        </div>
+              <div className="student-metric-grid">
+                <article><BookOpen /><span>Learning progress</span><strong>{learning.completed}/{learning.total}</strong><small>activities completed</small></article>
+                <article><FileCheck2 /><span>Required outputs</span><strong>{learning.passedOutputs}/{learning.requiredOutputs}</strong><small>passed by facilitator</small></article>
+                <article><GraduationCap /><span>Capstone</span><strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong><small>competency evidence</small></article>
+                <article><MessageSquareText /><span>Support</span><strong>{learning.openSupport}</strong><small>open local requests</small></article>
+              </div>
+
+              {enrollment.programId === 'professional-ai-program' && (
+                <section className="student-section-panel">
+                  <div className="student-section-heading"><div><span>GUIDED SPECIALIZATION</span><h2>Your applied track</h2></div><BriefcaseBusiness /></div>
+                  <p>The guided route includes foundation learning followed by specialization. This selector is a frontend preview of your recorded track assignment and should become staff-controlled in production.</p>
+                  <select className="student-select" value={learning.state.selectedTrack} onChange={changeTrack}>
+                    {GUIDED_TRACK_OPTIONS.map((track) => <option key={track}>{track}</option>)}
+                  </select>
+                </section>
+              )}
+
+              <section className="student-section-panel">
+                <div className="student-section-heading"><div><span>PROGRAM MAP</span><h2>Your learning journey</h2></div><NotebookTabs /></div>
+                <div className="student-module-strip">
+                  {learning.modules.map((module) => {
+                    const done = module.lessons.every((lesson) => learning.state.completedLessons.includes(lesson.id))
+                    return <div key={module.id} className={done ? 'is-complete' : ''}><span>{module.suggested}</span><strong>{module.title}</strong>{done && <Check size={16} />}</div>
+                  })}
+                </div>
+              </section>
+            </div>
+          )}
+
+          {tab === 'learn' && (
+            <div className="student-view learning-view">
+              <aside className="course-outline">
+                {learning.modules.map((module) => (
+                  <section key={module.id}>
+                    <div className="course-module-title"><span>{module.stage}</span><strong>{module.title}</strong><small>{module.suggested}</small></div>
+                    {module.lessons.map((lesson) => {
+                      const done = learning.state.completedLessons.includes(lesson.id)
+                      return (
+                        <button key={lesson.id} type="button" className={`${selectedLessonId === lesson.id ? 'is-active' : ''} ${done ? 'is-complete' : ''}`} onClick={() => openLesson(lesson)}>
+                          <span>{done ? <CheckCircle2 size={16} /> : <BookOpen size={16} />}</span>
+                          <div><strong>{lesson.title}</strong><small>{lesson.type} · {lesson.minutes} min</small></div>
+                        </button>
+                      )
+                    })}
+                  </section>
+                ))}
+              </aside>
+
+              <article className="lesson-canvas">
+                {!selectedLesson ? (
+                  <div className="lesson-empty"><BookOpen size={38} /><h2>Select a lesson or activity.</h2><p>Your program outline stays on the left. Open any activity to study, complete it, or submit required work.</p></div>
+                ) : (
+                  <>
+                    <div className="lesson-meta"><span>{selectedModule.stage}</span><span>{selectedModule.suggested}</span><span>{selectedLesson.minutes} min</span></div>
+                    <h2>{selectedLesson.title}</h2>
+                    <p className="lesson-module-summary">{selectedModule.summary}</p>
+
+                    <div className="lesson-content-block">
+                      <h3>Learning focus</h3>
+                      <p>This learning surface is structured around the approved Cognita curriculum. Production lesson media, readings, examples, and instructor materials will be inserted here without changing the competency sequence.</p>
+                    </div>
+
+                    <div className="lesson-integrity-note"><ShieldCheck /><div><strong>Human intelligence remains accountable.</strong><p>Use AI to support learning where the activity permits it, but remain able to explain, verify, revise, and defend your work. Do not submit unreviewed AI output as your own demonstrated competence.</p></div></div>
+
+                    {['output', 'practice', 'capstone'].includes(selectedLesson.type) && (
+                      <div className="lesson-submission-block">
+                        <h3>{selectedLesson.type === 'capstone' ? 'Working submission' : 'Activity response'}</h3>
+                        <textarea rows="10" value={submissionDraft} onChange={(event) => setSubmissionDraft(event.target.value)} placeholder="Draft your response, evidence notes, reflection, or submission here..." />
+                        <div><button className="button button--ghost" type="button" onClick={storeSubmission}>Save / submit locally</button><small>This does not transmit work to Cognita yet.</small></div>
+                        {learning.state.feedback[selectedLesson.id] && <div className={`inline-feedback is-${learning.state.feedback[selectedLesson.id].decision}`}><strong>{learning.state.feedback[selectedLesson.id].decision.toUpperCase()}</strong><p>{learning.state.feedback[selectedLesson.id].note}</p></div>}
+                      </div>
+                    )}
+
+                    <button className={`lesson-complete-button ${learning.state.completedLessons.includes(selectedLesson.id) ? 'is-complete' : ''}`} type="button" onClick={() => completeLesson(selectedLesson.id)}>
+                      <CheckCircle2 size={19} />
+                      {learning.state.completedLessons.includes(selectedLesson.id) ? 'Marked complete' : 'Mark activity complete'}
+                    </button>
+                  </>
+                )}
+              </article>
+            </div>
+          )}
+
+          {tab === 'assessments' && (
+            <div className="student-view">
+              <div className="student-section-heading"><div><span>COMPETENCY EVIDENCE</span><h2>Required outputs and assessments</h2></div><ClipboardCheck /></div>
+              <p className="student-view-intro">Cognita completion is not based on opening lessons alone. Required outputs must demonstrate applied competence and may require revision before they count toward a credential.</p>
+              <div className="assessment-list">
+                {outputs.map((lesson) => {
+                  const submission = learning.state.submissions[lesson.id]
+                  const module = learning.modules.find((item) => item.lessons.some((entry) => entry.id === lesson.id))
+                  return (
+                    <article key={lesson.id}>
+                      <div><span>{module?.stage} · {module?.suggested}</span><h3>{lesson.title}</h3><p>{module?.title}</p></div>
+                      <div className="assessment-status"><strong>{submission?.status ? submission.status.replaceAll('_', ' ') : 'not submitted'}</strong><button type="button" onClick={() => openLesson(lesson)}>Open</button></div>
+                    </article>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {tab === 'feedback' && (
+            <div className="student-view">
+              <div className="student-section-heading"><div><span>HUMAN REVIEW</span><h2>Feedback and revision queue</h2></div><MessageSquareText /></div>
+              {hasFeedback ? (
+                <div className="feedback-list">
+                  {feedbackEntries.map((feedback) => {
+                    const lesson = learning.lessons.find((item) => item.id === feedback.lessonId)
+                    return <article key={feedback.lessonId} className={`feedback-card is-${feedback.decision}`}><div><span>{feedback.decision.toUpperCase()}</span><h3>{lesson?.title || feedback.lessonId}</h3><small>Reviewed {formatDate(feedback.reviewedAt)}</small></div><p>{feedback.note}</p>{feedback.decision === 'revise' && <button type="button" onClick={() => lesson && openLesson(lesson)}>Open work to revise</button>}</article>
+                  })}
+                  {learning.state.capstone.feedback && <article className={`feedback-card is-${learning.state.capstone.feedback.decision}`}><div><span>{learning.state.capstone.feedback.decision.toUpperCase()}</span><h3>Capstone evaluation</h3><small>Reviewed {formatDate(learning.state.capstone.feedback.reviewedAt)}</small></div><p>{learning.state.capstone.feedback.note}</p>{learning.state.capstone.feedback.decision === 'revise' && <button type="button" onClick={() => setTab('capstone')}>Open capstone to revise</button>}</article>}
+                </div>
+              ) : (
+                <div className="feedback-empty">
+                  <MessageSquareText size={36} />
+                  <h3>No facilitator feedback has been released yet.</h3>
+                  <p>Submitted outputs remain in review until the trainer records a PASS or REVISE decision with written feedback.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {tab === 'capstone' && (
+            <div className="student-view capstone-grid">
+              <article className="student-section-panel">
+                <div className="student-section-heading"><div><span>FINAL INTEGRATION</span><h2>Capstone workspace</h2></div><GraduationCap /></div>
+                <p>Your capstone should require independent judgment, source verification, revision, and a defensible explanation of how AI was used. A single copied AI response is not sufficient evidence of competence.</p>
+                <label>Capstone project / evidence draft<textarea rows="12" value={capstoneDraft} onChange={(event) => setCapstoneDraft(event.target.value)} /></label>
+                <label>Reflection and professional defense notes<textarea rows="8" value={capstoneReflection} onChange={(event) => setCapstoneReflection(event.target.value)} /></label>
+                <div className="capstone-actions"><button className="button button--ghost" type="button" onClick={saveCapstoneWork}>Save draft</button><button className="button" type="button" onClick={releaseCapstone}>Submit for review</button></div>
+                <small className="mvp-note">Frontend preview only. “Submit” records the state on this device and does not reach an evaluator.</small>
+                {learning.state.capstone.feedback && <div className={`inline-feedback is-${learning.state.capstone.feedback.decision}`}><strong>{learning.state.capstone.feedback.decision.toUpperCase()}</strong><p>{learning.state.capstone.feedback.note}</p></div>}
+              </article>
+              <aside className="capstone-status-card">
+                <span>CAPSTONE STATUS</span>
+                <strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong>
+                <p>Last update: {formatDate(learning.state.capstone.updatedAt || learning.state.capstone.submittedAt)}</p>
+                <div><CheckCircle2 /><span>Project evidence</span></div><div><CheckCircle2 /><span>Reflection</span></div><div><ShieldCheck /><span>Professional defense review</span></div>
+              </aside>
+            </div>
+          )}
+
+          {tab === 'portfolio' && (
+            <div className="student-view">
+              <div className="student-section-heading"><div><span>EVIDENCE OF WORK</span><h2>Learning portfolio</h2></div><FolderOpen /></div>
+              <p className="student-view-intro">Your portfolio should make competence visible. These are the outputs currently saved in this browser preview.</p>
+              <div className="portfolio-grid">
+                {learning.state.portfolio.length ? learning.state.portfolio.map((lessonId) => {
+                  const lesson = learning.lessons.find((item) => item.id === lessonId)
+                  const submission = learning.state.submissions[lessonId]
+                  const feedback = learning.state.feedback[lessonId]
+                  return <article key={lessonId}><Sparkles /><span>{lesson?.type || 'output'}</span><h3>{lesson?.title || lessonId}</h3><p>{submission?.text?.slice(0, 180)}{submission?.text?.length > 180 ? '…' : ''}</p>{feedback && <strong className={`portfolio-decision is-${feedback.decision}`}>{feedback.decision.toUpperCase()}</strong>}<small>Updated {formatDate(submission?.updatedAt)}</small></article>
+                }) : <div className="feedback-empty"><FolderOpen size={34} /><h3>Your portfolio will grow as you submit applied work.</h3></div>}
+              </div>
+            </div>
+          )}
+
+          {tab === 'credential' && (
+            <div className="student-view credential-view">
+              <article className="credential-card-preview">
+                <span>COGNITA INSTITUTE</span>
+                <Award size={44} />
+                <h2>Credential eligibility</h2>
+                <strong>{credentialReady ? 'Ready for final credential verification' : 'Requirements in progress'}</strong>
+                <p>A Cognita credential is earned through demonstrated competence, passed required outputs, capstone approval, assessment evidence, and final institutional review. This preview does not issue a certificate.</p>
+              </article>
+              <div className="credential-requirements">
+                <div className={learning.progress === 100 ? 'is-done' : ''}><CheckCircle2 /><span>All learning activities complete</span><strong>{learning.progress}%</strong></div>
+                <div className={learning.passedOutputs >= learning.requiredOutputs ? 'is-done' : ''}><FileCheck2 /><span>Required outputs passed</span><strong>{learning.passedOutputs}/{learning.requiredOutputs}</strong></div>
+                <div className={learning.state.capstone.status === 'passed' ? 'is-done' : ''}><GraduationCap /><span>Capstone passed</span><strong>{learning.state.capstone.status.replaceAll('_', ' ')}</strong></div>
+                <div className={credentialReady ? 'is-done' : ''}><ShieldCheck /><span>Credential verification readiness</span><strong>{credentialReady ? 'Ready for final institutional check' : 'Pending requirements'}</strong></div>
+              </div>
+            </div>
+          )}
+
+          {tab === 'support' && (
+            <div className="student-view support-layout">
+              <article className="student-section-panel">
+                <div className="student-section-heading"><div><span>STUDENT SUPPORT</span><h2>Ask for human help</h2></div><CircleHelp /></div>
+                <p>Use this for learning questions, schedule concerns, accessibility needs, technical issues, or situations that require facilitator judgment.</p>
+                <textarea rows="7" value={supportMessage} onChange={(event) => setSupportMessage(event.target.value)} placeholder="Describe what you need help with..." />
+                <button className="button" type="button" onClick={sendSupport}>Create local support request</button>
+                <small className="mvp-note">This is a device-local preview. It is not sent to Cognita yet.</small>
+              </article>
+              <aside className="support-history">
+                <span>REQUEST HISTORY</span>
+                {learning.state.supportRequests.length ? learning.state.supportRequests.map((request) => <div key={request.id}><strong>{request.status.replaceAll('_', ' ')}</strong><p>{request.message}</p>{request.response && <div className="support-response"><span>Facilitator response</span><p>{request.response}</p></div>}<small>{formatDate(request.respondedAt || request.createdAt)}</small></div>) : <p>No support requests yet.</p>}
+              </aside>
+            </div>
+          )}
+
+          {tab === 'profile' && (
+            <div className="student-view profile-layout">
+              <article className="student-section-panel profile-card">
+                <div className="student-section-heading"><div><span>LEARNER PROFILE</span><h2>Your learning identity</h2></div><UserRound /></div>
+                <label>Preferred name<input value={profile.preferredName} onChange={(event) => setProfile({ ...profile, preferredName: event.target.value })} placeholder={account.fullName} /></label>
+                <label>Short professional / learner bio<textarea rows="5" value={profile.bio} onChange={(event) => setProfile({ ...profile, bio: event.target.value })} /></label>
+                <label>Learning and professional goals<textarea rows="6" value={profile.goals} onChange={(event) => setProfile({ ...profile, goals: event.target.value })} /></label>
+              </article>
+              <aside className="student-section-panel settings-card">
+                <div className="student-section-heading"><div><span>SETTINGS</span><h2>Learning preferences</h2></div><Settings /></div>
+                <label className="setting-toggle"><input type="checkbox" checked={settingsState.reminders} onChange={(event) => setSettingsState({ ...settingsState, reminders: event.target.checked })} /><span><strong>Learning reminders</strong><small>Preference only until real notifications are connected.</small></span></label>
+                <label className="setting-toggle"><input type="checkbox" checked={settingsState.reducedMotion} onChange={(event) => setSettingsState({ ...settingsState, reducedMotion: event.target.checked })} /><span><strong>Reduced motion</strong><small>Preference for a calmer app experience.</small></span></label>
+                <button className="button" type="button" onClick={saveProfileForm}>Save profile and settings</button>
+                <div className="profile-account-facts"><span>Account email</span><strong>{account.email}</strong><span>Program</span><strong>{enrollment.programName}</strong><span>Access activated</span><strong>{formatDate(account.activatedAt)}</strong></div>
+              </aside>
+            </div>
+          )}
+
+          <footer className="student-app-footer-note">Frontend-only learning environment. Production authentication, instructor review, cross-device records, real notifications, and credential issuance remain disabled until Cognita is ready for real student intake.</footer>
+        </main>
       </div>
     </section>
   )

@@ -1,430 +1,289 @@
 import {
-  ArrowRight, BadgeCheck, BookOpenCheck, ClipboardCheck, GraduationCap,
-  Landmark, Layers, ShieldCheck, Sparkles, UserCheck,
+  ArrowRight,
+  BookOpenCheck,
+  BrainCircuit,
+  Building2,
+  CheckCircle2,
+  CircleHelp,
+  Clock3,
+  GraduationCap,
+  Mail,
+  MapPinned,
+  SearchCheck,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  UsersRound,
+  Waypoints,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { useHashScroll, useReveal } from '../lib/useReveal'
-import { PROGRAMS, FOUNDATION_BRIDGE } from '../data/programs'
 
-/**
- * The public institutional homepage.
- *
- * Copy follows docs/WEBSITE-CONTENT.md. The section order answers, in
- * sequence: what Cognita is, who it is for, why the approach differs, how
- * admission works, what learning routes exist, what happens after admission,
- * why the institution can be trusted, and what to do next.
- */
+const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
+const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
 
-const ADMISSION_STEPS = [
-  { step: 'Step 01', title: 'Submit your application', body: 'Complete the Cognita application form and provide the required applicant information. Your application allows Cognita to review your basic eligibility.' },
-  { step: 'Step 02', title: 'Application review', body: 'Your application is reviewed by Admissions. Applicants who meet the initial requirements receive instructions through their registered email address.' },
-  { step: 'Step 03', title: 'Receive your CEE access', body: 'Approved applicants receive access to the Cognita Entrance Examination by email. Access is intended only for you and must not be shared.' },
-  { step: 'Step 04', title: 'Take the examination', body: 'Complete the CEE within the conditions provided. The examination helps Cognita assess your current readiness and foundational competencies.' },
-  { step: 'Step 05', title: 'Receive your result and pathway', body: 'After evaluation, Cognita sends your admission result. Passing applicants may also receive an academic pathway recommendation based on readiness evidence.' },
-  { step: 'Step 06', title: 'Choose your program', body: 'Successful applicants explore the programs currently available for enrollment. Cognita may recommend a guided or self-paced route.' },
-  { step: 'Step 07', title: 'Complete enrollment', body: 'Proceed with the required enrollment and payment process. Enrollment is complete only after the required steps have been confirmed.' },
-  { step: 'Step 08', title: 'Create your student account', body: 'After enrollment confirmation, you are instructed to create your Cognita student account.' },
-  { step: 'Step 09', title: 'Enter the Learning App', body: 'Once your account is activated, you may access your lessons, activities, assessments, progress, and student resources.' },
+const admissionsSteps = [
+  ['01', 'Submit an application', 'Applicants begin through Cognita Admissions and provide the information required for initial review.'],
+  ['02', 'Application review', 'Cognita reviews the application before any entrance examination access is issued.'],
+  ['03', 'Receive CEE access', 'Approved applicants receive invitation-only Cognita Entrance Examination instructions through their registered email.'],
+  ['04', 'Complete the CEE', 'The applicant completes one timed assessment session independently and under the stated integrity conditions.'],
+  ['05', 'Receive the result', 'Objective evidence and applied responses are reviewed before Cognita releases the final admission decision and pathway guidance.'],
+  ['06', 'Choose an eligible program', 'Passing applicants may select an available learning route, guided by readiness evidence where appropriate.'],
+  ['07', 'Complete enrollment', 'Program selection is followed by the approved payment and enrollment process for the applicable intake.'],
+  ['08', 'Activate the student account', 'Student access is created only after enrollment requirements have been confirmed.'],
+  ['09', 'Enter the private learning environment', 'Lessons, assessments, submissions, feedback, progress, and academic work happen in the enrolled-student environment, not on this public website.'],
 ]
 
-const PRINCIPLES = [
-  { icon: Layers, title: 'Understanding before automation', body: 'Learners should understand the task before asking AI to perform it.' },
-  { icon: ShieldCheck, title: 'Evidence before confidence', body: 'Fluent output is not proof of truth. Claims, sources, and recommendations are verified when verification matters.' },
-  { icon: ClipboardCheck, title: 'Practice before certification', body: 'Credentials represent demonstrated capability, not passive consumption.' },
-  { icon: UserCheck, title: 'Human accountability', body: 'Learners remain responsible for decisions, submissions, communications, and consequences.' },
+const faqs = [
+  ['What kind of institution is Cognita?', 'The Cognita Institute of Artificial Intelligence is a private, non-degree training institution focused on structured and applied AI learning. Program-specific regulatory status is disclosed before enrollment.'],
+  ['Who is Cognita designed for?', 'Cognita is designed around Filipino learners with different educational backgrounds, levels of English proficiency, work responsibilities, digital experience, and learning pace.'],
+  ['Do I need previous AI experience?', 'Not necessarily. Cognita uses readiness evidence to understand where a learner should begin. Foundation support may be recommended when academically appropriate.'],
+  ['What is the CEE?', 'The Cognita Entrance Examination is an admissions and readiness assessment. It examines functional communication, AI foundations, research and verification judgment, and applied reasoning before a final human-reviewed admission decision is released.'],
+  ['Can I study directly on this website?', 'No. This website provides institutional and program information. Enrolled learners study inside Cognita’s private learning environment after admission, enrollment, and account activation.'],
+  ['How much is tuition?', 'Current fees are released only for approved intakes and programs. Contact Cognita for the latest approved fee and intake information.'],
+  ['Does completing lessons automatically earn a credential?', 'No. Cognita is competency-based. Required work, assessment evidence, revision where needed, capstone requirements, and final institutional verification determine completion.'],
+  ['Can organizations request a private training cohort?', 'Yes. Cognita can discuss customized learning for schools, companies, LGUs, NGOs, professional groups, and community or workforce-development partners.'],
 ]
 
 export default function Home() {
-  useReveal()
-  useHashScroll()
-  const [guided, selfPaced] = PROGRAMS
-
   return (
     <>
-      {/* 1 — What Cognita is. A masthead, not a banner: the admission ladder
-          overlaps the statement column and a ruled fact strip closes it. */}
-      <section className="ed-hero">
-        <div className="page-width ed-hero-inner">
-          <p className="ed-hero-eyebrow">
-            <span>The Cognita Institute of Artificial Intelligence</span>
-            <span>Admission by examination</span>
-          </p>
-
-          <div className="ed-grid">
-            <div className="ed-c1-6 ed-hero-statement">
-              <h1 className="ed-statement">
-                Learn with structure. <em>Advance with purpose.</em>
-              </h1>
-              <p className="ed-hero-sub">
-                Training designed for Filipino learners who want to build real knowledge,
-                practical capability, and measurable progress.
-              </p>
-              <div className="ed-hero-actions">
-                <a className="button" href="#admission">
-                  View the admission process <ArrowRight size={18} aria-hidden="true" />
-                </a>
-                <Link className="text-link" to="/programs">
-                  Explore our programs <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-              </div>
+      <section className="public-hero public-hero--institutional">
+        <div className="page-width public-hero-grid">
+          <div className="public-hero-copy">
+            <p className="public-institution-name">The Cognita Institute of Artificial Intelligence</p>
+            <h1>Learn with structure.<br />Advance with purpose.</h1>
+            <p>Training designed for Filipino learners who want to build real knowledge, practical capability, and measurable progress.</p>
+            <div className="public-hero-actions">
+              <a className="button" href="#admissions">View the admission process <ArrowRight size={18} /></a>
+              <a className="button button--ghost" href="/programs">Explore our programs</a>
             </div>
-
-            <aside className="ed-c7-6 ed-ladder" aria-label="How admission works, in three stages">
-              <p className="ed-ladder-title">The route in</p>
-              <div className="ed-ladder-step">
-                <span className="ed-index">01</span>
-                <span><b>Apply</b><p>You submit an application. Admissions reviews it.</p></span>
-              </div>
-              <div className="ed-ladder-step">
-                <span className="ed-index">02</span>
-                <span><b>Sit the CEE</b><p>Approved applicants are invited to the entrance examination by email.</p></span>
-              </div>
-              <div className="ed-ladder-step">
-                <span className="ed-index">03</span>
-                <span><b>Receive your pathway</b><p>An evaluator reviews your work before any result is released.</p></span>
-              </div>
-            </aside>
+            <p className="public-institutional-line">Admission is intentional. Learning is structured. Progress is earned.</p>
           </div>
 
-          <dl className="ed-facts">
-            <div><dt>Admission</dt><dd>By application and entrance examination</dd></div>
-            <div><dt>Delivery</dt><dd>Online</dd></div>
-            <div><dt>Instruction</dt><dd>English</dd></div>
-            <div><dt>Learning routes</dt><dd>Guided cohort or self-paced</dd></div>
-          </dl>
+          <aside className="public-academic-note" aria-label="Cognita academic approach">
+            <span>Academic approach</span>
+            <h2>Human Intelligence. Amplified.</h2>
+            <p>Cognita teaches learners to understand the task, use AI deliberately, verify important outputs, and remain accountable for the final work.</p>
+            <dl>
+              <div><dt>Framework</dt><dd>Think. Apply. Transform.</dd></div>
+              <div><dt>Progression</dt><dd>Readiness and demonstrated competence</dd></div>
+              <div><dt>Delivery</dt><dd>Guided and self-paced routes</dd></div>
+            </dl>
+          </aside>
         </div>
       </section>
 
-      {/* 2 — Who it is for */}
-      <section className="section section--white" id="about">
-        <div className="page-width split-layout ci-reveal">
+      <section className="public-facts-band">
+        <div className="page-width public-facts-grid">
+          <div><span>Institution</span><strong>Private, non-degree training institute</strong></div>
+          <div><span>Focus</span><strong>Applied artificial intelligence</strong></div>
+          <div><span>Learners</span><strong>Designed for Filipino learners</strong></div>
+          <div><span>Standard</span><strong>Competency-based progression</strong></div>
+        </div>
+      </section>
+
+      <section className="section public-section" id="about">
+        <div className="page-width public-two-column">
           <div>
-            <p className="section-label">About Cognita Institute</p>
-            <h2>A private training and learning institution designed for Filipino learners.</h2>
+            <p className="section-label">ABOUT COGNITA</p>
+            <h2>A structured learning institution for practical AI capability.</h2>
           </div>
-          <div className="prose-large">
-            <p>
-              We believe quality education should be structured, practical, accessible, and connected to the
-              realities of the people it serves. Cognita develops learning experiences that help students
-              strengthen foundational knowledge, build practical skills, and progress with greater confidence
-              toward academic, professional, and personal goals.
-            </p>
-            <p>
-              Our approach combines self-paced learning with structured assessments, clear progression
-              standards, and appropriate human guidance. Students are expected to demonstrate understanding
-              and competency, not simply complete lessons.
-            </p>
-            <p>
-              Cognita is built around the needs of Filipino learners. This means considering different
-              educational backgrounds, levels of English proficiency, access to technology, learning pace, and
-              the practical demands students face outside the classroom.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission and Vision */}
-      <section className="section section--soft">
-        <div className="page-width ci-reveal">
-          <div className="section-heading">
-            <p className="section-label">Mission and Vision</p>
-            <h2>What the institution is for.</h2>
-          </div>
-          <div className="ci-statement-pair">
-            <article className="ci-statement">
-              <h3>Mission</h3>
-              <p>
-                Cognita Institute exists to provide Filipino learners with structured, accessible, and
-                competency-based training that develops practical knowledge, strengthens foundational skills,
-                and prepares them for meaningful academic, professional, and personal growth.
-              </p>
-              <p>
-                We design learning experiences that combine flexibility with rigor, encourage genuine
-                understanding, and recognize that learners begin from different educational, linguistic,
-                technological, and socioeconomic circumstances.
-              </p>
-            </article>
-            <article className="ci-statement">
-              <h3>Vision</h3>
-              <p>
-                To become a trusted Filipino learning institution known for making high-quality, practical,
-                and structured education more accessible, while helping learners develop the competence,
-                confidence, and adaptability needed to succeed in a rapidly changing world.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* 3 — Why the approach differs. Ruled index list; the numerals and rules
-          carry the structure, so nothing needs a box around it. */}
-      <section className="ed-section ed-section--white" id="approach">
-        <div className="page-width ci-reveal">
-          <div className="ed-grid">
-            <div className="ed-c1-6">
-              <p className="ed-label">Learning philosophy</p>
-              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
-                Completing lessons is not the same as developing competence.
-              </h2>
-            </div>
-            <p className="ed-c8-5 ed-body" style={{ alignSelf: 'end', paddingBlockEnd: 'var(--s-5)' }}>
-              A learner does not earn a credential simply by opening lessons, watching videos, or meeting
-              attendance requirements. Cognita learning is based on understanding, practice, assessment,
-              output, revision, and demonstrated competence.
-            </p>
-          </div>
-
-          <div className="ed-list">
-            {PRINCIPLES.map(({ title, body }, i) => (
-              <article className="ed-list-item ed-stagger" key={title}>
-                <span className="ed-index">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="ed-h3">{title}</h3>
-                <p>{body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4 — How admission works. Nine steps read as one process, not nine
-          cards: a single ruled list, then the conditions and the way in. */}
-      <section className="ed-section ed-section--soft" id="admission">
-        <div className="page-width ci-reveal">
-          <div className="ed-grid">
-            <div className="ed-c1-7">
-              <p className="ed-label">The admission process</p>
-              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
-                Your study at Cognita begins with admission.
-              </h2>
-              <p className="ed-body ed-measure">
-                Cognita follows a structured admission process designed to help ensure that applicants are
-                ready for the learning experience and are placed appropriately before enrollment.
-              </p>
+          <div className="public-copy-stack">
+            <p>Cognita Institute is a private training and learning institution designed for Filipino learners. We believe quality education should be structured, practical, accessible, and connected to the realities of the people it serves.</p>
+            <p>Our approach combines flexible learning with clear progression standards, assessment, practical outputs, and appropriate human guidance. Learners are expected to demonstrate understanding and capability, not simply open lessons or complete attendance.</p>
+            <div className="public-mission-grid">
+              <article><Target /><span>Mission</span><p>Provide structured, accessible, competency-based training that strengthens practical knowledge and prepares learners for meaningful academic, professional, entrepreneurial, and personal growth.</p></article>
+              <article><Waypoints /><span>Vision</span><p>Become a trusted Filipino learning institution known for practical education, stronger learner capability, and adaptability in a rapidly changing world.</p></article>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="ed-list" style={{ marginBlockStart: 'clamp(32px, 5vw, 56px)' }}>
-            {ADMISSION_STEPS.map((item) => (
-              <article className="ed-list-item" key={item.step}>
-                <span className="ed-index">{item.step.replace('Step ', '')}</span>
-                <h3 className="ed-h3">{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
+      <section className="section section--soft public-section">
+        <div className="page-width">
+          <div className="section-heading section-heading--wide">
+            <p className="section-label">WHY COGNITA</p>
+            <h2>AI education should develop judgment, not just tool familiarity.</h2>
+            <p>Cognita focuses on the durable skills that remain useful as platforms change: problem framing, communication, verification, workflow design, responsible use, and professional judgment.</p>
+          </div>
+          <div className="public-principles-grid">
+            <article><BrainCircuit /><h3>Understand before automating</h3><p>Define the task, purpose, constraints, and expected output before reaching for an AI tool.</p></article>
+            <article><SearchCheck /><h3>Verify important claims</h3><p>Fluent output is not evidence. Sources, quotations, calculations, and consequential recommendations require checking.</p></article>
+            <article><ShieldCheck /><h3>Keep human accountability</h3><p>AI may assist the work. The learner remains responsible for the decision, final output, and its consequences.</p></article>
+            <article><BookOpenCheck /><h3>Demonstrate competence</h3><p>Completion is based on required work and assessed capability, not passive lesson consumption alone.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section public-section" id="programs">
+        <div className="page-width">
+          <div className="public-section-intro">
+            <div><p className="section-label">PROGRAMS</p><h2>Two primary learning routes.</h2></div>
+            <p>Guided when you need structure. Flexible when you need freedom. The standard remains the same.</p>
           </div>
 
-          <div className="ed-grid" style={{ marginBlockStart: 'clamp(40px, 6vw, 72px)' }}>
-            <div className="ed-c1-6">
-              <p className="ed-label ed-label--muted">Before you apply</p>
-              <ul className="ed-conditions">
-                <li>Provide complete and accurate information.</li>
-                <li>Have access to a working email address.</li>
-                <li>Have a suitable device and internet connection for the examination and online learning.</li>
-                <li>Be prepared to follow Cognita’s academic-integrity and student policies.</li>
-                <li>Understand that admission does not automatically guarantee completion or certification.</li>
+          <div className="public-program-grid">
+            <article className="public-program-card public-program-card--primary">
+              <div className="public-program-topline"><span>Flagship guided route</span><GraduationCap /></div>
+              <h3>Cognita Professional AI Program</h3>
+              <p className="public-program-meta">10 weeks · Guided · Cohort-based · Mentor-supported</p>
+              <p>For learners who benefit from deadlines, live guidance, human feedback, cohort accountability, and an intensive applied-learning environment.</p>
+              <div className="public-program-details">
+                <div><strong>Foundation</strong><span>Up to four weeks, adjusted through readiness evidence</span></div>
+                <div><strong>Specialization</strong><span>Six-week applied track and capstone progression</span></div>
+              </div>
+              <ul>
+                <li>AI for Students</li>
+                <li>AI for Creatives</li>
+                <li>AI for Entrepreneurs</li>
+                <li>AI for Professionals & Virtual Assistants</li>
               </ul>
-            </div>
-            <div className="ed-c8-5 ed-quote" style={{ alignSelf: 'center' }}>
-              <p>Your application is read by a person before any examination access is issued.</p>
-              <div className="ed-hero-actions" style={{ marginBlockStart: 'var(--s-5)' }}>
-                <Link className="button" to="/apply">
-                  Begin your application <ArrowRight size={17} aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5 — What learning routes exist. Two routes on one shared spine, so
-          this reads as a single decision rather than two competing products. */}
-      <section className="ed-section ed-section--white" id="programs">
-        <div className="page-width ci-reveal">
-          <div className="ed-grid">
-            <div className="ed-c1-7">
-              <p className="ed-label">Two primary ways to learn</p>
-              <h2 className="ed-h2" style={{ marginBlock: 'var(--s-4) var(--s-5)' }}>
-                Guided when you need structure. Flexible when you need freedom.
-              </h2>
-            </div>
-            <p className="ed-c8-5 ed-body" style={{ alignSelf: 'end', paddingBlockEnd: 'var(--s-5)' }}>
-              Both routes use competency-based progression. Guided and self-paced learners may study
-              differently, but the standard required to complete remains the same.
-            </p>
-          </div>
-
-          <div className="ed-compare" style={{ marginBlockStart: 'clamp(24px, 4vw, 40px)' }}>
-            <article>
-              <span className="ed-compare-code">
-                <GraduationCap size={13} aria-hidden="true" /> {guided.code}
-              </span>
-              <h3 className="ed-h3" style={{ marginBlockStart: 'var(--s-3)' }}>{guided.name}</h3>
-              <p className="ed-compare-meta">{guided.duration} · {guided.delivery}</p>
-              <p className="ed-body" style={{ marginBlockStart: 'var(--s-4)' }}>{guided.summary}</p>
-              <dl>
-                <div><dt>Academic model</dt><dd>Foundation + 6-week specialization</dd></div>
-                <div><dt>Completion</dt><dd>Demonstrated competency</dd></div>
-              </dl>
-              <Link className="text-link" to="/programs" style={{ marginBlockStart: 'var(--s-5)' }}>
-                View the 10-week program <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+              <a href="/programs" className="public-inline-link">View full program details <ArrowRight size={16} /></a>
             </article>
 
-            <article>
-              <span className="ed-compare-code">
-                <Sparkles size={13} aria-hidden="true" /> {selfPaced.code}
-              </span>
-              <h3 className="ed-h3" style={{ marginBlockStart: 'var(--s-3)' }}>Cognita Skills Lab</h3>
-              <p className="ed-compare-meta">{selfPaced.duration} · {selfPaced.delivery}</p>
-              <p className="ed-body" style={{ marginBlockStart: 'var(--s-4)' }}>{selfPaced.summary}</p>
-              <dl>
-                <div><dt>Core promise</dt><dd>{selfPaced.promise}</dd></div>
-                <div><dt>Structure</dt><dd>Eight modules + capstone</dd></div>
-              </dl>
-              <Link className="text-link" to="/programs" style={{ marginBlockStart: 'var(--s-5)' }}>
-                View the self-paced program <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+            <article className="public-program-card">
+              <div className="public-program-topline"><span>Self-paced route</span><Sparkles /></div>
+              <h3>Cognita Skills Lab</h3>
+              <p className="public-program-meta">Applied AI Foundations and Professional Practice</p>
+              <p>Project-based, assessment-driven learning for independent learners who need more control over when and how they study without lowering the completion standard.</p>
+              <div className="public-program-details">
+                <div><strong>Recommended rhythm</strong><span>28 days</span></div>
+                <div><strong>Estimated learning time</strong><span>32–40 hours</span></div>
+              </div>
+              <p className="public-program-promise">Learn it. Build it. Prove it.</p>
+              <a href="/programs" className="public-inline-link">View full program details <ArrowRight size={16} /></a>
             </article>
           </div>
 
-          <p className="ed-standard-line">
-            <strong>The standard remains the same.</strong> Progress is based on demonstrated learning, not
-            time spent inside the platform. Required outputs, assessments, and competency checks apply to
-            both routes.
-          </p>
-        </div>
-      </section>
-
-      {/* 6 — What happens after admission */}
-      <section className="section section--soft">
-        <div className="page-width ci-reveal">
-          <div className="ci-bridge">
-            <div>
-              <span className="ci-bridge-tag"><BookOpenCheck size={13} aria-hidden="true" /> Academic placement</span>
-              <h3>{FOUNDATION_BRIDGE.name}</h3>
-              <p>
-                {FOUNDATION_BRIDGE.purpose} AI-00 is assigned through academic placement rather than offered as
-                a normal public program choice, and it may be assigned in full or in targeted form.
-              </p>
-              <p style={{ marginTop: '14px' }}>
-                It can cover AI foundations and responsible use, functional English and grammar, comprehension
-                and instruction clarity, research and verification basics, digital literacy, and
-                learning readiness.
-              </p>
-            </div>
-            <div>
-              <p className="ci-card-title">Pathway outcomes from readiness evidence</p>
-              <div className="ci-pathways">
-                <div className="ci-pathway">
-                  <b>Foundation Required</b>
-                  <span>The learner needs substantial foundational support before advanced specialization.</span>
-                </div>
-                <div className="ci-pathway">
-                  <b>Foundation Accelerated</b>
-                  <span>Partial readiness — selected foundation requirements rather than repeating mastered material.</span>
-                </div>
-                <div className="ci-pathway">
-                  <b>Direct Track Entry</b>
-                  <span>Sufficient foundational readiness to move directly into the applicable program structure.</span>
-                </div>
-              </div>
-              <p className="mvp-note" style={{ marginTop: '14px' }}>
-                Pathway recommendations follow evaluator review. Final academic thresholds remain subject to
-                Cognita academic policy.
-              </p>
-            </div>
+          <div className="public-foundation-note">
+            <div><span>AI-00 Foundation Bridge</span><h3>Foundation support is assigned through readiness evidence.</h3></div>
+            <p>Where a learner needs stronger foundations in AI, communication, English/grammar, comprehension, research, verification, digital literacy, or learning readiness, Cognita may recommend Foundation Required, Foundation Accelerated, or Direct Track Entry. AI-00 is not marketed as a generic public program choice.</p>
           </div>
         </div>
       </section>
 
-      {/* 7 — Why the institution can be trusted */}
-      <section className="section section--white" id="founder">
-        <div className="page-width ci-founder ci-reveal">
+      <section className="section section--soft public-section" id="admissions">
+        <div className="page-width">
+          <div className="public-section-intro">
+            <div><p className="section-label">ADMISSIONS</p><h2>Your journey begins before enrollment.</h2></div>
+            <p>Cognita uses readiness evidence and human review before a learner enters a program.</p>
+          </div>
+          <div className="public-admissions-grid">
+            {admissionsSteps.map(([number, title, body]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <div><h3>{title}</h3><p>{body}</p></div>
+              </article>
+            ))}
+          </div>
+          <div className="public-admissions-cta">
+            <div><Mail /><div><strong>Admissions and intake inquiries</strong><p>For current intake dates, approved fees, application assistance, or program questions, contact Cognita directly.</p></div></div>
+            <a className="button" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20Admissions%20Inquiry`}>Email Admissions</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section public-section" id="cee">
+        <div className="page-width public-cee-grid">
           <div>
-            <p className="section-label">Founder</p>
-            <div className="ci-founder-id">
-              <span className="ci-founder-name">Francine Marie Bautista</span>
-              <span className="ci-founder-role">Founder, Cognita Institute</span>
-            </div>
-            <p style={{ marginTop: '20px', fontSize: '15.5px', lineHeight: 1.75, color: 'var(--cognita-muted)' }}>
-              Her work across education, training, communications, creative strategy, and digital development
-              has shaped Cognita’s approach to learning: clear instruction, measurable progress, practical
-              application, and respect for the different circumstances from which learners begin.
-            </p>
+            <p className="section-label">COGNITA ENTRANCE EXAMINATION</p>
+            <h2>The CEE is designed to understand learners accurately.</h2>
+            <p className="public-lead-copy">The CEE is an admissions and readiness assessment, not a ceremonial quiz. It gives Cognita evidence about communication readiness, AI foundations, research judgment, and applied reasoning before an admission decision is made.</p>
+            <div className="public-cee-note"><ShieldCheck /><p>Approved applicants receive invitation-only access. The current assessment model uses one persistent 70-minute session with integrity safeguards and human evaluation of applied work.</p></div>
           </div>
-
-          <div>
-            <blockquote className="ci-founder-message">
-              <p>
-                Education has the power to change what becomes possible for a person, but access to learning
-                alone is not enough. Learning must also be understandable, relevant, structured, and capable of
-                producing real progress.
-              </p>
-              <p>
-                Not every learner begins from the same place. Some need stronger foundations. Some need
-                flexibility because they are working or carrying responsibilities outside school. Some have the
-                ability to succeed but have not always had access to the right learning environment, guidance,
-                or opportunities.
-              </p>
-              <p>
-                We want to create an institution where learners can move at a reasonable pace without losing
-                structure, where technology makes education more accessible without replacing human judgment,
-                and where completing a course is not treated as the same thing as developing competence.
-              </p>
-              <p>
-                My hope is that every learner who becomes part of Cognita leaves with more than a certificate.
-                I want them to leave with stronger knowledge, greater confidence in what they can do, and
-                capabilities they can genuinely use beyond the classroom.
-              </p>
-              <footer className="ci-founder-sign">
-                <strong>Francine Marie Bautista</strong>
-                Founder, Cognita Institute
-              </footer>
-            </blockquote>
+          <div className="public-cee-breakdown">
+            <article><span>30</span><div><strong>Functional English & Communication</strong><p>Comprehension, clarity, instructions, and professional communication.</p></div></article>
+            <article><span>25</span><div><strong>AI Foundations</strong><p>Core understanding of AI capabilities, limitations, and responsible use.</p></div></article>
+            <article><span>15</span><div><strong>Research & Verification Judgment</strong><p>Evidence quality, cross-checking, source awareness, and false-confidence detection.</p></div></article>
+            <article><span>30</span><div><strong>Applied Communication & AI Evaluation</strong><p>Human-reviewed applied tasks that test reasoning beyond multiple-choice scoring.</p></div></article>
           </div>
         </div>
       </section>
 
-      {/* Institutional training */}
-      <section className="section section--soft">
-        <div className="page-width split-layout ci-reveal">
-          <div>
-            <p className="section-label">Institutional training</p>
-            <h2>Structured cohort learning for organizations.</h2>
+      <section className="section public-section public-learning-experience">
+        <div className="page-width">
+          <div className="section-heading section-heading--wide">
+            <p className="section-label">LEARNING EXPERIENCE</p>
+            <h2>Learning begins inside the private student environment after enrollment.</h2>
           </div>
-          <div className="prose-large">
-            <p>
-              Cognita can develop structured cohort learning for schools, companies, LGUs, NGOs, professional
-              organizations, and community-development partners.
-            </p>
-            <p>
-              Institutional programs may be customized for participant needs while preserving Cognita’s
-              academic-integrity and competency standards. Production institutional delivery may later include
-              cohort scheduling, facilitator support, participant progress reporting, completion reporting, and
-              verified credentials.
-            </p>
+          <div className="public-experience-grid">
+            <article><Clock3 /><span>01</span><h3>Structured or flexible pacing</h3><p>Learners follow either a guided cohort or a self-paced rhythm depending on the program and readiness recommendation.</p></article>
+            <article><BookOpenCheck /><span>02</span><h3>Applied work</h3><p>Learning includes activities, practical outputs, assessment evidence, and work that can be reviewed and improved.</p></article>
+            <article><UsersRound /><span>03</span><h3>Human review</h3><p>Where judgment matters, a facilitator or evaluator may require revision before work is accepted.</p></article>
+            <article><GraduationCap /><span>04</span><h3>Competency-based completion</h3><p>Required outputs, capstone evidence, and institutional verification matter more than simply reaching the end of a lesson list.</p></article>
           </div>
         </div>
       </section>
 
-      {/* 8 — What to do next */}
-      <section className="section section--white">
-        <div className="page-width ci-reveal" style={{ textAlign: 'center', display: 'grid', justifyItems: 'center', gap: '20px' }}>
-          <Landmark size={26} aria-hidden="true" style={{ color: 'var(--cognita-indigo)' }} />
-          <h2 style={{ fontSize: 'clamp(26px, 3.4vw, 40px)', color: 'var(--cognita-navy)', maxWidth: '20ch' }}>
-            Take the first step toward becoming a Cognita learner.
-          </h2>
-          <p style={{ maxWidth: '54ch', fontSize: '17px', lineHeight: 1.7, color: 'var(--cognita-muted)' }}>
-            Browsing Cognita programs does not require enrollment. Enrollment requires successful completion of
-            the Cognita admission process.
-          </p>
-          <div className="ci-row" style={{ justifyContent: 'center', marginTop: '6px' }}>
-            <a className="button" href="#admission">View the Admission Process <ArrowRight size={18} /></a>
-            <Link className="button button--ghost" to="/programs">Explore Our Programs</Link>
+      <section className="section section--soft public-section" id="training">
+        <div className="page-width public-training-grid">
+          <div>
+            <p className="section-label">INSTITUTIONAL TRAINING</p>
+            <h2>Structured AI learning for organizations and communities.</h2>
+            <p>Cognita can discuss tailored cohort learning for schools, companies, LGUs, NGOs, professional organizations, and workforce or community-development partners.</p>
+            <a className="button" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20Institutional%20Training%20Inquiry`}>Discuss institutional training <ArrowRight size={18} /></a>
           </div>
-          <p className="mvp-note" style={{ marginTop: '10px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <BadgeCheck size={14} aria-hidden="true" /> Admission is intentional. Learning is structured. Progress is earned.
-          </p>
+          <div className="public-training-list">
+            <article><Building2 /><div><strong>Organizations</strong><span>Private companies, teams, and professional groups</span></div></article>
+            <article><GraduationCap /><div><strong>Education</strong><span>Schools, learning communities, and academic partners</span></div></article>
+            <article><MapPinned /><div><strong>Public and community sector</strong><span>LGUs, NGOs, community groups, and development partners</span></div></article>
+            <article><UsersRound /><div><strong>Customized cohorts</strong><span>Participant-focused structure while preserving Cognita’s academic and integrity standards</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section public-section" id="founder">
+        <div className="page-width public-founder-grid public-founder-grid--formal">
+          <div className="public-founder-copy">
+            <p className="section-label">FOUNDER</p>
+            <h2>Francine Marie Bautista</h2>
+            <p className="public-founder-role">Founder, Cognita Institute</p>
+            <p>Francine Marie Bautista founded Cognita Institute to create a more structured, practical, and accessible learning environment designed around the realities of Filipino learners.</p>
+            <p>Her work across education, training, communications, creative strategy, and digital development informs Cognita’s emphasis on clear instruction, measurable progress, practical application, and respect for different learner starting points.</p>
+            <blockquote>“Flexibility should not mean lowering standards. Learners should be given the structure and opportunity to progress while still being expected to demonstrate genuine understanding and capability.”</blockquote>
+          </div>
+          <aside className="public-founder-message">
+            <span>Founder’s message</span>
+            <p>Our responsibility is not simply to provide lessons. It is to create a learning system that asks students to understand, practice, demonstrate, and grow.</p>
+            <p>As Cognita develops, we will continue to listen, improve, and adapt to the changing needs of Filipino learners and the world they are preparing to enter.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section section--soft public-section" id="faq">
+        <div className="page-width">
+          <div className="section-heading">
+            <p className="section-label">FREQUENTLY ASKED QUESTIONS</p>
+            <h2>What prospective learners should know.</h2>
+          </div>
+          <div className="public-faq-list">
+            {faqs.map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
+                <summary><span>{question}</span><CircleHelp size={20} /></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section public-section" id="contact">
+        <div className="page-width public-contact-panel">
+          <div>
+            <p className="section-label">CONTACT COGNITA</p>
+            <h2>Speak with Cognita.</h2>
+            <p>For admissions, current intake information, program details, institutional training, partnerships, or general inquiries, contact us by email.</p>
+          </div>
+          <div className="public-contact-emails">
+            <a href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}`}><span>Primary institutional email</span><strong>{PRIMARY_EMAIL}</strong><Mail /></a>
+            <a href={`mailto:${ALTERNATE_EMAIL}?cc=${PRIMARY_EMAIL}`}><span>Alternate email</span><strong>{ALTERNATE_EMAIL}</strong><Mail /></a>
+          </div>
+        </div>
+      </section>
+
+      <section className="public-compliance-band">
+        <div className="page-width">
+          <ShieldCheck />
+          <p><strong>Institutional transparency:</strong> Cognita is a private, non-degree training institution. It does not claim CHED recognition, TESDA registration or accreditation, TESDA National Certificates or Certificates of Competency, PRC recognition or licensure, degree equivalency, or government approval unless a specific status has actually been obtained and disclosed for the applicable offering. Final program fees, credential wording, and regulatory status are confirmed before enrollment.</p>
         </div>
       </section>
     </>

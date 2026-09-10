@@ -30,7 +30,7 @@ export function saveCeeEvaluation(input) {
     decision: input.decision,
     evaluatorNote: (input.evaluatorNote || '').trim(),
     evaluatedAt: new Date().toISOString(),
-    scoringModel: 'CEE v1.0 — two applied tasks, 15 points each',
+    scoringModel: 'CEE v1.1 — two applied tasks, 15 points each',
   }
 
   localStorage.setItem(KEY, JSON.stringify(evaluation))
