@@ -17,10 +17,10 @@ export default function AppLayout() {
           <Link to="/" className="brand-link" onClick={close}>
             <BrandMark compact />
           </Link>
-          <button className="mobile-menu" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+          <button className="mobile-menu" aria-label="Toggle navigation" aria-expanded={open} aria-controls="site-navigation" onClick={() => setOpen((value) => !value)}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
-          <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
+          <nav id="site-navigation" className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
             <Link to="/about" onClick={close}>About</Link>
             <Link to="/programs" onClick={close}>Programs</Link>
             <Link to="/admissions" onClick={close}>Admissions</Link>

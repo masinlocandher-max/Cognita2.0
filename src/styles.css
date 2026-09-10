@@ -85,16 +85,15 @@ h2 { letter-spacing: -0.04em; }
    superseded by the approved light institutional identity and then orphaned
    entirely by the .ed-hero rebuild, so it is removed rather than left to be
    re-enabled by accident. */
-/* The dark-theme hero orb and THINK/APPLY/TRANSFORM signal field were removed
-   with the hero rebuild. Their off-brand hexes (#7c3aed, #8b5cf6, #00cfd5,
-   #2563ff, #35dfe0) were the last hard-coded colours outside the brand tokens. */
+/* The dark-theme hero orb and signal field were removed with the hero rebuild;
+   their colours are not part of the approved identity and are not coming back. */
 
 .section { padding: 112px 0; }
 .section--white { background: #fff; }
 .section--soft { background: var(--soft); }
 .section--ink { background: var(--ink); color: #fff; }
 .section--cta { background: #fff; padding-top: 28px; }
-.section-label { margin: 0 0 18px; color: #5868d8; font-size: 11px; letter-spacing: .22em; font-weight: 800; }
+.section-label { margin: 0 0 18px; color: var(--c-accent-ink); font-size: 11px; letter-spacing: .22em; font-weight: 800; }
 .section-label--light { color: #8ca1ff; }
 .section-heading { max-width: 760px; margin-bottom: 56px; }
 .section-heading--wide { max-width: 860px; }
@@ -131,7 +130,7 @@ h2 { letter-spacing: -0.04em; }
 .journey-line article { padding: 30px 28px 10px 0; border-right: 1px solid #e2e5ec; min-height: 250px; }
 .journey-line article:not(:first-child) { padding-left: 28px; }
 .journey-line article:last-child { border-right: 0; }
-.journey-line article > span { color: #6b74c7; font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+.journey-line article > span { color: var(--c-accent-ink); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
 .journey-line h3 { margin: 48px 0 12px; font-size: 19px; }
 .journey-line p { color: var(--muted); line-height: 1.65; }
 
@@ -193,7 +192,7 @@ h2 { letter-spacing: -0.04em; }
 .exam-topbar-inner > div:first-child span { font-size: 12px; color: #778096; }
 .exam-progress-wrap { display: flex; align-items: center; gap: 14px; color: #657087; font-size: 12px; }
 .exam-progress { height: 7px; background: #e8ebf1; border-radius: 999px; overflow: hidden; flex: 1; }
-.exam-progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #6f55ed, #2966ff, #00c7d0); transition: width .3s ease; }
+.exam-progress span { display: block; height: 100%; border-radius: inherit; background: var(--c-accent); transition: width .3s ease; }
 .exam-timer { justify-self: end; display: inline-flex; align-items: center; gap: 7px; font-variant-numeric: tabular-nums; font-weight: 700; color: #3d4860; }
 .exam-timer.is-low { color: #b4233a; }
 .exam-body { display: grid; grid-template-columns: 250px 1fr; gap: 44px; align-items: start; padding-top: 42px; }

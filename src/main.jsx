@@ -20,6 +20,7 @@ import {
   AcademicIntegrityPolicy,
   StudentPolicies,
 } from './pages/PublicInformation'
+import './fonts.css'
 import './styles.css'
 import './learner.css'
 import './admissions.css'

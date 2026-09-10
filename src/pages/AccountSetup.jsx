@@ -88,8 +88,8 @@ export default function AccountSetup() {
 
         <aside className="ci-apply-aside">
           <article className="ci-card ci-card--soft">
-            <ShieldCheck size={20} aria-hidden="true" style={{ color: 'var(--cognita-indigo)' }} />
-            <h3 style={{ fontSize: '16px', margin: '12px 0 8px', color: 'var(--cognita-navy)' }}>
+            <ShieldCheck size={20} aria-hidden="true" style={{ color: 'var(--c-accent-ink)' }} />
+            <h3 style={{ fontSize: '16px', margin: '12px 0 8px', color: 'var(--c-text)' }}>
               What production activation will include
             </h3>
             <ul className="ci-route-list">

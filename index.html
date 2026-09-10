@@ -13,10 +13,37 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="The Cognita Institute of Artificial Intelligence" />
     <meta name="twitter:description" content="Structured, practical AI education for Filipino learners. Human Intelligence. Amplified." />
+    <link rel="icon" href="/favicon.webp" type="image/webp" />
+    <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-600-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>The Cognita Institute of Artificial Intelligence</title>
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      This is a client-rendered application, so without JavaScript the root
+      element stays empty. A blank page tells a visitor nothing, so say what
+      happened and what they can do about it.
+    -->
+    <noscript>
+      <div style="max-width:34rem;margin:12vh auto;padding:0 1.5rem;font:400 16px/1.7 Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#5F7089">
+        <p style="font:700 13px/1 Inter,system-ui;letter-spacing:.16em;text-transform:uppercase;color:#2C66C9;margin:0 0 1.25rem">
+          The Cognita Institute of Artificial Intelligence
+        </p>
+        <h1 style="font:400 clamp(30px,5vw,44px)/1.05 Georgia,'Times New Roman',serif;letter-spacing:-.035em;color:#0B1F3B;margin:0 0 1.25rem">
+          This site needs JavaScript to run.
+        </h1>
+        <p style="margin:0 0 1rem">
+          Cognita&rsquo;s admissions process, entrance examination, and program information are
+          delivered by an application that runs in your browser. With JavaScript turned off,
+          none of it can load.
+        </p>
+        <p style="margin:0">
+          Enable JavaScript for this site and reload the page. If you cannot, please use a
+          different browser or device.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

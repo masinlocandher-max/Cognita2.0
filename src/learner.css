@@ -9,7 +9,7 @@
 .learner-intro h1 { max-width: 760px; margin-bottom: 18px; font-size: clamp(46px, 5.6vw, 76px); line-height: 1; }
 .learner-intro > div:first-child > p:last-child { max-width: 760px; color: #687187; font-size: 17px; line-height: 1.7; }
 .local-only-note { display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid #dfe4ed; border-radius: 18px; background: rgba(255,255,255,.78); }
-.local-only-note svg { flex: 0 0 auto; color: #5660da; }
+.local-only-note svg { flex: 0 0 auto; color: var(--c-accent-ink); }
 .local-only-note strong, .local-only-note span { display: block; }
 .local-only-note strong { margin-bottom: 4px; font-size: 13px; }
 .local-only-note span { color: #778096; font-size: 12px; line-height: 1.55; }
@@ -34,7 +34,7 @@
 .learner-summary-card--profile p { color: #b9c2d9; }
 .learner-summary-card--profile small { margin-top: auto; color: #808ba8; }
 .learner-summary-card .button { margin-top: auto; }
-.learner-card-icon { width: 48px; height: 48px; margin-bottom: 36px; border-radius: 14px; display: grid; place-items: center; background: #eef1ff; color: #555fd9; }
+.learner-card-icon { width: 48px; height: 48px; margin-bottom: 36px; border-radius: 14px; display: grid; place-items: center; background: rgba(59,130,246,.10); color: var(--c-accent-ink); }
 .objective-mini-score { margin-top: auto; font-size: 34px; letter-spacing: -.04em; }
 .objective-mini-score small { margin-left: 6px; color: #8b94a7; font-size: 12px; letter-spacing: 0; }
 
