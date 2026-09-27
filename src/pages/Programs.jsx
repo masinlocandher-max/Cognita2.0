@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, BookOpenCheck, CheckCircle2, GraduationCap, Lock, Mail, Sparkles } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
-import { FOUNDATION_BRIDGE, PROGRAMS } from '../data/programs'
+import { AI00_ASSESSMENT, FOUNDATION_MODULES, PROGRAMS } from '../data/programs'
 
 const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
 const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
@@ -158,7 +158,7 @@ export default function Programs() {
             </div>
             <div>
               <h3>Areas of support</h3>
-              <ul>{FOUNDATION_BRIDGE.areas.map((area) => <li key={area}>{area}</li>)}</ul>
+              <ul>{FOUNDATION_MODULES.map((module) => <li key={module.code}><strong>{module.code}</strong> · {module.name}</li>)}</ul>
             </div>
           </section>
 

@@ -36,7 +36,7 @@ const faqs = [
   ['What kind of institution is Cognita?', 'The Cognita Institute of Artificial Intelligence is a private, non-degree training institution focused on structured and applied AI learning. Program-specific regulatory status is disclosed before enrollment.'],
   ['Who is Cognita designed for?', 'Cognita is designed around Filipino learners with different educational backgrounds, levels of English proficiency, work responsibilities, digital experience, and learning pace.'],
   ['Do I need previous AI experience?', 'Not necessarily. Cognita uses readiness evidence to understand where a learner should begin. Foundation support may be recommended when academically appropriate.'],
-  ['What is the CEE?', 'The Cognita Entrance Examination is an admissions and readiness assessment. It examines functional communication, AI foundations, research and verification judgment, and applied reasoning before a final human-reviewed admission decision is released.'],
+  ['What is the CEE?', 'The Cognita Entrance Examination is AI-00, Cognita’s diagnostic admissions and readiness assessment. It measures communication, reasoning and numeracy, digital literacy, AI competence, research and verification, and applied judgment so training can begin at the right level.'],
   ['Can I study directly on this website?', 'No. This website provides institutional and program information. Enrolled learners study inside Cognita’s private learning environment after admission, enrollment, and account activation.'],
   ['How much is tuition?', 'Current fees are released only for approved intakes and programs. Contact Cognita for the latest approved fee and intake information.'],
   ['Does completing lessons automatically earn a credential?', 'No. Cognita is competency-based. Required work, assessment evidence, revision where needed, capstone requirements, and final institutional verification determine completion.'],
@@ -187,7 +187,7 @@ export default function Home() {
           <div>
             <p className="section-label">COGNITA ENTRANCE EXAMINATION</p>
             <h2>The CEE is designed to understand learners accurately.</h2>
-            <p className="public-lead-copy">The CEE is an admissions and readiness assessment, not a ceremonial quiz. It gives Cognita evidence about communication readiness, AI foundations, research judgment, and applied reasoning before an admission decision is made.</p>
+            <p className="public-lead-copy">The CEE is AI-00, Cognita’s diagnostic admissions and readiness assessment. It produces a competency profile across communication, reasoning, digital literacy, AI foundations, research and applied judgment before admission and training placement are finalized.</p>
             <div className="public-cee-note"><ShieldCheck /><p>Approved applicants receive invitation-only access. The current assessment model uses one persistent 70-minute session with integrity safeguards and human evaluation of applied work.</p></div>
           </div>
           <div className="public-cee-breakdown">

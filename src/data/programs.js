@@ -7,7 +7,7 @@ export const PROGRAMS = [
     delivery: 'Guided, cohort-based, mentor-supported',
     duration: '10 weeks',
     summary: 'Cognita’s flagship guided program for learners who benefit from structure, deadlines, human feedback, cohort accountability, applied work, and capstone-based assessment.',
-    foundationModel: 'Up to 4 weeks of foundation learning, adjusted through CEE readiness evidence, followed by a 6-week specialization.',
+    foundationModel: 'Up to 4 weeks of targeted foundation learning, assigned from AI-00 / CEE competency evidence, followed by specialization and capstone progression.',
     specializations: [
       'AI for Students',
       'AI for Creatives',
@@ -39,19 +39,20 @@ export const PROGRAMS = [
   },
 ]
 
-export const FOUNDATION_BRIDGE = {
+export const AI00_ASSESSMENT = {
   id: 'ai-00',
   code: 'AI-00',
-  name: 'AI-00 Foundation Bridge',
+  name: 'Cognita Entrance Examination',
+  shortName: 'CEE',
   publicProgramChoice: false,
-  purpose: 'Targeted foundational support assigned through CEE readiness evidence and evaluator judgment.',
-  areas: [
-    'AI foundations and responsible use',
-    'Functional English and grammar support',
-    'Comprehension and instruction clarity',
-    'Research and verification basics',
-    'Digital literacy',
-    'Learning readiness',
+  purpose: 'Diagnostic admissions and readiness assessment used to understand the learner’s current general and AI-related competencies and determine the appropriate training flow.',
+  domains: [
+    'Communication & Instruction Comprehension',
+    'Reasoning, Numeracy & Practical Problem Solving',
+    'Digital & Information Literacy',
+    'AI Foundations, Safety & Responsible Use',
+    'Research, Verification & Evidence Judgment',
+    'Applied Instruction, Workflow & Decision Judgment',
   ],
   pathwayOutcomes: [
     'Foundation Required',
@@ -59,6 +60,39 @@ export const FOUNDATION_BRIDGE = {
     'Direct Track Entry',
   ],
 }
+
+export const FOUNDATION_MODULES = [
+  {
+    code: 'FND-01',
+    name: 'Communication & Instruction Comprehension',
+    assignedFrom: 'AI-00 communication profile',
+  },
+  {
+    code: 'FND-02',
+    name: 'Reasoning, Numeracy & Practical Problem Solving',
+    assignedFrom: 'AI-00 reasoning profile',
+  },
+  {
+    code: 'FND-03',
+    name: 'Digital & Information Literacy',
+    assignedFrom: 'AI-00 digital-readiness profile',
+  },
+  {
+    code: 'FND-04',
+    name: 'AI Foundations & Responsible Use',
+    assignedFrom: 'AI-00 AI-readiness profile',
+  },
+  {
+    code: 'FND-05',
+    name: 'Research, Verification & Evidence',
+    assignedFrom: 'AI-00 research profile',
+  },
+  {
+    code: 'FND-06',
+    name: 'Applied Prompting, Workflow & Decision Practice',
+    assignedFrom: 'AI-00 applied-response evaluation',
+  },
+]
 
 export const FUTURE_LEARNING_AREAS = [
   'AI Productivity and Prompt Engineering',

@@ -134,11 +134,11 @@ export default function AdmissionsReview() {
         {attempt?.completed && application.status === 'cee_review_pending' ? (
           <article className="ops-card">
             <div className="ops-card-heading">
-              <div><span>CEE v1.1 EVALUATION</span><h2>Score applied work and release final decision</h2></div>
+              <div><span>CEE / AI-00 v1.2 EVALUATION</span><h2>Score applied work and release final decision</h2></div>
               <strong>{attempt.objectivePoints ?? 0}/70 objective</strong>
             </div>
             <div className="ops-data-grid">
-              <div><span>Placement indication</span><strong>{attempt.placement?.title || 'Not available'}</strong></div>
+              <div><span>Preliminary training placement</span><strong>{attempt.placement?.title || 'Not available'}</strong><small>{attempt.placement?.requiredFoundationModules?.length ? `Suggested modules: ${attempt.placement.requiredFoundationModules.join(', ')}` : 'No objective-domain foundation modules indicated.'}</small></div>
               <div><span>Integrity events</span><strong>{attempt.integrityEvents?.length || 0}</strong></div>
             </div>
             <div className="ops-response-grid">
@@ -167,7 +167,7 @@ export default function AdmissionsReview() {
               <div className="ops-score-total">
                 <span>Working total</span>
                 <strong>{totalScore}/100</strong>
-                <small>Final pass/fail remains an evaluator decision until Cognita formally approves a threshold policy.</small>
+                <small>Admission and training placement are separate human-reviewed decisions. The objective profile is diagnostic evidence, not an automatic final verdict.</small>
               </div>
             </div>
             <div className="ops-actions">

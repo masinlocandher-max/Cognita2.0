@@ -1,7 +1,7 @@
 # Cognita 2.0 — Institutional and Academic Source of Truth
 
 Status: Canonical working source for Cognita 2.0
-Updated: 2026-09-05
+Updated: 2026-09-28
 
 This document supersedes conflicting program structures, pricing assumptions, naming, enrollment sequences, and product architecture from older Cognita/Cognita Academy materials.
 
@@ -68,55 +68,75 @@ Do not bypass or reorder this sequence:
 2. Human admissions review occurs.
 3. Approved applicants receive invitation-only Cognita Entrance Exam (CEE) access by email in production.
 4. Applicant completes one persistent 70-minute CEE session with integrity safeguards.
-5. Objective scoring provides readiness evidence but is not the final admission decision.
+5. Objective scoring produces a domain-level readiness profile but is not the final admission or training-placement decision.
 6. Applied responses and integrity events require evaluator review.
-7. Final pass/fail decision is released after review and communicated by email in production.
-8. Passing applicants receive an academic pathway recommendation based on readiness evidence.
-9. Passing applicants select an eligible program.
+7. Human review produces two separate outcomes: the admission decision and the learner's training-placement recommendation.
+8. Admitted applicants receive Direct Track Entry, Foundation Accelerated, or Foundation Required guidance based on the complete readiness evidence.
+9. Admitted applicants select an eligible program within the academic pathway available to them.
 10. Payment follows program selection.
 11. Student account activation follows confirmed payment.
 12. Learning takes place inside the Cognita student app.
 
 The public institutional website and the student learning app are separate surfaces.
 
-## 7. CEE role
+## 7. AI-00 / Cognita Entrance Examination role
 
-The Cognita Entrance Exam is an admissions and readiness instrument, not a ceremonial quiz.
+**AI-00 is the academic code of the Cognita Entrance Examination (CEE).**
 
-Current CEE model:
-- Functional English & Communication — 30 points
-- AI Foundations — 25 points
-- Research & Verification Judgment — 15 points
-- Applied Communication & AI Evaluation — 30 points
+The CEE is an admissions and diagnostic readiness instrument, not a ceremonial quiz and not a foundation course. Its central purpose is to understand the learner accurately enough to determine where training should begin.
+
+Current CEE / AI-00 model:
+
+- Communication & Instruction Comprehension — 15 points
+- Reasoning, Numeracy & Practical Problem Solving — 15 points
+- Digital & Information Literacy — 10 points
+- AI Foundations, Safety & Responsible Use — 15 points
+- Research, Verification & Evidence Judgment — 15 points
+- Applied Instruction, Workflow & Decision Judgment — 30 points
 - Total — 100 points
+- Standard session — 70 minutes
 
-Objective scoring can produce readiness evidence. Final admission remains subject to evaluator review of the complete assessment.
+The assessment produces a competency profile. The overall score must not erase a serious weakness in an individual domain.
+
+Objective scoring produces preliminary routing evidence. The two applied tasks, integrity context, and evaluator judgment remain part of the final review.
+
+### Separate decisions
+
+AI-00 / CEE supports two different decisions:
+
+1. **Admission** — whether the applicant may enter the current Cognita intake after human review.
+2. **Training placement** — where the admitted learner should begin training.
+
+A learner may be admitted and still be assigned foundation modules.
 
 ### Academic pathway recommendations
 
-Cognita 2.0 should interpret readiness using three learner-facing pathway outcomes:
+Cognita 2.0 uses three learner-facing pathway outcomes:
 
-- **Foundation Required** — the learner needs substantial foundational support before advanced specialization.
-- **Foundation Accelerated** — the learner has partial readiness and should complete selected foundation requirements rather than repeat material already mastered.
-- **Direct Track Entry** — the learner demonstrates sufficient foundational readiness to move directly into the applicable guided or self-paced program structure.
+- **Foundation Required** — the learner needs substantial foundational support in one or more diagnosed competency domains before advanced specialization.
+- **Foundation Accelerated** — the learner needs selected foundation modules rather than repeating competencies already demonstrated.
+- **Direct Track Entry** — the learner demonstrates sufficient foundational readiness to move directly into the applicable guided or self-paced structure.
 
-Exact scoring thresholds for these three labels remain an academic-policy item to finalize before production launch. Existing CEE scoring logic must not be silently changed until the approved thresholds are formally adopted.
+Exact final institutional cut scores remain subject to pilot validation and academic approval. The current v1.2 diagnostic review lines are documented in `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md`.
 
-## 8. AI-00 Foundation Bridge
+## 8. Foundation training assigned from AI-00
 
-**AI-00** is Cognita's foundation bridge, not the main commercial program shown as a normal program card.
+Foundation training is separate from AI-00.
 
-Purpose: prepare learners who need stronger foundations before or during progression into a Cognita pathway.
+AI-00 diagnoses the learner. Foundation modules address the gaps identified by that diagnosis.
 
-AI-00 may include:
-- AI foundations and responsible use;
-- functional English and grammar support;
-- comprehension and instruction clarity;
-- research and verification basics;
-- digital literacy;
-- learning-readiness support.
+Current foundation map:
 
-AI-00 can be assigned in full or in targeted/accelerated form depending on CEE readiness evidence and evaluator judgment.
+- **FND-01 — Communication & Instruction Comprehension**
+- **FND-02 — Reasoning, Numeracy & Practical Problem Solving**
+- **FND-03 — Digital & Information Literacy**
+- **FND-04 — AI Foundations & Responsible Use**
+- **FND-05 — Research, Verification & Evidence**
+- **FND-06 — Applied Prompting, Workflow & Decision Practice**
+
+Foundation modules may be assigned individually, in an accelerated combination, or as a fuller foundation sequence depending on the complete AI-00 / CEE profile and evaluator judgment.
+
+Learners should not repeat competencies they have already demonstrated unless later evidence establishes a genuine need.
 
 ## 9. Cognita 2.0 program architecture
 
@@ -136,7 +156,7 @@ Historical architecture retained as the academic base:
 - Foundation layer — up to 4 weeks
 - Specialized track — 6 weeks
 
-Cognita 2.0 improves the older model by using CEE readiness evidence. Qualified learners should not automatically repeat all foundation material if they have already demonstrated competence.
+Cognita 2.0 improves the older model by using AI-00 / CEE readiness evidence. Qualified learners should not automatically repeat all foundation material if they have already demonstrated competence; foundation assignments should map to diagnosed gaps.
 
 #### Foundation subjects
 
@@ -299,7 +319,7 @@ After a passing CEE decision, Cognita should make an academic recommendation rat
 Examples:
 - **Recommended: Cognita Professional AI Program** when a learner would benefit from cohort structure, mentor support, deadlines, or intensive guided development.
 - **Recommended: Cognita Skills Lab** when a learner demonstrates sufficient independent-learning readiness and needs schedule flexibility.
-- **AI-00 Foundation Required/Accelerated** when foundational readiness needs strengthening before or alongside the chosen route.
+- **Foundation Required or Foundation Accelerated** when AI-00 / CEE evidence shows that specific foundational competencies need strengthening before or alongside the chosen route.
 
 The recommendation can guide the learner while still allowing eligible choice where academic policy permits.
 

@@ -30,7 +30,7 @@ Every institutional rule must carry one of these statuses:
 | Admissions sequence | LOCKED | Application → review → invitation-only CEE → evaluator decision → program selection → payment → account → app |
 | CEE purpose | LOCKED | Admissions/readiness/placement instrument; not merely a pass/fail quiz |
 | CEE format | LOCKED for current frontend milestone | 70 minutes; 70 objective points + 30 applied points; evaluator review |
-| AI-00 role | LOCKED | Foundation Bridge assigned through readiness evidence; not a normal commercial program card |
+| AI-00 role | LOCKED | Academic code for the Cognita Entrance Examination; diagnostic instrument for admission and training placement |
 | Primary programs | LOCKED | 10-week Cognita Professional AI Program + Cognita Skills Lab self-paced route |
 | Exact admission thresholds | PROVISIONAL | Pilot-calibrated draft in this document |
 | Guided curriculum v1 | PROVISIONAL | Week-by-week academic draft below |
@@ -119,27 +119,29 @@ Initial tracks:
 
 The learner may take longer or move faster than 28 days, subject to any future maximum enrollment window. Self-paced means flexible timing, not reduced academic standards.
 
-### 3.3 AI-00 Foundation Bridge
+### 3.3 AI-00 / Cognita Entrance Examination
 
-**Status:** LOCKED role; PROVISIONAL exact delivery duration  
-**Role:** Academic bridge, not a normal public program card.
+**Status:** LOCKED role; detailed v1.2 blueprint active for pilot review  
+**Role:** Diagnostic admissions and readiness assessment that determines where training should begin.
 
-AI-00 may support:
+AI-00 is the academic code of the CEE. It is not itself a foundation course.
 
-- AI foundations and responsible use;
-- functional English and grammar;
-- comprehension and instruction clarity;
-- research and verification;
-- digital literacy;
-- learning readiness.
+The assessment produces evidence across:
 
-AI-00 may be assigned as:
+- communication and instruction comprehension;
+- reasoning, numeracy, and practical problem solving;
+- digital and information literacy;
+- AI foundations, safety, and responsible use;
+- research, verification, and evidence judgment;
+- applied prompting, workflow, and decision judgment.
+
+Training placement may be:
 
 - **Foundation Required**
 - **Foundation Accelerated**
-- **Targeted Bridge**
+- **Direct Track Entry**
 
-Direct progression may be recommended when the learner demonstrates sufficient readiness.
+Where foundation training is needed, Cognita assigns separately coded FND modules linked to the diagnosed gaps.
 
 ### 3.4 Not Day-1 public offerings
 
@@ -168,7 +170,7 @@ Cognita should avoid excluding capable adult learners solely because a formal di
 
 ### 4.3 Language
 
-Instruction is primarily in English. Applicants must demonstrate sufficient functional English to understand instructions and complete required work, with AI-00 communication support available where appropriate.
+Instruction is primarily in English. Applicants must demonstrate sufficient functional English to understand instructions and complete required work, with assigned foundation communication support available where appropriate.
 
 ### 4.4 Technology
 
@@ -229,10 +231,12 @@ See `docs/CEE-PURPOSE-AND-INTEGRITY.md`.
 
 | Section | Weight |
 |---|---:|
-| Functional English & Communication | 30 |
-| AI Foundations | 25 |
-| Research & Verification Judgment | 15 |
-| Applied Communication & AI Evaluation | 30 |
+| Communication & Instruction Comprehension | 15 |
+| Reasoning, Numeracy & Practical Problem Solving | 15 |
+| Digital & Information Literacy | 10 |
+| AI Foundations, Safety & Responsible Use | 15 |
+| Research, Verification & Evidence Judgment | 15 |
+| Applied Instruction, Workflow & Decision Judgment | 30 |
 | **Total** | **100** |
 
 The first 70 points are objectively scored in the current frontend model. The final 30 points are applied written tasks requiring human evaluation.
@@ -891,7 +895,7 @@ Before locking price, Cognita must know:
 - target margin;
 - refund exposure.
 
-AI-00 pricing also remains unapproved. If AI-00 is mandatory because of placement, Cognita should consider whether it is bundled, subsidized, or separately charged before making any public promise.
+Foundation-module pricing remains unapproved. If foundation training is mandatory because of AI-00 / CEE placement, Cognita should decide whether that support is bundled, subsidized, or separately charged before making any public promise.
 
 ---
 

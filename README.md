@@ -4,18 +4,19 @@ The Cognita Institute of Artificial Intelligence public website, admissions flow
 
 ## Cognita 2.0 source of truth
 
-For institutional positioning, mission and vision, admissions policy, AI-00 placement, the 10-week guided program, the self-paced program, future program layers, integrity standards, founder positioning, and unresolved academic-policy items, use:
+For institutional positioning, mission and vision, admissions policy, AI-00 / CEE placement, the 10-week guided program, the self-paced program, future program layers, integrity standards, founder positioning, and unresolved academic-policy items, use:
 
 - `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` — canonical LOCKED institutional and academic architecture
 - `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` — full Day-1 academic/operational handbook draft, including legal positioning, eligibility, CEE pilot bands, 10-week curriculum, assessment/mastery, attendance, credentials, instructors, appeals, records, SLAs, roadmap, and KPIs. **PROVISIONAL rules do not override LOCKED architecture.**
 - `docs/V1-SOLO-OPERATOR-MODEL.md` — V1 one-founder/operator execution model and separation of functions
 - `docs/WEBSITE-CONTENT.md` — approved working website copy including About, Mission, Vision, Founder, admission-process content, and program content
 - `docs/CEE-PURPOSE-AND-INTEGRITY.md` — canonical CEE purpose, honesty, placement, and integrity rationale
+- `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md` — current AI-00 / CEE diagnostic construct, scoring, routing, fairness, validation, and security blueprint
 - `src/data/programs.js` — machine-readable active program catalog
 
 Active program model:
 
-- **AI-00 Foundation Bridge** — assigned through readiness evidence; not a normal commercial program choice
+- **AI-00 / Cognita Entrance Examination (CEE)** — diagnostic admissions and readiness assessment that determines the learner’s training flow
 - **Cognita Professional AI Program** — 10-week guided flagship, cohort-based and mentor-supported
 - **Cognita Skills Lab: Applied AI Foundations and Professional Practice** — self-paced, 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense
 - Future short courses, micro-credentials, institutional training, pricing, credentials, and final academic thresholds remain subject to formal approval
@@ -103,7 +104,7 @@ The student lifecycle is sequential and must not be bypassed:
 5. **Readiness/pathway guidance and program selection**
    - Only applicants with a passing CEE decision may continue.
    - Readiness evidence may support Foundation Required, Foundation Accelerated, or Direct Track Entry guidance once exact academic thresholds are approved.
-   - AI-00 is a foundation bridge rather than a normal commercial program choice.
+   - AI-00 is the CEE diagnostic assessment. Any required foundation training is assigned through separate foundation modules.
    - Eligible program choice happens after the admissions result, not during initial registration.
 
 6. **Payment**
@@ -146,10 +147,12 @@ The former standalone `/learner` route is intentionally removed from routing. A 
 
 ## Cognita Entrance Exam model
 
-- Functional English & Communication — 30 points
-- AI Foundations — 25 points
-- Research & Verification Judgment — 15 points
-- Applied Communication & AI Evaluation — 30 points
+- Communication & Instruction Comprehension — 15 points
+- Reasoning, Numeracy & Practical Problem Solving — 15 points
+- Digital & Information Literacy — 10 points
+- AI Foundations, Safety & Responsible Use — 15 points
+- Research, Verification & Evidence Judgment — 15 points
+- Applied Instruction, Workflow & Decision Judgment — 30 points
 - Total — 100 points
 
 The objective portion may generate a readiness/placement indication, but final admission is a separate evaluator decision after review of the complete submission.

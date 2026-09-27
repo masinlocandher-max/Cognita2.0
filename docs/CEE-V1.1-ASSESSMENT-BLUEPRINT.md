@@ -1,7 +1,12 @@
 # Cognita Entrance Examination v1.1 — Assessment Blueprint
 
-Status: Approved assessment-strengthening implementation
+Status: SUPERSEDED by `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md`
 Date: 2026-09-09
+Superseded: 2026-09-28
+
+## Supersession note
+
+CEE v1.1 is retained for historical traceability only. The active model is AI-00 / CEE v1.2, which expands the diagnostic domains and separates admission from training placement.
 
 ## Purpose
 

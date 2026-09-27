@@ -213,7 +213,7 @@ export function markCeeSubmitted(attemptId, objectivePoints, placement) {
     next,
     'cee_submission_received',
     'Cognita Entrance Exam submitted',
-    'Your CEE has been submitted. Objective items are recorded, but the final pass/fail decision is issued only after evaluator review of the complete assessment.',
+    'Your CEE / AI-00 has been submitted. Objective results form a preliminary competency profile, but admission and training placement are finalized only after evaluator review of the complete assessment.',
   )
   writeAdmissionsState(next)
   return application
@@ -240,8 +240,8 @@ export function decideCee(decision, evaluatorNote = '') {
     decision === 'passed' ? 'cee_passed' : 'cee_failed',
     decision === 'passed' ? 'Cognita Entrance Exam result: Passed' : 'Cognita Entrance Exam result: Not passed',
     decision === 'passed'
-      ? 'You passed the Cognita Entrance Exam. You may now continue to program selection and enrollment. Your CEE readiness evidence may also inform a recommended learning pathway or AI-00 foundation requirement.'
-      : 'You did not pass the Cognita Entrance Exam for this intake. Any reapplication, bridge, or readiness guidance will be communicated by Admissions.',
+      ? 'You passed the Cognita Entrance Examination / AI-00 admissions review. You may now continue to the eligible enrollment flow. Your complete competency profile determines whether Cognita recommends Direct Track Entry, Foundation Accelerated, or Foundation Required support.'
+      : 'You were not admitted through the Cognita Entrance Examination / AI-00 review for this intake. Admissions should communicate the reason, any readiness guidance, and any approved reapplication pathway separately from training-placement recommendations.',
   )
   writeAdmissionsState(next)
   return application
