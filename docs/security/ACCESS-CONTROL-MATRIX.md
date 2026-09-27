@@ -1,145 +1,189 @@
 # Cognita 2.0 Access Control Matrix
 
-Status: SECURITY DESIGN / PRODUCTION REQUIREMENT
+Status: CURRENT SECURITY DESIGN / PRODUCTION REQUIREMENT
+Updated: 2026-09-28
 
 Security model: **DEFAULT DENY + LEAST PRIVILEGE + SERVER-SIDE AUTHORIZATION**.
 
-This matrix records the roles that already exist in Cognita's product and operating model. It does not create a generic administrator or super-admin role. The current frontend repository has no production authentication backend, so the non-public permissions below are **requirements for the production backend**, not claims about the current browser-local preview.
+This document reflects the current account-first Cognita model.
 
-## Roles discovered
+## Current role model
 
-1. **Visitor** — anonymous public website user.
-2. **Applicant** — person in the admissions lifecycle.
-3. **Student** — enrolled learner with activated student access.
-4. **Admissions Officer** — reviews applications and records admissions decisions.
-5. **CEE Evaluator** — reviews CEE submissions, applied work, integrity evidence, and final CEE decision.
-6. **Enrollment & Payment Operator** — verifies program selection and payment evidence and authorizes account activation.
-7. **Trainer / Facilitator** — reviews learner outputs and capstone work and releases academic feedback.
-8. **Student Support** — handles learner support requests with only the minimum identity/context needed.
-9. **Records Administrator** — maintains enrollment/completion/credential records and approved corrections.
+1. **Visitor** — anonymous public-site user.
+2. **Account Holder / CEE Participant** — authenticated user who may complete the CEE and view only their own profile/recommendation.
+3. **Learner** — enrolled user with access to their own paid pathway and learning records.
+4. **CEE / Pathway Reviewer** — authorized human reviewer for ambiguous or challenged CEE recommendations.
+5. **Trainer / Facilitator** — reviews assigned learner work and provides feedback where the paid mode requires it.
+6. **Learner Support** — handles support cases with the minimum context required.
+7. **Enrollment / Billing Operator** — handles payment/enrollment state where production workflows require human action.
+8. **Records / Credential Administrator** — maintains completion and credential records.
 
-The V1 founder/operator may hold several of these permissions at once, but **Founder is not a bypass role**. Holding multiple responsibilities must not remove per-action authorization checks or audit requirements.
+The same founder/operator may hold multiple functions during a small pilot, but no role is a bypass role.
 
-There is currently no product requirement for a generic `admin`, `super_admin`, seller, moderator, or service-account role, so none is added here.
+## Core production flow
 
-## Access control matrix
+**Create Account → CEE → Profile → Personalized Path → Recommended Offer → Payment → Learning → Evidence → Credential**
 
-| ROLE | RESOURCE | READ | CREATE | UPDATE | DELETE | SPECIAL ACTIONS |
-|---|---|---|---|---|---|---|
-| Visitor | Public institutional pages, program descriptions, admissions information, CEE information, policies, founder page, institutional status | Yes | No | No | No | May initiate an email using published contact links |
-| Visitor | Applications, CEE attempts, enrollment, payment, student records, support, staff consoles | No | No | No | No | None |
-| Applicant | Own application | Own record only | Own application only | Only explicitly allowed applicant fields before lock/final submission | No self-delete unless policy explicitly permits | Submit application, view own status |
-| Applicant | Own CEE invitation/session | Own invitation/session only | No direct invitation creation | Own answers during active session only | No | Start one authorized session, submit own attempt |
-| Applicant | Other applicants' records | No | No | No | No | None |
-| Applicant | Enrollment/payment state | Own record only after eligibility | Program selection only when server confirms eligibility | Only permitted selection fields | No | Request official payment instructions when eligible |
-| Student | Own account/profile | Own record only | No duplicate account creation | Allowlisted self-service fields only | No direct account delete unless formal process exists | Manage own profile/preferences |
-| Student | Own learning record, submissions, capstone, portfolio | Own records only | Own submissions/support requests | Own drafts/resubmissions where state permits | No deletion of institutional review history | Submit work, resubmit when revision is permitted |
-| Student | Own support requests | Own tickets only | Yes | Add permitted follow-up content only | No | View support responses |
-| Student | Other students' records | No | No | No | No | None |
-| Admissions Officer | Application records | Assigned/current intake applications only | No applicant impersonation | Admissions-review fields only | No routine delete | Approve/decline application, trigger server-generated CEE invitation |
-| Admissions Officer | CEE answers/scoring | Status/metadata only unless separately granted evaluator role | No | No scoring without evaluator permission | No | Cannot release CEE evaluation unless also authorized as evaluator |
-| CEE Evaluator | CEE submission, applied responses, integrity signals, minimum applicant identity | Assigned attempts only | Evaluation record | Evaluation fields only while decision is open | No | Score applied tasks, record rationale, release pass/fail decision according to policy |
-| CEE Evaluator | Payment/account configuration | No | No | No | No | None |
-| Enrollment & Payment Operator | Eligible enrollment record, minimum applicant identity, payment evidence/status | Assigned records only | Payment verification record if needed | Payment/enrollment status fields only | No | Confirm/reject payment evidence, authorize account activation |
-| Enrollment & Payment Operator | CEE answer content | No | No | No | No | May rely on final eligibility decision, not raw exam answers |
-| Trainer / Facilitator | Enrolled learner identity needed for teaching, assigned learning submissions, progress, capstone | Assigned learners only | Feedback/review records | Academic review fields only | No deletion of learner evidence/audit history | PASS/REVISE outputs, review capstone, release feedback |
-| Trainer / Facilitator | Admissions statement/payment secrets | No | No | No | No | None |
-| Student Support | Learner identity/contact context and assigned support thread | Assigned support records only | Support responses | Support status/response fields only | No | Respond/escalate support issue |
-| Student Support | CEE answers, payment details, academic review notes unrelated to support | No | No | No | No | None |
-| Records Administrator | Enrollment, completion, credential and approved record-correction data | Authorized institutional records only | Official record entries when required | Approved record-maintenance fields only | Restricted, exceptional, audited only | Issue/verify/correct institutional records according to policy |
-| Records Administrator | User roles/security configuration | No by default | No | No | No | Role/security changes require a separately approved security-administration capability if Cognita ever introduces one |
+Every protected transition must be authorized server-side.
 
-## Field-level restrictions
+## Access principles
 
-Client-supplied payloads must never be allowed to set protected fields unless the endpoint is explicitly authorized for that exact field. At minimum, applicant/student self-service endpoints must reject:
+### Visitor
+May read public information only.
 
-- `role`
-- `roles`
-- `permissions`
-- `is_admin`
-- `owner_id`
-- `user_id` when ownership is derived from the session
-- `application_id` when ownership is derived from the session
-- `payment_status`
-- `verification_status`
-- `admission_status`
-- `cee_decision`
-- `objective_score`
-- `evaluator_score`
-- `credential_status`
-- `account_status`
-- internal notes
+Must not access:
+- account records
+- CEE attempts/results
+- personalized recommendations
+- payment/enrollment records
+- learner work
+- staff/review tools
+- credential administration
+
+### Account Holder / CEE Participant
+May access only:
+- own profile
+- own active CEE
+- own CEE result/profile
+- own recommended path/offer
+- own checkout/enrollment state
+
+Must not set or override:
+- scores
+- recommendation logic
+- protected status fields
+- pricing rules
+- another user ID
+- role/permission fields
+- credential status
+
+### Learner
+May access only their own:
+- enrolled pathway
+- lessons
+- submissions
+- feedback
+- support threads
+- portfolio evidence
+- competency/credential status
+
+Learners may create/update only allowlisted self-service fields and drafts.
+
+### CEE / Pathway Reviewer
+May access only the minimum CEE evidence required for assigned reviews.
+
+May:
+- review disputed/ambiguous recommendation evidence
+- record rationale
+- approve an authorized recommendation adjustment
+
+May not:
+- alter payment records
+- change unrelated learner records
+- bypass audit requirements
+
+### Trainer / Facilitator
+May access only assigned learner work needed for teaching/review.
+
+May:
+- provide feedback
+- record PASS/REVISE or equivalent mastery decisions where authorized
+- review capstone/evidence
+
+May not receive unrelated payment or private CEE data by default.
+
+### Learner Support
+May access identity/contact and case information needed to resolve assigned support requests.
+
+Must not receive raw CEE answers, unnecessary payment data, or private academic notes unrelated to the support case.
+
+### Enrollment / Billing Operator
+May access only the minimum account, product, transaction, and enrollment data needed for billing/enrollment administration.
+
+May not alter CEE evidence or academic mastery decisions.
+
+### Records / Credential Administrator
+May maintain authorized completion and credential records.
+
+Credential corrections/revocations should be auditable and restricted.
+
+## Protected fields
+
+End-user requests must never directly set protected fields such as:
+- role / permissions
+- owner ID / user ID where derived from authenticated session
+- CEE score
+- routing/recommendation decision
+- protected competency status
+- payment verification status
+- enrollment status
+- credential status
+- staff notes
 - audit fields
 
-Use explicit allowlists per endpoint rather than blocklists alone.
+Use explicit server-side allowlists.
 
-## Production route classification
+## Production route classes
 
-### PUBLIC
+### Public
+- /
+- /about
+- /founder
+- /programs
+- /admissions
+- /apply
+- /how-it-works
+- /cee
+- /organizations
+- /policies
+- /privacy
+- /terms
+- /academic-integrity
+- /student-policies
+- /institutional-status
 
-- `/`
-- `/about`
-- `/founder`
-- `/programs`
-- `/programs/professional-ai-program`
-- `/programs/skills-lab`
-- `/admissions`
-- `/apply` while it remains informational/email-based
-- `/cee`
-- `/organizations`
-- `/policies`
-- `/privacy`
-- `/terms`
-- `/academic-integrity`
-- `/student-policies`
-- `/institutional-status`
+### Future authenticated learner routes
+- account/profile
+- CEE execution
+- CEE result/profile
+- personalized path
+- checkout/enrollment state
+- learner app
+- credential record
 
-### AUTHENTICATED / OWNERSHIP-RESTRICTED IN THE FUTURE
+### Future restricted staff routes
+- CEE/pathway review
+- billing/enrollment operations
+- trainer/facilitator review
+- learner support
+- credential/records administration
 
-These must not become production-live until backed by trusted server-side identity and resource authorization:
+## Current repository boundary
 
-- applicant status/application record
-- invitation-only CEE session
-- payment/enrollment status
-- account activation
-- student app
+The current repository remains frontend-only.
 
-### ROLE-RESTRICTED / ADMINISTRATIVE IN THE FUTURE
+Only public information is production-safe.
 
-- admissions review
-- CEE evaluation
-- payment confirmation
-- learning/facilitation review
-- student-support handling
-- records administration
+The local student-app route may exist in development for product QA, but it is not a production authorization model.
 
-### DEVELOPMENT-ONLY IN THE CURRENT REPOSITORY
+Production must not trust:
+- localStorage
+- hidden routes
+- frontend role flags
+- query parameters
+- client-provided user IDs
+- browser-only workflow state
 
-- `/entrance-exam`
-- `/entrance-exam/start`
-- `/payment`
-- `/account-setup`
-- `/app`
-- `/operations`
-- `/operations/apply-preview`
-- `/operations/admissions`
-- `/operations/learning`
+## Server authorization sequence
 
-Production builds must deny these routes until a server-side authorization layer exists.
-
-## Server authorization rule
-
-For every protected request, the server must determine authorization from the trusted authenticated session/token. Never accept a frontend-supplied user ID, role, owner ID, application ID, student ID, or record ID as proof of permission.
-
-Required decision shape:
-
-1. Authenticate the caller.
-2. Resolve server-trusted roles/capabilities.
-3. Load the target resource without exposing it to the client first.
-4. Verify role + action + resource ownership/assignment + current workflow state.
+For every protected request:
+1. Authenticate caller.
+2. Resolve trusted role/capabilities.
+3. Load target resource server-side.
+4. Verify ownership/assignment and workflow state.
 5. Validate an allowlisted request schema.
-6. Execute the minimum permitted operation.
-7. Return the minimum permitted fields.
-8. Audit privileged/high-impact actions.
+6. Perform only the permitted action.
+7. Return only minimum necessary fields.
+8. Audit high-impact actions.
 
 Anything not explicitly permitted is denied.
