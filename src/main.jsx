@@ -11,8 +11,6 @@ import {
   Founder,
   EntranceExamInfo,
   Organizations,
-  ProfessionalProgram,
-  SkillsLabProgram,
   InstitutionalStatus,
   PoliciesIndex,
   PrivacyPolicy,
@@ -56,8 +54,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/about" element={<AboutCognita />} />
           <Route path="/founder" element={<Founder />} />
           <Route path="/programs" element={<Programs />} />
-          <Route path="/programs/professional-ai-program" element={<ProfessionalProgram />} />
-          <Route path="/programs/skills-lab" element={<SkillsLabProgram />} />
           <Route path="/admissions" element={<PublicAdmissions />} />
           <Route path="/apply" element={<PublicAdmissions />} />
           <Route path="/how-it-works" element={<PublicAdmissions />} />
