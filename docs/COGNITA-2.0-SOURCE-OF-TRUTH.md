@@ -1,469 +1,282 @@
-# Cognita 2.0 — Institutional and Academic Source of Truth
+# Cognita 2.0 — Institutional, Commercial and Academic Source of Truth
 
-Status: Canonical working source for Cognita 2.0
+Status: LOCKED / CANONICAL
 Updated: 2026-09-28
 
-This document supersedes conflicting program structures, pricing assumptions, naming, enrollment sequences, and product architecture from older Cognita/Cognita Academy materials.
+This document supersedes conflicting Cognita/Cognita Academy/Cognita 2.0 program structures, application-first admission flows, pass/fail-first CEE models, catalog-first assumptions, pricing assumptions, naming, and product architecture from older materials.
 
-**Operational companion:** `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` contains the detailed Day-1 academic and operating-policy draft, including regulatory/compliance boundaries, provisional admissions eligibility, CEE pilot bands, the week-by-week 10-week curriculum, assessment/mastery architecture, attendance, credentials, instructors/evaluators, appeals, records, SLAs, roadmap, and KPIs. Items marked PROVISIONAL or NOT YET APPROVED in that document do not override the LOCKED architecture here until explicitly approved.
+Companion controlling documents:
+- docs/COGNITA-2.0-COMMERCIAL-LEGAL-OPERATING-MODEL.md
+- docs/CEE-AI00-V2-PATHWAY-OFFER-ENGINE.md
+- docs/legal/COGNITA-LEGAL-PRIVACY-ENROLLMENT-PACK-2026.md
+- docs/PUBLIC-WEBSITE-BOUNDARY.md
 
 ## 1. Institutional identity
 
 Formal institutional name: **The Cognita Institute of Artificial Intelligence**
-
 Public short name: **Cognita Institute** or **Cognita**
 
-Cognita is a private training and learning institution designed for Filipino learners.
-
-Cognita provides structured, accessible, competency-based education built around the realities, needs, and aspirations of Filipino learners. Programs should make learning clear, practical, rigorous, and relevant to academic, professional, entrepreneurial, and personal growth.
+Cognita is a **commercial, private, non-degree professional training and competency-development business** designed initially for Filipino learners and organizations.
 
 Brand essence: **Human Intelligence. Amplified.**
-
 Learning framework: **THINK. APPLY. TRANSFORM.**
 
-Core institutional principle: **Guided when you need structure. Flexible when you need freedom. The standard remains the same.**
+## 2. Number-one business objective
 
-## 2. What Cognita is and is not
+**Generate sustainable revenue and profit.**
 
-Cognita is the education and training institution in the FMB ecosystem.
+Educational quality, strong learner outcomes, trust, compliance, accessibility, and credibility are mandatory operating requirements because they protect and increase conversion, retention, referrals, renewals, institutional sales, pricing power, and long-term business value.
 
-Cognita is not:
-- a second digital-solutions company;
-- a generic video-course marketplace;
-- a tool-tutorial platform;
-- a certificate mill;
-- an attendance-only training provider.
+Commercial operating loop:
+**Acquire → Create Account → CEE → Diagnose → Recommend → Convert → Train → Prove Value → Upsell/Advance → Retain → Refer/Renew**
 
-Cognita learning must be based on understanding, practice, assessment, output, revision, and demonstrated competence.
+## 3. What Cognita is not
 
-A learner does not earn a credential simply by opening lessons, watching videos, or completing attendance requirements.
+Cognita is not primarily:
+- a generic video-course marketplace
+- a course catalog that asks learners to guess what to buy
+- a prompt-engineering-only product
+- a certificate mill
+- an attendance-only training provider
+- a second SENZ digital-solutions company
+- a charity/public-service education project
 
-## 3. Mission
+## 4. Core product architecture
 
-Cognita Institute exists to provide Filipino learners with structured, accessible, and competency-based training that develops practical knowledge, strengthens foundational skills, and prepares them for meaningful academic, professional, and personal growth.
+**Create Account → CEE → Diagnostic Profile → Gap Analysis → Personalized Competency Pathway → Learning Mode Recommendation → Paid Offer → Practice → Mastery → Portfolio Evidence → Verified Competency Record → Next Paid Path**
 
-We design learning experiences that combine flexibility with rigor, encourage genuine understanding, and recognize that learners begin from different educational, linguistic, technological, and socioeconomic circumstances.
+The learner-facing course/program is only the presentation layer.
 
-## 4. Vision
+Underneath is a competency graph.
 
-To become a trusted Filipino learning institution known for making high-quality, practical, and structured education more accessible, while helping learners develop the competence, confidence, and adaptability needed to succeed in a rapidly changing world.
+The primary success question is:
+**What can this learner now demonstrably do that they could not do before?**
 
-## 5. Learning philosophy
+## 5. CEE / AI-00
 
-Cognita follows these principles:
+Preferred public name:
+**Cognita Entry & Competency Evaluation (CEE)**
 
-1. **Understanding before automation.** Learners should understand the task before asking AI to perform it.
-2. **Judgment before speed.** Faster output is not valuable when the output is inaccurate, harmful, generic, or strategically weak.
-3. **Evidence before confidence.** Fluent AI output is not proof of truth. Claims, sources, calculations, quotations, and recommendations must be verified when verification matters.
-4. **Practice before certification.** Credentials represent demonstrated capability, not passive consumption.
-5. **Human accountability.** Learners remain responsible for decisions, submissions, communications, and consequences.
-6. **Transferable capability.** Cognita teaches durable thinking and workflow skills, not dependence on one interface or tool.
-7. **Flexible delivery, consistent standard.** Guided and self-paced learners may study differently, but credential standards remain defensible.
+Academic code:
+**AI-00**
 
-## 6. Canonical admissions and enrollment lifecycle
+CEE is the diagnostic, routing, personalization, and commercial recommendation engine.
 
-Do not bypass or reorder this sequence:
+It is not primarily a pass/fail entrance barrier.
 
-1. Applicant submits the Cognita application.
-2. Human admissions review occurs.
-3. Approved applicants receive invitation-only Cognita Entrance Exam (CEE) access by email in production.
-4. Applicant completes one persistent 70-minute CEE session with integrity safeguards.
-5. Objective scoring produces a domain-level readiness profile but is not the final admission or training-placement decision.
-6. Applied responses and integrity events require evaluator review.
-7. Human review produces two separate outcomes: the admission decision and the learner's training-placement recommendation.
-8. Admitted applicants receive Direct Track Entry, Foundation Accelerated, or Foundation Required guidance based on the complete readiness evidence.
-9. Admitted applicants select an eligible program within the academic pathway available to them.
-10. Payment follows program selection.
-11. Student account activation follows confirmed payment.
-12. Learning takes place inside the Cognita student app.
+CEE uses four evidence layers:
+1. Competency Diagnostic
+2. Technical Readiness
+3. Learner Readiness & Support Profile
+4. Goal & Constraint Profile
 
-The public institutional website and the student learning app are separate surfaces.
+The learner result must be a profile, not merely one total score.
 
-## 7. AI-00 / Cognita Entrance Examination role
+## 6. Learner Readiness & Support Profile
 
-**AI-00 is the academic code of the Cognita Entrance Examination (CEE).**
+This is a non-clinical educational readiness profile.
 
-The CEE is an admissions and diagnostic readiness instrument, not a ceremonial quiz and not a foundation course. Its central purpose is to understand the learner accurately enough to determine where training should begin.
+It may assess self-regulation, persistence, study consistency, accountability needs, response to failure, confidence calibration, ambiguity tolerance, willingness to experiment, problem-solving orientation, digital confidence, and participation preferences.
 
-Current CEE / AI-00 model:
+Do not diagnose mental-health or psychological conditions.
 
-- Communication & Instruction Comprehension — 15 points
-- Reasoning, Numeracy & Practical Problem Solving — 15 points
-- Digital & Information Literacy — 10 points
-- AI Foundations, Safety & Responsible Use — 15 points
-- Research, Verification & Evidence Judgment — 15 points
-- Applied Instruction, Workflow & Decision Judgment — 30 points
-- Total — 100 points
-- Standard session — 70 minutes
+Do not label learners as lazy, weak, unintelligent, unstable, or clinically impaired.
 
-The assessment produces a competency profile. The overall score must not erase a serious weakness in an individual domain.
+Translate evidence into learning-support recommendations.
 
-Objective scoring produces preliminary routing evidence. The two applied tasks, integrity context, and evaluator judgment remain part of the final review.
+## 7. CEE outputs
 
-### Separate decisions
+CEE must be capable of producing:
+- current competency profile
+- strongest capabilities
+- critical gaps
+- recommended depth pathway
+- recommended specialization
+- competencies that may be skipped
+- competencies that must be mastered
+- recommended learning mode
+- support intensity
+- recommended paid offer
+- understandable rationale
 
-AI-00 / CEE supports two different decisions:
+## 8. Depth pathways
 
-1. **Admission** — whether the applicant may enter the current Cognita intake after human review.
-2. **Training placement** — where the admitted learner should begin training.
+1. **AI Literacy**
+2. **Applied AI**
+3. **AI Builder**
+4. **AI Engineering**
 
-A learner may be admitted and still be assigned foundation modules.
+Not every learner begins at the same depth.
 
-### Academic pathway recommendations
+## 9. Learning modes
 
-Cognita 2.0 uses three learner-facing pathway outcomes:
+### Self-Paced
+Flexible schedule, lower-touch support, same competency standards.
 
-- **Foundation Required** — the learner needs substantial foundational support in one or more diagnosed competency domains before advanced specialization.
-- **Foundation Accelerated** — the learner needs selected foundation modules rather than repeating competencies already demonstrated.
-- **Direct Track Entry** — the learner demonstrates sufficient foundational readiness to move directly into the applicable guided or self-paced structure.
+### Guided
+Premium B2C route with structure, checkpoints, accountability, human feedback, support, and capstone review.
 
-Exact final institutional cut scores remain subject to pilot validation and academic approval. The current v1.2 diagnostic review lines are documented in `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md`.
+### Cognita for Organizations
+Assessment → gap analysis → customized pathway → cohort training → verification → organization report → renewal/expansion.
 
-## 8. Foundation training assigned from AI-00
+## 10. Mastery model
 
-Foundation training is separate from AI-00.
+**Learn → Do → Submit/Perform → Evaluate → Explain → Remediate → Retry → Master**
 
-AI-00 diagnoses the learner. Foundation modules address the gaps identified by that diagnosis.
+Critical prerequisites may use mastery gates.
 
-Current foundation map:
-
-- **FND-01 — Communication & Instruction Comprehension**
-- **FND-02 — Reasoning, Numeracy & Practical Problem Solving**
-- **FND-03 — Digital & Information Literacy**
-- **FND-04 — AI Foundations & Responsible Use**
-- **FND-05 — Research, Verification & Evidence**
-- **FND-06 — Applied Prompting, Workflow & Decision Practice**
-
-Foundation modules may be assigned individually, in an accelerated combination, or as a fuller foundation sequence depending on the complete AI-00 / CEE profile and evaluator judgment.
-
-Learners should not repeat competencies they have already demonstrated unless later evidence establishes a genuine need.
+Failure should trigger diagnosis, feedback, remediation, and retry rather than punishment.
 
-## 9. Cognita 2.0 program architecture
-
-Cognita has two primary learner routes.
-
-### Route A — Cognita Professional AI Program
-
-**Format:** Guided, cohort-based, mentor-supported
-
-**Standard duration:** 10 weeks
-
-**Position:** Cognita's flagship, highest-touch professional program
-
-Best for learners who benefit from structure, deadlines, live guidance, human feedback, cohort accountability, and a more intensive portfolio-building experience.
-
-Historical architecture retained as the academic base:
-- Foundation layer — up to 4 weeks
-- Specialized track — 6 weeks
+## 11. Curriculum rules
 
-Cognita 2.0 improves the older model by using AI-00 / CEE readiness evidence. Qualified learners should not automatically repeat all foundation material if they have already demonstrated competence; foundation assignments should map to diagnosed gaps.
+- backward-design from demonstrable capability
+- short teaching, substantial practice
+- authentic tasks
+- explanatory feedback
+- tool knowledge is not competence
+- prompting is one skill, not the entire discipline
+- teach failure modes and recovery
+- separate durable principles from volatile vendor/tool knowledge
+- advanced tracks teach testing, evaluation, reliability, privacy, security, and production constraints
+- transfer testing matters
 
-#### Foundation subjects
+## 12. Filipino learner design
 
-The foundation curriculum includes:
+Default principles:
+- mobile-first
+- low-bandwidth
+- asynchronous-first
+- resumable/autosaved
+- downloadable/recoverable materials
+- camera optional
+- text/audio/visual participation options
+- small file sizes
+- phone-capable work where practical
+- flexible language support including English, Filipino, Taglish, and later regional language support where appropriate
+- practical accommodation for connectivity/power/weather/device constraints
 
-1. Introduction to AI
-   - what AI is and is not;
-   - human responsibility;
-   - AI as leverage rather than replacement;
-   - learner AI purpose and expected professional outcome.
+## 13. Evidence and credentials
 
-2. AI Thinking and Prompt Strategy
-   - context and instruction quality;
-   - prompt structure;
-   - iterative prompting;
-   - prompt auditing;
-   - choosing appropriate AI systems for a task.
+Every major unit should create evidence.
 
-3. Research and Validation Using AI
-   - research frameworks;
-   - hallucination awareness;
-   - fact verification;
-   - source quality;
-   - cross-checking;
-   - idea and claim validation.
+Cognita credentials summarize demonstrated competence.
 
-4. Communication: Reading and Writing
-   - professional writing;
-   - editing AI output;
-   - reading and summarizing documents;
-   - audience-appropriate communication;
-   - maintaining a human professional voice.
+Long-term competency records may show:
+- CEE baseline
+- pathway
+- competencies attempted
+- competencies mastered
+- mastery evidence
+- projects/capstone
+- final level
+- areas not assessed
 
-5. Typing and Digital Efficiency
-   - keyboard efficiency;
-   - digital workspace organization;
-   - file management;
-   - practical execution speed;
-   - repeatable personal workflows.
+## 14. Revenue architecture
 
-6. AI Tool Stack Orientation
-   - practical setup and orientation;
-   - productivity environment;
-   - workflow integration;
-   - first personal SOP or repeatable AI-assisted workflow.
+Cognita may earn through:
+- CEE/premium assessment where approved
+- Self-Paced enrollment
+- Guided premium enrollment
+- advanced and specialized pathways
+- reassessment
+- portfolio/capstone review
+- credentialing/verification
+- continuing education
+- institutional contracts
+- customized programs
+- learning-material licensing
+- organization reporting/dashboards where implemented
+- separate learner-work commercialization agreements
 
-#### Initial specialized tracks
+Free components must have a commercial job.
 
-**AI for Students**
-- research and academic productivity;
-- study planning with AI;
-- essay and report support with academic integrity;
-- career and scholarship preparation;
-- productive and responsible AI use in education.
+## 15. Conversion positioning
 
-**AI for Creatives**
-- AI-assisted content creation;
-- visual design and creative workflows;
-- client pitching and pricing;
-- portfolio development;
-- monetizing creative capability.
+Primary hook:
+**Stop taking AI courses you may not need.**
 
-**AI for Entrepreneurs**
-- idea validation;
-- AI-assisted market research;
-- marketing systems;
-- content-to-sales workflows;
-- business automation;
-- scalable offers and operations.
+Support:
+**Take the CEE. Discover your AI level. Get the learning path built for you.**
 
-**AI for Professionals & Virtual Assistants**
-- AI-enhanced professional/client deliverables;
-- communication and account support;
-- SOPs and workflow automation;
-- specialized service packaging;
-- productivity and value improvement.
+Long-term positioning:
+**Don't just learn AI. Prove you can use it.**
 
-#### Guided-program learning standard
+B2B:
+**Don't train everyone the same. Measure the gaps. Train what matters. Verify the capability.**
 
-The Professional AI Program should include:
-- structured weekly progression;
-- real deliverables;
-- facilitator/mentor review;
-- revision where work does not meet standard;
-- applied portfolio evidence;
-- capstone project;
-- competency-based completion decision;
-- verified credential only for qualifying learners.
+Use truthful persuasion. Do not use fabricated scarcity, fake countdowns, hidden fees, invented outcomes, false job/income guarantees, or deliberately alarming learner labels.
 
-Older institutional planning contemplated a portfolio of 19+ deliverables. This can be used as a design reference but must not be advertised as a fixed public number until the final 2.0 curriculum and assessment map are approved.
+## 16. Pricing integrity
 
-### Route B — Cognita Skills Lab
+Personalize the recommendation, not hidden prices.
 
-Program name: **Cognita Skills Lab: Applied AI Foundations and Professional Practice**
+A higher-priced Guided recommendation must be supported by the learner profile.
 
-Core promise: **Learn it. Build it. Prove it.**
+Do not use inferred vulnerability, anxiety, desperation, wealth, or willingness to pay to secretly vary the price of an identical product.
 
-**Format:** Fully self-paced, project-based, assessment-driven
+## 17. Private-training legal positioning
 
-**Recommended duration:** 28 days
+Cognita should be described as a:
+**private, non-degree professional training and competency-development provider.**
 
-**Estimated learning time:** 32–40 hours
+Do not claim CHED, DepEd, TESDA, PRC, government academic-credit, government certification, or licensing status unless actually obtained and specifically applicable.
 
-The 28-day structure is a recommended learning rhythm, not a hard deadline. Learners may complete the program faster or slower.
+Before a potentially regulated TVET offering launches, obtain a documented legal/compliance determination and complete required registration where applicable.
 
-Self-paced means the learner controls study timing. It does not mean lower academic standards.
+## 18. Privacy/profiling controls
 
-#### Eight-module structure
+Before production CEE profiling:
+- complete privacy impact assessment
+- designate required privacy/DPO functions
+- map lawful bases
+- complete required registrations
+- provide clear Privacy Notice
+- provide CEE profiling/AI disclosure and required consent
+- provide meaningful information about recommendation logic/consequences
+- provide review/challenge route
+- implement data minimization, security, retention, vendor controls, and breach response
 
-1. AI Foundations and Reality Check
-2. Problem Framing and Strategic Thinking
-3. Prompt Design and Instruction Quality
-4. Research, Verification, and Evidence
-5. AI-Assisted Professional Workflows
-6. Communication, Creativity, and Quality Control
-7. Ethics, Privacy, Bias, and Intellectual Property
-8. Capstone Development and Professional Defense
+## 19. Learner work and IP
 
-Optional role-specific Track Labs may be added without changing the eight-module core.
+Learners retain ownership of original work unless a separate written agreement states otherwise.
 
-#### Recommended four-week rhythm
+Ordinary submission grants only the rights necessary for training, assessment, integrity, records, and credential verification.
 
-**Week 1 — Understand**
-- Modules 1–2
-- AI Use Map
-- Capstone Problem Brief
+Commercial use requires a separate written commercialization agreement.
 
-**Week 2 — Apply**
-- Modules 3–4
-- Prompt Portfolio
-- Research and Verification File
+## 20. Adults-first V1
 
-**Week 3 — Build**
-- Modules 5–6
-- Workflow Blueprint
-- Before-and-After Revision Case
+Recommended direct-to-consumer launch: 18+.
 
-**Week 4 — Protect and Prove**
-- Modules 7–8
-- Responsible AI Statement
-- Final Capstone
-- Professional Defense
+Minors require a separate safeguarding/privacy/consent design.
 
-#### Self-paced learner controls
+## 21. Frontend-only operating rule
 
-Learners may:
-- choose their study schedule;
-- pause and resume;
-- repeat lessons;
-- resubmit selected exercises;
-- use approved assistive tools;
-- complete faster or slower than 28 days.
+Cognita remains frontend-only until production identity, authentication, secure CEE, payment, records, and privacy/compliance infrastructure are approved and implemented.
 
-However, the final credential remains locked until all required outputs and assessment requirements are satisfied.
+Do not pretend local simulations are live production services.
 
-## 10. Program recommendation logic
+Production account-first flow is LOCKED as product architecture, but the public site must remain truthful about what is actually live.
 
-After a passing CEE decision, Cognita should make an academic recommendation rather than presenting program selection as a purely commercial choice.
+## 22. Source precedence
 
-Examples:
-- **Recommended: Cognita Professional AI Program** when a learner would benefit from cohort structure, mentor support, deadlines, or intensive guided development.
-- **Recommended: Cognita Skills Lab** when a learner demonstrates sufficient independent-learning readiness and needs schedule flexibility.
-- **Foundation Required or Foundation Accelerated** when AI-00 / CEE evidence shows that specific foundational competencies need strengthening before or alongside the chosen route.
+1. This file
+2. docs/COGNITA-2.0-COMMERCIAL-LEGAL-OPERATING-MODEL.md
+3. docs/CEE-AI00-V2-PATHWAY-OFFER-ENGINE.md
+4. docs/legal/COGNITA-LEGAL-PRIVACY-ENROLLMENT-PACK-2026.md
+5. docs/PUBLIC-WEBSITE-BOUNDARY.md
+6. other current non-conflicting implementation docs
 
-The recommendation can guide the learner while still allowing eligible choice where academic policy permits.
+Older provisional academic, application-first, invitation-only CEE, pass/fail-first, or catalog-first documents are historical reference only and cannot override the above.
 
-## 11. Future learning layers
+## 23. Immediate build priority
 
-These are part of the Cognita 2.0 roadmap but are not the primary launch focus.
+1. Implement/validate CEE constructs and routing model.
+2. Define competency graph and prerequisites.
+3. Define paid offers/pricing and conversion logic.
+4. Map Self-Paced and Guided experiences to the same graph.
+5. Finalize legal entity, privacy, profiling, payment, refund, and credential compliance.
+6. Build the smallest complete paid learner pathway.
+7. Test CEE → recommendation → payment → learning → mastery → credential → next offer end-to-end.
+8. Use telemetry and commercial/learning outcomes to iterate.
 
-### Short Courses and Micro-Credentials
-
-Focused learning units for targeted upskilling. They may later function as standalone learning products, stackable credentials, or entry points into larger Cognita programs.
-
-Potential subject families already explored in prior academic planning include:
-- AI productivity and prompt engineering;
-- social media and digital marketing;
-- freelancing and virtual assistance;
-- branding and content creation;
-- business and entrepreneurship.
-
-Do not publish a large course catalog until each public course has confirmed curriculum, duration, outcomes, assessment method, completion requirement, credential wording, and approved fee.
-
-### Institutional Training
-
-Customized cohort delivery for:
-- schools and educational institutions;
-- companies and professional organizations;
-- LGUs and public-sector institutions;
-- NGOs and nonprofit organizations;
-- community and workforce-development partners.
-
-Institutional delivery may include tailored cohort scheduling, facilitator support, participant progress reporting, completion reporting, and verified credentials once production operations are ready.
-
-## 12. Student learning app
-
-The Cognita student app is the private learning environment for enrolled students.
-
-It should eventually contain:
-- enrolled program and pathway;
-- lessons and modules;
-- assessments and competency checks;
-- submissions and revision status;
-- progress tracking;
-- schedule and deadlines;
-- notices;
-- facilitator/mentor support;
-- capstone workspace;
-- portfolio evidence;
-- credential/completion status.
-
-No pre-enrollment student account should bypass the institutional lifecycle.
-
-## 13. Institutional integrity standard
-
-Cognita credentials should be defensible.
-
-The institution should preserve evidence of:
-- required learning outputs;
-- assessment results;
-- revision history where relevant;
-- evaluator decisions;
-- capstone evidence;
-- academic-integrity events where applicable;
-- completion requirements.
-
-AI may support learning but must not replace learner judgment or complete graded work on the learner's behalf.
-
-## 14. Public website content architecture
-
-The public website should cover:
-- Home
-- About Cognita
-- Mission and Vision
-- Founder
-- Admissions
-- CEE
-- Programs
-- How Cognita Works
-- Learning Experience
-- Institutional Training
-- Student Policies
-- FAQs
-- Apply
-
-Primary homepage CTAs:
-- **View the Admission Process**
-- **Explore Our Programs**
-
-Recommended institutional line:
-
-**Admission is intentional. Learning is structured. Progress is earned.**
-
-## 15. Founder
-
-Founder: **Francine Marie Bautista**
-
-Founder positioning should remain institutional and restrained. Cognita is founder-led but should not operate as a personality-brand course platform.
-
-The founder's work across education, training, communications, creative strategy, and digital development informs Cognita's approach to clear instruction, measurable progress, practical application, and respect for different learner starting points.
-
-## 16. Technology and build boundary
-
-Cognita 2.0 remains frontend-only through product completion, simulation, and QA.
-
-Do not add paid backend infrastructure, Supabase, server authentication, transactional email, payment processing, evaluator backend, or cloud learner records until Cognita is genuinely ready to onboard real students.
-
-Current browser-local records and email logs are simulations only. Never imply they were actually transmitted, delivered, reviewed, paid, or authenticated.
-
-Do not store passwords in localStorage.
-
-Before real intake, Cognita will require secure production systems for identity, data, email, exam timing, evaluator access, payment, student records, privacy, and cross-device learning progress.
-
-## 17. Commercial policy
-
-Do not treat pricing from older Cognita Academy documents as approved Cognita 2.0 pricing.
-
-Historical figures such as ₱15,000 Core, ₱25,000 Premium, or older short-course rates are reference material only and must not be published or wired into production until the current commercial model is formally approved.
-
-## 18. Items still requiring final academic approval
-
-The following remain not LOCKED. Detailed provisional recommendations now exist in `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` where noted, but they must not be treated as final policy until explicitly approved:
-
-- exact CEE pass threshold and applied-task rubric;
-- exact thresholds for Foundation Required, Foundation Accelerated, and Direct Track Entry;
-- final approval of the week-by-week 10-week 2.0 curriculum map;
-- exact required deliverable count;
-- final tuition and payment structure;
-- final Day-1 admission eligibility criteria;
-- final credential names and credential hierarchy;
-- grading and mastery thresholds;
-- attendance policy for guided cohorts;
-- remediation, reapplication, retake, appeal, and academic-standing rules;
-- instructor/evaluator qualification standards;
-- student handbook and final policy suite;
-- final regulatory classification and TESDA-registration path, where applicable.
-
-## 19. Source precedence
-
-When sources conflict, use this order:
-
-1. explicit current institutional decisions approved for Cognita 2.0;
-2. this Cognita 2.0 source-of-truth document for LOCKED architecture;
-3. `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` for detailed PROVISIONAL operating recommendations;
-4. `AGENTS.md`, `CLAUDE.md`, repository README and active 2.0 code;
-5. current approved Cognita 2.0 brand system;
-6. selectively reused academic material from older Cognita documents;
-7. older Cognita Academy/Cognita Institute repositories, proposals, pricing sheets, and experiments.
-
-Older material may inform Cognita 2.0 but must never silently override the current institutional architecture. A PROVISIONAL recommendation must never silently override a LOCKED rule.
