@@ -1,9 +1,9 @@
 # Cognita 2.0 — CEE Purpose and Integrity Rationale
 
 Status: Canonical working copy for Cognita 2.0
-Updated: 2026-09-04
+Updated: 2026-09-28
 
-This document explains why the Cognita Entrance Examination exists, why honest answers matter, and how the CEE should be presented to applicants across the public website, admissions flow, exam invitation, and pre-exam integrity screen.
+This document explains why the Cognita Entrance Examination exists, why honest answers matter, and how the CEE should be presented to applicants across the public website, admissions flow, exam invitation, and pre-exam integrity screen. The CEE is academically coded **AI-00** and functions as Cognita's diagnostic decision instrument for admission and training placement.
 
 ## Why the CEE matters
 
@@ -17,11 +17,13 @@ Some may already have strong communication and AI skills. Others may have strong
 
 The CEE helps us make a more informed academic decision.
 
-It allows Cognita to identify whether a learner may need:
+It allows Cognita to identify whether a learner should receive:
 
-- the full AI-00 Foundation Bridge;
-- targeted or accelerated foundation support;
-- or direct progression into a higher-level learning pathway.
+- **Foundation Required** — substantial support in one or more diagnosed competency domains;
+- **Foundation Accelerated** — only the targeted foundation modules linked to demonstrated gaps;
+- or **Direct Track Entry** — progression without repeating foundation competencies already demonstrated.
+
+AI-00 is the assessment itself. Foundation training is delivered through separately coded foundation modules rather than treating AI-00 as a course.
 
 Our goal is not to make the examination unnecessarily difficult.
 
@@ -55,10 +57,13 @@ The CEE helps answer questions such as:
 
 - Can the learner understand and follow complex instructions?
 - Can the learner communicate ideas clearly?
-- Does the learner understand basic AI concepts and limitations?
+- Can the learner reason with practical numbers, constraints, and uncertainty?
+- Can the learner work safely and reliably in a digital environment?
+- Does the learner understand basic AI concepts, limitations, risks, and human responsibility?
 - Can the learner recognize when information needs to be verified?
-- Can the learner exercise independent judgment?
-- What level of support would help this learner progress successfully?
+- Can the learner evaluate sources and evidence?
+- Can the learner design or critique an AI-assisted workflow?
+- What specific support would help this learner progress successfully?
 
 These questions matter because Cognita is built around demonstrated competence, not passive completion.
 
@@ -113,7 +118,7 @@ The CEE experience should communicate purpose before enforcement.
 Before the integrity pledge or exam start action, applicants should understand:
 
 1. why the CEE exists;
-2. how the result may affect academic placement;
+2. how the result may affect both admission and academic placement;
 3. why honest answers are more useful than artificially high scores;
 4. that needing foundational support is not automatically a failure;
 5. that cheating can result in an inaccurate pathway recommendation;
@@ -140,13 +145,16 @@ The message should encourage applicants to give their genuine best effort rather
 
 This document extends the CEE role defined in `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md`.
 
-It does not change:
+The current implementation preserves:
 
 - the 70-minute persistent CEE session;
 - invitation-only access;
-- objective scoring structure;
-- applied-response evaluation;
+- 100 total points;
+- objective and applied-response evidence;
 - evaluator review requirement;
 - integrity-event logging;
-- final pass/fail release process;
-- or the rule that exact final academic thresholds remain subject to formal approval.
+- separation of admission from training placement;
+- competency-profile reporting rather than reliance on total score alone;
+- and the rule that exact final institutional cut scores remain subject to formal approval.
+
+The detailed v1.2 structure is defined in `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md`.
