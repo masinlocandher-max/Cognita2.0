@@ -1,4 +1,3 @@
-import { getEnrollment } from './admissions'
 import { GUIDED_TRACK_OPTIONS, getLearningModules } from '../data/learning'
 
 const STATE_KEY = 'cognita-v2-learning-state'
@@ -197,8 +196,7 @@ export function respondToSupportRequest(requestId, response) {
 
 export function getLearningSnapshot() {
   const state = readLearningState()
-  const enrollment = getEnrollment()
-  const modules = getLearningModules(enrollment?.programId, state.selectedTrack)
+  const modules = getLearningModules('skills-lab', state.selectedTrack)
   const lessons = modules.flatMap((module) => module.lessons)
   const completed = state.completedLessons.filter((id) => lessons.some((lesson) => lesson.id === id)).length
   const total = lessons.length
