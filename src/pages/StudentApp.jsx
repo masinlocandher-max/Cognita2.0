@@ -20,8 +20,6 @@ import {
   Sparkles,
   UserRound,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import { getAccount, getEnrollment, hasStudentAppAccess } from '../lib/admissions'
 import { GUIDED_TRACK_OPTIONS } from '../data/learning'
 import {
   createSupportRequest,
@@ -53,23 +51,17 @@ function formatDate(value) {
   return new Intl.DateTimeFormat('en-PH', { dateStyle: 'medium' }).format(new Date(value))
 }
 
-function Gate() {
-  return (
-    <section className="student-app-page">
-      <div className="page-width gate-card">
-        <LockKeyhole size={36} />
-        <p className="section-label">STUDENT APP</p>
-        <h1>Student access has not been activated.</h1>
-        <p>The learning app is reserved for enrolled students. Complete admissions, CEE, program selection, payment, and account activation first.</p>
-        <Link className="button button--ghost" to="/apply">View admissions status</Link>
-      </div>
-    </section>
-  )
-}
-
 export default function StudentApp() {
-  const account = getAccount()
-  const enrollment = getEnrollment()
+  const account = {
+    fullName: 'Cognita Learner',
+    email: 'learner.preview@thecognitainstitute.com',
+    activatedAt: null,
+  }
+  const enrollment = {
+    programId: 'skills-lab',
+    programCode: 'PERSONALIZED-PATH',
+    programName: 'Personalized Cognita Path Preview',
+  }
   const [tab, setTab] = useState('overview')
   const [selectedLessonId, setSelectedLessonId] = useState(null)
   const [learning, setLearning] = useState(() => getLearningSnapshot())
@@ -81,8 +73,6 @@ export default function StudentApp() {
   const [settingsState, setSettingsState] = useState(() => readLearningState().settings)
 
   const refresh = () => setLearning(getLearningSnapshot())
-
-  if (!hasStudentAppAccess()) return <Gate />
 
   const firstName = account.fullName.split(' ')[0]
   const selectedLesson = selectedLessonId
