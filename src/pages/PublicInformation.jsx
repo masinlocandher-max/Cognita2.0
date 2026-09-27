@@ -3,7 +3,7 @@ import { ArrowRight, BookOpenCheck, Building2, CheckCircle2, FileText, Graduatio
 
 const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
 const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
-const EFFECTIVE_DATE = 'September 9, 2026'
+const EFFECTIVE_DATE = 'September 28, 2026'
 
 function PageIntro({ label, title, body, aside }) {
   return (
@@ -58,7 +58,7 @@ export function AboutCognita() {
             <p className="section-label">IDENTITY</p>
             <h2>Human Intelligence. Amplified.</h2>
             <p>Cognita is not a generic video-course marketplace, certificate mill, attendance-only training provider, or tool-tutorial platform. Learning is organized around understanding, judgment, verification, practice, revision, and accountability.</p>
-            <p>The public website explains Cognita, its programs, admissions, academic approach, policies, and institutional status. Enrolled learners study inside a separate private learning environment after admission and enrollment.</p>
+            <p>The public website explains Cognita, the CEE, learning paths, policies, and institutional status. Enrolled learners study inside a separate private learning environment after completing the applicable CEE, enrollment, and secure account requirements.</p>
           </article>
           <div className="info-values-grid">
             <article><Target /><h3>Mission</h3><p>Provide Filipino learners with structured, accessible, competency-based training that develops practical knowledge, strengthens foundational skills, and supports meaningful academic, professional, entrepreneurial, and personal growth.</p></article>
@@ -101,19 +101,35 @@ export function Founder() {
 
 export function EntranceExamInfo() {
   const parts = [
-    ['30', 'Functional English & Communication', 'Comprehension, clarity, instructions, and professional communication.'],
-    ['25', 'AI Foundations', 'Core understanding of AI capabilities, limitations, and responsible use.'],
-    ['15', 'Research & Verification Judgment', 'Evidence quality, cross-checking, source awareness, and false-confidence detection.'],
-    ['30', 'Applied Communication & AI Evaluation', 'Human-reviewed applied tasks testing reasoning beyond objective items.'],
+    ['01', 'Competency Diagnostic', 'What you currently understand and can actually do across AI literacy, applied use, verification, research, workflow reasoning, privacy, and professional judgment.'],
+    ['02', 'Technical Readiness', 'Digital fluency, computational thinking, programming readiness, systems reasoning, and readiness for deeper technical pathways.'],
+    ['03', 'Learner Readiness & Support', 'Non-clinical educational indicators such as study consistency, accountability needs, confidence calibration, and preferred participation style.'],
+    ['04', 'Goals & Constraints', 'Your target outcome, specialization interest, study time, device and connectivity realities, schedule, language, and relevant prior experience.'],
   ]
   return (
     <>
-      <PageIntro label="COGNITA ENTRANCE EXAMINATION" title="The CEE is designed to understand readiness accurately." body="The Cognita Entrance Examination, academically coded AI-00, is an admissions and diagnostic readiness instrument. It is designed to identify current strengths and gaps and determine the learner’s appropriate training flow. It is not publicly accessible without an admissions invitation." aside={<><span>Current assessment model</span><strong>100 points · 70 minutes · invitation only · human-reviewed final decision</strong></>} />
+      <PageIntro
+        label="COGNITA ENTRY & COMPETENCY EVALUATION"
+        title="The CEE tells Cognita what you actually need next."
+        body="The CEE, academically coded AI-00, is Cognita’s diagnostic, routing, personalization, and recommendation engine. It is designed to identify strengths, gaps, appropriate depth, learning-support needs, and the most suitable Cognita pathway."
+        aside={<><span>Core principle</span><strong>Assess first. Recommend second. Enroll third.</strong></>}
+      />
       <section className="section info-page"><div className="page-width">
         <div className="info-score-grid">{parts.map(([score, title, body]) => <article key={title}><span>{score}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>
-        <div className="info-two-column info-top-gap"><article><h2>How the decision works</h2><p>The first 70 points are objective evidence in the current model. The final 30 points come from applied responses that require evaluator review. Objective scoring alone is not the final admission decision.</p><p>Readiness evidence may support Foundation Required, Foundation Accelerated, targeted foundation support, or Direct Track Entry. Final production thresholds are established through Cognita’s approved academic policy and calibration process.</p></article><article><h2>Integrity safeguards</h2><ul className="info-bullets"><li>One invitation represents one assessment session.</li><li>The timer persists across refreshes.</li><li>Applicants accept an integrity acknowledgement before starting.</li><li>Window-leave, paste, or similar events may be logged as integrity signals.</li><li>Time expiry submits the current attempt for review.</li><li>Closed assessment work must represent the applicant’s own performance.</li></ul></article></div>
+        <div className="info-two-column info-top-gap">
+          <article>
+            <h2>What your result can influence</h2>
+            <p>Your CEE profile can influence your starting level, competencies to study, competencies you may skip, remediation, specialization, recommended Self-Paced or Guided mode, support intensity, and the Cognita paid offering recommended to you.</p>
+            <p>The result should be presented as a profile with an understandable rationale, not merely one total score.</p>
+          </article>
+          <article>
+            <h2>Learner readiness is non-clinical</h2>
+            <p>The Learner Readiness & Support Profile is designed only to improve educational routing and support. It is not a psychological examination, mental-health assessment, medical diagnosis, or clinical fitness determination.</p>
+            <p>Before a production CEE begins, Cognita should clearly disclose how profiling and automated or partially automated recommendations are used and provide a route to request review of a materially incorrect recommendation.</p>
+          </article>
+        </div>
       </div></section>
-      <ContactBand subject="Cognita Entrance Examination Inquiry" />
+      <ContactBand subject="Cognita CEE Inquiry" />
     </>
   )
 }
@@ -177,35 +193,48 @@ export function PoliciesIndex() {
 
 export function PrivacyPolicy() {
   return (
-    <><PageIntro label="PRIVACY POLICY" title="Privacy is part of the learning system, not an afterthought." body="This policy explains Cognita’s public privacy position. The current website remains frontend-only and does not yet operate the production student-record, payment, authentication, or admissions database." />
-      <section className="section info-page"><div className="page-width policy-document"><PolicyMeta title="Privacy Policy" />
-        <h2>1. Scope</h2><p>This policy applies to Cognita’s public website, public inquiries, and institutional communications. Separate or additional notices may apply when production admissions, enrollment, payment, student records, assessment systems, or learning services become active.</p>
-        <h2>2. Information Cognita may receive</h2><p>Depending on how you contact or interact with Cognita, information may include your name, email address, contact details, inquiry content, program interest, institutional affiliation, and information voluntarily supplied in correspondence. Cognita should collect only information reasonably necessary for the declared purpose.</p>
-        <h2>3. Current website boundary</h2><p>The current public website does not operate a production admissions database, cloud learner record, live payment processor, server authentication system, or credential registry. Browser-local simulation data used during product development is not represented as a real institutional record.</p>
-        <h2>4. Purpose of use</h2><p>Information may be used to answer inquiries, communicate current program or intake information, support legitimate institutional administration, prepare future enrollment where explicitly requested, protect institutional systems, comply with legal obligations, and resolve disputes or requests.</p>
-        <h2>5. Data minimization and sensitive information</h2><p>Cognita avoids collecting unnecessary personal data and does not use facial recognition or other high-risk biometric processing merely for convenience. Applicants and learners should not send passwords, one-time passwords, financial credentials, or unrelated sensitive records by email.</p>
-        <h2>6. Sharing</h2><p>Cognita does not sell personal information. Information may be shared only with service providers, professional advisers, authorized institutional personnel, or authorities where reasonably necessary, contractually appropriate, or legally required.</p>
-        <h2>7. Retention</h2><p>Records are retained only for as long as reasonably necessary for the purpose for which they were collected, legitimate institutional administration, legal obligations, dispute handling, or credential verification where applicable. Retention periods will become more specific when production admissions and student-record systems are activated.</p>
-        <h2>8. Security</h2><p>Cognita uses proportionate organizational and technical safeguards appropriate to the systems in operation. No online system is perfectly secure, so production student systems will require a separate security and privacy-readiness review before real intake.</p>
-        <h2>9. Rights and requests</h2><p>Individuals may contact Cognita to ask about personal information, request correction, raise a privacy concern, or exercise applicable rights under Philippine data-protection law, subject to identity verification and lawful exceptions.</p>
-        <h2>10. Contact</h2><p>Privacy requests may be sent to <a href={`mailto:${PRIMARY_EMAIL}?subject=Cognita%20Privacy%20Request`}>{PRIMARY_EMAIL}</a>.</p>
-      </div></section></>
+    <>
+      <PageIntro
+        label="PRIVACY NOTICE"
+        title="Privacy is part of Cognita’s product design."
+        body="This public notice summarizes Cognita’s privacy position during the current frontend-only phase and the controls required before production account, CEE, profiling, payment, and learner-record systems go live."
+      />
+      <section className="section info-page"><div className="page-width policy-document"><PolicyMeta title="Privacy Notice" />
+        <h2>1. Scope</h2><p>This notice applies to Cognita’s public website, inquiries, account and CEE systems when activated, learning services, credential records, and institutional communications.</p>
+        <h2>2. Information Cognita may process</h2><p>Depending on the service, information may include identity and contact details, age eligibility, education and professional background, CEE answers and scores, competency and technical-readiness indicators, Learner Readiness & Support responses, goals and practical constraints, learning activity, submissions, feedback, transaction references, credential records, support communications, and proportionate technical/security logs.</p>
+        <h2>3. CEE profiling</h2><p>CEE may use automated or partially automated processing to compare assessment evidence and learner information with competency standards, prerequisites, pathway rules, learning-mode criteria, and available Cognita offerings. This may influence starting level, remediation, specialization, Self-Paced or Guided recommendation, support intensity, and the paid offer shown to the learner.</p>
+        <h2>4. Non-clinical readiness data</h2><p>The Learner Readiness & Support Profile is educational and non-clinical. Cognita does not intend it to diagnose mental illness, psychiatric condition, personality disorder, psychological disorder, cognitive disability, medical condition, or clinical fitness.</p>
+        <h2>5. Purpose limitation</h2><p>Personal data should be used only for identified purposes such as account administration, CEE, pathway generation, training delivery, mastery assessment, credential verification, support, security, legal compliance, product improvement, and marketing where a separate lawful basis exists.</p>
+        <h2>6. Human review</h2><p>Production users should have an accessible route to question a materially incorrect CEE recommendation and request review where appropriate.</p>
+        <h2>7. Service providers</h2><p>Cognita may use appropriately governed providers for hosting, authentication, payments, email, analytics, AI processing, security, support, and learning infrastructure. Data minimization and appropriate contractual safeguards should apply.</p>
+        <h2>8. No sale of learner data</h2><p>Cognita does not treat learner personal data as a commodity for sale to unrelated advertisers.</p>
+        <h2>9. Retention and security</h2><p>Production retention periods, access controls, incident response, logging, vendor review, and data-deletion rules must be finalized before live enrollment. Data should be retained only for as long as justified by the purpose, legal obligations, dispute handling, security, or credential verification.</p>
+        <h2>10. Rights and contact</h2><p>Individuals may exercise applicable rights under Philippine data-protection law, subject to lawful exceptions and identity verification. Privacy inquiries may be sent to <a href={`mailto:${PRIMARY_EMAIL}?subject=Cognita%20Privacy%20Request`}>{PRIMARY_EMAIL}</a> until the final DPO/privacy contact is published.</p>
+      </div></section>
+    </>
   )
 }
 
 export function TermsOfUse() {
   return (
-    <><PageIntro label="TERMS OF USE" title="Terms for Cognita’s public website and information." body="These terms govern use of the public Cognita website. Enrollment-specific terms are provided separately before a learner commits to a program or payment." />
+    <>
+      <PageIntro
+        label="TERMS OF USE"
+        title="Clear terms for Cognita’s public and future learning services."
+        body="These public terms summarize the current website rules. Before any paid production service begins, Cognita must present the applicable enrollment, price, billing, access, refund, profiling, and privacy terms for affirmative acceptance."
+      />
       <section className="section info-page"><div className="page-width policy-document"><PolicyMeta title="Terms of Use" />
-        <h2>1. Public information service</h2><p>The website provides institutional, program, admissions, academic, policy, and contact information. Website content does not itself create admission, enrollment, student status, a payment obligation, a credential entitlement, or an employment guarantee.</p>
-        <h2>2. Accuracy and current status</h2><p>Cognita aims to keep public information accurate and clearly distinguishes current approved information from future, intake-specific, or externally regulated matters. Fees, schedules, available seats, credential wording, and regulatory status may be confirmed separately for a specific intake before enrollment.</p>
-        <h2>3. Acceptable use</h2><p>Users must not interfere with the site, attempt unauthorized access, misuse exam or private links, impersonate another person, scrape protected learner information, introduce malicious code, or use Cognita systems for unlawful activity.</p>
-        <h2>4. Intellectual property</h2><p>Cognita’s name, logos, brand assets, original website content, curriculum materials, assessment materials, and institutional documents are protected by applicable rights. Public access does not grant permission to copy, sell, impersonate, or redistribute protected materials beyond lawful use.</p>
-        <h2>5. External services</h2><p>Where the website links to email, communication, payment, video, learning, or other third-party services, those providers may apply their own terms and privacy practices.</p>
-        <h2>6. No false credential or status claims</h2><p>Users must not represent themselves as enrolled, admitted, certified, employed, authorized, or officially affiliated with Cognita when that status has not been granted.</p>
-        <h2>7. Changes</h2><p>Cognita may update public terms as its production systems and programs mature. Material enrollment obligations are not silently imposed through a website edit after a learner has entered a separate enrollment agreement.</p>
-        <h2>8. Contact</h2><p>Questions about these terms may be sent to <a href={`mailto:${PRIMARY_EMAIL}?subject=Cognita%20Terms%20Inquiry`}>{PRIMARY_EMAIL}</a>.</p>
-      </div></section></>
+        <h2>1. Nature of service</h2><p>Cognita is a private, non-degree professional training and competency-development provider. Unless expressly stated otherwise for a specific authorized offering, Cognita does not represent its private training as a degree, professional license, or government-issued qualification.</p>
+        <h2>2. CEE and recommendations</h2><p>The CEE may generate a personalized competency profile, identify gaps, recommend learning depth and specialization, recommend Self-Paced or Guided learning, and suggest an appropriate Cognita paid offering. A recommendation does not obligate a user to purchase.</p>
+        <h2>3. No guaranteed outcomes</h2><p>Cognita does not guarantee employment, salary, promotion, clients, business revenue, professional appointment, licensure, third-party recognition, or a particular assessment result.</p>
+        <h2>4. Pricing and checkout</h2><p>Before payment, the production service should disclose the product, price, billing cadence, access period, material limitations, and applicable refund/cancellation terms. Recurring billing requires separate explicit authorization.</p>
+        <h2>5. Intellectual property</h2><p>Cognita retains rights in its assessments, question banks, scoring and routing logic, competency frameworks, instructional materials, software, brand assets, rubrics, and credential formats. Learners retain original work unless a separate written agreement states otherwise.</p>
+        <h2>6. Learner work commercialization</h2><p>Ordinary enrollment does not automatically authorize Cognita to sell or commercially exploit learner-owned work. Commercialization requires a separate written agreement covering the relevant rights and compensation terms.</p>
+        <h2>7. Acceptable use</h2><p>Users must not attempt unauthorized access, manipulate assessments, impersonate others, distribute protected assessment material, introduce malicious code, interfere with services, or unlawfully copy Cognita content.</p>
+        <h2>8. Current frontend boundary</h2><p>The present repository is frontend-only. Public screens must not imply that secure production account registration, CEE submission, payment, cloud records, or credential issuance are live until the required backend and compliance controls exist.</p>
+        <h2>9. Contact</h2><p>Questions may be sent to <a href={`mailto:${PRIMARY_EMAIL}?subject=Cognita%20Terms%20Inquiry`}>{PRIMARY_EMAIL}</a>.</p>
+      </div></section>
+    </>
   )
 }
 
@@ -225,21 +254,20 @@ export function AcademicIntegrityPolicy() {
 
 export function StudentPolicies() {
   return (
-    <><PageIntro label="STUDENT POLICIES" title="Learning standards, support, conduct, and completion rules." body="This page summarizes Cognita’s public learner policy framework. Intake-specific commercial terms are disclosed before enrollment, and the application backend remains outside the current public launch scope." />
-      <section className="section info-page"><div className="page-width policy-document"><PolicyMeta title="Student Policies" />
-        <h2>1. Conduct</h2><p>Students must not harass, threaten, discriminate against, abuse, impersonate, falsify records, share protected accounts or exam invitations, misuse personal or confidential information, or disrupt learning and assessment systems.</p>
-        <h2>2. Competency-based progression</h2><p>Attendance or opening lessons does not by itself establish completion. Cognita may use quizzes, applied exercises, research and verification tasks, professional outputs, revision assignments, track projects, capstones, defenses, and final competency checks.</p>
-        <h2>3. Remediation and revision</h2><p>Where work does not yet meet standard, Cognita may require targeted review, evaluator feedback, resubmission, alternate practice, additional verification work, or other academically appropriate remediation.</p>
-        <h2>4. Guided attendance</h2><p>Required live participation may form part of the guided program. Attendance supports learning but is not proof of competence. Reasonable treatment of illness, emergencies, accessibility needs, work emergencies, and connectivity disruption should be built into guided-cohort administration.</p>
-        <h2>5. Accessibility and reasonable accommodation</h2><p>Cognita aims to provide reasonable accommodation where feasible, including accessible formats, captioning or transcripts, scheduling adjustments, assistive technology compatibility, and valid alternative assessment methods where appropriate. Disability alone is not a basis for denial.</p>
-        <h2>6. Student work and intellectual property</h2><p>Students retain ownership of their original work subject to applicable third-party rights. Cognita may showcase identifiable student work only with appropriate permission, license, or another lawful basis clearly disclosed in advance.</p>
-        <h2>7. Credentials</h2><p>Cognita issues private institutional credentials for learners who satisfy the approved requirements of the named program. A credential does not imply a CHED degree, TESDA National Certificate, TESDA Certificate of Competency, PRC license, academic-credit equivalency, or government qualification unless explicitly stated and independently verifiable.</p>
-        <h2>8. Appeals and complaints</h2><p>Assessment appeals may address calculation error, rubric misapplication, overlooked submitted evidence, or procedural irregularity. Administrative complaints may cover enrollment, service, records, support, or commercial concerns. Learners should receive a documented route to raise concerns and receive a written outcome.</p>
-        <h2>9. Fees, withdrawal, and refunds</h2><p>Public fees and intake-specific payment terms are released only after they are approved for the applicable offering. Before any real payment is collected, Cognita will disclose the applicable withdrawal, cancellation, refund, and non-delivery terms. The current public website does not process live tuition payments.</p>
-        <h2>10. Records and verification</h2><p>Production records may include admissions decisions, CEE evidence, enrollment, learning progress, assessments, revisions, completion decisions, credentials, and necessary support or appeal records. Public credential verification, when introduced, should disclose only the minimum information necessary to verify the credential.</p>
-        <h2>11. Support</h2><p>Students and applicants should use official Cognita communication channels for access concerns, academic questions, complaints, accommodation requests, or administrative support.</p>
+    <>
+      <PageIntro label="LEARNER POLICIES" title="Standards for learning, evidence, support, and conduct." body="Cognita is competency-based. The learner’s personalized path may differ, but required evidence and integrity standards remain defensible." />
+      <section className="section info-page"><div className="page-width policy-document"><PolicyMeta title="Learner Policies" />
+        <h2>1. Conduct</h2><p>Learners must not harass, threaten, impersonate, falsify records, share protected accounts, misuse personal or confidential information, manipulate assessments, or disrupt Cognita systems.</p>
+        <h2>2. Competency-based progression</h2><p>Opening lessons, attendance, or time spent in the platform does not by itself establish competence. Cognita may require practical tasks, projects, scenario assessments, demonstrations, revisions, remediation, retesting, and capstone evidence.</p>
+        <h2>3. Personalized progression</h2><p>CEE evidence may allow a learner to skip competencies already demonstrated or may require targeted foundation/remediation where gaps are identified.</p>
+        <h2>4. AI use</h2><p>AI is not automatically prohibited. Each assessment defines what assistance is permitted. Learners may be required to explain, defend, or reproduce submitted work to demonstrate actual understanding.</p>
+        <h2>5. Learner work and intellectual property</h2><p>Learners retain ownership of original work subject to third-party rights. Public portfolio use, testimonials, and commercialization should use the appropriate separate permission or agreement where required.</p>
+        <h2>6. Credentials</h2><p>Cognita credentials summarize demonstrated competency within Cognita’s private training system. They do not imply CHED degree status, TESDA National Certificate or Certificate of Competency, PRC licensure, academic-credit equivalency, or other government qualification unless explicitly stated and independently verifiable.</p>
+        <h2>7. Complaints and recommendation review</h2><p>Learners should have documented routes for learning concerns, billing or service complaints, privacy requests, and review of materially incorrect CEE recommendations.</p>
+        <h2>8. Fees and refunds</h2><p>Before any real payment is collected, Cognita must disclose the approved price, billing cadence, access period, withdrawal/cancellation conditions, and applicable refund terms.</p>
       </div></section>
-      <ContactBand subject="Cognita Student Policy Inquiry" />
+      <ContactBand subject="Cognita Learner Policy Inquiry" />
     </>
   )
 }
+
