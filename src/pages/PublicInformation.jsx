@@ -146,27 +146,6 @@ export function Organizations() {
   )
 }
 
-export function ProfessionalProgram() {
-  const weeks = ['Week 1 — AI Foundations, Responsibility, and Learner Purpose','Week 2 — Prompt Strategy, Problem Framing, and Verification','Week 3 — Research, Communication, and Digital Efficiency','Week 4 — Workflow Design, Tool Orientation, and Foundation Gate','Weeks 5–6 — Specialization Core and Revision','Week 7 — Applied Workflow and Professional Delivery','Week 8 — Portfolio Project and Evidence of Competence','Week 9 — Capstone Planning and Build','Week 10 — Capstone Completion, Defense, and Reflection']
-  return (
-    <><PageIntro label="FLAGSHIP GUIDED PROGRAM" title="Cognita Professional AI Program" body="A 10-week guided, cohort-based, mentor-supported program for learners who benefit from structure, deadlines, feedback, accountability, and a more intensive applied-learning environment." aside={<><span>Program format</span><strong>10 weeks · guided · cohort-based · mentor-supported</strong></>} />
-      <section className="section info-page"><div className="page-width info-two-column"><article><h2>Program architecture</h2><p>The academic base uses AI-00 / CEE evidence to determine whether a learner needs no foundation, targeted accelerated foundation modules, or a fuller foundation sequence before specialization, applied workflow development, portfolio evidence, and capstone work.</p><h3>Initial specialization tracks</h3><ul className="info-bullets"><li>AI for Students</li><li>AI for Creatives</li><li>AI for Entrepreneurs</li><li>AI for Professionals & Virtual Assistants</li></ul></article><article><h2>What completion requires</h2><ul className="info-bullets"><li>Structured weekly progression</li><li>Required applied outputs</li><li>Facilitator or evaluator review</li><li>Revision where work does not yet meet standard</li><li>Portfolio evidence</li><li>Capstone project and professional defense</li><li>Competency-based completion decision</li></ul></article></div></section>
-      <section className="section section--soft info-page"><div className="page-width"><div className="section-heading"><p className="section-label">LEARNING SEQUENCE</p><h2>Ten weeks from foundation to defended work.</h2></div><div className="info-sequence">{weeks.map((week, i) => <article key={week}><span>{String(i+1).padStart(2,'0')}</span><strong>{week}</strong></article>)}</div></div></section>
-      <ContactBand subject="Cognita Professional AI Program Inquiry" />
-    </>
-  )
-}
-
-export function SkillsLabProgram() {
-  const modules = ['AI Foundations and Reality Check','Problem Framing and Strategic Thinking','Prompt Design and Instruction Quality','Research, Verification, and Evidence','AI-Assisted Professional Workflows','Communication, Creativity, and Quality Control','Ethics, Privacy, Bias, and Intellectual Property','Capstone Development and Professional Defense']
-  return (
-    <><PageIntro label="SELF-PACED PROGRAM" title="Cognita Skills Lab" body="Applied AI Foundations and Professional Practice is a self-paced, project-based, assessment-driven program for independent learners who need control over study timing without lowering the completion standard." aside={<><span>Recommended rhythm</span><strong>28 days · 32–40 estimated learning hours · eight modules</strong></>} />
-      <section className="section info-page"><div className="page-width info-two-column"><article><h2>Learn it. Build it. Prove it.</h2><p>The 28-day structure is a recommended learning rhythm, not a hard deadline. Learners may move faster or slower, pause, resume, repeat lessons, and resubmit selected work where permitted.</p><p>The credential remains locked until required evidence, assessments, capstone work, and completion requirements are satisfied.</p></article><div className="info-module-list">{modules.map((m,i) => <div key={m}><span>{i+1}</span><strong>{m}</strong></div>)}</div></div></section>
-      <ContactBand subject="Cognita Skills Lab Inquiry" />
-    </>
-  )
-}
-
 export function InstitutionalStatus() {
   return (
     <><PageIntro label="INSTITUTIONAL STATUS" title="Clear about what Cognita is — and what it is not." body="Cognita is a private, non-degree training and learning institution. Public claims are intentionally conservative so prospective learners can distinguish private institutional training from government-recognized qualifications." aside={<><span>Transparency rule</span><strong>No recognition, accreditation, certification, licensure, or equivalency claim is made unless it has actually been obtained and can be independently verified.</strong></>} />
