@@ -1,216 +1,138 @@
-# Cognita 2.0 — Frontend Institutional Milestone
+# Cognita 2.0
 
-The Cognita Institute of Artificial Intelligence public website, admissions flow, Cognita Entrance Exam, enrollment sequence, and student learning-app shell.
+Cognita is a commercial, private, non-degree professional training and competency-development business.
 
-## Cognita 2.0 source of truth
+## Number-one objective
 
-For institutional positioning, mission and vision, admissions policy, AI-00 / CEE placement, the 10-week guided program, the self-paced program, future program layers, integrity standards, founder positioning, and unresolved academic-policy items, use:
+**Generate sustainable revenue and profit.**
 
-- `docs/COGNITA-2.0-SOURCE-OF-TRUTH.md` — canonical LOCKED institutional and academic architecture
-- `docs/COGNITA-2.0-ACADEMIC-INSTITUTIONAL-v1.0-PROVISIONAL.md` — full Day-1 academic/operational handbook draft, including legal positioning, eligibility, CEE pilot bands, 10-week curriculum, assessment/mastery, attendance, credentials, instructors, appeals, records, SLAs, roadmap, and KPIs. **PROVISIONAL rules do not override LOCKED architecture.**
-- `docs/V1-SOLO-OPERATOR-MODEL.md` — V1 one-founder/operator execution model and separation of functions
-- `docs/WEBSITE-CONTENT.md` — approved working website copy including About, Mission, Vision, Founder, admission-process content, and program content
-- `docs/CEE-PURPOSE-AND-INTEGRITY.md` — canonical CEE purpose, honesty, placement, and integrity rationale
-- `docs/CEE-AI00-V1.2-ASSESSMENT-BLUEPRINT.md` — current AI-00 / CEE diagnostic construct, scoring, routing, fairness, validation, and security blueprint
-- `src/data/programs.js` — machine-readable active program catalog
+Educational quality, learner outcomes, trust, compliance, accessibility, and credibility are operating requirements because they support conversion, retention, referrals, renewals, pricing power, institutional sales, and long-term business value.
 
-Active program model:
+## Canonical learner journey
 
-- **AI-00 / Cognita Entrance Examination (CEE)** — diagnostic admissions and readiness assessment that determines the learner’s training flow
-- **Cognita Professional AI Program** — 10-week guided flagship, cohort-based and mentor-supported
-- **Cognita Skills Lab: Applied AI Foundations and Professional Practice** — self-paced, 28 days recommended, 32–40 hours estimated, eight modules plus capstone/professional defense
-- Future short courses, micro-credentials, institutional training, pricing, credentials, and final academic thresholds remain subject to formal approval
+**Create Account → CEE → Learner Profile → Gap Analysis → Personalized Pathway → Learning Mode Recommendation → Paid Offer → Training → Mastery → Portfolio Evidence → Verified Competency Record → Next Paid Path**
 
-Core principle: **Guided when you need structure. Flexible when you need freedom. The standard remains the same.**
+CEE = **Cognita Entry & Competency Evaluation**.
 
-Older Cognita/Cognita Academy documents and repositories are reference material only when they conflict with the current Cognita 2.0 source of truth.
+Cognita does not primarily ask a learner to browse a large catalog and guess which course to buy.
 
-## Policy status rule
+Cognita assesses first and recommends the path.
 
-Cognita uses four policy states:
+## Core positioning
 
-- **LOCKED** — approved for implementation/use
-- **PROVISIONAL** — working rule pending approval, pilot evidence, legal/commercial review, or launch readiness
-- **NOT YET APPROVED** — unresolved and must not be invented
-- **SUPERSEDED** — replaced by a later approved version
+**Stop taking AI courses you may not need.**
 
-The new Academic & Institutional v1.0 handbook is deliberately **PROVISIONAL**. It may guide curriculum/policy development, but it must not silently change CEE scoring, tuition, refund rules, credentials, attendance, eligibility, or other LOCKED behavior until explicitly approved.
+**Take the CEE. Discover your AI level. Get the learning path built for you.**
 
-## Brand system — mandatory
+Long-term:
+**Don't just learn AI. Prove you can use it.**
 
-The Cognita brand system committed in this repository is the visual source of truth for website implementations, redesigns, prototypes, generated components, and future deployment work.
+## Controlling source files
 
-- Approved wordmark: `brand/logos/cognita-wordmark.webp`
-- Brand rules: `brand/README.md`
-- Approved art direction: `brand/reference/APPROVED-DIRECTION.md`
-- Canonical CSS primitives: `brand/code/cognita-brand.css`
-- Machine-readable tokens: `brand/code/tokens.json`
-- JavaScript constants: `brand/code/brand.js`
-- Coded brand preview: `brand/code/preview.html`
-- Approved visual references: `brand/reference/`
-- Active website application layer: `src/brand-runtime.css`
-- Agent/tool instructions: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`
+Read these before changing product architecture, CEE, programs, pricing, legal/privacy, credentials, learner journey, or public copy:
 
-The current approved identity is the **Matte Holographic Institutional System**. The primary logo is the COGNITA wordmark with no separate icon. Do not recreate or reintroduce the superseded multicolor icon system.
+- docs/COGNITA-2.0-SOURCE-OF-TRUTH.md
+- docs/COGNITA-2.0-COMMERCIAL-LEGAL-OPERATING-MODEL.md
+- docs/CEE-AI00-V2-PATHWAY-OFFER-ENGINE.md
+- docs/legal/COGNITA-LEGAL-PRIVACY-ENROLLMENT-PACK-2026.md
+- docs/PUBLIC-WEBSITE-BOUNDARY.md
+- docs/WEBSITE-CONTENT.md
+- AGENTS.md
+- CLAUDE.md
 
-Primary promise: **Human potential amplified by AI.**  
-Supporting line: **Real skills. Real Guidance. A more capable Philippines.**  
-Learning framework: **THINK. APPLY. TRANSFORM.**
+Older application-first, invitation-only CEE, pass/fail-first, catalog-first, or prompt-engineering-first documents are superseded.
 
-Canonical palette: Deep Navy `#0B1F3B`, Midnight Blue `#102A56`, Luminous Blue `#3B82F6`, Ivory `#F8FAFC`, Cool Gray `#94A3B8`, Warm Gold `#D4AF7C`.
+## CEE profile
 
-Use matte, frosted, architectural holographic depth with restrained blue illumination and precise warm-gold accents. Do not use invented learner counts, placement rates, mentor counts, partner counts, or other unverified metrics as social proof.
+CEE uses four layers:
 
-The brand package is the design source of truth. `src/brand-runtime.css` remains the current product runtime layer and must be migrated to the new system deliberately rather than assumed changed by this brand-kit replacement.
+1. Competency Diagnostic
+2. Technical Readiness
+3. Learner Readiness & Support Profile
+4. Goal & Constraint Profile
 
-## Cost and infrastructure rule
+The Learner Readiness & Support Profile is educational and non-clinical.
 
-Cognita 2.0 remains intentionally frontend-only through product completion, simulation, and QA.
+It must not be marketed as a psychological examination or used to diagnose mental-health or psychological conditions unless a future regulated service is separately designed with appropriate licensed professionals and compliance.
 
-Do not add paid backend infrastructure, Supabase, server authentication, transactional email, payment processing, evaluator backend, or cloud learner records until Cognita is genuinely ready to accept real students.
+## Learning depth
 
-Frontend screens must never imply that browser-local records were actually transmitted, emailed, reviewed, paid, or authenticated.
+- AI Literacy
+- Applied AI
+- AI Builder
+- AI Engineering
 
-## Canonical institutional process
+## Learning modes
 
-The student lifecycle is sequential and must not be bypassed:
+- Self-Paced
+- Guided
+- Cognita for Organizations
 
-1. **Application / registration**
-   - Applicant submits the Cognita admissions form.
-   - Submission does not grant CEE or student-app access.
+Guided can be the premium recommendation when the learner profile genuinely indicates a need for more structure, accountability, feedback, or facilitation.
 
-2. **Admissions review**
-   - A human admissions decision comes before the entrance exam.
-   - Approved applicants receive a CEE invitation through email in production.
-   - Applicants who are not approved receive the appropriate admissions decision through email.
+Do not secretly vary the price of the same product based on inferred vulnerability, anxiety, desperation, wealth, or willingness to pay.
 
-3. **Invitation-only Cognita Entrance Exam**
-   - The CEE is not publicly accessible from the institutional website.
-   - A valid admissions invitation is required.
-   - The assessment uses a persistent 70-minute timer.
-   - Refreshing the page does not reset the timer.
-   - Window-leave and paste events may be recorded as integrity signals.
-   - The candidate accepts an integrity pledge before starting.
-   - One invitation represents one assessment session; there is no self-service retake.
-   - Time expiry submits the current attempt for review.
+## Mastery
 
-4. **Evaluator review and pass/fail release**
-   - 70 objective points are automatically scored.
-   - 30 applied-response points remain subject to human evaluation.
-   - The frontend does not treat the objective score alone as a final institutional decision.
-   - Final pass/fail is issued only after evaluator review.
-   - In production, the decision is sent through email.
+**Learn → Do → Evaluate → Explain → Remediate → Retry → Master**
 
-5. **Readiness/pathway guidance and program selection**
-   - Only applicants with a passing CEE decision may continue.
-   - Readiness evidence may support Foundation Required, Foundation Accelerated, or Direct Track Entry guidance once exact academic thresholds are approved.
-   - AI-00 is the CEE diagnostic assessment. Any required foundation training is assigned through separate foundation modules.
-   - Eligible program choice happens after the admissions result, not during initial registration.
+Watching lessons or spending time in the platform is not proof of competence.
 
-6. **Payment**
-   - Payment comes after program selection.
-   - No price, checkout, payment provider, receipt, or refund logic should be invented before the approved commercial model exists.
-   - Production payment must be confirmed before account activation.
+## Legal positioning
 
-7. **Student account activation**
-   - Account creation happens only after payment confirmation.
-   - The frontend milestone does not collect or store passwords in localStorage.
-   - Production account activation will require real secure authentication and email verification.
+Cognita should be described as a:
 
-8. **Student app access**
-   - Learning happens inside the Cognita student app, not on the public institutional website.
-   - The app contains the enrolled program, lessons, modules, assessments, progress, schedule, notices, and student support once those systems are completed.
+**private, non-degree professional training and competency-development provider.**
 
-## Public and internal surfaces
+Do not claim CHED, DepEd, TESDA, PRC, government academic-credit, government certification, accreditation, or licensing status unless actually obtained and specifically applicable.
 
-Public:
+Before any potentially regulated TVET offering launches, complete a documented legal/compliance determination and required registration where applicable.
 
-- `/` — Cognita institutional website
-- `/apply` — admissions application and applicant-status surface
+## Privacy and profiling
 
-Invitation / enrollment lifecycle:
+Before production CEE profiling and enrollment, complete the legal/privacy checklist in:
+docs/legal/COGNITA-LEGAL-PRIVACY-ENROLLMENT-PACK-2026.md
 
-- `/entrance-exam?invite=...` — approved CEE invitation landing
-- `/entrance-exam/start?invite=...` — timed CEE session
-- `/programs` — post-pass program selection
-- `/payment` — post-selection payment stage
-- `/account-setup` — post-payment account activation
-- `/app` — enrolled-student learning app
+Key requirements include privacy-by-design, a clear Privacy Notice, profiling disclosure/consent where required, a review route, retention rules, access controls, vendor controls, and secure production records.
 
-Development-only operations simulator:
+## Learner work
 
-- `/operations/admissions` — local admissions/evaluator/payment simulation for QA
+Learners retain ownership of original work unless a separate written agreement states otherwise.
 
-The operations route is **not a security boundary**. It has no production authentication because this repository remains frontend-only. It must never be presented as a real staff portal.
+Ordinary enrollment does not automatically authorize Cognita to commercially sell learner-created work.
 
-The former standalone `/learner` route is intentionally removed from routing. A student-facing account must not exist before enrollment and payment.
+Commercialization requires a separate written agreement.
 
-## Cognita Entrance Exam model
+## Frontend-only development rule
 
-- Communication & Instruction Comprehension — 15 points
-- Reasoning, Numeracy & Practical Problem Solving — 15 points
-- Digital & Information Literacy — 10 points
-- AI Foundations, Safety & Responsible Use — 15 points
-- Research, Verification & Evidence Judgment — 15 points
-- Applied Instruction, Workflow & Decision Judgment — 30 points
-- Total — 100 points
+This repository remains frontend-only until secure production backend systems are explicitly approved and implemented.
 
-The objective portion may generate a readiness/placement indication, but final admission is a separate evaluator decision after review of the complete submission.
+Do not pretend browser-local simulations are live:
+- account registration
+- CEE submission
+- payment
+- authentication
+- cloud learner records
+- credential issuance
 
-## Frontend simulation model
+The **product architecture is account-first**, but public UI must remain truthful about what is actually live.
 
-Browser-local state currently represents:
+## Brand
 
-- admissions application and status
-- local preview email-event log
-- CEE invitation code
-- timed CEE attempt
-- integrity-event log
-- objective scoring and placement indication
-- evaluator pass/fail decision
-- selected program
-- payment status
-- preview student account activation
-- student-app access state
-
-These records exist only on the current browser/device. Clearing browser storage can remove them.
-
-## Production launch boundary
-
-Before accepting real students, Cognita will require at minimum:
-
-- secure backend and database
-- role-based admissions/evaluator/admin authorization
-- production transactional email
-- secure one-time CEE invitation tokens
-- server-authoritative exam timing and submission
-- protected assessment data and audit records
-- approved payment processing and accounting flow
-- real authentication and account recovery
-- cloud student records and cross-device progress
-- student privacy, consent, retention, and institutional policies
-- complete curriculum and learning delivery inside the student app
-- resolved legal/regulatory classification, including whether Day-1 offerings require TESDA UTPRAS registration
-
-Those systems should be introduced only when the frontend product, curriculum, operations, policies, compliance path, and student journey are ready for real intake.
+Use the committed Cognita brand system:
+- brand/README.md
+- brand/logos/
+- brand/code/cognita-brand.css
+- brand/code/tokens.json
+- brand/code/brand.js
+- src/brand-runtime.css
 
 ## Development
 
-```bash
 npm install
 npm run dev
-```
 
-Build check:
-
-```bash
+Build:
 npm run build
-```
 
-A GitHub Actions workflow is configured to build the frontend when Actions run for the repository.
-
-## Branch
-
-Canonical active branch: `main`.
-
-The older `cognita-institute` repository is not the active Cognita 2.0 frontend. Operational concepts may be selectively reused later without restoring the old product architecture or visual system.
+Canonical branch: main
