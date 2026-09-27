@@ -50,60 +50,62 @@ export default function Exam() {
 
   const scoreSection = (section) => {
     const correct = section.questions.filter((question) => answers[question.id] === question.answer).length
+    const total = section.questions.length
+    const percentage = Math.round((correct / total) * 100)
     return {
+      id: section.id,
+      title: section.title,
+      foundationModule: section.foundationModule,
       correct,
-      total: section.questions.length,
-      percentage: Math.round((correct / section.questions.length) * 100),
+      total,
+      percentage,
+      points: Math.round((percentage / 100) * section.points),
+      availablePoints: section.points,
     }
   }
 
   const sectionScores = examSections.map(scoreSection)
-  const communication = sectionScores[0]
-  const ai = sectionScores[1]
-  const research = sectionScores[2]
-  const communicationPoints = Math.round((communication.percentage / 100) * 30)
-  const aiPoints = Math.round((ai.percentage / 100) * 25)
-  const researchPoints = Math.round((research.percentage / 100) * 15)
-  const objectivePoints = communicationPoints + aiPoints + researchPoints
-  const aiReadiness = Math.round(((ai.correct + research.correct) / (ai.total + research.total)) * 100)
+  const objectivePoints = sectionScores.reduce((sum, section) => sum + section.points, 0)
+  const diagnosticProfile = Object.fromEntries(
+    sectionScores.map((section) => [section.id, {
+      title: section.title,
+      percentage: section.percentage,
+      points: section.points,
+      availablePoints: section.availablePoints,
+      foundationModule: section.foundationModule,
+    }])
+  )
 
-  const placement = useMemo(() => {
-    const communicationScore = communication.percentage
-    const aiScore = aiReadiness
+  const placement = (() => {
+    const needsSupport = sectionScores.filter((section) => section.percentage < 70)
+    const criticalNeeds = sectionScores.filter((section) => section.percentage < 50)
+    const requiredFoundationModules = needsSupport.map((section) => section.foundationModule)
 
-    if (communicationScore >= 80 && aiScore >= 80) {
+    if (needsSupport.length === 0) {
       return {
-        title: 'AI-01 readiness indicated',
-        detail: 'Objective results indicate readiness beyond the foundation level. Final admission still requires evaluator review.',
+        code: 'direct-track-entry',
+        title: 'Direct Track Entry indicated',
+        detail: 'The objective profile shows no foundation domain below the current diagnostic review line. Applied responses and evaluator review may still change the final pathway.',
+        requiredFoundationModules: [],
       }
     }
 
-    if (communicationScore < 70 && aiScore >= 80) {
+    if (criticalNeeds.length > 0 || needsSupport.length >= 2) {
       return {
-        title: 'AI-00 Communication Readiness indicated',
-        detail: 'AI foundations appear stronger than current communication readiness.',
-      }
-    }
-
-    if (communicationScore >= 80 && aiScore < 70) {
-      return {
-        title: 'AI-00 AI Foundations indicated',
-        detail: 'Communication readiness appears stronger than current AI foundations.',
-      }
-    }
-
-    if (communicationScore < 70 && aiScore < 70) {
-      return {
-        title: 'Full AI-00 indicated',
-        detail: 'Both AI foundations and communication readiness appear to need strengthening.',
+        code: 'foundation-required',
+        title: 'Foundation Required indicated',
+        detail: 'The objective profile shows one or more substantial readiness gaps. Cognita should assign only the foundation modules linked to the demonstrated gaps, subject to applied-task and evaluator review.',
+        requiredFoundationModules,
       }
     }
 
     return {
-      title: 'Targeted bridge + review indicated',
-      detail: 'One or more readiness areas are near the progression threshold and require evaluator review.',
+      code: 'foundation-accelerated',
+      title: 'Foundation Accelerated indicated',
+      detail: 'The objective profile shows a targeted readiness gap rather than a need to repeat the full foundation layer. Applied responses and evaluator review determine the final assignment.',
+      requiredFoundationModules,
     }
-  }, [communication.percentage, aiReadiness])
+  })()
 
   const stageIsComplete = (stage) => {
     if (stage.id === 'applied') return appliedAnswered === appliedTasks.length
@@ -202,10 +204,7 @@ export default function Exam() {
       submissionReason: forcedByTimeout ? 'time_expired' : 'candidate_submitted',
       objectivePoints,
       scores: {
-        communication: { ...communication, points: communicationPoints },
-        aiFoundations: { ...ai, points: aiPoints },
-        research: { ...research, points: researchPoints },
-        aiReadiness,
+        sections: diagnosticProfile,
       },
       placement,
     }
@@ -267,9 +266,9 @@ export default function Exam() {
       <section className="exam-workspace exam-workspace--setup">
         <div className="exam-container exam-setup-card">
           <div>
-            <p className="section-label">CEE v1.0 · APPROVED CANDIDATE</p>
+            <p className="section-label">{examMeta.version} · APPROVED CANDIDATE</p>
             <h1>Confirm the assessment rules before starting.</h1>
-            <p className="exam-intro">The 70-minute timer begins only when you press Start exam. Once started, refreshing or leaving the page does not reset the timer.</p>
+            <p className="exam-intro">The 70-minute AI-00 / CEE is a diagnostic assessment used to understand your current readiness and help determine your training flow. The timer begins only when you press Start exam. Once started, refreshing or leaving the page does not reset the timer.</p>
             <div className="exam-profile-confirmation">
               <UserRound size={20} />
               <div><strong>{application.applicant.fullName}</strong><span>{application.applicant.email}</span></div>
@@ -299,13 +298,13 @@ export default function Exam() {
             <div className="result-check"><Check size={32} /></div>
             <p className="section-label">CEE SUBMITTED</p>
             <h1>Your assessment is now pending evaluator review.</h1>
-            <p>Cognita does not issue the final result on this screen. Your complete assessment, including the two applied responses and any integrity events, must be reviewed before the official pass/fail decision is released through email.</p>
+            <p>Cognita does not issue the final result on this screen. Your complete assessment, including the diagnostic profile, two applied responses, and any integrity events, must be reviewed before the official admission and training-pathway decision is released through email.</p>
           </div>
 
           <div className="review-panel">
             <div>
               <h2>What happens next</h2>
-              <p>Admissions and evaluation review the submitted CEE. If you pass, your result email will direct you to program selection and enrollment. If you do not pass, the result email will contain the applicable next-step guidance.</p>
+              <p>Admissions and evaluation review the submitted CEE / AI-00. The final review separates admission from training placement: an admitted learner may receive Direct Track Entry, targeted Foundation Accelerated modules, or Foundation Required modules based on demonstrated readiness.</p>
             </div>
             <div className="review-status"><span>STATUS</span><strong>Evaluation pending</strong></div>
           </div>
