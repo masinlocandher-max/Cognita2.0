@@ -1,198 +1,126 @@
 # Cognita 2.0 — Student Learning Frontend
 
-Status: Canonical frontend implementation map for the student learning environment and solo-operator facilitation workflow.
+Status: Canonical frontend implementation map
+Updated: 2026-09-28
 
 ## Purpose
 
-Cognita learning happens inside `/app` only after the learner has completed the canonical admissions and enrollment lifecycle.
+The enrolled learning environment lives at /app.
 
-The student app is intentionally frontend-only during product completion and QA. It must behave like a credible learning environment without implying that local browser records are production academic records.
+The canonical product journey is:
+**Create Account → CEE → Profile → Personalized Path → Recommended Offer → Payment → Enrolled Learning → Mastery → Evidence → Credential → Next Path**
 
-## Student app route
+The repository remains frontend-only until secure production identity, CEE, payment, records, and authorization exist.
 
-`/app`
+Do not imply that local browser data is a production academic record.
 
-Access remains gated by:
+## Access model
 
-application → admissions approval → CEE → evaluator pass decision → program selection → payment confirmation → account activation.
+In production, /app should require:
+- valid account
+- completed CEE
+- generated path/recommendation
+- completed enrollment/payment for the applicable paid pathway
+- active learner authorization
 
-Do not create a separate pre-enrollment learner account or restore the old `/learner` route.
+Account creation occurs before CEE.
 
-## Student workspace sections
+Do not restore an application-first or account-after-payment rule.
 
-The current frontend includes:
+## Student workspace
 
-1. **Overview**
-   - next required learning action;
-   - overall activity progress;
-   - passed-output status;
-   - capstone status;
-   - support-request status;
-   - guided-track preview where applicable.
+The app should support:
+1. Overview
+2. Learn
+3. Assessments
+4. Feedback
+5. Capstone
+6. Portfolio
+7. Credential
+8. Support
+9. Profile / learning settings
+10. Pathway / next-step recommendation
 
-2. **Learn**
-   - complete program outline;
-   - module and lesson selection;
-   - learning focus;
-   - integrity reminder;
-   - local lesson completion;
-   - local applied-work drafting and submission.
+## Personalized pathway
 
-3. **Assessments**
-   - required applied outputs;
-   - submission status;
-   - direct route back to the relevant activity.
+The app should display the learner's:
+- CEE profile summary
+- current depth
+- specialization
+- competencies already demonstrated
+- competencies required
+- remediation
+- recommended mode
+- current mastery state
+- next required action
 
-4. **Feedback**
-   - trainer PASS / REVISE decisions;
-   - written facilitator feedback;
-   - capstone feedback;
-   - revision return path.
+Do not force every learner through identical content when CEE evidence supports skipping or targeted remediation.
 
-5. **Capstone**
-   - final project/evidence draft;
-   - reflection and professional-defense notes;
-   - local submission for review;
-   - trainer PASS / REVISE feedback.
+## Learning modes
 
-6. **Portfolio**
-   - learner outputs saved as evidence of work;
-   - visible facilitator decision where one exists.
+### Self-Paced
+Flexible schedule, same competency standard.
 
-7. **Credential**
-   - learning completion status;
-   - required-output pass status;
-   - capstone pass status;
-   - credential-readiness state;
-   - no certificate is actually issued in frontend-only mode.
+### Guided
+Adds structure, checkpoints, accountability, human feedback/support, and other features defined by the paid offer.
 
-8. **Support**
-   - learner support request creation;
-   - request history;
-   - local facilitator response display.
+## Mastery
 
-9. **Profile**
-   - learner profile and goals;
-   - local learning preferences;
-   - account/program reference information.
+Activity completion is not competence.
 
-## Program content model
+Use:
+**Learn → Do → Evaluate → Explain → Remediate → Retry → Master**
 
-The student app must use the active Cognita 2.0 program architecture in `src/data/programs.js` and `src/data/learning.js`.
+Credential readiness should depend on required evidence, mastery decisions, projects/capstone where applicable, and final verification.
 
-### Cognita Skills Lab
+REVISE means improve and resubmit, not permanent failure.
 
-The self-paced route uses the approved eight-module sequence:
+## Portfolio
 
-1. AI Foundations and Reality Check
-2. Problem Framing and Strategic Thinking
-3. Prompt Design and Instruction Quality
-4. Research, Verification, and Evidence
-5. AI-Assisted Professional Workflows
-6. Communication, Creativity, and Quality Control
-7. Ethics, Privacy, Bias, and Intellectual Property
-8. Capstone Development and Professional Defense
+Portfolio items are learner evidence.
 
-### Cognita Professional AI Program
+Learner-created original work remains learner-owned unless a separate agreement states otherwise.
 
-The guided route uses the 10-week architecture:
+Public display or commercialization requires the appropriate separate permission/agreement.
 
-- foundation learning in Weeks 1–4;
-- specialization in Weeks 5–9;
-- full-integration capstone in Week 10.
+## Credential
 
-The four active specialization directions are:
+The frontend may show readiness and evidence status.
 
-- AI for Students
-- AI for Creatives
-- AI for Entrepreneurs
-- AI for Professionals & Virtual Assistants
+Do not issue or imply a production-verifiable credential until the production credential system exists.
 
-The frontend track selector is a simulation aid only. In production, track assignment/approval should be authoritative and controlled by the approved academic/enrollment workflow.
+Unless expressly stated otherwise, Cognita credentials are private proprietary training credentials, not government qualifications, degrees, or professional licenses.
 
-## Competency rule
+## Support
 
-Activity completion is not the same as academic completion.
+Support should include:
+- learning questions
+- pathway/recommendation review
+- accessibility/support requests
+- technical issues
+- billing/enrollment support once production systems exist
+- privacy contact
+- complaint/redress route
 
-A learner may mark learning activities complete for progress tracking, but credential readiness must depend on demonstrated competence.
+## Founder/operator review
 
-Current frontend rule:
+Human time should focus on:
+- material CEE review/challenges
+- learner feedback
+- difficult revision cases
+- guided facilitation
+- capstone review
+- credential quality control
+- significant support/complaints
 
-- required outputs must receive **PASS** from the trainer;
-- the capstone must receive **PASS**;
-- learning activities must be complete;
-- credential readiness still requires final institutional verification before any real credential can be issued.
+## Frontend-only limitation
 
-`REVISE` means the learner must improve and resubmit the work. It is not a permanent failure state.
+Local simulations may store preview progress in browser state.
 
-## Trainer / facilitator route
+They are not:
+- secure multi-user records
+- cloud academic records
+- production authentication
+- production payments
+- production credential verification
 
-`/operations/learning`
-
-This is the frontend-only trainer review workspace for the solo-operator pilot.
-
-It supports:
-
-- current learner/program summary;
-- learning progress summary;
-- pending output-review count;
-- PASS / REVISE decisions with required written feedback;
-- capstone review with required rationale;
-- open learner-support requests;
-- recorded local support responses.
-
-These decisions are browser-local simulations. They are not secure production academic records.
-
-## Founder Operations Console integration
-
-`/operations` must prioritize human work in this order when relevant:
-
-- admissions decisions;
-- CEE evaluation;
-- payment confirmation;
-- account activation;
-- learner support responses;
-- learner output review;
-- capstone evaluation;
-- ongoing facilitation/progress monitoring.
-
-This makes the V1 institution operable by one person without eliminating institutional gates or judgment records.
-
-## Local persistence
-
-Student learning state currently persists in browser localStorage under:
-
-`cognita-v2-learning-state`
-
-Local state may include:
-
-- selected guided track;
-- completed activities;
-- learner submissions;
-- facilitator feedback;
-- capstone draft, reflection, submission and review status;
-- portfolio references;
-- support requests and local responses;
-- learner profile;
-- learning preferences.
-
-Clearing browser data can delete this preview state.
-
-## Production boundary
-
-Before real student intake, replace local-only behavior with production systems for:
-
-- secure authentication and account recovery;
-- server-authoritative enrollment and access control;
-- multi-student records;
-- protected submission storage;
-- facilitator/evaluator role permissions;
-- audit trails;
-- real support messaging;
-- notifications and email;
-- secure academic records;
-- cross-device progress;
-- credential issuance and public verification;
-- approved data retention, privacy, appeals, and records policies.
-
-Do not add those paid/backend systems until Cognita is explicitly moved into student-launch readiness.
