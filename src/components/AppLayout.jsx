@@ -1,14 +1,17 @@
 import { Mail, Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import BrandMark from './BrandMark'
 
 const PRIMARY_EMAIL = 'info@thecognitainstitute.com'
 const ALTERNATE_EMAIL = 'cognitainstituteofai@gmail.com'
 
 export default function AppLayout() {
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
+
+  if (pathname === '/') return <Outlet />
 
   return (
     <div className="site-shell">
