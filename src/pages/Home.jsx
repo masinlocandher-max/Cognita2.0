@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Brain, ClipboardCheck, ChartNoAxesColumnIncreasing, Users, Store, Eye, Target, Search, UserRound, BookOpen, Send, GraduationCap, BriefcaseBusiness, Menu, X } from 'lucide-react'
+import { ArrowRight, Brain, ClipboardCheck, ChartNoAxesColumnIncreasing, Users, Store, Eye, Target, Search, UserRound, BookOpen, Send, GraduationCap, BriefcaseBusiness, Menu, X, Cpu, Network, Fingerprint } from 'lucide-react'
 import '../cognita-landing.css'
 
 const email = 'cognitainstituteai@gmail.com'
@@ -32,6 +32,7 @@ export default function Home() {
   return <div className="ci-landing">
     <a className="ci-skip" href="#content">Skip to content</a>
     <div className="ci-opening">
+      <img className="ci-network" src="/images/cognita-network.webp" alt="" aria-hidden="true" />
       <img className="ci-hero-photo" src="/images/cognita-hero.webp" alt="" fetchPriority="high" />
       <header className="ci-header ci-container">
         <a href="#" className="ci-brand" aria-label="Cognita Institute home"><img src="/images/cognita-institute-logo.webp" alt="Cognita Institute" width="205" height="67" /></a>
@@ -42,7 +43,7 @@ export default function Home() {
         <a className="ci-button ci-header-cta" href={contact}>Let’s Collaborate</a>
       </header>
       <section className="ci-hero ci-container" id="content">
-        <div className="ci-hero-copy"><p className="ci-eyebrow">Learning for a world</p><h1>That Will<br />Not Stand Still.</h1>
+        <div className="ci-hero-copy"><span className="ci-tech-label"><Cpu size={14} /> Human intelligence. Amplified.</span><p className="ci-eyebrow">Learning for a world</p><h1>That Will<br />Not Stand Still.</h1>
           <p>Cognita Institute is a Philippine-based educational technology initiative focused on artificial intelligence literacy, future-ready skills, and competency-based learning.</p>
           <div className="ci-actions"><a className="ci-button" href="#about">Learn More <ArrowRight size={16} /></a><a className="ci-button ci-button-outline" href="#programs">Our Programs</a></div>
         </div>
@@ -50,6 +51,7 @@ export default function Home() {
       </section>
     </div>
     <main>
+      <section className="ci-tech-band" aria-label="Our approach to technology"><div className="ci-container"><p>Technology with a human purpose.</p><ul><li><Cpu size={18} /> AI literacy</li><li><Network size={18} /> Adaptive learning</li><li><Fingerprint size={18} /> Human judgment</li></ul></div></section>
       <section id="about" className="ci-container ci-about ci-section">
         <div><h2>Who We Are</h2><p>Cognita Institute brings together education, technology, human development, and practical workforce preparation.</p><p>We recognize that traditional learning pathways do not always move at the same pace as industry, technology, or the changing needs of communities. Cognita aims to help bridge this gap through flexible learning experiences designed around real-world competencies.</p><p>Our approach emphasizes understanding over memorization, application over passive consumption, and demonstrated ability over course completion alone.</p><details className="ci-purpose-details"><summary>Our purpose</summary><p>Built on the belief that opportunity should not depend on geography, economic background, or access to expensive institutions, Cognita seeks to make practical, relevant, and accessible education available to more Filipinos.</p><p>Rather than simply delivering online courses, Cognita is being developed as an adaptive learning environment where learners can identify their strengths, address knowledge gaps, develop practical skills, and demonstrate what they can actually do.</p><p>Our ambition is to help prepare Filipinos not only to participate in a rapidly changing world, but to contribute meaningfully to it.</p></details></div>
         <article className="ci-principle"><Eye /><h3>Our Vision</h3><p>A Philippines where every individual, regardless of background or location, has a meaningful opportunity to develop the knowledge, confidence, and capabilities needed to succeed in an increasingly technology-driven world.</p></article>

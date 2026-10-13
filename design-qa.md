@@ -30,3 +30,6 @@ Full-view comparison: reference rendered at 337px wide beside a live 1363px-wide
 
 ## Follow-up polish
 P3: Scenic photos are newly generated reference-matched conceptual imagery, not exact source pixels. Desktop reference has no separate mobile design; responsive adaptation uses the same hierarchy.
+
+## Technology refinement, 2026-10-13
+User requested technology additions to the approved design. Added transparent cyan/gold network art in hero and services, a technology principles strip, chip/network/fingerprint library icons, restrained cyan borders, and a two-cycle staggered learning-stage glow with reduced-motion support. Existing composition, typography, institutional copy and founder portrait retained. Browser inspected at 1363×936 and 390×844 mobile iframe. Fixed overlay paint order after first visual pass; final screenshot /workspace/scratch/cognita-technology-preview.png confirms visible network and readable headline. No application-origin console errors observed. Build/security check passed. final result: passed.
