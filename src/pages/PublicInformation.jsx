@@ -1,3 +1,4 @@
+import { mission, vision } from '../data/institution'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpenCheck, Building2, CheckCircle2, FileText, GraduationCap, Mail, Scale, SearchCheck, ShieldCheck, Sparkles, Target, UsersRound, Waypoints } from 'lucide-react'
 
@@ -58,11 +59,11 @@ export function AboutCognita() {
             <p className="section-label">IDENTITY</p>
             <h2>Human Intelligence. Amplified.</h2>
             <p>Cognita is not a generic video-course marketplace, certificate mill, attendance-only training provider, or tool-tutorial platform. Learning is organized around understanding, judgment, verification, practice, revision, and accountability.</p>
-            <p>The public website explains Cognita, the CEE, learning paths, policies, and institutional status. Enrolled learners study inside a separate private learning environment after completing the applicable CEE, enrollment, and secure account requirements.</p>
+            <p>The public website explains Cognita, the CEE, learning paths, policies, and institutional status. The planned private classroom will follow account creation, CEE, and confirmed enrollment. You can explore a public sample classroom today; secure student accounts are not yet available.</p>
           </article>
           <div className="info-values-grid">
-            <article><Target /><h3>Mission</h3><p>Provide Filipino learners with structured, accessible, competency-based training that develops practical knowledge, strengthens foundational skills, and supports meaningful academic, professional, entrepreneurial, and personal growth.</p></article>
-            <article><Waypoints /><h3>Vision</h3><p>Become a trusted Filipino learning institution known for making high-quality, practical, and structured education more accessible while strengthening learner competence, confidence, and adaptability.</p></article>
+            <article><Target /><h3>Mission</h3><p>{mission}</p></article>
+            <article><Waypoints /><h3>Vision</h3><p>{vision}</p></article>
             <article><BookOpenCheck /><h3>Learning framework</h3><p><strong>THINK. APPLY. TRANSFORM.</strong> Learners understand the task, use AI deliberately, verify important outputs, and remain accountable for final work.</p></article>
             <article><ShieldCheck /><h3>Institutional standard</h3><p>Practice before certification. Evidence before confidence. Human accountability remains central even when AI is used throughout the learning process.</p></article>
           </div>

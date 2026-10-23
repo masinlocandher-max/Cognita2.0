@@ -1,5 +1,5 @@
 import { Mail, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import BrandMark from './BrandMark'
 
@@ -11,10 +11,15 @@ export default function AppLayout() {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
-  if (pathname === '/') return <Outlet />
+  useEffect(() => { setOpen(false); window.scrollTo(0, 0); document.getElementById('main-content')?.focus({preventScroll:true});
+    const names = {'/':'Home','/classroom':'Classroom','/classroom/lesson':'Sample Lesson','/classroom/workspace':'My Workspace','/classroom/resources':'Resources','/classroom/progress':'My Progress','/mission-vision':'Mission & Vision','/support':'Learner Support','/contact':'Contact','/about':'About','/self-paced':'Self-Paced','/cee':'CEE','/programs':'Learning Paths','/how-it-works':'How It Works'};
+    document.title = `${names[pathname] || pathname.slice(1).replaceAll('-', ' ')} | Cognita Institute`;
+    const canonical = document.querySelector('link[rel="canonical"]'); if(canonical) canonical.href = `https://www.thecognitainstitute.com${pathname === '/' ? '/' : pathname}`;
+  }, [pathname])
 
   return (
     <div className="site-shell">
+      <a className="renew-skip" href="#main-content">Skip to content</a>
       <header className="site-header">
         <div className="page-width header-inner">
           <Link to="/" className="brand-link" onClick={close}><BrandMark compact /></Link>
@@ -23,19 +28,19 @@ export default function AppLayout() {
           </button>
           <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
             <Link to="/about" onClick={close}>About</Link>
-            <Link to="/cee" onClick={close}>CEE</Link>
+            <Link to="/mission-vision" onClick={close}>Our Purpose</Link>
             <Link to="/programs" onClick={close}>Learning Paths</Link>
             <Link to="/admissions" onClick={close}>How It Works</Link>
             <Link to="/organizations" onClick={close}>For Organizations</Link>
-            <Link to="/policies" onClick={close}>Policies</Link>
-            <a className="button button--small" href={`mailto:${PRIMARY_EMAIL}?cc=${ALTERNATE_EMAIL}&subject=Cognita%20Inquiry`} onClick={close}>
+            <Link to="/classroom" onClick={close}>Classroom</Link>
+            <Link className="button button--small" to="/contact" onClick={close}>
               <Mail size={16} /> Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
 
-      <main><Outlet /></main>
+      <main id="main-content" tabIndex={-1}><Outlet /></main>
 
       <footer className="site-footer">
         <div className="page-width public-footer-grid">
@@ -46,6 +51,10 @@ export default function AppLayout() {
           <div className="public-footer-column">
             <strong>Cognita</strong>
             <Link to="/about">About</Link>
+            <Link to="/mission-vision">Mission & Vision</Link>
+            <Link to="/founder">Founder</Link>
+            <Link to="/classroom">Classroom</Link>
+            <Link to="/support">Learner Support</Link>
             <Link to="/cee">CEE</Link>
             <Link to="/programs">Learning Paths</Link>
             <Link to="/admissions">How It Works</Link>

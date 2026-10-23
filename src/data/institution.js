@@ -1,0 +1,2 @@
+export const mission = 'To make practical AI education accessible to Filipino learners and organizations through personalized pathways, responsible use, purposeful practice, and evidence of real capability.'
+export const vision = 'A Philippines where people from every background can use technology with confidence, exercise independent judgment, and turn their potential into meaningful opportunity.'

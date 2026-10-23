@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import Home from './pages/Home'
+import Classroom from './pages/Classroom'
+import { MissionVision, Support, Contact, NotFound } from './pages/LearnerPages'
+
 import SelfPaced from './pages/SelfPaced'
 import PublicAdmissions from './pages/PublicAdmissions'
 import Programs from './pages/Programs'
@@ -27,6 +30,7 @@ import '../brand/code/cognita-brand.css'
 import './brand-runtime.css'
 import './institutional-refinement.css'
 import './institutional-info.css'
+import './redesign.css'
 
 /*
  * The repository is still frontend-only.
@@ -52,6 +56,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/mission-vision" element={<MissionVision />} />
+          <Route path="/classroom" element={<Classroom />} />
+          <Route path="/classroom/lesson" element={<Classroom />} />
+          <Route path="/classroom/workspace" element={<Classroom />} />
+          <Route path="/classroom/resources" element={<Classroom />} />
+          <Route path="/classroom/progress" element={<Classroom />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<AboutCognita />} />
           <Route path="/founder" element={<Founder />} />
           <Route path="/self-paced" element={<SelfPaced />} />
@@ -71,7 +83,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
           {previewEnabled && <Route path="/app" element={<PreviewRoute component={StudentApp} />} />}
 
-          <Route path="*" element={<ContactFallback />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
