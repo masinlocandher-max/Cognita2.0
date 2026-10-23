@@ -1,3 +1,5 @@
+> Admissions update (24 October 2026): read `docs/ADMISSIONS-OWNER-DECISION-2026-10-24.md` first. The owner restored the original application → approval → CEE → placement → enrollment → student activation process. Conflicting admissions/CEE rules below are superseded; other controls remain applicable.
+
 # Cognita 2.0 — Agent Instructions
 
 Before making product, admissions, CEE, program, learner journey, website-copy, curriculum, pricing, credential, privacy, or legal changes, read:

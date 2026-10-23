@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import Home from './pages/Home'
 import Classroom from './pages/Classroom'
+import { InstitutionPage, ProgramDirectory, institutionalRoutes } from './pages/InstitutionPages'
+import { Navigate } from 'react-router-dom'
 import { MissionVision, Support, Contact, NotFound } from './pages/LearnerPages'
 
 import SelfPaced from './pages/SelfPaced'
@@ -56,6 +58,22 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
+          {institutionalRoutes.map(path => <Route key={path} path={path} element={<InstitutionPage />} />)}
+          <Route path="/programs/applied-ai" element={<SelfPaced />} />
+          <Route path="/programs/ai-foundations" element={<Navigate replace to="/ai-foundations" />} />
+          <Route path="/learn" element={<Classroom />} />
+          <Route path="/labs" element={<Navigate replace to="/classroom/lesson" />} />
+          <Route path="/projects" element={<Navigate replace to="/classroom/workspace" />} />
+          <Route path="/progress" element={<Navigate replace to="/classroom/progress" />} />
+          <Route path="/resources" element={<Navigate replace to="/classroom/resources" />} />
+          <Route path="/downloads" element={<Navigate replace to="/classroom/resources" />} />
+          <Route path="/faq" element={<Navigate replace to="/support" />} />
+          <Route path="/help" element={<Navigate replace to="/support" />} />
+          <Route path="/credential-policy" element={<Navigate replace to="/credentials" />} />
+          <Route path="/responsible-ai" element={<Navigate replace to="/academic-integrity" />} />
+          <Route path="/student-agreement" element={<Navigate replace to="/student-policies" />} />
+          <Route path="/data-policy" element={<Navigate replace to="/privacy" />} />
+          <Route path="/admissions/how-it-works" element={<PublicAdmissions />} />
           <Route path="/mission-vision" element={<MissionVision />} />
           <Route path="/classroom" element={<Classroom />} />
           <Route path="/classroom/lesson" element={<Classroom />} />
@@ -68,7 +86,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/founder" element={<Founder />} />
           <Route path="/self-paced" element={<SelfPaced />} />
           <Route path="/learning-modes" element={<Programs />} />
-          <Route path="/programs" element={<Programs />} />
+          <Route path="/programs" element={<ProgramDirectory />} />
           <Route path="/admissions" element={<PublicAdmissions />} />
           <Route path="/apply" element={<PublicAdmissions />} />
           <Route path="/how-it-works" element={<PublicAdmissions />} />

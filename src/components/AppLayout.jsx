@@ -28,9 +28,9 @@ export default function AppLayout() {
           </button>
           <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
             <Link to="/about" onClick={close}>About</Link>
-            <Link to="/mission-vision" onClick={close}>Our Purpose</Link>
+            <Link to="/cognita-method" onClick={close}>Our Method</Link>
             <Link to="/programs" onClick={close}>Learning Paths</Link>
-            <Link to="/admissions" onClick={close}>How It Works</Link>
+            <Link to="/resources" onClick={close}>Resources</Link>
             <Link to="/organizations" onClick={close}>For Organizations</Link>
             <Link to="/classroom" onClick={close}>Classroom</Link>
             <Link className="button button--small" to="/contact" onClick={close}>
@@ -53,6 +53,9 @@ export default function AppLayout() {
             <Link to="/about">About</Link>
             <Link to="/mission-vision">Mission & Vision</Link>
             <Link to="/founder">Founder</Link>
+            <Link to="/values">Values</Link>
+            <Link to="/cognita-method">Cognita Method</Link>
+            <Link to="/pathways">Pathways</Link>
             <Link to="/classroom">Classroom</Link>
             <Link to="/support">Learner Support</Link>
             <Link to="/cee">CEE</Link>
@@ -66,6 +69,10 @@ export default function AppLayout() {
             <Link to="/terms">Terms</Link>
             <Link to="/academic-integrity">Academic Integrity & AI Use</Link>
             <Link to="/student-policies">Learner Policies</Link>
+            <Link to="/credentials">Credentials</Link>
+            <Link to="/accessibility">Accessibility</Link>
+            <Link to="/assessment-policy">Assessment Policy</Link>
+            <Link to="/refund-policy">Refund Policy</Link>
             <Link to="/institutional-status">Institutional Status</Link>
           </div>
           <div className="public-footer-column">
