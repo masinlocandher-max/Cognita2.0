@@ -70,6 +70,7 @@ export default function Programs() {
                 <h3>{title}</h3>
                 <p>{body}</p>
                 <ul>{includes.map((item) => <li key={item}>{item}</li>)}</ul>
+                {title === 'Self-Paced' && <a className="button button--ghost" href="/self-paced">Explore the syllabus</a>}
               </article>
             ))}
           </div>

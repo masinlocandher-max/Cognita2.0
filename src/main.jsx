@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
 import Home from './pages/Home'
+import SelfPaced from './pages/SelfPaced'
 import PublicAdmissions from './pages/PublicAdmissions'
 import Programs from './pages/Programs'
 import ContactFallback from './pages/ContactFallback'
@@ -53,6 +54,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutCognita />} />
           <Route path="/founder" element={<Founder />} />
+          <Route path="/self-paced" element={<SelfPaced />} />
+          <Route path="/learning-modes" element={<Programs />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/admissions" element={<PublicAdmissions />} />
           <Route path="/apply" element={<PublicAdmissions />} />
