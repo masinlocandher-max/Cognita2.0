@@ -1,3 +1,4 @@
+import { mission, vision } from '../data/institution'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpenCheck, Building2, CheckCircle2, FileText, GraduationCap, Mail, Scale, SearchCheck, ShieldCheck, Sparkles, Target, UsersRound, Waypoints } from 'lucide-react'
 
@@ -58,11 +59,11 @@ export function AboutCognita() {
             <p className="section-label">IDENTITY</p>
             <h2>Human Intelligence. Amplified.</h2>
             <p>Cognita is not a generic video-course marketplace, certificate mill, attendance-only training provider, or tool-tutorial platform. Learning is organized around understanding, judgment, verification, practice, revision, and accountability.</p>
-            <p>The public website explains Cognita, the CEE, learning paths, policies, and institutional status. Enrolled learners study inside a separate private learning environment after completing the applicable CEE, enrollment, and secure account requirements.</p>
+            <p>The public website explains Cognita, the CEE, learning paths, policies, and institutional status. The planned private classroom will follow application approval, CEE placement, confirmed enrollment, and student account activation. You can explore a public sample classroom today; secure student accounts are not yet available.</p>
           </article>
           <div className="info-values-grid">
-            <article><Target /><h3>Mission</h3><p>Provide Filipino learners with structured, accessible, competency-based training that develops practical knowledge, strengthens foundational skills, and supports meaningful academic, professional, entrepreneurial, and personal growth.</p></article>
-            <article><Waypoints /><h3>Vision</h3><p>Become a trusted Filipino learning institution known for making high-quality, practical, and structured education more accessible while strengthening learner competence, confidence, and adaptability.</p></article>
+            <article><Target /><h3>Mission</h3><p>{mission}</p></article>
+            <article><Waypoints /><h3>Vision</h3><p>{vision}</p></article>
             <article><BookOpenCheck /><h3>Learning framework</h3><p><strong>THINK. APPLY. TRANSFORM.</strong> Learners understand the task, use AI deliberately, verify important outputs, and remain accountable for final work.</p></article>
             <article><ShieldCheck /><h3>Institutional standard</h3><p>Practice before certification. Evidence before confidence. Human accountability remains central even when AI is used throughout the learning process.</p></article>
           </div>
@@ -100,38 +101,8 @@ export function Founder() {
 }
 
 export function EntranceExamInfo() {
-  const parts = [
-    ['01', 'Competency Diagnostic', 'What you currently understand and can actually do across AI literacy, applied use, verification, research, workflow reasoning, privacy, and professional judgment.'],
-    ['02', 'Technical Readiness', 'Digital fluency, computational thinking, programming readiness, systems reasoning, and readiness for deeper technical pathways.'],
-    ['03', 'Learner Readiness & Support', 'Non-clinical educational indicators such as study consistency, accountability needs, confidence calibration, and preferred participation style.'],
-    ['04', 'Goals & Constraints', 'Your target outcome, specialization interest, study time, device and connectivity realities, schedule, language, and relevant prior experience.'],
-  ]
-  return (
-    <>
-      <PageIntro
-        label="COGNITA ENTRY & COMPETENCY EVALUATION"
-        title="The CEE tells Cognita what you actually need next."
-        body="The CEE, academically coded AI-00, is Cognita’s diagnostic, routing, personalization, and recommendation engine. It is designed to identify strengths, gaps, appropriate depth, learning-support needs, and the most suitable Cognita pathway."
-        aside={<><span>Core principle</span><strong>Assess first. Recommend second. Enroll third.</strong></>}
-      />
-      <section className="section info-page"><div className="page-width">
-        <div className="info-score-grid">{parts.map(([score, title, body]) => <article key={title}><span>{score}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div>
-        <div className="info-two-column info-top-gap">
-          <article>
-            <h2>What your result can influence</h2>
-            <p>Your CEE profile can influence your starting level, competencies to study, competencies you may skip, remediation, specialization, recommended Self-Paced or Guided mode, support intensity, and the Cognita paid offering recommended to you.</p>
-            <p>The result should be presented as a profile with an understandable rationale, not merely one total score.</p>
-          </article>
-          <article>
-            <h2>Learner readiness is non-clinical</h2>
-            <p>The Learner Readiness & Support Profile is designed only to improve educational routing and support. It is not a psychological examination, mental-health assessment, medical diagnosis, or clinical fitness determination.</p>
-            <p>Before a production CEE begins, Cognita should clearly disclose how profiling and automated or partially automated recommendations are used and provide a route to request review of a materially incorrect recommendation.</p>
-          </article>
-        </div>
-      </div></section>
-      <ContactBand subject="Cognita CEE Inquiry" />
-    </>
-  )
+  return <><PageIntro label="COGNITA ENTRANCE EXAMINATION" title="Understand your readiness. Find your placement." body="The CEE follows application review and approval. The examination contains 60 items with a 60-minute time limit. It informs admission placement and eligible program recommendations." aside={<><span>Application first</span><strong>Apply → Approval → CEE → Placement → Enrollment</strong></>} />
+  <section className="renew-section page-width"><div className="classroom-notice"><strong>The online examination is not yet open.</strong> This page does not start an attempt, score an applicant, or grant admission.</div><div className="renew-grid">{[['Advanced','Advanced placement, subject to program prerequisites.'],['Standard','Standard program entry, subject to the confirmed offer.'],['Conditional','Additional foundational work or conditions may apply before progression.'],['Not Admitted','Preparation is required before the permitted retake, where applicable.']].map(([t,p])=><article className="renew-card" key={t}><h2>{t}</h2><p>{p}</p></article>)}</div><h2>More than a placement label.</h2><p>The result should explain demonstrated strengths, gaps, and recommended preparation or programs. It is an educational assessment, not a diagnosis or an IQ label.</p><h2>Prepare before you begin.</h2><p>Review the approved instructions, device requirements, connection arrangements, and permitted materials. Request accessibility support before the attempt. No scores, thresholds, or sample questions here determine official placement.</p><h2>Retake policy</h2><p>One retake is allowed after four weeks, where applicable. Confirm eligibility and the exact available date with Cognita. A retake does not guarantee admission.</p><div className="renew-actions"><Link className="button" to="/admissions">Review the admissions process</Link><Link to="/contact">Ask about CEE availability</Link></div></section></>
 }
 
 export function Organizations() {

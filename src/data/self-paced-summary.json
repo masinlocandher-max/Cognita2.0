@@ -1,0 +1,64 @@
+{
+  "id": "SP-AI-01",
+  "title": "Applied AI for Everyday Work",
+  "hours": 26.5,
+  "version": "1.0.0",
+  "units": [
+    {
+      "id": "sl-01",
+      "title": "Understand AI and choose useful tasks",
+      "competency": "Separate useful assistance from decisions that need human judgment.",
+      "minutes": 150,
+      "output": "AI Use Map"
+    },
+    {
+      "id": "sl-02",
+      "title": "Frame the problem and protect the inputs",
+      "competency": "Write a usable brief while excluding unnecessary personal information.",
+      "minutes": 180,
+      "output": "Problem Frame and Safe Brief"
+    },
+    {
+      "id": "sl-03",
+      "title": "Give instructions and improve the draft",
+      "competency": "Develop and test instructions against explicit criteria.",
+      "minutes": 180,
+      "output": "Instruction and Revision Log"
+    },
+    {
+      "id": "sl-04",
+      "title": "Verify claims, sources, and numbers",
+      "competency": "Trace important claims to evidence and recompute calculations.",
+      "minutes": 210,
+      "output": "Verification File"
+    },
+    {
+      "id": "sl-05",
+      "title": "Design a workflow with human checkpoints",
+      "competency": "Create a repeatable process with failure handling and approval.",
+      "minutes": 210,
+      "output": "Workflow and Test Plan"
+    },
+    {
+      "id": "sl-06",
+      "title": "Communicate with clarity and judgment",
+      "competency": "Edit a draft for audience, evidence, and a useful next action.",
+      "minutes": 180,
+      "output": "Before-and-After Communication Case"
+    },
+    {
+      "id": "sl-07",
+      "title": "Document responsible use and prove transfer",
+      "competency": "Explain AI assistance and apply the same principles to a different task.",
+      "minutes": 180,
+      "output": "Responsible Use and Transfer File"
+    },
+    {
+      "id": "sl-08",
+      "title": "Build, defend, and package the final project",
+      "competency": "Deliver a bounded AI-assisted workflow with evidence of independent judgment.",
+      "minutes": 300,
+      "output": "Final Project and Defense"
+    }
+  ]
+}

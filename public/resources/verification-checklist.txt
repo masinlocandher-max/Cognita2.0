@@ -1,0 +1,10 @@
+COGNITA VERIFICATION CHECKLIST
+Public practice resource. Not a formal assessment.
+1. List consequential claims: names, dates, prices, promises, quantities.
+2. Identify the original authorized source for each claim.
+3. Check that the source supports the exact claim.
+4. Recalculate numerical results independently.
+5. Separate revenue from profit and estimates from observed results.
+6. Record missing facts and unresolved uncertainty.
+7. Remove unsupported claims or ask for clarification.
+8. Identify who approves the output before use.

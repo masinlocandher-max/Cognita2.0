@@ -1,0 +1,15 @@
+COGNITA | INTRODUCTORY SAMPLE WORKSHEET
+Practice only. No enrollment, grade, submission, or credential.
+
+Goal: distinguish a useful draft from a verified answer.
+Fictional source: A notebook costs PHP 80. Collection is available on Saturday. Delivery has not been confirmed.
+AI draft: Order your notebook for PHP 60 with guaranteed free delivery tomorrow.
+
+1. Corrected customer message:
+2. Claims I changed:
+3. Source facts I checked:
+4. Approval and remaining checks before use:
+5. How I would apply this check to a different task:
+
+Self-review: Check the price, remove invented delivery claims, preserve collection arrangements, and request owner approval and stock confirmation.
+Keep your own copy. Do not include real customer information.

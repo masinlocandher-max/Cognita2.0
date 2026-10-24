@@ -39,7 +39,7 @@ export default function Programs() {
           <div>
             <p className="section-label">COGNITA LEARNING PATHS</p>
             <h1>You do not start by guessing which course to buy.</h1>
-            <p>Take the CEE first. Cognita uses the resulting profile to recommend the depth, specialization, learning mode, and support level that fit your actual needs.</p>
+            <p>Apply and receive approval to take the CEE. Cognita uses the resulting profile to recommend the depth, specialization, learning mode, and support level that fit your actual needs.</p>
           </div>
           <aside>
             <span>Core rule</span>
@@ -53,8 +53,8 @@ export default function Programs() {
           <div className="public-programs-notice">
             <Sparkles size={20} />
             <div>
-              <strong>CEE determines the recommended offer.</strong>
-              <p>Program information can be explored publicly, but Cognita’s intended commercial journey is CEE-led rather than catalog-led.</p>
+              <strong>Placement informs eligible programs.</strong>
+              <p>Program information can be explored publicly, but Cognita’s intended commercial journey is application-first, followed by CEE placement and enrollment.</p>
             </div>
           </div>
 
@@ -70,6 +70,7 @@ export default function Programs() {
                 <h3>{title}</h3>
                 <p>{body}</p>
                 <ul>{includes.map((item) => <li key={item}>{item}</li>)}</ul>
+                {title === 'Self-Paced' && <a className="button button--ghost" href="/self-paced">Explore the syllabus</a>}
               </article>
             ))}
           </div>

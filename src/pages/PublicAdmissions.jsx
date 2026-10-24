@@ -1,44 +1,4 @@
-import { ArrowRight, BrainCircuit, CheckCircle2, CreditCard, SearchCheck, Sparkles, Waypoints } from 'lucide-react'
-
-const steps = [
-  ['01', BrainCircuit, 'Create your account', 'Your account anchors the CEE, recommendation, enrollment, and future competency record.'],
-  ['02', SearchCheck, 'Complete the CEE', 'Cognita evaluates current competency, technical readiness, learning-support needs, goals, and practical constraints.'],
-  ['03', Waypoints, 'Receive your Cognita path', 'The system identifies strengths, gaps, skip-eligible competencies, depth, specialization, and recommended learning mode.'],
-  ['04', CreditCard, 'Review the paid offer', 'You see the recommended Self-Paced or Guided option, the material terms, price, access period, and applicable refund conditions before paying.'],
-  ['05', Sparkles, 'Learn and build evidence', 'Progress through practice, feedback, remediation, projects, and mastery rather than passive completion.'],
-  ['06', CheckCircle2, 'Get verified and advance', 'When requirements are met, your competency record summarizes demonstrated capability and Cognita can recommend the next path.'],
-]
-
-export default function PublicAdmissions() {
-  return (
-    <>
-      <section className="info-hero">
-        <div className="page-width info-hero__grid">
-          <div>
-            <p className="section-label">HOW COGNITA WORKS</p>
-            <h1>The first decision is not which course to buy.</h1>
-            <p>Cognita starts with the CEE, then builds the recommendation around your actual profile.</p>
-          </div>
-          <aside className="info-hero__aside"><span>Canonical journey</span><strong>Create Account → CEE → Personalized Path → Recommended Offer → Mastery</strong></aside>
-        </div>
-      </section>
-
-      <section className="section info-page">
-        <div className="page-width">
-          <div className="public-admissions-grid">
-            {steps.map(([number, Icon, title, body]) => (
-              <article key={number}>
-                <span>{number}</span>
-                <div><Icon size={20} /><h3>{title}</h3><p>{body}</p></div>
-              </article>
-            ))}
-          </div>
-          <div className="public-admissions-cta">
-            <div><BrainCircuit /><div><strong>Why this model?</strong><p>Because two learners with similar knowledge can still need different pathways, support levels, and commercial offers.</p></div></div>
-            <a className="button" href="/cee">Understand the CEE <ArrowRight size={17} /></a>
-          </div>
-        </div>
-      </section>
-    </>
-  )
-}
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
+import { admissionSteps } from '../data/admissions'
+export default function PublicAdmissions(){return <><section className="info-hero"><div className="page-width"><p className="section-label">ADMISSIONS · THE ORIGINAL COGNITA PROCESS</p><h1>Your path into Cognita.</h1><p>Apply, receive approval to take the CEE, review your placement, and enroll in an eligible program before activating your student account.</p></div></section><section className="renew-section page-width"><div className="classroom-notice"><strong>Applications and enrollment are not yet open online.</strong> This page explains the process. No applicant information, examination answers, or payments are collected here.</div><div className="renew-grid">{admissionSteps.map(([t,b],i)=><article className="renew-card" key={t}><span className="section-label">STEP {String(i+1).padStart(2,'0')}</span><h2>{t}</h2><p>{b}</p></article>)}</div><h2>Placement with a clear next step.</h2><p>The CEE has 60 items and a 60-minute time limit. Placement bands are Advanced, Standard, Conditional, and Not Admitted. One retake is allowed after four weeks, where applicable. Numerical thresholds and accommodation arrangements must be confirmed in the approved examination policy; this website does not invent them.</p><div className="renew-actions"><Link className="button" to="/cee">Understand the CEE <ArrowRight size={17}/></Link><Link to="/programs">Explore programs</Link><Link to="/classroom">Try the sample classroom</Link></div></section></>}

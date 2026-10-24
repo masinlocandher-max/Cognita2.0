@@ -1,0 +1,30 @@
+.course-boundary { background:#eef3f8; border-left:4px solid #476888; padding:1.25rem; margin-bottom:1.5rem; border-radius:6px; }
+.course-boundary p,.course-notice { font-size:.9rem; line-height:1.65; }
+.course-actions { display:flex; flex-wrap:wrap; gap:.75rem; margin:1rem 0; }
+.course-actions button { border:1px solid #b3c2d4; background:#fff; color:#0b1f3b; padding:.65rem .9rem; border-radius:6px; cursor:pointer; }
+.course-material { max-width:72ch; line-height:1.8; }
+.course-material h3 { margin-top:1.8rem; }
+.course-material h4 { margin-top:1.4rem; }
+.course-material li { margin:.5rem 0; }
+.course-objective { border-bottom:1px solid #ccd7e5; padding-bottom:1rem; }
+.course-example { background:#f5f7fa; padding:1.2rem; border-left:3px solid #b58a50; margin:1.4rem 0; }
+.course-example h3 { margin-top:0; }
+.course-check { border:1px solid #b3c2d4; padding:1.2rem; border-radius:8px; margin:1.5rem 0; min-width:0; }
+.course-check legend { font-weight:600; padding:0 .4rem; }
+.course-check label { display:flex; align-items:flex-start; gap:.8rem; padding:.75rem; cursor:pointer; }
+.course-check input { margin-top:.5rem; flex:0 0 auto; }
+.course-check [role=status] { background:#edf2f7; padding:1rem; margin-top:1rem; }
+.course-material button { margin:.4rem .6rem .4rem 0; }
+button:disabled { opacity:.55; cursor:not-allowed; }
+.course-notice { padding:1rem; background:#f8f2e7; color:#342a18; }
+.course-syllabus { max-width:1100px; margin:auto; padding:clamp(1.25rem,4vw,4rem); color:#0b1f3b; }
+.course-syllabus h1 { font-family:Georgia,serif; font-size:clamp(2.2rem,5vw,4rem); line-height:1.12; max-width:18ch; }
+.course-syllabus p { line-height:1.75; max-width:75ch; }
+.course-syllabus .course-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:2rem 0; }
+.course-syllabus article { border:1px solid #c7d3e1; border-radius:12px; padding:1.5rem; background:#fff; }
+.course-syllabus article span { color:#785824; font-weight:600; }
+.course-syllabus .course-process { padding:1.5rem; border-radius:12px; background:#0b1f3b; color:#fff; margin:2rem 0; }
+.course-process p { color:#fff; }
+.course-material :focus-visible,.course-syllabus :focus-visible,.course-actions :focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
+@media(max-width:640px) { .course-syllabus .course-grid {grid-template-columns:1fr} .course-check {padding:.75rem} .course-actions button {min-height:44px} }
+@media print { .site-header,.site-footer,.course-actions {display:none} .course-syllabus article {break-inside:avoid} .course-syllabus .course-process {background:#fff;color:#000;border:1px solid} .course-process p {color:#000} }
