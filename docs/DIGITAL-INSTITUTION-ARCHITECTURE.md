@@ -1,3 +1,5 @@
+> Frontend implementation update: see FRONTEND-DELIVERY.md and FRONTEND-ROUTES.json for the current implemented views. The older planned-route list below describes system intent; many now have local interactions or explicit service-unavailable states. Backend status is unchanged.
+
 # Cognita digital institution
 
 Updated 24 October 2026. Implements the owner's expanded architecture as shared systems, not 252 independent screens. Admissions follow ADMISSIONS-OWNER-DECISION-2026-10-24.md.

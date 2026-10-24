@@ -32,7 +32,7 @@ export default function AppLayout() {
             <Link to="/programs" onClick={close}>Learning Paths</Link>
             <Link to="/resources" onClick={close}>Resources</Link>
             <Link to="/organizations" onClick={close}>For Organizations</Link>
-            <Link to="/classroom" onClick={close}>Classroom</Link>
+            <Link to="/learn" onClick={close}>Learning Space</Link>
             <Link className="button button--small" to="/contact" onClick={close}>
               <Mail size={16} /> Contact
             </Link>
@@ -56,7 +56,8 @@ export default function AppLayout() {
             <Link to="/values">Values</Link>
             <Link to="/cognita-method">Cognita Method</Link>
             <Link to="/pathways">Pathways</Link>
-            <Link to="/classroom">Classroom</Link>
+            <Link to="/learn">Learning Space</Link>
+            <Link to="/explore">All Environments</Link>
             <Link to="/support">Learner Support</Link>
             <Link to="/cee">CEE</Link>
             <Link to="/programs">Learning Paths</Link>

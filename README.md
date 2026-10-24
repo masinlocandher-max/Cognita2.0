@@ -1,3 +1,7 @@
+# Current frontend delivery
+
+See [frontend delivery and integration boundaries](docs/FRONTEND-DELIVERY.md) and [original admissions decision](docs/ADMISSIONS-OWNER-DECISION-2026-10-24.md). Start at `/explore` for all environments or `/learn` for public practice. Run `npm run check` before release.
+
 # Cognita 2.0
 
 Cognita is a commercial, private, non-degree professional training and competency-development business.

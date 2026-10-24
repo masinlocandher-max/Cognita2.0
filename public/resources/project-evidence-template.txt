@@ -1,0 +1,14 @@
+COGNITA PROJECT EVIDENCE TEMPLATE
+Local practice. Not submitted or assessed.
+Purpose and audience:
+Source brief and constraints:
+Safe inputs and excluded information:
+Draft or workflow:
+Claims and calculations checked:
+Source for each consequential claim:
+Failure case and stop condition:
+Human approval required:
+Changes after self-review:
+AI assistance used and how it was checked:
+Limitations and uncertainty:
+Transfer to a different task:

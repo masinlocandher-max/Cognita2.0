@@ -25,6 +25,9 @@ jobs:
       - name: Test sample classroom
         run: npm test
 
+      - name: Render routes and verify internal links
+        run: npm run routes:check
+
       - name: Build
         run: npm run build
 

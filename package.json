@@ -8,8 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "security:check": "node scripts/security-check.mjs",
-    "check": "npm test && npm run build && npm run security:check",
-    "test": "node --test tests/*.test.mjs"
+    "check": "npm test && npm run routes:check && npm run build && npm run security:check",
+    "test": "node --test tests/*.test.mjs",
+    "routes:check": "node scripts/check-frontend-routes.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
